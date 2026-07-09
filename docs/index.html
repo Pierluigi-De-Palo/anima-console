@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KIROSHI — fake checker</title>
+<style>
+  :root{
+    --bg:#0a0e14; --panel:#111823; --panel2:#0d141d; --line:#1e2a38;
+    --txt:#d7e3ef; --muted:#7d93a8; --cyan:#22d3ee; --magenta:#f43f8e;
+    --green:#2ee6a6; --amber:#f6c453; --red:#ff5c6c;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    line-height:1.6}
+  header{padding:18px 22px;border-bottom:1px solid var(--line);
+    display:flex;align-items:baseline;gap:12px}
+  header h1{margin:0;font-size:20px;font-weight:600;letter-spacing:.14em;
+    color:var(--cyan)}
+  header .sub{color:var(--muted);font-size:12px;letter-spacing:.2em;text-transform:uppercase}
+  .wrap{display:grid;grid-template-columns:230px 1fr;gap:0;min-height:calc(100vh - 59px)}
+  aside{border-right:1px solid var(--line);padding:14px}
+  aside h2{font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--muted);margin:4px 0 12px}
+  .item{padding:10px 12px;border:1px solid var(--line);border-radius:10px;
+    margin-bottom:8px;cursor:pointer;background:var(--panel2)}
+  .item:hover{border-color:var(--cyan)}
+  .item.on{border-color:var(--cyan);box-shadow:0 0 0 1px var(--cyan) inset}
+  .item .t{font-size:14px}
+  .item .m{font-size:12px;color:var(--muted);display:flex;gap:8px;align-items:center;margin-top:4px}
+  .dot{width:8px;height:8px;border-radius:50%}
+  main{padding:22px;max-width:900px}
+  .q{color:var(--muted);font-size:13px;margin:0 0 4px}
+  h3.obj{margin:0 0 16px;font-size:22px;font-weight:600}
+  .top{display:flex;gap:26px;flex-wrap:wrap;align-items:center}
+  .verdict{flex:1;min-width:260px}
+  .flags{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .card h4{margin:0 0 8px;font-size:13px;letter-spacing:.04em}
+  .card.g h4{color:var(--green)} .card.r h4{color:var(--amber)}
+  .card ul{margin:0;padding-left:18px;font-size:13px;color:#b6c6d6}
+  .card li{margin-bottom:5px}
+  section{margin:26px 0}
+  section > h4{font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--muted);margin:0 0 10px;border-bottom:1px solid var(--line);padding-bottom:6px}
+  .srcs a{display:flex;justify-content:space-between;gap:12px;padding:8px 10px;
+    border:1px solid var(--line);border-radius:8px;margin-bottom:6px;
+    color:var(--txt);text-decoration:none;font-size:13px}
+  .srcs a:hover{border-color:var(--cyan)}
+  .srcs .tag{font-size:11px;color:var(--muted)}
+  .safe{font-size:12px;color:var(--muted);border-left:2px solid var(--cyan);
+    padding:6px 12px;margin-top:8px}
+  @media(max-width:680px){.wrap{grid-template-columns:1fr}aside{border-right:none;border-bottom:1px solid var(--line)}.flags{grid-template-columns:1fr}}
+  text{font-family:inherit}
+</style>
+</head>
+<body>
+<header>
+  <h1>◉ KIROSHI</h1><span class="sub">fake checker · vero o falso</span>
+</header>
+<div class="wrap">
+  <aside>
+    <h2>Verifiche</h2>
+    <div id="list"></div>
+  </aside>
+  <main id="main"><p class="q">Carico…</p></main>
+</div>
+<script src="data/db.js"></script>
+<script>
+const COL={affidabile:'#2ee6a6',dubbio:'#f6c453',falso:'#ff5c6c'};
+const SOS={vero:'#2ee6a6',falso:'#ff5c6c',neutro:'#7d93a8'};
+const DB=(window.KIROSHI_DB||[]);
+
+function boot(){
+  const box=document.getElementById('list');
+  if(!DB.length){box.innerHTML='<p class="q">Nessuna verifica ancora.</p>';
+    document.getElementById('main').innerHTML='<p class="q">Apri una issue con l\'etichetta "kiroshi" per la prima verifica.</p>';return;}
+  DB.slice().reverse().forEach((c,i)=>{
+    const el=document.createElement('div');
+    el.className='item'+(i===0?' on':'');
+    el.innerHTML=`<div class="t">${c.titolo}</div>
+      <div class="m"><span class="dot" style="background:${COL[c.etichetta]||'#7d93a8'}"></span>
+      ${c.punteggio}/100 · ${c.data_verifica||c.data||''}</div>`;
+    el.onclick=()=>{document.querySelectorAll('.item').forEach(x=>x.classList.remove('on'));
+      el.classList.add('on');load(c);};
+    box.appendChild(el);
+  });
+  load(DB[DB.length-1]);
+}
+
+function load(d){
+  const m=document.getElementById('main');
+  m.innerHTML=`
+    <p class="q">${d.domanda||''}</p>
+    <h3 class="obj">${d.oggetto||d.titolo}</h3>
+    <div class="top">${gauge(d.punteggio,d.etichetta)}
+      <div class="verdict"><p style="margin:0">${d.verdetto||''}</p></div></div>
+    <div class="flags">
+      <div class="card g"><h4>▲ A favore</h4><ul>${(d.green_flags||[]).map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      <div class="card r"><h4>⚠ Da tenere d'occhio</h4><ul>${(d.red_flags||[]).map(x=>`<li>${x}</li>`).join('')}</ul></div>
+    </div>
+    <section><h4>Grafo delle fonti</h4>${graph(d.fonti||[])}</section>
+    <section><h4>Timeline della voce</h4>${timeline(d.timeline||[])}</section>
+    <section class="srcs"><h4>Fonti</h4>${(d.fonti||[]).map(f=>
+      `<a href="${f.url}" target="_blank" rel="noopener"><span>${f.titolo}</span>
+       <span class="tag">${f.tipo} · ${'●'.repeat(f.autorevolezza||1)}</span></a>`).join('')}</section>
+    <div class="safe">🛡 ${d.nota_sicurezza||'—'} · modalità: ${d.modalita||'—'}</div>`;
+}
+
+function gauge(v,lab){
+  const cx=110,cy=120,r=88;
+  const pt=t=>{const a=Math.PI*(1-t/100);return[cx+r*Math.cos(a),cy-r*Math.sin(a)];};
+  const arc=(a,b,col,w)=>{const[x1,y1]=pt(a),[x2,y2]=pt(b);
+    return`<path d="M ${x1} ${y1} A ${r} ${r} 0 0 1 ${x2} ${y2}" fill="none" stroke="${col}" stroke-width="${w}" stroke-linecap="round"/>`;};
+  const[nx,ny]=pt(v);
+  return`<svg viewBox="0 0 220 150" width="220" role="img" aria-label="Affidabilità ${v} su 100">
+    ${arc(0,40,'#ff5c6c',14)}${arc(41,70,'#f6c453',14)}${arc(71,100,'#2ee6a6',14)}
+    <line x1="${cx}" y1="${cy}" x2="${nx}" y2="${ny}" stroke="#d7e3ef" stroke-width="3"/>
+    <circle cx="${cx}" cy="${cy}" r="6" fill="#d7e3ef"/>
+    <text x="${cx}" y="104" text-anchor="middle" font-size="40" font-weight="700" fill="${COL[lab]||'#d7e3ef'}">${v}</text>
+    <text x="${cx}" y="122" text-anchor="middle" font-size="12" fill="#7d93a8">/100 · ${lab}</text>
+    <text x="22" y="140" font-size="10" fill="#7d93a8">falso</text>
+    <text x="176" y="140" font-size="10" fill="#7d93a8">vero</text></svg>`;
+}
+
+function graph(f){
+  if(!f.length)return'<p class="q">—</p>';
+  const W=620,H=260,cx=W/2,cy=H/2,R=95;
+  let nodes='',lines='';
+  f.forEach((s,i)=>{
+    const a=(2*Math.PI*i/f.length)-Math.PI/2;
+    const x=cx+Math.cos(a)*(R+70), y=cy+Math.sin(a)*R;
+    const rad=6+(s.autorevolezza||1)*2.2, col=SOS[s.sostiene]||'#7d93a8';
+    lines+=`<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="${col}" stroke-width="1.2" opacity=".5"/>`;
+    const lbl=(s.titolo||'').length>26?s.titolo.slice(0,25)+'…':s.titolo;
+    const anchor=x<cx-10?'end':x>cx+10?'start':'middle';
+    nodes+=`<circle cx="${x}" cy="${y}" r="${rad}" fill="${col}"/>
+      <text x="${x+(anchor==='end'?-rad-4:anchor==='start'?rad+4:0)}" y="${y+3}" text-anchor="${anchor}" font-size="11" fill="#b6c6d6">${lbl}</text>`;
+  });
+  return`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Grafo delle fonti">
+    ${lines}
+    <circle cx="${cx}" cy="${cy}" r="30" fill="#111823" stroke="#22d3ee" stroke-width="1.5"/>
+    <text x="${cx}" y="${cy-1}" text-anchor="middle" font-size="11" fill="#22d3ee">afferma-</text>
+    <text x="${cx}" y="${cy+12}" text-anchor="middle" font-size="11" fill="#22d3ee">zione</text>
+    ${nodes}
+    <text x="10" y="${H-6}" font-size="10" fill="#7d93a8">verde = sostiene · rosso = smentisce · grigio = neutro · dimensione = autorevolezza</text></svg>`;
+}
+
+function timeline(t){
+  if(!t.length)return'<p class="q">—</p>';
+  const W=620,pad=30,y=54,step=(W-pad*2)/Math.max(1,t.length-1);
+  let dots='';
+  t.forEach((e,i)=>{
+    const x=pad+step*i;
+    const up=i%2===0;
+    dots+=`<line x1="${x}" y1="${y}" x2="${x}" y2="${up?y-16:y+16}" stroke="#1e2a38"/>
+      <circle cx="${x}" cy="${y}" r="5" fill="#22d3ee"/>
+      <text x="${x}" y="${up?y-22:y+30}" text-anchor="middle" font-size="10" fill="#7d93a8">${e.data}</text>
+      <text x="${x}" y="${up?y-34:y+42}" text-anchor="middle" font-size="10" fill="#b6c6d6">${(e.evento||'').length>22?e.evento.slice(0,21)+'…':e.evento}</text>`;
+  });
+  return`<svg viewBox="0 0 ${W} 108" width="100%" role="img" aria-label="Timeline">
+    <line x1="${pad}" y1="${y}" x2="${W-pad}" y2="${y}" stroke="#1e2a38" stroke-width="2"/>${dots}</svg>`;
+}
+boot();
+</script>
+</body>
+</html>

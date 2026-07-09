@@ -1,0 +1,49 @@
+{
+  "titolo": "Sway - Audima Labs",
+  "oggetto": "Sway, controller MIDI a gesti di Audima Labs (Batch 4, pre-ordine)",
+  "domanda": "È hardware vero o fuffa renderizzata? Ci si può fidare prima di spendere 600+$?",
+  "modalita": "scava",
+  "punteggio": 85,
+  "etichetta": "affidabile",
+  "verdetto": "Sway è un prodotto reale, non un render. Dietro c'è un'azienda australiana con fondatori identificabili, passata da Shark Tank Australia, con una campagna Indiegogo di successo e due lotti già consegnati in oltre 35 paesi. Non è una truffa. Il rischio residuo non è la frode ma il pre-ordine: paghi ora per una consegna prevista a fine 2026, e lo strumento è di nicchia e polarizzante. La domanda 'mi arriverà ed è reale?' ha risposta sì; la domanda 'vale 615$ per me?' dipende dai tuoi gusti.",
+  "green_flags": [
+    "Fondatori reali e identificabili: Jeremy Buckley e Isaac Jack (Australia)",
+    "Passati da Shark Tank Australia: deal da 50.000$ per il 15% (confermato dalla pagina ufficiale Shark Tank AU)",
+    "Indiegogo 2024: 256 finanziatori reali, 220.958$ raccolti (900% del goal)",
+    "Batch 1 consegnato giu 2025 e Batch 2 dic 2025, in 35+ paesi",
+    "Recensioni indipendenti (AltWire, Mixmag Asia) e video YouTube di terzi",
+    "Unità reali fotografate da utenti sui forum di appassionati (Elektronauts)",
+    "Aggiornamenti di produzione regolari sulla campagna Indiegogo"
+  ],
+  "red_flags": [
+    "È un pre-ordine: paghi ora, consegna stimata nov-dic 2026 (rischio slittamento)",
+    "Team piccolo, produzione a lotti: capacità limitata",
+    "Strumento di nicchia e polarizzante, ergonomia del controllo a gesti discussa dai forum",
+    "Molte recensioni 5★ ospitate sul sito del venditore: pesano meno di quelle indipendenti"
+  ],
+  "fonti": [
+    {"titolo": "Indiegogo - campagna Sway", "url": "https://www.indiegogo.com/en/projects/audimalabs/sway-the-world-s-most-expressive-midi-controller", "tipo": "ufficiale", "sostiene": "vero", "autorevolezza": 4},
+    {"titolo": "Shark Tank AU (pagina Facebook ufficiale)", "url": "https://www.facebook.com/sharktankau/posts/1378105513464163/", "tipo": "ufficiale", "sostiene": "vero", "autorevolezza": 5},
+    {"titolo": "Elektronauts - forum, foto utente", "url": "https://www.elektronauts.com/t/audima-labs-sway-midi-controller/242226", "tipo": "forum", "sostiene": "vero", "autorevolezza": 4},
+    {"titolo": "Poly Expression - forum", "url": "https://community.polyexpression.com/t/audima-labs-sway/2050", "tipo": "forum", "sostiene": "vero", "autorevolezza": 3},
+    {"titolo": "AltWire - recensione", "url": "https://altwire.net/audima-labs-the-sway-review/", "tipo": "stampa", "sostiene": "vero", "autorevolezza": 3},
+    {"titolo": "Mixmag Asia", "url": "https://mixmag.asia/read/audima-labs-midi-instrument-sway-turns-movement-into-music-tech", "tipo": "stampa", "sostiene": "vero", "autorevolezza": 4},
+    {"titolo": "The Awesomer", "url": "https://theawesomer.com/sway-gesture-midi-music-controller/751174/", "tipo": "stampa", "sostiene": "vero", "autorevolezza": 2},
+    {"titolo": "Trustpilot - audima.com.au", "url": "https://www.trustpilot.com/review/audima.com.au", "tipo": "altro", "sostiene": "vero", "autorevolezza": 3},
+    {"titolo": "Sito ufficiale Audima Labs", "url": "https://audima.com.au/", "tipo": "venditore", "sostiene": "neutro", "autorevolezza": 2}
+  ],
+  "timeline": [
+    {"data": "2023-03", "evento": "Fondazione di Audima Labs (Australia)"},
+    {"data": "2024-07", "evento": "Registrazione puntata Shark Tank Australia"},
+    {"data": "2024-10", "evento": "Lancio campagna Indiegogo"},
+    {"data": "2024-11", "evento": "Campagna chiusa: 256 backer, 220.958$ (+900%). Puntata Shark Tank in onda"},
+    {"data": "2025-06", "evento": "Consegna Batch 1"},
+    {"data": "2025-12", "evento": "Consegna Batch 2"},
+    {"data": "2026-06", "evento": "Consegna Batch 3 (prevista giu/lug 2026)"},
+    {"data": "2026-08", "evento": "Apertura pre-ordini Batch 4"},
+    {"data": "2026-11", "evento": "Consegna Batch 4 stimata (nov-dic 2026)"}
+  ],
+  "nota_sicurezza": "Nessun segnale di malware o phishing. Dominio ufficiale audima.com.au coerente; nessun link sospetto nel materiale analizzato.",
+  "issue": 1,
+  "data_verifica": "2026-07-09"
+}

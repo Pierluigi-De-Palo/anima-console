@@ -1,0 +1,38 @@
+{
+  "titolo": "Contenuti sensuali = i più visti sui social?",
+  "oggetto": "Voce: sui dati Meta/Instagram/TikTok il contenuto più visto e performante sono le parti sensuali (soprattutto femminili)",
+  "domanda": "È vero che il contenuto più importante sui social sono le parti sensuali femminili?",
+  "modalita": "rapida",
+  "punteggio": 45,
+  "etichetta": "dubbio",
+  "verdetto": "Voce a metà: falsa nella versione forte, vera nel nocciolo. FALSO che 'il contenuto più visto' siano parti sensuali: i dati ufficiali di Meta (Widely Viewed Content Report) mettono in cima meme, animali, cucina, famiglia, news e celebrità — e nudità/sesso esplicito sono contro le policy, quindi non possono essere i 'più visti'. VERO invece che i contenuti sessualizzati (specie di donne) ottengono engagement sproporzionato e vengono amplificati dall'algoritmo, come mostrano studi indipendenti e accademici. Il trucco è confondere due cose diverse: 'più visto in assoluto' ≠ 'genera più engagement per singolo post'. È il tipo di frase vera-a-metà che a forza di ripeterla diventa 'verità'.",
+  "green_flags": [
+    "Studi indipendenti (ISD 2020, SumOfUs 2021): l'algoritmo amplifica corpi idealizzati/attraenti, soprattutto di donne",
+    "Ricerche accademiche: foto più succinte = più like e follower ('more skin, more likes')",
+    "Documentato che i media sessualizzati vengono spinti per massimizzare l'interazione (in prevalenza maschile)"
+  ],
+  "red_flags": [
+    "I dati UFFICIALI di Meta (Widely Viewed Content Report) dicono il contrario: in cima meme, animali, cucina, famiglia, news, celebrità",
+    "Meta vieta nudità e sesso esplicito: per policy non possono essere 'il contenuto più visto'",
+    "'Il più importante/visto' è iperbole non quantificata: confonde 'visualizzazioni totali' con 'engagement per post'",
+    "Nessuna statistica ufficiale afferma 'le parti sensuali femminili sono il contenuto n.1'"
+  ],
+  "fonti": [
+    {"titolo": "Meta - Widely Viewed Content Report (ufficiale)", "url": "https://transparency.meta.com/reports/widely-viewed-content-report/", "tipo": "ufficiale", "sostiene": "falso", "autorevolezza": 5},
+    {"titolo": "Social Media Today - analisi del report", "url": "https://www.socialmediatoday.com/news/Meta-Widely-Viewed-Content-Report-Q4-2022/643457/", "tipo": "stampa", "sostiene": "falso", "autorevolezza": 3},
+    {"titolo": "arXiv - 'More Skin, More Likes' (studio)", "url": "https://arxiv.org/pdf/2408.05622", "tipo": "altro", "sostiene": "vero", "autorevolezza": 4},
+    {"titolo": "ScienceDirect - TikTok e body dissatisfaction", "url": "https://www.sciencedirect.com/science/article/abs/pii/S174014452200167X", "tipo": "altro", "sostiene": "vero", "autorevolezza": 4},
+    {"titolo": "The Harbinger - algoritmi e media sessualizzati", "url": "https://smeharbinger.net/targeting-content-social-media-algorithms-use-sexualized-media-to-promote-more-male-interaction/", "tipo": "stampa", "sostiene": "vero", "autorevolezza": 2},
+    {"titolo": "Medium - bias di Instagram verso donne attraenti", "url": "https://medium.com/@heysuryansh/exploring-instagrams-algorithmic-bias-towards-attractive-women-and-its-impact-on-users-case-79a4c7e6583f", "tipo": "social", "sostiene": "vero", "autorevolezza": 2}
+  ],
+  "timeline": [
+    {"data": "2020", "evento": "Report ISD: algoritmo amplifica corpi idealizzati"},
+    {"data": "2021-08", "evento": "Meta lancia il Widely Viewed Content Report"},
+    {"data": "2021", "evento": "SumOfUs accusa IG di prioritizzare 'sexy selfies'"},
+    {"data": "2024-08", "evento": "Studio 'More Skin, More Likes' (arXiv)"},
+    {"data": "2025-Q4", "evento": "Ultimo WVCR: in cima meme e animali, non sesso"}
+  ],
+  "nota_sicurezza": "Nessun link o allegato da analizzare: voce di natura statistica, valutata incrociando fonti ufficiali e accademiche. Nessun segnale di malware.",
+  "issue": 2,
+  "data_verifica": "2026-07-09"
+}
