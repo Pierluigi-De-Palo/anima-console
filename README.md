@@ -2,7 +2,7 @@
 
 > "Scansiona una cosa e ti dice se è vera o è una minaccia."
 > Nome dagli impianti oculari di Cyberpunk 2077 (contesto metaforico di ROOT_CLODE).
-> Agente figlio di SQUELCH. Scopato a questa cartella.
+> Agente figlio di D.R.A.G.O. (dispatch). Scopato a questa cartella.
 
 Mandi un **link** o **scrivi una voce** dal telefono, KIROSHI ricerca sul web e
 ti risponde: **è vero o è falso? Ci si può fidare?** — con un punteggio di
