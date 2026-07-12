@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A.N.I.M.A. — console</title>
+<style>
+  :root{--bg:#0a0e14;--panel:#111823;--panel2:#0d141d;--line:#1e2a38;--txt:#d7e3ef;--muted:#7d93a8;--cyan:#22d3ee;--magenta:#f43f8e;--green:#2ee6a6;--amber:#f6c453;--red:#ff5c6c;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.6;padding:0 0 40px}
+  header{padding:16px 18px;border-bottom:1px solid var(--line);display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+  header h1{margin:0;font-size:18px;font-weight:600;letter-spacing:.12em;color:var(--cyan)}
+  header .sub{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  main{max-width:760px;margin:0 auto;padding:16px}
+  h2{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:22px 0 10px;border-bottom:1px solid var(--line);padding-bottom:6px}
+  .bar{height:12px;background:var(--panel);border-radius:6px;overflow:hidden;margin:6px 0 4px}
+  .bar>div{height:100%;background:var(--amber)}
+  .big{font-family:Georgia,serif;font-size:40px;font-weight:700;color:var(--amber)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+  .agent{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+  .agent .top{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+  .em{width:34px;height:34px;border-radius:50%;background:var(--panel2);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:13px;flex:0 0 auto}
+  .agent .n{font-size:14px;font-weight:600}
+  .agent .r{font-size:12px;color:var(--muted)}
+  .phase{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}
+  .dot{width:10px;height:10px;border-radius:50%;margin-top:5px;flex:0 0 auto}
+  .phase .t{font-size:14px}
+  .phase .s{font-size:12px;color:var(--muted)}
+  .note{background:var(--panel2);border-left:2px solid var(--cyan);border-radius:0 10px 10px 0;padding:10px 14px;font-size:13px;color:#b6c6d6;margin-top:10px}
+</style>
+</head>
+<body>
+<header><h1>◉ A.N.I.M.A.</h1><span class="sub">console · seed v0 · standard kiroshi</span></header>
+<main>
+
+  <h2>Release</h2>
+  <div class="big">~68%</div>
+  <div class="bar"><div style="width:68%"></div></div>
+  <div style="font-size:12px;color:var(--muted)">Mancano: team (Comunicazione, Salute) · always-on · 2 regolamenti.</div>
+
+  <h2>Agenti</h2>
+  <div class="grid">
+    <div class="agent"><div class="top"><div class="em" style="color:var(--cyan)">DR</div><div class="n">D.R.A.G.O.</div></div><div class="r">Dispatch · visione totale</div></div>
+    <div class="agent"><div class="top"><div class="em" style="color:var(--cyan)">KI</div><div class="n">KIROSHI//OR</div></div><div class="r">Fake-checker ditte · organo-realtà</div></div>
+    <div class="agent"><div class="top"><div class="em" style="color:var(--magenta)">BD</div><div class="n">BRAINDANCE</div></div><div class="r">OSINT · persone, notizie</div></div>
+    <div class="agent"><div class="top"><div class="em" style="color:var(--green)">LE</div><div class="n">LEDGER</div></div><div class="r">Biohacking · salute</div></div>
+    <div class="agent"><div class="top"><div class="em" style="color:var(--amber)">SW</div><div class="n">SQUELCH</div></div><div class="r">Coder · prompter · spese</div></div>
+    <div class="agent"><div class="top"><div class="em" style="color:var(--amber)">RO</div><div class="n">ROGUE</div></div><div class="r">Postino/cassiere esterno · I-CREA</div></div>
+    <div class="agent"><div class="top"><div class="em" style="color:var(--green)">ED</div><div class="n">EDDIE</div></div><div class="r">Tesoriere interno</div></div>
+    <div class="agent"><div class="top"><div class="em" style="color:var(--magenta)">JU</div><div class="n">Judy Álvarez</div></div><div class="r">Storie/libri KDP · art direction</div></div>
+    <div class="agent"><div class="top"><div class="em" style="color:var(--cyan)">SH</div><div class="n">SHUTTER</div></div><div class="r">Store foto fine-art</div></div>
+    <div class="agent"><div class="top"><div class="em" style="color:var(--cyan)">DP</div><div class="n">DROP</div></div><div class="r">Drip shop · merch</div></div>
+    <div class="agent"><div class="top"><div class="em" style="color:var(--magenta)">VG</div><div class="n">Videographer</div></div><div class="r">Video · film · export</div></div>
+    <div class="agent"><div class="top"><div class="em" style="color:var(--muted)">MA</div><div class="n">mail-agent</div></div><div class="r">Report Gmail + Calendar</div></div>
+  </div>
+
+  <h2>Roadmap — le fasi</h2>
+  <div class="phase"><span class="dot" style="background:var(--amber)"></span><div><div class="t">Fase 0 — Fondamenta</div><div class="s">Fonte unica Drive · team/identità · repo &amp; push · <b style="color:var(--amber)">in corso</b></div></div></div>
+  <div class="phase"><span class="dot" style="background:var(--amber)"></span><div><div class="t">Fase 1 — Frontend seed</div><div class="s">Questa console su GitHub Pages /docs · <b style="color:var(--amber)">pronta, attende il push</b></div></div></div>
+  <div class="phase"><span class="dot" style="background:var(--red)"></span><div><div class="t">Fase 2 — Always-on</div><div class="s">Claude Code + Antigravity → sistema sempre acceso · <b style="color:var(--red)">attesa</b></div></div></div>
+  <div class="phase"><span class="dot" style="background:var(--red)"></span><div><div class="t">Fase 3 — F.A.R.O. MVP</div><div class="s">App open source · primo device loggato · <b style="color:var(--red)">attesa</b></div></div></div>
+
+  <div class="note"><b>F.A.R.O.</b> — l'app di auto-monitoraggio, open source. Dati del corpo <b>e</b> della vita → privacy by design obbligatoria (local-first, cifratura, consenso).</div>
+
+</main>
+</body>
+</html>
