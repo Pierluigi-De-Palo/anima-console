@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A.N.I.M.A. — Su invito</title>
+<meta name="description" content="A.N.I.M.A. — una soglia, non una vetrina. Su invito, uno alla volta.">
+<style>
+  /* ── RESET & BASE ─────────────────────────────── */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    /* Camera oscura — stessi token della vetrina (index.html) */
+    --bg-deep:    #0C0B0E;
+    --bg-surface: #141216;
+    --amber:      #C9A15E;
+    --amber-soft: rgba(201, 161, 94, .10);
+    --text-hi:    #ECE7DF;
+    --text-lo:    #A7A29B;
+    --line:       #3A3730;
+    --font-mono:  'Courier Prime', 'Courier New', 'Lucida Console', monospace;
+    --font-serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Georgia', serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg-deep);
+    color: var(--text-hi);
+    font-family: var(--font-serif);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── VIGNETTE (camera oscura) ─────────────────── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9998;
+    background: radial-gradient(ellipse at 50% 45%, transparent 50%, rgba(0, 0, 0, .60) 100%);
+  }
+
+  /* ── FILM GRAIN 16mm (~4%) ────────────────────── */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: .04;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ── SOGLIA (hero unico, più raccolto della vetrina) ── */
+  .threshold {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    position: relative;
+  }
+
+  /* Una sola lampada, ancora più bassa: è una stanza chiusa */
+  .threshold::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 40%, rgba(201, 161, 94, .08), transparent 55%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .inner {
+    position: relative;
+    z-index: 1;
+    max-width: 520px;
+    animation: rise 1s ease-out both;
+  }
+
+  .logo {
+    font-family: var(--font-mono);
+    font-size: clamp(2rem, 5.5vw, 4rem);
+    font-weight: 700;
+    letter-spacing: .12em;
+    color: var(--text-hi);
+    text-transform: uppercase;
+    margin-bottom: .5em;
+  }
+  .logo .dot { color: var(--amber); opacity: .8; }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: clamp(.7rem, 1.8vw, .85rem);
+    letter-spacing: .4em;
+    text-transform: uppercase;
+    color: var(--text-lo);
+    margin-bottom: 2.5rem;
+  }
+
+  .lede {
+    font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+    line-height: 1.75;
+    color: var(--text-lo);
+    margin-bottom: 2.75rem;
+  }
+  .lede strong { color: var(--text-hi); font-weight: 600; }
+
+  /* ── GATE (soglia: solo chi ha un invito entra) ── */
+  .gate {
+    display: flex;
+    flex-direction: column;
+    gap: .9rem;
+    max-width: 340px;
+    margin: 0 auto;
+  }
+
+  .gate label {
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--text-lo);
+    text-align: left;
+  }
+
+  .gate input {
+    font-family: var(--font-mono);
+    font-size: .95rem;
+    letter-spacing: .1em;
+    color: var(--text-hi);
+    background: var(--bg-surface);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: .8rem 1rem;
+    text-align: center;
+    transition: border-color .25s ease;
+  }
+  .gate input::placeholder { color: var(--text-lo); opacity: .55; letter-spacing: .1em; }
+  .gate input:focus {
+    outline: none;
+    border-color: var(--amber);
+  }
+
+  .btn {
+    font-family: var(--font-mono);
+    font-size: .8rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text-hi);
+    background: transparent;
+    border: 1px solid var(--amber);
+    border-radius: 6px;
+    padding: .8rem 1.2rem;
+    cursor: pointer;
+    transition: background .25s ease;
+  }
+  .btn:hover { background: var(--amber-soft); }
+  .btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+
+  .footnote {
+    margin-top: 2.5rem;
+    font-family: var(--font-mono);
+    font-size: .68rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--text-lo);
+    opacity: .7;
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+  <main class="threshold">
+    <div class="inner">
+      <h1 class="logo">
+        A<span class="dot">.</span>N<span class="dot">.</span>I<span class="dot">.</span>M<span class="dot">.</span>A<span class="dot">.</span>
+      </h1>
+      <p class="eyebrow">su invito</p>
+
+      <p class="lede">
+        Non è una vetrina. È una <strong>soglia</strong>.<br>
+        Un tech dentro il tech dell'anima — condiviso con pochi,
+        <strong>uno alla volta</strong>. Se hai un invito, entra.
+      </p>
+
+      <!-- Gate segnaposto: la meccanica reale (validazione codice → scheda → termini)
+           è di SQUELCH (auth gated). Qui solo il registro visivo. -->
+      <form class="gate" action="#" onsubmit="return false;">
+        <label for="code">Codice invito</label>
+        <input id="code" name="code" type="text" placeholder="— — — — — —" autocomplete="off">
+        <button class="btn" type="submit">Entra</button>
+      </form>
+
+      <p class="footnote">Nessun account pubblico · Nessun rumore</p>
+    </div>
+  </main>
+
+</body>
+</html>
+<!-- creato da D.R.A.G.O., 2026-07-15 -->

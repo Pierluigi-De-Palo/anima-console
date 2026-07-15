@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A.N.I.M.A. — Agenzia di Servizi Digitali</title>
+<meta name="description" content="A.N.I.M.A. — agenzia di servizi digitali. Libri illustrati, fotografia fine-art, merch, app.">
+<style>
+  /* ── RESET & BASE ─────────────────────────────── */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    /* Camera oscura — una lampada calda in una stanza buia */
+    --bg-deep:    #0C0B0E;   /* near-black caldo */
+    --bg-surface: #141216;   /* superficie appena sollevata */
+    --amber:      #C9A15E;    /* accento unico: ambra/brace */
+    --amber-soft: rgba(201, 161, 94, .10);
+    --text-hi:    #ECE7DF;   /* bianco caldo */
+    --text-lo:    #A7A29B;   /* grigio caldo */
+    --line:       #3A3730;   /* bordi/linee */
+    --font-mono:  'Courier Prime', 'Courier New', 'Lucida Console', monospace;
+    --font-serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Georgia', serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg-deep);
+    color: var(--text-hi);
+    font-family: var(--font-serif);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── VIGNETTE (camera oscura) ─────────────────── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9998;
+    background: radial-gradient(ellipse at 50% 45%, transparent 55%, rgba(0, 0, 0, .55) 100%);
+  }
+
+  /* ── FILM GRAIN 16mm (~4%) ────────────────────── */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: .04;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ── HERO ──────────────────────────────────────── */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    position: relative;
+  }
+
+  /* Lampada calda dietro al titolo */
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 38%, rgba(201, 161, 94, .10), transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    animation: rise .9s ease-out both;
+  }
+
+  /* ── LOGO TITLE ────────────────────────────────── */
+  .logo {
+    font-family: var(--font-mono);
+    font-size: clamp(2.2rem, 6vw, 4.5rem);
+    font-weight: 700;
+    letter-spacing: .12em;
+    color: var(--text-hi);
+    text-transform: uppercase;
+    margin-bottom: .35em;
+  }
+
+  .logo .dot {
+    color: var(--amber);
+    opacity: .8;
+  }
+
+  /* ── SUBTITLE ──────────────────────────────────── */
+  .subtitle {
+    font-family: var(--font-mono);
+    font-size: clamp(.75rem, 2vw, 1rem);
+    letter-spacing: .35em;
+    text-transform: uppercase;
+    color: var(--text-lo);
+    margin-bottom: 2.5rem;
+  }
+
+  /* ── MANIFESTO ─────────────────────────────────── */
+  .manifesto {
+    max-width: 560px;
+    font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+    color: var(--text-lo);
+    line-height: 1.75;
+    border-left: 2px solid var(--amber);
+    padding-left: 1.25rem;
+    text-align: left;
+  }
+
+  .manifesto strong {
+    color: var(--text-hi);
+    font-weight: 600;
+  }
+
+  /* ── SCROLL HINT ───────────────────────────────── */
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .4rem;
+    color: var(--text-lo);
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    animation: breathe 3.4s ease-in-out infinite;
+  }
+
+  .scroll-hint .chevron {
+    width: 18px;
+    height: 18px;
+    border-right: 1px solid var(--amber);
+    border-bottom: 1px solid var(--amber);
+    transform: rotate(45deg);
+    opacity: .7;
+  }
+
+  @keyframes breathe {
+    0%, 100% { opacity: .5; }
+    50%      { opacity: .9; }
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  /* ── SECTION SHELL ─────────────────────────────── */
+  .section {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 5rem 1.5rem;
+    animation: rise .8s ease-out both;
+  }
+
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: clamp(.7rem, 1.8vw, .85rem);
+    letter-spacing: .35em;
+    text-transform: uppercase;
+    color: var(--text-lo);
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: .9rem;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--line), transparent);
+  }
+
+  /* ── SERVICES GRID ─────────────────────────────── */
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 1.75rem 1.5rem;
+    transition: border-color .3s ease, transform .3s ease;
+  }
+  .card:hover,
+  .card:focus-within {
+    border-color: var(--amber);
+    transform: translateY(-3px);
+  }
+
+  .card h3 {
+    font-family: var(--font-mono);
+    font-size: 1.15rem;
+    letter-spacing: .04em;
+    color: var(--text-hi);
+    margin-bottom: .6rem;
+  }
+  .card p {
+    color: var(--text-lo);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex: 1;
+  }
+
+  /* ── BUTTON ────────────────────────────────────── */
+  .btn {
+    display: inline-block;
+    align-self: flex-start;
+    font-family: var(--font-mono);
+    font-size: .8rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text-hi);
+    background: transparent;
+    border: 1px solid var(--amber);
+    border-radius: 6px;
+    padding: .55rem 1.2rem;
+    cursor: pointer;
+    transition: background .25s ease;
+  }
+  .btn:hover {
+    background: rgba(201, 161, 94, .08);
+  }
+  .btn:focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: 3px;
+  }
+
+  .btn.is-soon {
+    color: var(--text-lo);
+    border-color: var(--line);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* ── ABOUT ─────────────────────────────────────── */
+  .about-text {
+    max-width: 620px;
+    font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+    line-height: 1.8;
+    color: var(--text-lo);
+    border-left: 2px solid var(--amber);
+    padding-left: 1.4rem;
+  }
+  .about-text strong {
+    color: var(--text-hi);
+    font-weight: 600;
+  }
+  .about-text + .about-text { margin-top: 1.1rem; }
+
+  /* Rispetto delle preferenze di riduzione movimento */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <h1 class="logo">
+        A<span class="dot">.</span>N<span class="dot">.</span>I<span class="dot">.</span>M<span class="dot">.</span>A<span class="dot">.</span>
+      </h1>
+      <p class="subtitle">agenzia di servizi digitali</p>
+      <p class="manifesto">
+        Creiamo <strong>oggetti digitali e fisici</strong> che vibrano
+        tra pixel e carta. Arte, codice e stampa —
+        al servizio di chi vuole lasciare un segno.
+      </p>
+    </div>
+    <div class="scroll-hint" aria-hidden="true">
+      <span>scopri</span>
+      <div class="chevron"></div>
+    </div>
+  </section>
+
+  <!-- ═══ SERVIZI ═══ -->
+  <section class="section services" id="servizi">
+    <p class="section-label">servizi</p>
+    <div class="services-grid">
+
+      <article class="card">
+        <h3>Libri illustrati</h3>
+        <p>Storie e immagini stampate: volumi illustrati che nascono tra codice e carta.</p>
+        <a class="btn" href="#">Sfoglia</a>
+      </article>
+
+      <article class="card">
+        <h3>Fotografie fine-art</h3>
+        <p>Stampe d'autore di Pierluigi De Palo, in edizione limitata.</p>
+        <a class="btn" href="#">Guarda</a>
+      </article>
+
+      <article class="card">
+        <h3>Merch</h3>
+        <p>Magliette e adesivi con il nostro immaginario neon addosso.</p>
+        <a class="btn" href="#">Shop</a>
+      </article>
+
+      <article class="card">
+        <h3>F.A.R.O.</h3>
+        <p>Il nostro prossimo strumento digitale. In arrivo.</p>
+        <a class="btn is-soon" aria-disabled="true">Presto</a>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ═══ CHI SIAMO ═══ -->
+  <!-- COPY PROVVISORIA (skeleton dal brief) — testo definitivo a cura di Judy Álvarez -->
+  <section class="section about" id="chi-siamo">
+    <p class="section-label">chi siamo</p>
+    <p class="about-text"><strong>A.N.I.M.A.</strong> — agenzia di servizi digitali.</p>
+    <p class="about-text">Estetica ispirata al mondo di <strong>Cyberpunk 2077</strong>.</p>
+  </section>
+
+</body>
+</html>
+<!-- creato da D.R.A.G.O., 2026-07-15 -->
