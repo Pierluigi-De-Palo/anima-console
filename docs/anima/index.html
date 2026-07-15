@@ -257,19 +257,187 @@
   }
 
   /* ── ABOUT ─────────────────────────────────────── */
-  .about-text {
-    max-width: 620px;
-    font-size: clamp(1.1rem, 2.5vw, 1.35rem);
-    line-height: 1.8;
-    color: var(--text-lo);
+  .about-title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 4vw, 2.3rem);
+    line-height: 1.25;
+    color: var(--text-hi);
+    max-width: 640px;
+    margin-bottom: 1.6rem;
+  }
+  .about-body {
+    max-width: 640px;
     border-left: 2px solid var(--amber);
     padding-left: 1.4rem;
   }
+  .about-text {
+    font-size: clamp(1.02rem, 2.2vw, 1.2rem);
+    line-height: 1.8;
+    color: var(--text-lo);
+  }
+  .about-text + .about-text { margin-top: 1.05rem; }
   .about-text strong {
     color: var(--text-hi);
     font-weight: 600;
   }
-  .about-text + .about-text { margin-top: 1.1rem; }
+
+  /* ── PRODOTTO (primo pezzo) ────────────────────── */
+  .product-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: start;
+    max-width: 900px;
+  }
+  @media (min-width: 720px) {
+    .product-grid { grid-template-columns: 4fr 5fr; gap: 2.75rem; }
+  }
+
+  .product-figure {
+    aspect-ratio: 4 / 5;
+    background:
+      radial-gradient(ellipse at 50% 42%, rgba(201, 161, 94, .08), transparent 62%),
+      var(--bg-surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 0 1px rgba(201, 161, 94, .06);
+  }
+  .product-figure .ph-mark {
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    color: var(--text-lo);
+    opacity: .65;
+  }
+
+  .product-info { display: flex; flex-direction: column; }
+  .product-occhiello {
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--text-lo);
+    margin-bottom: .85rem;
+  }
+  .product-name {
+    font-family: var(--font-serif);
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    line-height: 1.2;
+    color: var(--text-hi);
+    margin-bottom: 1rem;
+  }
+  .product-desc {
+    font-size: clamp(1.02rem, 2.2vw, 1.15rem);
+    line-height: 1.75;
+    color: var(--text-lo);
+    margin-bottom: 1.4rem;
+    max-width: 46ch;
+  }
+  .product-details {
+    font-family: var(--font-mono);
+    font-size: .78rem;
+    line-height: 1.7;
+    letter-spacing: .02em;
+    color: var(--text-lo);
+    margin-bottom: 1.1rem;
+  }
+  .product-ship {
+    font-size: .95rem;
+    line-height: 1.6;
+    color: var(--text-lo);
+    margin-bottom: 1.3rem;
+  }
+  .product-scarcity {
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--amber);
+    opacity: .9;
+    border-left: 2px solid var(--amber);
+    padding-left: .8rem;
+    margin-bottom: 1.7rem;
+  }
+  .product-buy {
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+    flex-wrap: wrap;
+  }
+  .product-price {
+    font-family: var(--font-mono);
+    font-size: 1.45rem;
+    color: var(--text-hi);
+    line-height: 1.1;
+  }
+  .product-price .tag {
+    display: block;
+    font-size: .58rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--text-lo);
+    opacity: .8;
+    margin-top: .35rem;
+  }
+  .product-buy .btn { align-self: auto; }
+
+  /* ── FOOTER ────────────────────────────────────── */
+  .footer {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 4rem;
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .footer-domains {
+    font-family: var(--font-mono);
+    font-size: clamp(.8rem, 2vw, .95rem);
+    letter-spacing: .08em;
+    color: var(--text-lo);
+    display: flex;
+    align-items: center;
+    gap: .9rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .footer-domains strong { color: var(--text-hi); font-weight: 600; }
+  .footer-domains .sep { color: var(--amber); opacity: .8; }
+
+  .footer-note {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: .95rem;
+    color: var(--text-lo);
+    max-width: 34ch;
+  }
+
+  .footer-contact {
+    font-family: var(--font-mono);
+    font-size: .8rem;
+    letter-spacing: .08em;
+    color: var(--text-lo);
+  }
+  .footer-contact a {
+    color: var(--text-lo);
+    text-decoration: none;
+    border-bottom: 1px solid var(--line);
+    transition: color .25s ease, border-color .25s ease;
+  }
+  .footer-contact a:hover,
+  .footer-contact a:focus-visible {
+    color: var(--amber);
+    border-color: var(--amber);
+    outline: none;
+  }
 
   /* Rispetto delle preferenze di riduzione movimento */
   @media (prefers-reduced-motion: reduce) {
@@ -331,12 +499,58 @@
   </section>
 
   <!-- ═══ CHI SIAMO ═══ -->
-  <!-- COPY PROVVISORIA (skeleton dal brief) — testo definitivo a cura di Judy Álvarez -->
+  <!-- Copy di Judy Álvarez (versione estesa) — Google Doc 2026-07-15 -->
   <section class="section about" id="chi-siamo">
     <p class="section-label">chi siamo</p>
-    <p class="about-text"><strong>A.N.I.M.A.</strong> — agenzia di servizi digitali.</p>
-    <p class="about-text">Estetica ispirata al mondo di <strong>Cyberpunk 2077</strong>.</p>
+    <h2 class="about-title">Un'orchestra di persone e macchine.</h2>
+    <div class="about-body">
+      <p class="about-text">A.N.I.M.A. è un'agenzia di servizi digitali con l'anima di una <strong>bottega</strong>. Diamo corpo alle idee: dal pixel alla carta, dal codice alla stampa.</p>
+      <p class="about-text">Nasciamo dallo sguardo di un <strong>direttore della fotografia</strong> — la luce come materia — e da un patto strano: <strong>uomo e macchina, più forti proprio perché restano due</strong>. Non ci fondiamo con l'intelligenza artificiale: ci <strong>duettiamo</strong>.</p>
+      <p class="about-text">Ci muoviamo in un <strong>immaginario cyberpunk</strong>, ma senza rumore: la ribellione, per noi, è l'<strong>arte</strong> — non la violenza.</p>
+      <p class="about-text">Facciamo <strong>libri illustrati, stampe d'autore, oggetti, strumenti digitali</strong>. Ogni cosa nasce per <strong>durare</strong> e per <strong>lasciare un segno</strong>.</p>
+      <p class="about-text">Niente fretta: prima strutturiamo bene, poi andiamo online. La <strong>qualità</strong> è ciò che ci distingue dal rumore.</p>
+    </div>
   </section>
+
+  <!-- ═══ IN VETRINA — primo prodotto ═══ -->
+  <!-- Copy di Judy Álvarez (scheda prodotto) — Google Doc 2026-07-15.
+       Prezzo SEGNAPOSTO: da confermare con EDDIE/Pier. Foto reale: da fornire. -->
+  <section class="section vetrina" id="in-vetrina">
+    <p class="section-label">in vetrina</p>
+    <div class="product-grid">
+
+      <figure class="product-figure">
+        <span class="ph-mark">foto in arrivo</span>
+      </figure>
+
+      <div class="product-info">
+        <p class="product-occhiello">Fotografia fine-art · edizione limitata</p>
+        <h3 class="product-name">Torre Guaceto — I</h3>
+        <p class="product-desc">Un istante di luce sulla riserva di Torre Guaceto, dove è nato il nostro sguardo. Una stampa che tiene insieme buio e bagliore: la fotografia come materia.</p>
+        <p class="product-details">Edizione di 10 · Carta cotone fine-art (Hahnemühle Photo Rag) · 40×50 cm · 2024 · Firmata e numerata a mano.</p>
+        <p class="product-ship">Spedita in tubo rigido, protetta. Pronta da incorniciare.</p>
+        <p class="product-scarcity">Edizione limitata: quando finisce, finisce.</p>
+        <div class="product-buy">
+          <span class="product-price">€ 120<span class="tag">prezzo da confermare</span></span>
+          <a class="btn" href="#">Aggiungi al carrello</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <!-- Riga contatto: COPY PROVVISORIA — indirizzo definitivo a cura di Judy Álvarez -->
+  <footer class="footer">
+    <div class="footer-domains">
+      <span>cyberboomer.io</span>
+      <span class="sep">·</span>
+      <span>anima.solar</span>
+    </div>
+    <p class="footer-contact">
+      <a href="mailto:ciao@anima.solar">ciao@anima.solar</a>
+    </p>
+  </footer>
 
 </body>
 </html>
