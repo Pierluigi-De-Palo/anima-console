@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KIROSHI//OR — fake checker · SISTEMA 77</title>
+<title>KIROSHI//OR — fake checker · SYSTEMA 77</title>
 <style>
   :root{
     --void:#07090d; --bg:#0a0e14; --panel:#0d141d; --panel2:#111823;
@@ -56,7 +56,8 @@
   .flt:focus{border-color:var(--cyan)}
 
   /* card verdetto */
-  .vc{background:var(--panel);border:1px solid var(--line);border-radius:4px;margin-bottom:10px;overflow:hidden}
+  .vc{background:var(--panel);border:1px solid var(--line);border-left:2px solid var(--line);
+    border-radius:0 4px 4px 0;margin-bottom:10px;overflow:hidden}
   .vh{display:flex;align-items:center;gap:16px;padding:14px 18px;cursor:pointer}
   .vh:hover{background:var(--panel2)}
   .sc{font-family:var(--mono);font-size:27px;font-weight:700;line-height:1;min-width:52px}
@@ -70,7 +71,7 @@
   .vbody{display:none;padding:0 18px 18px;border-top:1px solid var(--line)}
   .vc.open .vbody{display:block}
   .bar{height:4px;background:var(--panel2);border:1px solid var(--line);border-radius:2px;margin:16px 0 5px;position:relative;overflow:hidden}
-  .bar i{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,var(--cyan),var(--green))}
+  .bar i{position:absolute;left:0;top:0;bottom:0}
   .scale{display:flex;justify-content:space-between;font-family:var(--mono);font-size:9px;letter-spacing:.12em;color:var(--dim);text-transform:uppercase}
   .q{font-size:13.5px;color:var(--muted);font-style:italic;margin:14px 0 8px}
   .vtx{font-size:15px;margin-bottom:6px}
@@ -99,7 +100,7 @@
 
   <div class="hud">
     <h1 class="nm">KIROSHI//OR</h1>
-    <div class="sb">Fake checker · verità e OSINT · Sistema 77</div>
+    <div class="sb">Fake checker · verità e OSINT · Systema 77</div>
     <div class="hl">
       <div class="kv"><b>Verdetti</b><span id="k-n">—</span></div>
       <div class="kv"><b>Punteggio medio</b><span id="k-avg">—</span></div>
@@ -128,7 +129,7 @@
   <div id="list"><div class="empty">Caricamento…</div></div>
 
   <footer>
-    <span>KIROSHI//OR · SISTEMA 77</span>
+    <span>KIROSHI//OR · SYSTEMA 77</span>
     <span>fonti sempre citate · ogni verdetto ha una data</span>
   </footer>
 </div>
@@ -139,7 +140,10 @@
   var DB = (window.KIROSHI_DB || []).slice();
   var list = document.getElementById('list');
 
-  function col(p){ return p >= 70 ? 'var(--green)' : p >= 40 ? 'var(--amber)' : 'var(--red)'; }
+  // canone SYSTEMA 77: fasce 0-40 rosso · 41-70 giallo · 71-100 verde
+  function col(p){ return p >= 71 ? 'var(--green)' : p >= 41 ? 'var(--amber)' : 'var(--red)'; }
+  // canone barre: si parte SEMPRE da cyan e si atterra sul colore di fascia
+  function grad(p){ return 'linear-gradient(90deg, var(--cyan), '+col(p)+')'; }
   function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g, function(c){
     return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
 
@@ -161,7 +165,7 @@
       return '<div class="src"><a href="'+esc(f.url)+'" target="_blank" rel="noopener">'+esc(f.titolo)+'</a>'+
              '<span class="au">'+esc(f.tipo||'')+' '+stars+'</span></div>';
     }).join('');
-    return '<div class="vc">'+
+    return '<div class="vc" style="border-left-color:'+c+'">'+
       '<div class="vh">'+
         '<span class="sc" style="color:'+c+'">'+esc(v.punteggio)+'</span>'+
         '<span class="vi"><span class="vt">'+esc(v.titolo)+'</span><div class="vo">'+esc(v.oggetto)+'</div></span>'+
@@ -169,7 +173,7 @@
         '<span class="dt">'+esc(v.data_verifica||'')+'</span>'+
       '</div>'+
       '<div class="vbody">'+
-        '<div class="bar"><i style="width:'+Math.max(0,Math.min(100,v.punteggio||0))+'%"></i></div>'+
+        '<div class="bar"><i style="width:'+Math.max(0,Math.min(100,v.punteggio||0))+'%;background:'+grad(v.punteggio||0)+'"></i></div>'+
         '<div class="scale"><span>falso</span><span>incerto</span><span>verificato</span></div>'+
         (v.domanda ? '<div class="q">« '+esc(v.domanda)+' »</div>' : '')+
         '<div class="vtx">'+esc(v.verdetto)+'</div>'+
