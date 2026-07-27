@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>BRAINDANCE · Verdetti</title>
+<meta name="description" content="I verdetti di BRAINDANCE: vero, falso o incerto, con punteggio e fonti.">
+<style>
+  :root{--bg:#0a0e14;--panel:#111823;--field:#0d141d;--line:#1e2a38;--testo:#d7e3ef;
+    --muted:#7d93a8;--cyan:#22d3ee;--verde:#2ee6a6;--giallo:#f6c453;--rosso:#ff5c6c;}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:#05070b}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    color:var(--testo);line-height:1.55;padding:24px 12px}
+  .frame{max-width:880px;margin:0 auto;background:var(--bg);border:1px solid var(--line);
+    border-radius:14px;padding:24px 22px 20px}
+  header{border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:16px;
+    display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px}
+  h1{font-size:20px;font-weight:700;margin:0}
+  h1 .accent{color:var(--cyan)}
+  .chiedi-link{font-size:14px;color:var(--cyan);text-decoration:none;border:1px solid var(--line);
+    border-radius:20px;padding:6px 14px}
+  .chiedi-link:hover{border-color:var(--cyan)}
+  .sub{color:var(--muted);font-size:14px;margin:0 0 16px}
+  .sub strong{color:var(--testo)}
+  .lab{font-size:14px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:14px 0 8px}
+  .filters{display:flex;gap:8px;flex-wrap:wrap}
+  .fbtn{background:var(--panel);border:1px solid var(--line);color:var(--muted);
+    border-radius:20px;padding:7px 15px;font-size:14px;cursor:pointer;font-family:inherit}
+  .fbtn.on{border-color:var(--cyan);color:var(--cyan)}
+  .fbtn .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}
+  .riga-cerca{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+  .riga-cerca input,.riga-cerca select{background:var(--field);border:1px solid var(--line);
+    border-radius:9px;color:var(--testo);font-size:15px;font-family:inherit;padding:10px 12px}
+  .riga-cerca input{flex:1;min-width:200px}
+  .riga-cerca input:focus,.riga-cerca select:focus{outline:none;border-color:var(--cyan)}
+  .grid{display:grid;gap:12px;margin-top:16px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+    display:flex;gap:16px;align-items:flex-start}
+  .g{width:118px;flex:0 0 118px}
+  .body{flex:1;min-width:0}
+  .tag{font-size:14px;color:var(--muted)}
+  .card h2{font-size:16px;font-weight:600;margin:4px 0 8px;line-height:1.4;max-width:34em}
+  .pill{font-size:14px;font-weight:600;padding:4px 12px;border-radius:20px;display:inline-block}
+  .note{font-size:14px;color:#b6c6d6;margin:10px 0 0;max-width:38em}
+  .apri{display:inline-block;font-size:14px;color:var(--cyan);text-decoration:none;margin-top:10px}
+  .apri:hover{text-decoration:underline}
+  .vuoto{color:var(--muted);font-size:15px;padding:20px 4px}
+  footer{border-top:1px solid var(--line);margin-top:20px;padding-top:12px;font-size:14px;
+    color:var(--muted);max-width:44em}
+  @media(max-width:540px){.card{flex-direction:column}.g{width:132px}}
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <header>
+    <h1>◉ BRAINDANCE · <span class="accent">VERDETTI</span></h1>
+    <a class="chiedi-link" href="chiedi/index.html">Chiedi una verifica →</a>
+  </header>
+  <p class="sub" id="sub">Caricamento…</p>
+
+  <p class="lab">Tipo</p>
+  <div class="filters" id="f-tipo"></div>
+  <p class="lab">Colore</p>
+  <div class="filters" id="f-colore"></div>
+
+  <div class="riga-cerca">
+    <input id="cerca" type="search" placeholder="Cerca nei verdetti…" aria-label="Cerca nei verdetti">
+    <select id="ordina" aria-label="Ordinamento">
+      <option value="data">Più recenti prima</option>
+      <option value="punteggio">Punteggio (alto → basso)</option>
+    </select>
+  </div>
+
+  <div class="grid" id="grid" aria-live="polite"></div>
+
+  <footer>
+    Scala 0–100: <span style="color:var(--rosso)">rosso 0–40</span> ·
+    <span style="color:var(--giallo)">giallo 41–70</span> ·
+    <span style="color:var(--verde)">verde 71–100</span>.
+    Ogni verdetto riporta le sue fonti pubbliche nella scheda completa.
+    Se un dato non è verificabile, lo diciamo.
+    <br>BRAINDANCE · SYSTEMA 77
+  </footer>
+
+</div>
+
+<script src="../data/braindance.js"></script>
+<script>
+(function(){
+  var HEX = {rosso:"#ff5c6c", giallo:"#f6c453", verde:"#2ee6a6"};
+  var esc = function(s){return String(s).replace(/[&<>"]/g,function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});};
+
+  if(!window.BRAINDANCE || !window.BRAINDANCE.verdetti){
+    document.getElementById("sub").textContent =
+      "Dati non trovati: rigenera con scripts/build_vetrina.py.";
+    return;
+  }
+  var DB = window.BRAINDANCE;
+  var DATA = DB.verdetti.slice();
+
+  var stato = {tipo:"tutti", colore:"tutti", testo:"", ordina:"data"};
+
+  function dataIT(iso){
+    var p = String(iso||"").split("-");
+    return p.length===3 ? p[2]+"/"+p[1]+"/"+p[0] : iso;
+  }
+
+  function gauge(score, colore){
+    var c = HEX[colore] || "#d7e3ef";
+    var th = (180 - 1.8*score) * Math.PI/180;
+    var nx = (100 + 70*Math.cos(th)).toFixed(1), ny = (100 - 70*Math.sin(th)).toFixed(1);
+    return '<svg viewBox="0 0 200 128" width="100%" role="img" aria-label="Punteggio '+score+' su 100">'
+      +'<path d="M20,100 A80,80 0 0 1 75.3,23.9" fill="none" stroke="#ff5c6c" stroke-width="13" stroke-linecap="round"/>'
+      +'<path d="M75.3,23.9 A80,80 0 0 1 147,35.3" fill="none" stroke="#f6c453" stroke-width="13" stroke-linecap="round"/>'
+      +'<path d="M147,35.3 A80,80 0 0 1 180,100" fill="none" stroke="#2ee6a6" stroke-width="13" stroke-linecap="round"/>'
+      +'<line x1="100" y1="100" x2="'+nx+'" y2="'+ny+'" stroke="#d7e3ef" stroke-width="3" stroke-linecap="round"/>'
+      +'<circle cx="100" cy="100" r="5" fill="#d7e3ef"/>'
+      +'<text x="100" y="92" text-anchor="middle" fill="'+c+'" font-size="34" font-weight="600" font-family="inherit">'+Math.round(score)+'</text>'
+      +'</svg>';
+  }
+
+  function pill(colore, verdetto){
+    var c = HEX[colore], bg = {rosso:"#2a1114", giallo:"#2a2410", verde:"#0f2a22"}[colore];
+    return '<span class="pill" style="background:'+bg+';color:'+c+';border:1px solid '+c+'">'+esc(verdetto)+'</span>';
+  }
+
+  function filtrati(){
+    var t = stato.testo.toLowerCase();
+    var items = DATA.filter(function(v){
+      if(stato.tipo!=="tutti" && v.tipo!==stato.tipo) return false;
+      if(stato.colore!=="tutti" && v.colore!==stato.colore) return false;
+      if(t && (v.titolo+" "+v.verdetto+" "+(v.note||"")).toLowerCase().indexOf(t)===-1) return false;
+      return true;
+    });
+    items.sort(stato.ordina==="punteggio"
+      ? function(a,b){return b.punteggio-a.punteggio;}
+      : function(a,b){return String(b.data).localeCompare(String(a.data));});
+    return items;
+  }
+
+  function render(){
+    var items = filtrati();
+    document.getElementById("sub").innerHTML =
+      "<strong>"+DB.totale+"</strong> verdetti · aggiornato al <strong>"+esc(dataIT(DB.aggiornato))+"</strong>"
+      + (items.length!==DATA.length ? " · in vista: "+items.length : "");
+    var grid = document.getElementById("grid");
+    if(!items.length){
+      grid.innerHTML = '<p class="vuoto">Nessun verdetto corrisponde ai filtri.</p>';
+      return;
+    }
+    grid.innerHTML = items.map(function(v){
+      return '<article class="card">'
+        +'<div class="g">'+gauge(v.punteggio, v.colore)+'</div>'
+        +'<div class="body">'
+        +'<div class="tag">'+esc(v.tipo)+' · '+esc(dataIT(v.data))+'</div>'
+        +'<h2>'+esc(v.titolo)+'</h2>'
+        +pill(v.colore, v.verdetto)
+        +(v.note ? '<p class="note">'+esc(v.note)+'</p>' : '')
+        +'<a class="apri" href="'+esc(v.scheda)+'">Apri la scheda completa →</a>'
+        +'</div></article>';
+    }).join("");
+  }
+
+  function bottoni(id, valori, chiave, dot){
+    var el = document.getElementById(id);
+    el.innerHTML = valori.map(function(x){
+      var d = dot && x!=="tutti" ? '<span class="dot" style="background:'+HEX[x]+'"></span>' : '';
+      return '<button class="fbtn'+(stato[chiave]===x?' on':'')+'" data-v="'+x+'">'+d+x+'</button>';
+    }).join("");
+    Array.prototype.forEach.call(el.querySelectorAll(".fbtn"), function(b){
+      b.addEventListener("click", function(){
+        stato[chiave] = b.dataset.v;
+        Array.prototype.forEach.call(el.querySelectorAll(".fbtn"), function(x){
+          x.classList.toggle("on", x.dataset.v===stato[chiave]);
+        });
+        render();
+      });
+    });
+  }
+
+  var tipi = ["tutti"];
+  DATA.forEach(function(v){ if(tipi.indexOf(v.tipo)===-1) tipi.push(v.tipo); });
+  bottoni("f-tipo", tipi, "tipo", false);
+  bottoni("f-colore", ["tutti","rosso","giallo","verde"], "colore", true);
+
+  document.getElementById("cerca").addEventListener("input", function(){
+    stato.testo = this.value.trim(); render();
+  });
+  document.getElementById("ordina").addEventListener("change", function(){
+    stato.ordina = this.value; render();
+  });
+
+  render();
+})();
+</script>
+<!-- creato da Claude Code per BRAINDANCE, 2026-07-19 -->
+</body>
+</html>

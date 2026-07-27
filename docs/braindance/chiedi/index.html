@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>BRAINDANCE · Chiedi una verifica</title>
+<style>
+  :root{--bg:#0a0e14;--panel:#111823;--field:#0d141d;--line:#1e2a38;--testo:#d7e3ef;
+    --muted:#7d93a8;--cyan:#22d3ee;--verde:#2ee6a6;--giallo:#f6c453;--rosso:#ff5c6c;}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:#05070b}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    color:var(--testo);line-height:1.55;padding:28px 16px}
+  .frame{max-width:560px;margin:0 auto;background:var(--bg);border:1px solid var(--line);
+    border-radius:14px;padding:26px 26px 22px}
+  .head{display:flex;justify-content:space-between;align-items:baseline;
+    border-bottom:1px solid var(--line);padding-bottom:13px;margin-bottom:8px;flex-wrap:wrap;gap:6px}
+  .head .t{font-size:18px;font-weight:700}
+  .head .t .accent{color:var(--cyan)}
+  .indietro{font-size:14px;color:var(--muted);text-decoration:none}
+  .indietro:hover{color:var(--cyan)}
+  .sub{color:var(--muted);font-size:14px;margin:0 0 6px}
+  .avviso{font-size:14px;color:var(--giallo);border:1px solid var(--line);border-left:3px solid var(--giallo);
+    border-radius:9px;background:var(--panel);padding:10px 13px;margin:0 0 16px}
+  label{display:block;font-size:14px;text-transform:uppercase;letter-spacing:.12em;
+    color:var(--muted);margin:16px 0 7px}
+  label .req{color:var(--cyan)}
+  input,select,textarea{width:100%;background:var(--field);border:1px solid var(--line);
+    border-radius:9px;color:var(--testo);font-size:15px;font-family:inherit;padding:11px 12px}
+  textarea{resize:vertical;min-height:74px;line-height:1.5}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--cyan)}
+  .hint{font-size:14px;color:var(--muted);margin-top:6px}
+  .hint.err{color:var(--rosso)}
+  .routing{font-size:14px;color:var(--giallo);margin-top:6px;min-height:18px}
+  .btn{margin-top:22px;width:100%;background:#0e2830;border:1px solid var(--cyan);color:var(--cyan);
+    font-size:15px;font-weight:700;letter-spacing:.02em;border-radius:10px;padding:13px;cursor:pointer}
+  .btn:hover{background:#123540}
+  .out{display:none;margin-top:20px;border:1px solid var(--line);border-left:3px solid var(--verde);
+    background:var(--panel);border-radius:9px;padding:14px 15px}
+  .out .ok{color:var(--verde);font-weight:700;font-size:15px;margin-bottom:8px}
+  .out .next{font-size:14px;color:var(--testo);margin-bottom:12px}
+  .out .next a{color:var(--cyan)}
+  pre{background:var(--field);border:1px solid var(--line);border-radius:8px;padding:12px;
+    overflow:auto;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;
+    line-height:1.5;color:#c7d6e6;margin:0 0 10px}
+  .copy{background:transparent;border:1px solid var(--line);color:var(--muted);border-radius:8px;
+    padding:7px 12px;font-size:14px;cursor:pointer;font-family:inherit}
+  .copy:hover{color:var(--testo);border-color:var(--cyan)}
+  .foot{margin-top:20px;border-top:1px solid var(--line);padding-top:11px;color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <div class="head">
+    <div class="t">◉ BRAINDANCE · <span class="accent">NUOVA RICHIESTA</span></div>
+    <a class="indietro" href="../index.html">← i verdetti</a>
+  </div>
+  <p class="sub">Lancia una verifica. La compili qui, va in coda, BRAINDANCE la raccoglie al prossimo giro (2 volte al giorno).</p>
+  <p class="avviso">⚠ Non inserire nomi di <strong>persone private</strong>: la coda passa da GitHub.</p>
+
+  <form id="f" novalidate>
+    <label for="bersaglio">Cosa verifico <span class="req">*</span></label>
+    <textarea id="bersaglio" placeholder="Un nome, un link, oppure un'affermazione da controllare…"></textarea>
+    <div class="hint" id="hb">Obbligatorio. Esempio: &laquo;È vero che dal 2035 non si pagano più le pensioni?&raquo;</div>
+
+    <label for="tipo">Di che tipo è</label>
+    <select id="tipo">
+      <option value="notizia">Notizia / affermazione (vero o falso)</option>
+      <option value="domanda">Domanda / ragionamento</option>
+      <option value="persona">Persona</option>
+      <option value="brand">Brand / nome</option>
+      <option value="ditta">Ditta / venditore</option>
+    </select>
+    <div class="routing" id="route"></div>
+
+    <label for="contesto">Contesto (una riga, facoltativo)</label>
+    <input id="contesto" type="text" placeholder="Perché ti interessa / cosa vuoi sapere">
+
+    <button class="btn" type="submit">▶ Manda in coda</button>
+    <div class="hint">Si apre GitHub con la richiesta già compilata: premi lì &laquo;Create&raquo; per accodarla. Serve l'accesso GitHub.</div>
+  </form>
+
+  <div class="out" id="out">
+    <div class="ok" id="okline">✓ Richiesta pronta</div>
+    <div class="next" id="nextline"></div>
+    <pre id="json"></pre>
+    <button class="copy" id="copy" type="button">Copia richiesta</button>
+  </div>
+
+  <div class="foot">BRAINDANCE · A.N.I.M.A. — la coda è una GitHub Issue con label <code>braindance-queue</code>.</div>
+</div>
+
+<script>
+(function(){
+  var REPO = "Pierluigi-De-Palo/anima-console";
+  var LABEL = "braindance-queue";
+
+  var tipo = document.getElementById("tipo");
+  var route = document.getElementById("route");
+  function updateRoute(){
+    route.textContent = tipo.value === "ditta"
+      ? "↳ Le ditte le lavora KIROSHI: questa verrà instradata a lui."
+      : "";
+  }
+  tipo.addEventListener("change", updateRoute);
+  updateRoute();
+
+  function pad(n){ return String(n).padStart(2,"0"); }
+
+  document.getElementById("f").addEventListener("submit", function(e){
+    e.preventDefault();
+    var bersaglio = document.getElementById("bersaglio").value.trim();
+    var hb = document.getElementById("hb");
+    if(!bersaglio){
+      hb.classList.add("err");
+      hb.textContent = "Scrivi cosa devo verificare prima di mandare.";
+      return;
+    }
+    hb.classList.remove("err");
+    hb.innerHTML = "Obbligatorio. Esempio: &laquo;È vero che dal 2035 non si pagano più le pensioni?&raquo;";
+
+    var ora = new Date();
+    var id = "REQ-" + ora.getFullYear() + pad(ora.getMonth()+1) + pad(ora.getDate())
+           + "-" + pad(ora.getHours()) + pad(ora.getMinutes()) + pad(ora.getSeconds());
+    var req = {
+      id: id,
+      ts: ora.toISOString(),
+      canale: "web",
+      tipo: tipo.value,
+      bersaglio: bersaglio,
+      contesto: document.getElementById("contesto").value.trim(),
+      priorita: "normale",
+      stato: tipo.value === "ditta" ? "instradata" : "pending"
+    };
+
+    var titolo = id + " · " + (bersaglio.length > 60 ? bersaglio.slice(0,57) + "…" : bersaglio);
+    var corpo = "```json\n" + JSON.stringify(req, null, 2) + "\n```\n";
+    var url = "https://github.com/" + REPO + "/issues/new"
+      + "?labels=" + encodeURIComponent(LABEL)
+      + "&title=" + encodeURIComponent(titolo)
+      + "&body=" + encodeURIComponent(corpo);
+
+    document.getElementById("json").textContent = JSON.stringify(req, null, 2);
+    document.getElementById("nextline").innerHTML =
+      (tipo.value === "ditta"
+        ? req.id + " → instradata a KIROSHI (ditte). "
+        : req.id + " → in coda al prossimo giro. ")
+      + 'Se GitHub non si è aperto, <a id="ghlink" href="' + url + '" rel="noopener" target="_blank">apri la Issue da qui</a> e premi &laquo;Create&raquo;.';
+    document.getElementById("out").style.display = "block";
+    document.getElementById("out").scrollIntoView({behavior:"smooth", block:"nearest"});
+    window.open(url, "_blank", "noopener");
+  });
+
+  document.getElementById("copy").addEventListener("click", function(){
+    var t = document.getElementById("json").textContent;
+    if(navigator.clipboard) navigator.clipboard.writeText(t);
+    this.textContent = "Copiato ✓";
+    var b = this;
+    setTimeout(function(){ b.textContent = "Copia richiesta"; }, 1500);
+  });
+})();
+</script>
+<!-- creato da Claude Code per BRAINDANCE, 2026-07-19 -->
+</body>
+</html>

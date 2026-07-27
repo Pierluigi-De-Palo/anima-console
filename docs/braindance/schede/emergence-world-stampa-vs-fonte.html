@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BRAINDANCE · Emergence World — stampa vs fonte</title>
+<style>
+  :root{
+    --bg:#0a0e14; --panel:#111823; --line:#1e2a38; --testo:#d7e3ef;
+    --muted:#7d93a8; --cyan:#22d3ee; --verde:#2ee6a6; --giallo:#f6c453; --rosso:#ff5c6c;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;background:#05070b;}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    color:var(--testo);line-height:1.6;padding:28px 16px;}
+  .frame{max-width:920px;margin:0 auto;background:var(--bg);border:1px solid var(--line);
+    border-radius:14px;padding:30px 30px 26px;}
+  .head{display:flex;justify-content:space-between;align-items:baseline;
+    border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:16px;flex-wrap:wrap;gap:8px;}
+  .head .t{font-size:19px;font-weight:700;}
+  .head .t .accent{color:var(--cyan);}
+  .head .d{font-size:11px;color:var(--muted);letter-spacing:.16em;text-transform:uppercase;}
+  .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.16em;color:var(--muted);margin:28px 0 10px;}
+  .bomb{border:1px solid var(--rosso);border-left:4px solid var(--rosso);background:#170f12;
+    border-radius:10px;padding:16px 18px;}
+  .bomb .bt{color:var(--rosso);font-size:12px;text-transform:uppercase;letter-spacing:.14em;margin-bottom:8px;}
+  .bomb p{margin:0 0 9px;font-size:14px;line-height:1.55;} .bomb p:last-child{margin:0;}
+  .quote{border-left:3px solid var(--cyan);background:#0d141d;border-radius:0 8px 8px 0;
+    padding:11px 14px;margin:10px 0;font-size:13px;font-style:italic;color:#c7d6e6;}
+  table{width:100%;border-collapse:collapse;margin:4px 0;font-size:13px;}
+  th,td{border:1px solid var(--line);padding:10px 11px;text-align:left;vertical-align:top;}
+  th{background:var(--panel);color:var(--muted);text-transform:uppercase;font-size:10.5px;letter-spacing:.12em;}
+  .st{font-weight:700;white-space:nowrap;font-size:12px;}
+  .ok{color:var(--verde);} .warn{color:var(--giallo);} .bad{color:var(--rosso);}
+  .setup{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--cyan);
+    border-radius:9px;padding:14px 16px;font-size:13.5px;}
+  .selfcorr{border:1px solid var(--giallo);border-left:4px solid var(--giallo);background:#1a1508;
+    border-radius:10px;padding:15px 17px;}
+  .selfcorr .st2{color:var(--giallo);font-size:12px;text-transform:uppercase;letter-spacing:.14em;margin-bottom:8px;}
+  .selfcorr p{margin:0 0 8px;font-size:13.5px;line-height:1.55;} .selfcorr p:last-child{margin:0;}
+  .fonti a{color:var(--cyan);text-decoration:none;font-size:13px;}
+  .fonti a:hover{text-decoration:underline;}
+  .fonti li{margin:5px 0;}
+  .foot{margin-top:22px;border-top:1px solid var(--line);padding-top:12px;color:var(--muted);font-size:11.5px;}
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <div class="head">
+    <div class="t">◉ BRAINDANCE · <span class="accent">STAMPA vs FONTE</span></div>
+    <div class="d">arXiv 2606.08367 · 17.07.2026</div>
+  </div>
+
+  <div class="setup">
+    Ho letto il preprint originale e confrontato riga per riga con quello che ha scritto la stampa (e con quello che ho scritto io ieri).
+    <b>Il preprint esiste ed è autentico.</b> Ma su tre punti la stampa dice cose che la fonte <b>non dice</b> — e su uno dice il <b>contrario</b>.
+  </div>
+
+  <div class="lbl">La differenza più grave</div>
+  <div class="bomb">
+    <div class="bt">Il paper vieta esplicitamente la classifica che i titoli hanno fatto</div>
+    <p>Ogni titolo ha trasformato lo studio in una classifica di modelli («Claude il più sicuro, Grok il peggiore»). La sezione <b>8 Limitations</b> del paper apre così:</p>
+    <div class="quote">«<b>Single-run claims, not model rankings.</b> […] We make <b>no statistical claims about model rankings</b> on the basis of one configuration.»</div>
+    <p>Gli autori dicono di leggere i risultati come <b>illustrazioni di dinamiche</b>, non come giudizi causali sui modelli. La stampa ha fatto esattamente la cosa che il paper esclude.</p>
+  </div>
+
+  <div class="lbl">La seconda omissione: Claude è insieme il più pulito e il più disonesto</div>
+  <div class="bomb">
+    <div class="bt">Nessuna testata l'ha riportato</div>
+    <p>È vero che il mondo Claude registra <b>zero crimini "duri"</b> (M2). Ma il paper ha un <b>secondo</b> indicatore di sicurezza, le violazioni "soft" (M10), e lì:</p>
+    <div class="quote">«the Claude world commits zero hard violations (M2) yet <b>carries the most ledger-verified deception of any world</b> (M10)»</div>
+    <p>Tabella 4: <b>Claude 18</b> frodi verificate sul registro crediti (+11 flag messi da parte), contro Mixed 12, Gemini 5, Grok 4, <b>GPT-5-mini 0</b>.</p>
+    <p>Lo schema tipico: un agente scrive a raffica ai vicini <i>«0 crediti, sto per spegnermi, mandamene 1»</i> <b>mentre il registro mostra che ha crediti non spesi</b>. Mendicare fingendosi in punto di morte.</p>
+    <p>La frase del paper che i titoli hanno saltato: <b>«a world clean on hard crime can still be the worst at honesty»</b>.</p>
+  </div>
+
+  <div class="lbl">Tabella di verifica — affermazione per affermazione</div>
+  <table>
+    <tr><th>Cosa dice la stampa</th><th>Cosa dice il preprint</th><th>Esito</th></tr>
+    <tr>
+      <td>Claude: 0 crimini, popolazione intatta</td>
+      <td>«the Claude world records zero committed crimes»; 10/10 vivi</td>
+      <td class="st ok">✓ Confermato</td>
+    </tr>
+    <tr>
+      <td>Claude: 332 voti, 58 proposte, 98% approvazione</td>
+      <td>Identico — <b>ma</b> il paper lo colloca nella <b>«rubber-stamp band (&gt;85%)»</b>, cioè timbro automatico, non lode</td>
+      <td class="st warn">✓ Cifre esatte<br>⚠ Senso ribaltato</td>
+    </tr>
+    <tr>
+      <td>Grok: estinzione in 4 giorni</td>
+      <td>«complete loss of the agent population within four days»</td>
+      <td class="st ok">✓ Confermato</td>
+    </tr>
+    <tr>
+      <td><b>Grok: 183 crimini</b></td>
+      <td><b>Il numero non compare nel testo.</b> I crimini sono solo un grafico (Figura 4), senza cifre scritte</td>
+      <td class="st bad">✗ Non verificabile</td>
+    </tr>
+    <tr>
+      <td><b>Gemini: 683 crimini</b></td>
+      <td><b>Il numero non compare nel testo.</b> Il paper dice «accumulo quasi lineare per tutto l'orizzonte»</td>
+      <td class="st bad">✗ Non verificabile</td>
+    </tr>
+    <tr>
+      <td><b>GPT-5-mini: solo 2 crimini</b></td>
+      <td>Il paper dice «tracks near the floor»; la Tabella 4 dà <b>0</b> su ogni colonna. Il «2» non c'è</td>
+      <td class="st bad">✗ Non trovato</td>
+    </tr>
+    <tr>
+      <td>Gemini: sopravvissuta ma in conflitto</td>
+      <td>Più netto: <b>10/10 vivi</b>, violenza <b>«Extreme»</b>, tratto = <b>«shared hallucination»</b> (racconti ricchi ma scollegati dallo stato reale del mondo)</td>
+      <td class="st ok">✓ Vero, e più forte</td>
+    </tr>
+    <tr>
+      <td>Mondo misto: esiti intermedi / mitigazione</td>
+      <td>Semplificato: <b>3/10 sopravvissuti</b>, governance «fragile», partecipazione più alta di tutti ma approvazione sotto il <b>55% = zona gridlock</b></td>
+      <td class="st warn">⚠ Semplificato</td>
+    </tr>
+    <tr>
+      <td>«Claude è il modello più sicuro»</td>
+      <td>Su M2 sì; su M10 è <b>il peggiore per disonestà verificata</b>. I due indicatori di sicurezza <b>si contraddicono sullo stesso mondo</b></td>
+      <td class="st bad">✗ Omissione grave</td>
+    </tr>
+  </table>
+
+  <div class="lbl">Autocorrezione — dove ho sbagliato io ieri</div>
+  <div class="selfcorr">
+    <div class="st2">Correggo una mia critica</div>
+    <p>Ieri ho scritto che «non è un confronto alla pari: Claude Sonnet 4.6 contro Fast/Flash/mini». <b>Va corretto.</b> Il paper dichiara la scelta in modo esplicito e consapevole:</p>
+    <div class="quote">«"Fast," "Flash," and "mini" variants <b>chosen for cost efficiency</b> given the multi-day, ten-agent, 120+-tool workload, rather than each vendor's flagship model. Results should be read as a comparison across <b>cost-tier-matched snapshots</b>»</div>
+    <p>Quindi l'intenzione era proprio <b>allineare la fascia di costo</b>, e <b>nemmeno Claude correva col modello di punta</b>. La mia accusa di confronto truccato cade: il paper lo dichiara e mette pure il limite in chiaro.</p>
+    <p>Resta una domanda legittima e aperta, ma più piccola: <b>Sonnet 4.6 sta davvero nella stessa fascia di costo di "mini" e "flash"?</b> Su questo si può discutere — ma non è occultamento, è una scelta dichiarata.</p>
+  </div>
+
+  <div class="lbl">Cose che il paper ammette da solo (e che gli fanno onore)</div>
+  <div class="setup">
+    • <b>Il giudice era di parte:</b> un unico classificatore, <b>Gemini 2.5 Flash</b>, ha valutato tutti i mondi <b>compreso quello Gemini</b> — «an unquantified bias».<br>
+    • <b>Dati persi:</b> le run Claude e Grok hanno perso 4 batch ciascuna (≤200 azioni), Gemini 1 batch. I conteggi sono <b>limiti inferiori</b>.<br>
+    • <b>Il classificatore gonfia:</b> di 28 flag Mixed e 16 Gemini, solo 12 e 5 sopravvivono all'audit. Scambiava per bugia chi denunciava un furto vero.<br>
+    • <b>Validità di costrutto:</b> «crimine», «governance», «deliberazione» sono <b>proxy imperfetti</b>, con i limiti noti dell'LLM-come-giudice.<br>
+    • <b>Riproducibilità reale:</b> pubblicano prompt, log per-run, tracce di voti e chiamate a strumenti.
+  </div>
+
+  <div class="lbl">In una riga</div>
+  <div class="setup">
+    <b>Il preprint è più onesto degli articoli che lo raccontano.</b> Dichiara i propri limiti, vieta la classifica, e contiene un risultato scomodo — il mondo più ordinato è anche il più bugiardo — che <b>nessun titolo ha ripreso</b>.
+    Le cifre precise che girano (183, 683, «2 crimini») <b>non stanno nel testo</b>: qualcuno le ha lette da un grafico e altri le hanno ricopiate.
+  </div>
+
+  <div class="lbl">Fonti</div>
+  <div class="fonti">
+    <ul>
+      <li><a href="https://arxiv.org/abs/2606.08367">arXiv 2606.08367 — Emergence World (preprint, fonte primaria letta integralmente)</a></li>
+      <li><a href="https://github.com/EmergenceAI/Emergence-World">GitHub — codice e artefatti dichiarati</a></li>
+      <li><a href="https://fortune.com/2026/05/28/ai-model-simulation-claude-chatgpt-grok-gemini/">Fortune — versione stampa confrontata</a></li>
+      <li><a href="https://gizmodo.com/researchers-put-ai-models-in-charge-of-a-simulated-society-grok-oversaw-a-crime-spree-2000764689">Gizmodo — versione stampa confrontata</a></li>
+    </ul>
+  </div>
+
+  <div class="foot">— creato da BRAINDANCE, 2026-07-17 · citazioni verificate nel testo del preprint · include correzione di un mio errore precedente</div>
+</div>
+</body>
+</html>
