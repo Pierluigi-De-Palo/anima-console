@@ -1,9 +1,9 @@
 window.BRAINDANCE = {
   "schema": "braindance/dati/SCHEMA.md",
-  "aggiornato": "2026-07-17",
-  "generato": "2026-07-19",
+  "aggiornato": "2026-07-29",
+  "generato": "2026-07-29",
   "agente": "BRAINDANCE",
-  "totale": 9,
+  "totale": 10,
   "verdetti": [
     {
       "id": "pensioni-2035",
@@ -314,6 +314,49 @@ window.BRAINDANCE = {
         {
           "titolo": "Gizmodo — versione stampa confrontata",
           "url": "https://gizmodo.com/researchers-put-ai-models-in-charge-of-a-simulated-society-grok-oversaw-a-crime-spree-2000764689"
+        }
+      ]
+    },
+    {
+      "id": "bill-gates-asperger",
+      "tipo": "persona",
+      "titolo": "È vero che Bill Gates «è Asperger»?",
+      "verdetto": "Lo dice lui — ma non è una diagnosi",
+      "punteggio": 60,
+      "data": "2026-07-29",
+      "note": "Nel memoir Source Code (2025) Gates scrive: 'se crescessi oggi, probabilmente sarei diagnosticato nello spettro autistico'. Ma nessuna diagnosi formale e' mai esistita, e 'Asperger' non e' piu' una diagnosi dal DSM-5 (2013).",
+      "colore": "giallo",
+      "scheda": "schede/bill-gates-asperger.html",
+      "pro": [
+        "Lo scrive lui stesso nel memoir Source Code: My Beginnings (feb 2025, estratti sul WSJ): 'If I were growing up today, I probably would be diagnosed on the autism spectrum'.",
+        "Descrive i tratti in prima persona: ossessioni per certi progetti, segnali sociali mancati, modi bruschi senza accorgersene.",
+        "Il sospetto e' di lunga data: oltre 25 anni fa qualcuno gli chiese se fosse 'nello spettro'."
+      ],
+      "contro": [
+        "Nessuna diagnosi formale: 'probabilmente sarei diagnosticato' e' un'ipotesi su di se', non un accertamento clinico.",
+        "'Asperger' non e' piu' una diagnosi: dal DSM-5 (2013) e' confluita nel Disturbo dello Spettro Autistico.",
+        "Prima del 2025 su Gates circolavano solo speculazioni di terzi; la generalizzazione 'i grandi geni hanno tutti sindromi speciali' resta infondata (2 autodichiarazioni celebri non fanno una statistica)."
+      ],
+      "fonti": [
+        {
+          "titolo": "Fortune (25/01/2025) — estratto memoir",
+          "url": "https://www.fortune.com/2025/01/25/bill-gates-autism-spectrum-childhood-neurodivergence-memoir-source-code"
+        },
+        {
+          "titolo": "Axios (03/02/2025) — intervista",
+          "url": "https://www.axios.com/2025/02/03/bill-gates-interview-autism-spectrum"
+        },
+        {
+          "titolo": "Disability Scoop (28/01/2025)",
+          "url": "https://www.disabilityscoop.com/2025/01/28/bill-gates-suggests-he-would-be-diagnosed-with-autism-if-he-were-a-child-now/31266/"
+        },
+        {
+          "titolo": "APA — DSM-5, spettro autistico (PDF)",
+          "url": "https://www.psychiatry.org/File%20Library/Psychiatrists/Practice/DSM/APA_DSM-5-Autism-Spectrum-Disorder.pdf"
+        },
+        {
+          "titolo": "Forbes (09/05/2021) — Musk a SNL",
+          "url": "https://www.forbes.com/sites/joewalsh/2021/05/09/elon-musk-reveals-he-has-aspergers-on-saturday-night-live/"
         }
       ]
     }
