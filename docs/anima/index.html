@@ -3,443 +3,80 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A.N.I.M.A. — Agenzia di Servizi Digitali</title>
-<meta name="description" content="A.N.I.M.A. — agenzia di servizi digitali. Libri illustrati, fotografia fine-art, merch, app.">
+<title>Questa pagina ha cambiato nome — SYSTEMA 77</title>
+<meta name="description" content="L'indirizzo /anima/ non è più in uso. Le tre case sono cyberboomer.io, systema77.com e anima.solar.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://cyberboomer.io/">
+<meta http-equiv="refresh" content="6; url=https://cyberboomer.io/">
 <style>
-  /* ── RESET & BASE ─────────────────────────────── */
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
-  :root {
+  :root{
     /* Camera oscura — una lampada calda in una stanza buia */
-    --bg-deep:    #0C0B0E;   /* near-black caldo */
-    --bg-surface: #141216;   /* superficie appena sollevata */
-    --amber:      #C9A15E;    /* accento unico: ambra/brace */
-    --amber-soft: rgba(201, 161, 94, .10);
-    --text-hi:    #ECE7DF;   /* bianco caldo */
-    --text-lo:    #A7A29B;   /* grigio caldo */
-    --line:       #3A3730;   /* bordi/linee */
-    --font-mono:  'Courier Prime', 'Courier New', 'Lucida Console', monospace;
-    --font-serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Georgia', serif;
+    --bg-deep:    #0C0B0E;
+    --bg-surface: #141216;
+    --amber:      #C9A15E;
+    --amber-soft: rgba(201,161,94,.10);
+    --text-hi:    #ECE7DF;
+    --text-lo:    #A7A29B;
+    --line:       #3A3730;
+    --font-mono:  'Courier Prime','Courier New','Lucida Console',monospace;
+    --font-serif: 'Iowan Old Style','Palatino Linotype',Palatino,'Georgia',serif;
   }
 
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg-deep);
-    color: var(--text-hi);
-    font-family: var(--font-serif);
-    line-height: 1.6;
-    min-height: 100vh;
-    overflow-x: hidden;
+  body{
+    background:var(--bg-deep);
+    color:var(--text-hi);
+    font-family:var(--font-serif);
+    line-height:1.6;
+    min-height:100vh;
+    display:flex; align-items:center; justify-content:center;
+    padding:2.5rem 1.5rem;
   }
 
-  /* ── VIGNETTE (camera oscura) ─────────────────── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 9998;
-    background: radial-gradient(ellipse at 50% 45%, transparent 55%, rgba(0, 0, 0, .55) 100%);
+  /* vignettatura */
+  body::before{
+    content:''; position:fixed; inset:0; pointer-events:none; z-index:9998;
+    background:radial-gradient(ellipse at 50% 45%, transparent 55%, rgba(0,0,0,.55) 100%);
   }
 
-  /* ── FILM GRAIN 16mm (~4%) ────────────────────── */
-  body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 9999;
-    opacity: .04;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  .card{ max-width:560px; width:100%; text-align:center; position:relative; z-index:1; }
+
+  .eyebrow{
+    font-family:var(--font-mono); font-size:.72rem; letter-spacing:.28em;
+    text-transform:uppercase; color:var(--amber); margin-bottom:1.6rem;
   }
 
-  /* ── HERO ──────────────────────────────────────── */
-  .hero {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 2rem 1.5rem;
-    text-align: center;
-    position: relative;
+  h1{
+    font-family:var(--font-mono); font-size:1.5rem; font-weight:400;
+    letter-spacing:.04em; line-height:1.35; margin-bottom:1.1rem;
   }
 
-  /* Lampada calda dietro al titolo */
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 50% 38%, rgba(201, 161, 94, .10), transparent 60%);
-    pointer-events: none;
-    z-index: 0;
+  p{ color:var(--text-lo); font-size:1.02rem; margin-bottom:1rem; }
+
+  .doors{
+    display:flex; flex-direction:column; gap:.65rem;
+    border-top:1px solid var(--line); margin-top:2.2rem; padding-top:1.8rem;
   }
 
-  .hero-content {
-    position: relative;
-    z-index: 1;
-    animation: rise .9s ease-out both;
+  .door{
+    display:block; text-decoration:none; text-align:left;
+    background:var(--bg-surface); border:1px solid var(--line);
+    padding:.95rem 1.2rem; transition:border-color .25s, background .25s;
+  }
+  .door:hover, .door:focus-visible{ border-color:var(--amber); background:var(--amber-soft); }
+
+  .door b{
+    display:block; font-family:var(--font-mono); font-size:.9rem;
+    font-weight:400; letter-spacing:.05em; color:var(--amber);
+  }
+  .door span{ display:block; font-size:.92rem; color:var(--text-lo); margin-top:.2rem; }
+
+  .note{
+    margin-top:2rem; font-family:var(--font-mono); font-size:.72rem;
+    letter-spacing:.1em; color:var(--text-lo); opacity:.7;
   }
 
-  /* ── LOGO TITLE ────────────────────────────────── */
-  .logo {
-    font-family: var(--font-mono);
-    font-size: clamp(2.2rem, 6vw, 4.5rem);
-    font-weight: 700;
-    letter-spacing: .12em;
-    color: var(--text-hi);
-    text-transform: uppercase;
-    margin-bottom: .35em;
-  }
-
-  .logo .dot {
-    color: var(--amber);
-    opacity: .8;
-  }
-
-  /* ── SUBTITLE ──────────────────────────────────── */
-  .subtitle {
-    font-family: var(--font-mono);
-    font-size: clamp(.75rem, 2vw, 1rem);
-    letter-spacing: .35em;
-    text-transform: uppercase;
-    color: var(--text-lo);
-    margin-bottom: 2.5rem;
-  }
-
-  /* ── MANIFESTO ─────────────────────────────────── */
-  .manifesto {
-    max-width: 560px;
-    font-size: clamp(1.05rem, 2.5vw, 1.3rem);
-    color: var(--text-lo);
-    line-height: 1.75;
-    border-left: 2px solid var(--amber);
-    padding-left: 1.25rem;
-    text-align: left;
-  }
-
-  .manifesto strong {
-    color: var(--text-hi);
-    font-weight: 600;
-  }
-
-  /* ── SCROLL HINT ───────────────────────────────── */
-  .scroll-hint {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: .4rem;
-    color: var(--text-lo);
-    font-family: var(--font-mono);
-    font-size: .7rem;
-    letter-spacing: .15em;
-    text-transform: uppercase;
-    animation: breathe 3.4s ease-in-out infinite;
-  }
-
-  .scroll-hint .chevron {
-    width: 18px;
-    height: 18px;
-    border-right: 1px solid var(--amber);
-    border-bottom: 1px solid var(--amber);
-    transform: rotate(45deg);
-    opacity: .7;
-  }
-
-  @keyframes breathe {
-    0%, 100% { opacity: .5; }
-    50%      { opacity: .9; }
-  }
-
-  @keyframes rise {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: none; }
-  }
-
-  /* ── SECTION SHELL ─────────────────────────────── */
-  .section {
-    max-width: 1080px;
-    margin: 0 auto;
-    padding: 5rem 1.5rem;
-    animation: rise .8s ease-out both;
-  }
-
-  .section-label {
-    font-family: var(--font-mono);
-    font-size: clamp(.7rem, 1.8vw, .85rem);
-    letter-spacing: .35em;
-    text-transform: uppercase;
-    color: var(--text-lo);
-    margin-bottom: 2.5rem;
-    display: flex;
-    align-items: center;
-    gap: .9rem;
-  }
-  .section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, var(--line), transparent);
-  }
-
-  /* ── SERVICES GRID ─────────────────────────────── */
-  .services-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-  }
-
-  .card {
-    display: flex;
-    flex-direction: column;
-    background: var(--bg-surface);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 1.75rem 1.5rem;
-    transition: border-color .3s ease, transform .3s ease;
-  }
-  .card:hover,
-  .card:focus-within {
-    border-color: var(--amber);
-    transform: translateY(-3px);
-  }
-
-  .card h3 {
-    font-family: var(--font-mono);
-    font-size: 1.15rem;
-    letter-spacing: .04em;
-    color: var(--text-hi);
-    margin-bottom: .6rem;
-  }
-  .card p {
-    color: var(--text-lo);
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-    flex: 1;
-  }
-
-  /* ── BUTTON ────────────────────────────────────── */
-  .btn {
-    display: inline-block;
-    align-self: flex-start;
-    font-family: var(--font-mono);
-    font-size: .8rem;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--text-hi);
-    background: transparent;
-    border: 1px solid var(--amber);
-    border-radius: 6px;
-    padding: .55rem 1.2rem;
-    cursor: pointer;
-    transition: background .25s ease;
-  }
-  .btn:hover {
-    background: rgba(201, 161, 94, .08);
-  }
-  .btn:focus-visible {
-    outline: 2px solid var(--amber);
-    outline-offset: 3px;
-  }
-
-  .btn.is-soon {
-    color: var(--text-lo);
-    border-color: var(--line);
-    cursor: not-allowed;
-    pointer-events: none;
-  }
-
-  /* ── ABOUT ─────────────────────────────────────── */
-  .about-title {
-    font-family: var(--font-serif);
-    font-size: clamp(1.5rem, 4vw, 2.3rem);
-    line-height: 1.25;
-    color: var(--text-hi);
-    max-width: 640px;
-    margin-bottom: 1.6rem;
-  }
-  .about-body {
-    max-width: 640px;
-    border-left: 2px solid var(--amber);
-    padding-left: 1.4rem;
-  }
-  .about-text {
-    font-size: clamp(1.02rem, 2.2vw, 1.2rem);
-    line-height: 1.8;
-    color: var(--text-lo);
-  }
-  .about-text + .about-text { margin-top: 1.05rem; }
-  .about-text strong {
-    color: var(--text-hi);
-    font-weight: 600;
-  }
-
-  /* ── PRODOTTO (primo pezzo) ────────────────────── */
-  .product-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    align-items: start;
-    max-width: 900px;
-  }
-  @media (min-width: 720px) {
-    .product-grid { grid-template-columns: 4fr 5fr; gap: 2.75rem; }
-  }
-
-  .product-figure {
-    aspect-ratio: 4 / 5;
-    background:
-      radial-gradient(ellipse at 50% 42%, rgba(201, 161, 94, .08), transparent 62%),
-      var(--bg-surface);
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: inset 0 0 0 1px rgba(201, 161, 94, .06);
-  }
-  .product-figure .ph-mark {
-    font-family: var(--font-mono);
-    font-size: .7rem;
-    letter-spacing: .28em;
-    text-transform: uppercase;
-    color: var(--text-lo);
-    opacity: .65;
-  }
-
-  .product-info { display: flex; flex-direction: column; }
-  .product-occhiello {
-    font-family: var(--font-mono);
-    font-size: .72rem;
-    letter-spacing: .22em;
-    text-transform: uppercase;
-    color: var(--text-lo);
-    margin-bottom: .85rem;
-  }
-  .product-name {
-    font-family: var(--font-serif);
-    font-size: clamp(1.6rem, 4vw, 2.2rem);
-    line-height: 1.2;
-    color: var(--text-hi);
-    margin-bottom: 1rem;
-  }
-  .product-desc {
-    font-size: clamp(1.02rem, 2.2vw, 1.15rem);
-    line-height: 1.75;
-    color: var(--text-lo);
-    margin-bottom: 1.4rem;
-    max-width: 46ch;
-  }
-  .product-details {
-    font-family: var(--font-mono);
-    font-size: .78rem;
-    line-height: 1.7;
-    letter-spacing: .02em;
-    color: var(--text-lo);
-    margin-bottom: 1.1rem;
-  }
-  .product-ship {
-    font-size: .95rem;
-    line-height: 1.6;
-    color: var(--text-lo);
-    margin-bottom: 1.3rem;
-  }
-  .product-scarcity {
-    font-family: var(--font-mono);
-    font-size: .72rem;
-    letter-spacing: .14em;
-    text-transform: uppercase;
-    color: var(--amber);
-    opacity: .9;
-    border-left: 2px solid var(--amber);
-    padding-left: .8rem;
-    margin-bottom: 1.7rem;
-  }
-  .product-buy {
-    display: flex;
-    align-items: center;
-    gap: 1.4rem;
-    flex-wrap: wrap;
-  }
-  .product-price {
-    font-family: var(--font-mono);
-    font-size: 1.45rem;
-    color: var(--text-hi);
-    line-height: 1.1;
-  }
-  .product-price .tag {
-    display: block;
-    font-size: .58rem;
-    letter-spacing: .16em;
-    text-transform: uppercase;
-    color: var(--text-lo);
-    opacity: .8;
-    margin-top: .35rem;
-  }
-  .product-buy .btn { align-self: auto; }
-
-  /* ── FOOTER ────────────────────────────────────── */
-  .footer {
-    max-width: 1080px;
-    margin: 0 auto;
-    padding: 3rem 1.5rem 4rem;
-    border-top: 1px solid var(--line);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    text-align: center;
-  }
-
-  .footer-domains {
-    font-family: var(--font-mono);
-    font-size: clamp(.8rem, 2vw, .95rem);
-    letter-spacing: .08em;
-    color: var(--text-lo);
-    display: flex;
-    align-items: center;
-    gap: .9rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .footer-domains strong { color: var(--text-hi); font-weight: 600; }
-  .footer-domains .sep { color: var(--amber); opacity: .8; }
-
-  .footer-note {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: .95rem;
-    color: var(--text-lo);
-    max-width: 34ch;
-  }
-
-  .footer-contact {
-    font-family: var(--font-mono);
-    font-size: .8rem;
-    letter-spacing: .08em;
-    color: var(--text-lo);
-  }
-  .footer-contact a {
-    color: var(--text-lo);
-    text-decoration: none;
-    border-bottom: 1px solid var(--line);
-    transition: color .25s ease, border-color .25s ease;
-  }
-  .footer-contact a:hover,
-  .footer-contact a:focus-visible {
-    color: var(--amber);
-    border-color: var(--amber);
-    outline: none;
-  }
-
-  /* Rispetto delle preferenze di riduzione movimento */
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; }
   }
@@ -447,111 +84,34 @@
 </head>
 <body>
 
-  <!-- ═══ HERO ═══ -->
-  <section class="hero" id="hero">
-    <div class="hero-content">
-      <h1 class="logo">
-        A<span class="dot">.</span>N<span class="dot">.</span>I<span class="dot">.</span>M<span class="dot">.</span>A<span class="dot">.</span>
-      </h1>
-      <p class="subtitle">agenzia di servizi digitali</p>
-      <p class="manifesto">
-        Creiamo <strong>oggetti digitali e fisici</strong> che vibrano
-        tra pixel e carta. Arte, codice e stampa —
-        al servizio di chi vuole lasciare un segno.
-      </p>
-    </div>
-    <div class="scroll-hint" aria-hidden="true">
-      <span>scopri</span>
-      <div class="chevron"></div>
-    </div>
-  </section>
+  <main class="card">
+    <p class="eyebrow">Indirizzo non più in uso</p>
 
-  <!-- ═══ SERVIZI ═══ -->
-  <section class="section services" id="servizi">
-    <p class="section-label">servizi</p>
-    <div class="services-grid">
+    <h1>Questa pagina ha cambiato nome.</h1>
 
-      <article class="card">
-        <h3>Libri illustrati</h3>
-        <p>Storie e immagini stampate: volumi illustrati che nascono tra codice e carta.</p>
-        <a class="btn" href="#">Sfoglia</a>
-      </article>
+    <p>Quello che stava qui era il vecchio sito dell'agenzia.
+    Oggi l'agenzia si chiama SYSTEMA 77, e «Anima» è il nome di un prodotto, non dell'ente.</p>
 
-      <article class="card">
-        <h3>Fotografie fine-art</h3>
-        <p>Stampe d'autore di Pierluigi De Palo, in edizione limitata.</p>
-        <a class="btn" href="#">Guarda</a>
-      </article>
+    <p>Il lavoro non è sparito: è in tre case diverse.</p>
 
-      <article class="card">
-        <h3>Merch</h3>
-        <p>Magliette e adesivi con il nostro immaginario neon addosso.</p>
-        <a class="btn" href="#">Shop</a>
-      </article>
+    <nav class="doors">
+      <a class="door" href="https://cyberboomer.io/">
+        <b>cyberboomer.io</b>
+        <span>Cyber Boomer — verdetti, verifiche e strumenti aperti.</span>
+      </a>
+      <a class="door" href="https://systema77.com/">
+        <b>systema77.com</b>
+        <span>SYSTEMA 77 — l'agenzia.</span>
+      </a>
+      <a class="door" href="https://anima.solar/">
+        <b>anima.solar</b>
+        <span>ANIMA GAME — il gioco.</span>
+      </a>
+    </nav>
 
-      <article class="card">
-        <h3>F.A.R.O.</h3>
-        <p>Il nostro prossimo strumento digitale. In arrivo.</p>
-        <a class="btn is-soon" aria-disabled="true">Presto</a>
-      </article>
-
-    </div>
-  </section>
-
-  <!-- ═══ CHI SIAMO ═══ -->
-  <!-- Copy di Judy Álvarez (versione estesa) — Google Doc 2026-07-15 -->
-  <section class="section about" id="chi-siamo">
-    <p class="section-label">chi siamo</p>
-    <h2 class="about-title">Un'orchestra di persone e macchine.</h2>
-    <div class="about-body">
-      <p class="about-text">A.N.I.M.A. è un'agenzia di servizi digitali con l'anima di una <strong>bottega</strong>. Diamo corpo alle idee: dal pixel alla carta, dal codice alla stampa.</p>
-      <p class="about-text">Nasciamo dallo sguardo di un <strong>direttore della fotografia</strong> — la luce come materia — e da un patto strano: <strong>uomo e macchina, più forti proprio perché restano due</strong>. Non ci fondiamo con l'intelligenza artificiale: ci <strong>duettiamo</strong>.</p>
-      <p class="about-text">Ci muoviamo in un <strong>immaginario cyberpunk</strong>, ma senza rumore: la ribellione, per noi, è l'<strong>arte</strong> — non la violenza.</p>
-      <p class="about-text">Facciamo <strong>libri illustrati, stampe d'autore, oggetti, strumenti digitali</strong>. Ogni cosa nasce per <strong>durare</strong> e per <strong>lasciare un segno</strong>.</p>
-      <p class="about-text">Niente fretta: prima strutturiamo bene, poi andiamo online. La <strong>qualità</strong> è ciò che ci distingue dal rumore.</p>
-    </div>
-  </section>
-
-  <!-- ═══ IN VETRINA — primo prodotto ═══ -->
-  <!-- Copy di Judy Álvarez (scheda prodotto) — Google Doc 2026-07-15.
-       Prezzo SEGNAPOSTO: da confermare con EDDIE/Pier. Foto reale: da fornire. -->
-  <section class="section vetrina" id="in-vetrina">
-    <p class="section-label">in vetrina</p>
-    <div class="product-grid">
-
-      <figure class="product-figure">
-        <span class="ph-mark">foto in arrivo</span>
-      </figure>
-
-      <div class="product-info">
-        <p class="product-occhiello">Fotografia fine-art · edizione limitata</p>
-        <h3 class="product-name">Torre Guaceto — I</h3>
-        <p class="product-desc">Un istante di luce sulla riserva di Torre Guaceto, dove è nato il nostro sguardo. Una stampa che tiene insieme buio e bagliore: la fotografia come materia.</p>
-        <p class="product-details">Edizione di 10 · Carta cotone fine-art (Hahnemühle Photo Rag) · 40×50 cm · 2024 · Firmata e numerata a mano.</p>
-        <p class="product-ship">Spedita in tubo rigido, protetta. Pronta da incorniciare.</p>
-        <p class="product-scarcity">Edizione limitata: quando finisce, finisce.</p>
-        <div class="product-buy">
-          <span class="product-price">€ 120<span class="tag">prezzo da confermare</span></span>
-          <a class="btn" href="#">Aggiungi al carrello</a>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ═══ FOOTER ═══ -->
-  <!-- Riga contatto: COPY PROVVISORIA — indirizzo definitivo a cura di Judy Álvarez -->
-  <footer class="footer">
-    <div class="footer-domains">
-      <span>cyberboomer.io</span>
-      <span class="sep">·</span>
-      <span>anima.solar</span>
-    </div>
-    <p class="footer-contact">
-      <a href="mailto:ciao@anima.solar">ciao@anima.solar</a>
-    </p>
-  </footer>
+    <p class="note">Fra pochi secondi vieni portato su cyberboomer.io.</p>
+  </main>
 
 </body>
 </html>
-<!-- creato da D.R.A.G.O., 2026-07-15 -->
+<!-- pagina-ponte — creata da SQUELCH, 2026-07-29 -->
