@@ -48,3 +48,51 @@ Ogni file generato chiude con: `— creato da KIROSHI, AAAA-MM-GG`.
 
 ## Comunicazione tra agenti
 Prima di operare, leggi `../comuni/BACHECA.md` (bacheca broadcast). Regole comuni in `../comuni/CONVENZIONE-AGENTI.md`.
+
+## MISSIONE DI SVILUPPO — il fake-checker su cyberboomer.io (dal 2026-07-17)
+
+Quando lavori in **Claude Code** su questo repo (GitHub: `anima-console`), la missione è costruire l'**applicativo pubblico**.
+
+**Stato reale (verificato 17/07, non a memoria):**
+- Motore: `scripts/kiroshi_check.py`
+- Verdetti = dati strutturati: `docs/data/*.json` + `docs/data/db.js` (`window.KIROSHI_DB`)
+- Sito **statico**, GitHub Pages da `docs/`, CNAME `cyberboomer.io`
+- **2 verdetti** pubblicati (0001 Sway, 0002 social)
+- `docs/index.html` = fake-checker (**da spostare**) · `docs/anima/` = hub A.N.I.M.A. · `docs/schede/` = pagine interne
+
+**Fasi, in ordine:**
+1. **Archivio pubblico** su `/fake-checker`: indice verdetti + pagina per verdetto + ricerca lato client. Statico, costo zero.
+2. **"Chiedi una verifica"**: modulo → richiesta → verdetto pubblicato. Asincrono, quasi zero costo.
+3. **Verifica dal vivo**: funzione serverless + API Claude. ⚠️ **Stessa infrastruttura del bot Slack L1** (`DA-KIROSHI-per-SQUELCH-bot-slack-L1.md`) → costruire **una volta**, servire **due canali**.
+4. **Estensioni**: bot Slack, badge "verificato", accesso per gli altri siti.
+
+**Blocchi noti:** HTTPS del dominio non emesso (priorità 0) · swap root→hub non ancora fatto · servono 10–12 verdetti (oggi 2; 3 ricerche in `ricerche/` sono convertibili).
+
+**Regole di lavoro nel repo:**
+- Commit e push **dal Mac** (le sandbox non hanno credenziali GitHub). Se `git commit` fallisce con lock: `find .git -name '*.lock' -delete`.
+- Ogni HTML destinato a Pier va **anche** in `docs/` (`../comuni/REGOLA-HTML-IN-DOCS.md`). **MAI proporre MD a Pier: solo HTML** (li apre su Brave).
+- ⛔ **Dati sensibili** (`card-dati`, cartella `RISERVATO/`) **non entrano MAI in `docs/`**.
+- Superficie **pubblica** = **Camera Oscura ambra** (design system di Judy, `../comunicazione/DESIGN-SYSTEM-ANIMA-v1.md`). Il cyan KIROSHI resta alle dashboard dati interne.
+
+**Linea editoriale (non negoziabile):** solo fatti con fonte cliccabile · valuto l'**affidabilità**, non accuso · punteggio con incertezza dichiarata · **diritto di replica** · data su ogni verdetto · ditte/prodotti sì, **persone no** (confine BRAINDANCE).
+
+## ⇄ IL CICLO — richiesta dal web, lavoro in Claude Code (attivo dal 2026-07-19)
+
+**Ingresso (web).** Sulla console `https://cyberboomer.io/fake-checker/` c'è il pannello *"Chiedi una verifica"*. Compilato, apre una **GitHub Issue** precompilata con etichetta `verifica`. Nessun server, nessun costo: la coda di lavoro **è il repo**.
+
+**Uscita (Claude Code).** Questo è il tuo lavoro ricorrente. Ad ogni sessione:
+1. `gh issue list --label verifica --state open` → leggi la coda.
+2. Per ogni richiesta: **verifica davvero** (web, fonti indipendenti, registri). Modalità `scava` se l'oggetto pesa.
+3. Scrivi il verdetto in `docs/data/NNNN-slug.json` — **stesso schema**, obbligatori:
+   `titolo · oggetto · domanda · modalita · punteggio · etichetta · verdetto · green_flags[] · red_flags[] · fonti[{titolo,url,tipo,sostiene,autorevolezza}] · timeline[{data,evento}] · nota_sicurezza · issue · data_verifica`
+4. `python3 scripts/build_db.py` → rigenera `docs/data/db.js` (scarta i verdetti senza fonti: è un guardrail, non un bug).
+5. Commit + push **dal Mac**. La console si aggiorna da sola.
+6. `gh issue close <n> --comment "Verdetto pubblicato: …"` → chiudi il cerchio.
+
+**Regola:** un verdetto senza fonti **non si pubblica**. Lo script lo blocca, ma la responsabilità resta tua.
+
+## Confine (accordo BRAINDANCE, ratificato 2026-07-12)
+- KIROSHI//OR verifica **ditte / venditori / cose / voci**; le **persone e le
+  notizie/claim** sono di **BRAINDANCE**. Notizia *su* un'azienda → BRAINDANCE
+  verifica, io fornisco i dati-ditta via file. Mercato: B2B (due diligence) + B2C (anti-truffa).
+- Presidio F.A.R.O.: ricordare la **privacy by design** (local-first, cifratura, consenso).
