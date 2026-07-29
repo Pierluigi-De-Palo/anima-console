@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Documenti pubblici — Cyber Boomer · SYSTEMA 77</title>
+<meta name="description" content="Le schede pubbliche di SYSTEMA 77: competenze della squadra di ripresa, consiglio Anima Game, termini e consenso a strati.">
+<style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+  :root{
+    /* Camera oscura — una lampada calda in una stanza buia */
+    --bg-deep:    #0C0B0E;
+    --bg-surface: #141216;
+    --amber:      #C9A15E;
+    --text-hi:    #ECE7DF;
+    --text-lo:    #A7A29B;
+    --line:       #3A3730;
+    --font-mono:  'Courier Prime','Courier New','Lucida Console',monospace;
+    --font-serif: 'Iowan Old Style','Palatino Linotype',Palatino,'Georgia',serif;
+  }
+
+  body{
+    background:var(--bg-deep);
+    color:var(--text-hi);
+    font-family:var(--font-serif);
+    line-height:1.6;
+    min-height:100vh;
+  }
+
+  /* vignettatura */
+  body::before{
+    content:''; position:fixed; inset:0; pointer-events:none; z-index:9998;
+    background:radial-gradient(ellipse at 50% 45%, transparent 55%, rgba(0,0,0,.55) 100%);
+  }
+
+  main{ max-width:760px; margin:0 auto; padding:4rem 1.5rem 2rem; position:relative; z-index:1; }
+
+  .back{
+    display:inline-block; margin-bottom:3rem;
+    font-family:var(--font-mono); font-size:.72rem; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--text-lo); text-decoration:none;
+    transition:color .2s;
+  }
+  .back:hover, .back:focus-visible{ color:var(--amber); }
+
+  .eyebrow{
+    font-family:var(--font-mono); font-size:.72rem; letter-spacing:.28em;
+    text-transform:uppercase; color:var(--amber); margin-bottom:1rem;
+  }
+
+  h1{
+    font-family:var(--font-mono); font-size:1.6rem; font-weight:400;
+    letter-spacing:.04em; margin-bottom:1rem;
+  }
+
+  .lede{ color:var(--text-lo); margin-bottom:3rem; max-width:52ch; }
+
+  ul.docs{ list-style:none; }
+  ul.docs li{ border-bottom:1px solid var(--line); }
+  ul.docs li:first-child{ border-top:1px solid var(--line); }
+
+  ul.docs a{
+    display:flex; justify-content:space-between; align-items:baseline; gap:1rem;
+    padding:1.15rem .25rem; text-decoration:none; color:var(--text-hi);
+    transition:color .2s, padding-left .2s;
+  }
+  ul.docs a:hover, ul.docs a:focus-visible{ color:var(--amber); padding-left:.6rem; }
+
+  ul.docs .name{ display:block; }
+  ul.docs .desc{
+    display:block; font-size:.9rem; color:var(--text-lo); margin-top:.25rem; max-width:46ch;
+  }
+  ul.docs .meta{
+    font-family:var(--font-mono); font-size:.68rem; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--text-lo); white-space:nowrap;
+  }
+
+  footer{
+    max-width:760px; margin:0 auto; padding:3rem 1.5rem 4rem;
+    border-top:1px solid var(--line); margin-top:3rem;
+    font-family:var(--font-mono); font-size:.78rem; color:var(--text-lo);
+    position:relative; z-index:1;
+  }
+  footer a{ color:var(--text-lo); }
+  footer a:hover, footer a:focus-visible{ color:var(--amber); }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<main>
+  <a class="back" href="../">&larr; Cyber Boomer</a>
+
+  <p class="eyebrow">Documenti pubblici</p>
+  <h1>Schede</h1>
+  <p class="lede">Documenti di lavoro resi pubblici così come sono: versionati, datati,
+  senza ritocchi a posteriori.</p>
+
+  <ul class="docs">
+    <li>
+      <a href="competenze-v1.1.html">
+        <span>
+          <span class="name">Scheda Competenze — Squadra di Ripresa</span>
+          <span class="desc">Cosa sa fare la squadra, ruolo per ruolo.</span>
+        </span>
+        <span class="meta">v1.1</span>
+      </a>
+    </li>
+    <li>
+      <a href="consiglio-animagame-2026-07-17.html">
+        <span>
+          <span class="name">Consiglio Anima Game</span>
+          <span class="desc">Verbale del consiglio direttivo sul gioco.</span>
+        </span>
+        <span class="meta">17 · 07 · 2026</span>
+      </a>
+    </li>
+    <li>
+      <a href="termini-consenso-v0.1.html">
+        <span>
+          <span class="name">Termini e consenso</span>
+          <span class="desc">Consenso a strati: si decide un livello alla volta. Bozza.</span>
+        </span>
+        <span class="meta">v0.1</span>
+      </a>
+    </li>
+  </ul>
+</main>
+
+<footer>
+  <a href="../">cyberboomer.io</a> · Systema 77 · 2026
+</footer>
+
+</body>
+</html>
+<!-- creato da SQUELCH, 2026-07-29 -->
