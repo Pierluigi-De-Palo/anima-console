@@ -3,7 +3,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex,nofollow">
 <title>BRAINDANCE · Verdetti</title>
 <meta name="description" content="I verdetti di BRAINDANCE: vero, falso o incerto, con punteggio e fonti.">
 <style>
@@ -25,6 +24,11 @@
   .sub{color:var(--muted);font-size:14px;margin:0 0 16px}
   .sub strong{color:var(--testo)}
   .lab{font-size:14px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:14px 0 8px}
+  .coda{display:flex;gap:8px;flex-wrap:wrap}
+  .coda .m{background:var(--panel);border:1px solid var(--line);border-radius:10px;
+    padding:7px 14px;display:flex;align-items:baseline;gap:8px}
+  .coda .n{font-size:18px;font-weight:700}
+  .coda .l{font-size:14px;color:var(--muted)}
   .filters{display:flex;gap:8px;flex-wrap:wrap}
   .fbtn{background:var(--panel);border:1px solid var(--line);color:var(--muted);
     border-radius:20px;padding:7px 15px;font-size:14px;cursor:pointer;font-family:inherit}
@@ -60,6 +64,15 @@
     <a class="chiedi-link" href="chiedi/index.html">Chiedi una verifica →</a>
   </header>
   <p class="sub" id="sub">Caricamento…</p>
+
+  <div id="coda-box" hidden>
+    <p class="lab">Stato lavori · coda richieste</p>
+    <div class="coda">
+      <div class="m"><span class="n" id="c-attesa" style="color:var(--giallo)">–</span><span class="l">in attesa</span></div>
+      <div class="m"><span class="n" id="c-corso" style="color:var(--cyan)">–</span><span class="l">in corso</span></div>
+      <div class="m"><span class="n" id="c-fatti" style="color:var(--verde)">–</span><span class="l">fatti</span></div>
+    </div>
+  </div>
 
   <p class="lab">Tipo</p>
   <div class="filters" id="f-tipo"></div>
@@ -195,6 +208,26 @@
   });
 
   render();
+})();
+</script>
+<script>
+// Stato lavori: conta le Issue della coda braindance-queue. Solo numeri, mai il contenuto.
+(function(){
+  var API = "https://api.github.com/repos/Pierluigi-De-Palo/anima-console/issues"
+          + "?labels=braindance-queue&state=all&per_page=100";
+  fetch(API).then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(items){
+    var attesa = 0, corso = 0, fatti = 0;
+    items.forEach(function(i){
+      if(i.pull_request) return;
+      if(i.state === "closed"){ fatti++; return; }
+      var inCorso = (i.labels || []).some(function(l){ return l.name === "braindance-in-corso"; });
+      if(inCorso) corso++; else attesa++;
+    });
+    document.getElementById("c-attesa").textContent = attesa;
+    document.getElementById("c-corso").textContent = corso;
+    document.getElementById("c-fatti").textContent = fatti;
+    document.getElementById("coda-box").hidden = false;
+  }).catch(function(){ /* offline o API non raggiungibile: il blocco resta nascosto */ });
 })();
 </script>
 <!-- creato da Claude Code per BRAINDANCE, 2026-07-19 -->
