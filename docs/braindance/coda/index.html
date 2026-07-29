@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>BRAINDANCE · Console coda</title>
+<style>
+  :root{--bg:#0a0e14;--panel:#111823;--field:#0d141d;--line:#1e2a38;--testo:#d7e3ef;
+    --muted:#7d93a8;--cyan:#22d3ee;--verde:#2ee6a6;--giallo:#f6c453;--rosso:#ff5c6c;}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:#05070b}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    color:var(--testo);line-height:1.55;padding:24px 12px}
+  .frame{max-width:720px;margin:0 auto;background:var(--bg);border:1px solid var(--line);
+    border-radius:14px;padding:24px 22px 20px}
+  header{border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:14px;
+    display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px}
+  h1{font-size:20px;font-weight:700;margin:0}
+  h1 .accent{color:var(--cyan)}
+  .nav{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 16px}
+  .nav a{font-size:14px;color:var(--cyan);text-decoration:none;border:1px solid var(--line);
+    border-radius:20px;padding:6px 14px}
+  .nav a:hover{border-color:var(--cyan)}
+  .strip{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 16px}
+  .m{background:var(--panel);border:1px solid var(--line);border-radius:10px;
+    padding:7px 14px;display:flex;align-items:baseline;gap:8px}
+  .m .n{font-size:18px;font-weight:700}
+  .m .l{font-size:14px;color:var(--muted)}
+  .lab{font-size:14px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:18px 0 8px}
+  .req{background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    padding:12px 14px;margin:0 0 10px}
+  .req .top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .req .num{font-size:14px;color:var(--muted)}
+  .req h2{font-size:15px;font-weight:600;margin:6px 0 8px;line-height:1.4;max-width:36em}
+  .pill{font-size:14px;font-weight:600;padding:3px 11px;border-radius:20px;display:inline-block}
+  .pill.attesa{background:#2a2410;color:var(--giallo);border:1px solid var(--giallo)}
+  .pill.corso{background:#0e2830;color:var(--cyan);border:1px solid var(--cyan)}
+  .pill.fatto{background:#0f2a22;color:var(--verde);border:1px solid var(--verde)}
+  .req .apri{display:inline-block;font-size:14px;color:var(--cyan);text-decoration:none;margin-top:4px}
+  .req .apri:hover{text-decoration:underline}
+  .vuoto,.err{color:var(--muted);font-size:15px;padding:12px 4px}
+  .err{color:var(--rosso)}
+  .come{font-size:14px;color:var(--muted);background:var(--panel);border:1px solid var(--line);
+    border-left:3px solid var(--cyan);border-radius:10px;padding:11px 14px;margin:18px 0 0;max-width:44em}
+  .come b{color:var(--testo);font-weight:600}
+  footer{border-top:1px solid var(--line);margin-top:18px;padding-top:12px;font-size:14px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <header>
+    <h1>◉ BRAINDANCE · <span class="accent">CONSOLE CODA</span></h1>
+  </header>
+
+  <div class="nav">
+    <a href="../chiedi/index.html">✍ Nuova richiesta</a>
+    <a href="../index.html">◉ Vetrina verdetti</a>
+    <a href="https://github.com/Pierluigi-De-Palo/anima-console/issues?q=label%3Abraindance-queue" rel="noopener">⚙ Coda su GitHub</a>
+  </div>
+
+  <div class="strip" id="strip"></div>
+
+  <p class="lab">In lavorazione</p>
+  <div id="aperte"><p class="vuoto">Caricamento…</p></div>
+
+  <p class="lab">Fatte</p>
+  <div id="chiuse"><p class="vuoto">Caricamento…</p></div>
+
+  <p class="come"><b>Come si opera</b> (serve l'accesso GitHub): apri la richiesta →
+    <b>presa in carico</b> = aggiungi la label <b>braindance-in-corso</b> ·
+    <b>fatta</b> = «Close with comment» con il link al verdetto.
+    La verifica vera la fa BRAINDANCE in Claude Code (<code>scripts/coda.py</code>).</p>
+
+  <footer>Console operativa · la coda vive su GitHub (repo pubblico) · BRAINDANCE · A.N.I.M.A.</footer>
+</div>
+
+<script>
+(function(){
+  var API = "https://api.github.com/repos/Pierluigi-De-Palo/anima-console/issues"
+          + "?labels=braindance-queue&state=all&per_page=100";
+  var esc = function(s){return String(s).replace(/[&<>"]/g,function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});};
+  function dataIT(iso){
+    var d = new Date(iso);
+    return d.toLocaleDateString("it-IT") + " " + d.toLocaleTimeString("it-IT",{hour:"2-digit",minute:"2-digit"});
+  }
+  function statoDi(i){
+    if(i.state === "closed") return "fatto";
+    return (i.labels||[]).some(function(l){return l.name==="braindance-in-corso";}) ? "corso" : "attesa";
+  }
+  var NOME = {attesa:"in attesa", corso:"in corso", fatto:"fatta"};
+
+  function card(i){
+    var s = statoDi(i);
+    return '<div class="req"><div class="top">'
+      + '<span class="pill '+s+'">'+NOME[s]+'</span>'
+      + '<span class="num">#'+i.number+' · '+esc(dataIT(i.created_at))+'</span></div>'
+      + '<h2>'+esc(i.title)+'</h2>'
+      + '<a class="apri" href="'+esc(i.html_url)+'" rel="noopener">Apri su GitHub →</a>'
+      + '</div>';
+  }
+
+  fetch(API).then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(items){
+    items = items.filter(function(i){ return !i.pull_request; });
+    var aperte = items.filter(function(i){ return i.state === "open"; });
+    var chiuse = items.filter(function(i){ return i.state === "closed"; });
+    var attesa = aperte.filter(function(i){ return statoDi(i)==="attesa"; }).length;
+
+    document.getElementById("strip").innerHTML =
+      '<div class="m"><span class="n" style="color:var(--giallo)">'+attesa+'</span><span class="l">in attesa</span></div>'
+      + '<div class="m"><span class="n" style="color:var(--cyan)">'+(aperte.length-attesa)+'</span><span class="l">in corso</span></div>'
+      + '<div class="m"><span class="n" style="color:var(--verde)">'+chiuse.length+'</span><span class="l">fatte</span></div>';
+
+    document.getElementById("aperte").innerHTML = aperte.length
+      ? aperte.map(card).join("") : '<p class="vuoto">Coda vuota — nessuna richiesta aperta.</p>';
+    document.getElementById("chiuse").innerHTML = chiuse.length
+      ? chiuse.map(card).join("") : '<p class="vuoto">Ancora nessuna richiesta completata.</p>';
+  }).catch(function(){
+    document.getElementById("aperte").innerHTML =
+      '<p class="err">API GitHub non raggiungibile (offline o limite richieste). Riprova tra un minuto, o usa la coda direttamente su GitHub dal link qui sopra.</p>';
+    document.getElementById("chiuse").innerHTML = "";
+  });
+})();
+</script>
+<!-- creato da Claude Code per BRAINDANCE, 2026-07-29 -->
+</body>
+</html>
