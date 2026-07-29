@@ -36,6 +36,9 @@
   .btn{margin-top:22px;width:100%;background:#0e2830;border:1px solid var(--cyan);color:var(--cyan);
     font-size:15px;font-weight:700;letter-spacing:.02em;border-radius:10px;padding:13px;cursor:pointer}
   .btn:hover{background:#123540}
+  a.btn{display:block;text-align:center;text-decoration:none;box-sizing:border-box}
+  .out .btn{margin:10px 0 8px}
+  .out .resta{font-size:14px;color:var(--giallo);margin:0 0 12px}
   .out{display:none;margin-top:20px;border:1px solid var(--line);border-left:3px solid var(--verde);
     background:var(--panel);border-radius:9px;padding:14px 15px}
   .out .ok{color:var(--verde);font-weight:700;font-size:15px;margin-bottom:8px}
@@ -83,8 +86,10 @@
   </form>
 
   <div class="out" id="out">
-    <div class="ok" id="okline">✓ Richiesta pronta</div>
+    <div class="ok" id="okline">Passo 1 di 2 · richiesta preparata ✓</div>
     <div class="next" id="nextline"></div>
+    <a class="btn" id="ghbtn" href="#" rel="noopener" target="_blank">▶ Passo 2 di 2 · apri GitHub e premi «Create»</a>
+    <div class="resta">Finché non premi «Create» su GitHub, la richiesta <strong>non</strong> è in coda.</div>
     <pre id="json"></pre>
     <button class="copy" id="copy" type="button">Copia richiesta</button>
   </div>
@@ -143,11 +148,11 @@
       + "&body=" + encodeURIComponent(corpo);
 
     document.getElementById("json").textContent = JSON.stringify(req, null, 2);
-    document.getElementById("nextline").innerHTML =
-      (tipo.value === "ditta"
-        ? req.id + " → instradata a KIROSHI (ditte). "
-        : req.id + " → in coda al prossimo giro. ")
-      + 'Se GitHub non si è aperto, <a id="ghlink" href="' + url + '" rel="noopener" target="_blank">apri la Issue da qui</a> e premi &laquo;Create&raquo;.';
+    document.getElementById("nextline").textContent =
+      tipo.value === "ditta"
+        ? req.id + " — verrà instradata a KIROSHI (ditte)."
+        : req.id + " — al prossimo giro BRAINDANCE la lavora.";
+    document.getElementById("ghbtn").href = url;
     document.getElementById("out").style.display = "block";
     document.getElementById("out").scrollIntoView({behavior:"smooth", block:"nearest"});
     window.open(url, "_blank", "noopener");
