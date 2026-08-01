@@ -1,0 +1,113 @@
+{
+  "titolo": "ULTRAFAB srl — chi c'è dietro ultrafab.it",
+  "oggetto": "ULTRAFAB SRL, P.IVA 03832080984, Brescia. Software e IoT per la digitalizzazione industriale (prodotto «Bishop»). Sito ultrafab.it.",
+  "domanda": "Richiesta di «tutte le informazioni riguardanti questa ditta milanese». Esiste davvero? Chi la controlla? Che conti ha? E che rapporto ha con la «Dot Dot Dot srl» citata nella richiesta?",
+  "modalita": "scava",
+  "punteggio": 62,
+  "etichetta": "reale, con riserve",
+  "verdetto": "Azienda vera e operativa, non una scatola vuota: dieci anni di attività, stampa indipendente che ne parla dal 2019, sede fisica, bilanci depositati. Ma la richiesta parte da tre premesse sbagliate, e la più importante cambia la partita. Primo: non è milanese, è bresciana — sede legale in Via Orzinuovi 12, Brescia. Secondo: non c'è alcun legame documentato con una «Dot Dot Dot srl»; quella esiste ed è milanese davvero (DOTDOTDOT SRL, studio di exhibition design, P.IVA 05570390962), ma è tutt'altra azienda per attività, sede e dimensione. Terzo, ed è il punto che pesa di più: dal settembre 2024 ULTRAFAB non è più indipendente — l'ingresso in Regesta Group è stato annunciato dal gruppo stesso, che la elenca fra le proprie cinque società. La quota acquisita non è pubblica. Il sito ultrafab.it non lo dice da nessuna parte: chi valuta l'azienda leggendo solo il sito legge una versione superata dai fatti da quasi due anni, su una piattaforma ferma al 2019. I conti sono quelli di una micro-impresa in oscillazione: due esercizi consecutivi in perdita (2023 e 2024, con il rosso 2024 pari a oltre sette volte il capitale sociale) e un ritorno all'utile nel 2025. Tutti i dati economici qui riportati vengono da aggregatori commerciali che rielaborano il Registro Imprese: nessun bilancio depositato è stato letto direttamente, e la visura ufficiale è a pagamento. Per una valutazione che comporti impegni, la visura camerale non è un optional.",
+  "green_flags": [
+    "Identità verificabile: la P.IVA 03832080984 pubblicata sul sito corrisponde a un'impresa realmente iscritta e attiva al Registro Imprese di Brescia, REA BS-566716.",
+    "Stampa indipendente su più anni e non promozionale: Giornale di Brescia (21 aprile 2019) sul prodotto Bishop, Il Sole 24 Ore (10 aprile 2020) con l'azienda come soggetto principale e dettagli fisici verificabili, fra cui un fablab di circa 450 mq.",
+    "Presenza fisica riscontrabile su fonti terze indipendenti: indirizzo e telefono fisso coincidenti su più elenchi, partecipazione come espositore a fiere industriali bresciane.",
+    "Dominio registrato l'8 gennaio 2016 presso registrar italiano, rinnovato fino al 2027, con storico di archiviazione web continuo dal 19 aprile 2016: nessun tratto da dominio riciclato o parcheggiato.",
+    "Bilanci depositati e consultabili per più esercizi, stato camerale «attiva»: nessun segnale di società dormiente, e nessuna notizia di procedure concorsuali emersa dalle fonti aperte consultate.",
+    "Inserimento in un gruppo strutturato: Regesta Group, capogruppo bresciana attiva dal 2007 che dichiara oltre 250 persone e cinque società.",
+    "Riconoscimento da ente terzo: vittoria della tappa bresciana del premio CNA «Cambiamenti» nell'ottobre 2018.",
+    "Case history con clienti nominati e descrizioni tecniche specifiche, non testi generici con segnaposto."
+  ],
+  "red_flags": [
+    "La premessa della richiesta è errata: non è una ditta milanese. Sede legale a Brescia, Via Orzinuovi 12. Nessuna fonte consultata le attribuisce sedi o unità locali a Milano.",
+    "Il sito non menziona in nessuna pagina l'appartenenza a Regesta Group, annunciata a settembre 2024: chi valuta il fornitore dal solo sito non sa chi lo controlla.",
+    "Il sito è tecnicamente abbandonato: WordPress 5.3.2 (dicembre 2019) e componenti coeve, tutte fuori supporto da circa sei anni. Contenuti fermi al 2020-2022 e autodefinizione ancora come «startup».",
+    "Perdita 2024 di 143.944 euro su ricavi di 347.990, secondo esercizio consecutivo in rosso dopo la perdita di 26.773 euro del 2023. Il rosso 2024 supera di oltre sette volte il capitale sociale.",
+    "Ricavi 2024 in calo di circa il 13-14% sull'anno precedente.",
+    "Il footer del sito espone soltanto la partita IVA: mancano ragione sociale completa, sede iscritta al registro imprese e capitale sociale, e non è stata trovata alcuna pagina di privacy o cookie policy fra i link interni.",
+    "Il dominio ultrafab.it non è intestato alla società ma a una persona fisica, con dati di registrazione mai aggiornati dal 2016: asset digitale fuori dal perimetro societario. Pratica diffusa nelle PMI, ma rilevante in una due diligence.",
+    "Le fonti pubbliche si contraddicono sull'anno di fondazione: 2016 per registri, Giornale di Brescia e LinkedIn; 2017 nel comunicato di Regesta.",
+    "Il claim «20 anni di esperienza» accostato a «Start Up» non è mai spiegato: la società è del 2016.",
+    "La pagina «Partner» non nomina alcun partner: è solo un invito a diventarlo.",
+    "Nessuna recensione pubblica di clienti reperibile su alcuna piattaforma: non esiste riscontro indipendente della soddisfazione, né positivo né negativo.",
+    "Rischio concreto di confusione con Ultrafab Inc. (Farmington, New York), produttore statunitense di guarnizioni per serramenti, estraneo alla società bresciana: le recensioni che compaiono cercando «Ultrafab» non riguardano quest'azienda."
+  ],
+  "fonti": [
+    {
+      "titolo": "Ultrafab — sito ufficiale (homepage e pagina Contattaci)",
+      "url": "https://ultrafab.it/it/",
+      "tipo": "sito del soggetto",
+      "sostiene": "P.IVA 03832080984 e indirizzo operativo Via Orzinuovi 10; assenza di REA, capitale sociale e privacy policy; nessuna menzione di Regesta Group",
+      "autorevolezza": "bassa — fonte diretta interessata, ma è l'unico punto in cui il soggetto dichiara la propria P.IVA"
+    },
+    {
+      "titolo": "Covid, la startup che stampa valvole per maschere da sub — Il Sole 24 Ore, 10 aprile 2020",
+      "url": "https://www.ilsole24ore.com/art/covid-startup-che-stampa-valvole-maschere-decathlon-ADlgNSE",
+      "tipo": "stampa nazionale indipendente",
+      "sostiene": "Esistenza fisica e operativa: fablab di circa 450 mq, riconversione produttiva durante il Covid, struttura di cinque persone oltre al fondatore più collaboratori",
+      "autorevolezza": "alta — quotidiano economico nazionale, articolo dedicato e non promozionale"
+    },
+    {
+      "titolo": "Regesta Group — scheda Ultrafab e comunicato sull'acquisizione",
+      "url": "https://www.regestaitalia.eu/il-gruppo/ultrafab/",
+      "tipo": "comunicazione dell'acquirente",
+      "sostiene": "Ingresso di Ultrafab in Regesta Group annunciato il 6 settembre 2024; composizione del gruppo; indicazione del 2017 come anno di fondazione, in contrasto con i registri",
+      "autorevolezza": "media — parte interessata, ma è l'unica fonte diretta sull'operazione e dichiara contro il proprio interesse la data di fondazione discordante"
+    },
+    {
+      "titolo": "ULTRAFAB SRL — scheda d'impresa, aziende.it",
+      "url": "https://www.aziende.it/ultrafab-srl",
+      "tipo": "aggregatore del Registro Imprese",
+      "sostiene": "REA BS-566716, sede legale Via Orzinuovi 12, forma giuridica srl, stato attiva, capitale sociale di 20.000 euro (dato presente su questa sola fonte), contributi pubblici ricevuti",
+      "autorevolezza": "media — rielabora dati camerali ma è un servizio commerciale che vende la visura; la colonna «capitale» risulta internamente incoerente"
+    },
+    {
+      "titolo": "ULTRAFAB SRL — dati di bilancio, reportaziende.it",
+      "url": "https://www.reportaziende.it/ultrafab_srl_bs",
+      "tipo": "aggregatore del Registro Imprese",
+      "sostiene": "Ricavi e risultato d'esercizio 2023, 2024 e 2025; codice ATECO 62.10.00",
+      "autorevolezza": "media — unica fonte per i dati 2025, non incrociata con un secondo aggregatore"
+    },
+    {
+      "titolo": "ULTRAFAB SRL — scheda, fatturatoitalia.it",
+      "url": "https://app.fatturatoitalia.it/ultrafab_srl-03832080984",
+      "tipo": "aggregatore del Registro Imprese",
+      "sostiene": "Fascia di addetti e costo del personale 2024; codice ATECO indicato come 62.01, diverso da quello di reportaziende.it",
+      "autorevolezza": "media"
+    },
+    {
+      "titolo": "Registro .it — whois del dominio ultrafab.it (interrogazione su whois.nic.it)",
+      "url": "https://web-whois.nic.it/",
+      "tipo": "registro ufficiale",
+      "sostiene": "Dominio creato l'8 gennaio 2016, scadenza 8 gennaio 2027, registrar italiano, intestazione a persona fisica e non alla società",
+      "autorevolezza": "massima — registro ufficiale del ccTLD italiano. Il dato è stato ottenuto interrogando il registro col protocollo whois; a questo indirizzo il lettore può ripetere la stessa interrogazione dal browser."
+    },
+    {
+      "titolo": "DOTDOTDOT SRL — scheda d'impresa, aziende.it",
+      "url": "https://www.aziende.it/dotdotdot-srl",
+      "tipo": "aggregatore del Registro Imprese",
+      "sostiene": "La società milanese con questo nome ha P.IVA 05570390962, ATECO 74.14.09 (design), 24 dipendenti: attività, sede e dimensione diverse da Ultrafab, nessun legame rilevato",
+      "autorevolezza": "media"
+    },
+    {
+      "titolo": "ULTRAFAB — scheda su PagineBianche",
+      "url": "https://www.paginebianche.it/scheda/brescia/ultrafab.11109845",
+      "tipo": "elenco pubblico",
+      "sostiene": "Recapito telefonico e indirizzo a Brescia coerenti con i registri",
+      "autorevolezza": "media — riscontro indipendente sull'esistenza fisica"
+    }
+  ],
+  "timeline": [
+    { "data": "2016-01-08", "evento": "Registrazione del dominio ultrafab.it, precedente alla costituzione della società." },
+    { "data": "2016", "evento": "Costituzione di ULTRAFAB SRL a Brescia. Il giorno esatto varia fra gli aggregatori; il comunicato di Regesta indica invece il 2017." },
+    { "data": "2018-10", "evento": "Vittoria della tappa bresciana del premio CNA «Cambiamenti»." },
+    { "data": "2019-04-21", "evento": "Il Giornale di Brescia dedica un articolo al prodotto Bishop, descrivendo fondazione, fondatori, partner e funzionamento tecnico, e collocando la sede operativa in Via Orzinuovi 10." },
+    { "data": "2020-04-10", "evento": "Il Sole 24 Ore documenta il fablab di circa 450 mq e la riconversione produttiva durante il Covid." },
+    { "data": "2023", "evento": "Esercizio in perdita: ricavi 401.836 euro, perdita 26.773 euro (dati da aggregatori)." },
+    { "data": "2024", "evento": "Secondo esercizio in perdita: ricavi 347.990 euro, perdita 143.944 euro (dati da aggregatori)." },
+    { "data": "2024-09-06", "evento": "Regesta Group annuncia l'ingresso di Ultrafab nel gruppo. La quota acquisita non viene resa pubblica." },
+    { "data": "2025", "evento": "Ritorno all'utile secondo un solo aggregatore: ricavi 564,4 mila euro, utile 27,0 mila euro. Dato non incrociato." },
+    { "data": "2026-08-02", "evento": "Data di questa verifica. Il sito ultrafab.it non menziona ancora l'appartenenza al gruppo." }
+  ],
+  "nota_sicurezza": "Nessun segnale di malware, phishing o raggiro: il dominio è autentico, decennale e presidiato, e l'azienda è realmente iscritta e attiva. I limiti di questa verifica vanno però dichiarati. Primo: tutti i dati economici e societari provengono da aggregatori commerciali che rielaborano il Registro Imprese e ne vendono l'accesso completo; nessun bilancio depositato è stato letto direttamente e la visura camerale ufficiale non è stata consultata. Secondo: organo amministrativo e compagine sociale sono dietro paywall su tutte le fonti aperte, quindi non affermiamo nulla sull'assetto societario dopo l'ingresso nel gruppo — la quota di Regesta non risulta pubblica da nessuna parte. Terzo: la sezione «procedure e pregiudizievoli» degli aggregatori è a pagamento, quindi l'assenza di procedure concorsuali non è dimostrata, è soltanto non emersa. Chi debba assumere impegni economici su questa società parta da una visura camerale aggiornata e dai bilanci depositati, non da questo verdetto. Per scelta editoriale non pubblichiamo il nome dell'intestatario privato del dominio: è un dato di registro pubblico, ma nominare una persona fisica non aggiunge nulla al merito.",
+  "issue": 6,
+  "data_verifica": "2026-08-02"
+}
