@@ -97,7 +97,7 @@
     <button class="copy" id="copy" type="button">Copia richiesta</button>
   </div>
 
-  <div class="foot">BRAINDANCE · SYSTEMA 77 — la coda di lavoro è pubblica (GitHub, label <code>braindance-queue</code>).</div>
+  <div class="foot">BRAINDANCE · SYSTEMA 77 — la coda di lavoro è pubblica (GitHub, label <code>braindance-queue</code> · le ditte vanno in <code>kiroshi-queue</code>).</div>
 </div>
 
 <script src="../../data/braindance-config.js"></script>
@@ -105,7 +105,10 @@
 (function(){
   var CFG = window.BRAINDANCE_CFG || {};
   var REPO = "Pierluigi-De-Palo/anima-console";
-  var LABEL = "braindance-queue";
+  // Lo smistamento vive qui: le ditte sono lavoro di KIROSHI, il resto di BRAINDANCE
+  // (confine ratificato il 2026-07-12). Le due etichette esistono nel repo: se se ne
+  // aggiunge una nuova qui, va creata anche la' o GitHub la scarta in silenzio.
+  function labelPer(t){ return t === "ditta" ? "kiroshi-queue" : "braindance-queue"; }
 
   var tipo = document.getElementById("tipo");
   var route = document.getElementById("route");
@@ -195,7 +198,7 @@
     var titolo = id + " · " + (bersaglio.length > 60 ? bersaglio.slice(0,57) + "…" : bersaglio);
     var corpo = "```json\n" + JSON.stringify(req, null, 2) + "\n```\n";
     var url = "https://github.com/" + REPO + "/issues/new"
-      + "?labels=" + encodeURIComponent(LABEL)
+      + "?labels=" + encodeURIComponent(labelPer(tipo.value))
       + "&title=" + encodeURIComponent(titolo)
       + "&body=" + encodeURIComponent(corpo);
     document.getElementById("okline").textContent = "Passo 1 di 2 · richiesta preparata ✓";
