@@ -1,9 +1,9 @@
 {
   "schema": "braindance/dati/SCHEMA.md",
-  "aggiornato": "2026-07-29",
-  "generato": "2026-07-29",
+  "aggiornato": "2026-08-01",
+  "generato": "2026-08-02",
   "agente": "BRAINDANCE",
-  "totale": 10,
+  "totale": 11,
   "verdetti": [
     {
       "id": "pensioni-2035",
@@ -357,6 +357,57 @@
         {
           "titolo": "Forbes (09/05/2021) — Musk a SNL",
           "url": "https://www.forbes.com/sites/joewalsh/2021/05/09/elon-musk-reveals-he-has-aspergers-on-saturday-night-live/"
+        }
+      ]
+    },
+    {
+      "id": "berlusconi-nipote-mubarak",
+      "tipo": "domanda",
+      "titolo": "Berlusconi e la «nipote di Mubarak»: cosa resta e come è finita?",
+      "verdetto": "Tutte assoluzioni — e la «nipote» non è mai esistita",
+      "punteggio": 18,
+      "data": "2026-08-01",
+      "note": "Il punteggio misura la versione che circola ('era la nipote di Mubarak e finì con una condanna'): la parentela era inventata e la condanna di primo grado (2013, 7 anni) fu ribaltata — assoluzione definitiva in Cassazione (10/03/2015) e assoluzione di tutti i 29 imputati nel Ruby ter (15/02/2023).",
+      "colore": "rosso",
+      "scheda": "schede/berlusconi-nipote-mubarak.html",
+      "pro": [
+        "La telefonata di Berlusconi alla questura di Milano (27/05/2010) ci fu davvero: presento' la 17enne Karima El Mahroug come 'nipote di Mubarak'.",
+        "Il primo grado condanno' davvero a 7 anni (24/06/2013): la vulgata 'fu condannato' nasce da li'.",
+        "Il caso e' reale e enorme: 13 anni di processi, 'bunga bunga' entrato nel lessico mondiale."
+      ],
+      "contro": [
+        "Nessuna parentela con Mubarak: mai esistita. Karima stessa: 'sono assolutamente sicura di non avere parenti famosi'.",
+        "Assoluzione in appello (18/07/2014: concussione 'non sussiste', prostituzione minorile 'non costituisce reato'), confermata in Cassazione il 10/03/2015: definitiva.",
+        "Ruby ter (15/02/2023): tutti i 29 imputati assolti, per Berlusconi e Karima 'il fatto non sussiste'. Berlusconi muore il 12/06/2023 senza condanne per la vicenda."
+      ],
+      "fonti": [
+        {
+          "titolo": "Il Fatto Quotidiano (14/02/2023) — com'e' nato il caso",
+          "url": "https://www.ilfattoquotidiano.it/2023/02/14/berlusconi-ecco-come-nato-il-caso-ruby-la-serata-in-questura-a-milano-la-telefonata-dalla-francia-e-la-nipote-di-mubarak/7064804/"
+        },
+        {
+          "titolo": "Il Giorno — le tappe dal 2010",
+          "url": "https://www.ilgiorno.it/milano/cronaca/ruby-ter-processo-storia-319772b8"
+        },
+        {
+          "titolo": "Il Post (10/03/2015) — assoluzione definitiva in Cassazione",
+          "url": "https://www.ilpost.it/2015/03/10/sentenza-cassazione-assoluzione-berlusconi-ruby/"
+        },
+        {
+          "titolo": "Internazionale (10/03/2015)",
+          "url": "https://www.internazionale.it/notizie/2015/03/10/berlusconi-ruby-assoluzione"
+        },
+        {
+          "titolo": "ANSA (15/02/2023) — Ruby ter, assolti",
+          "url": "https://www.ansa.it/sito/notizie/cronaca/2023/02/15/ruby-ter-silvio-berlusconi-assolto-a-milano.-undici-anni-di-fango-e-danni-politici_023d2f13-166d-43a2-91fc-49e2423d0bc0.html"
+        },
+        {
+          "titolo": "Sky TG24 (15/02/2023) — Karima assolta",
+          "url": "https://tg24.sky.it/cronaca/2023/02/15/karima-el-mahroug-ruby-ter-sentenza"
+        },
+        {
+          "titolo": "Il Post (17/02/2023) — Karima, il libro",
+          "url": "https://www.ilpost.it/2023/02/17/ruby-berlusconi-karima-el-mahroug/"
         }
       ]
     }
