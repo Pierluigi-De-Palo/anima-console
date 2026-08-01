@@ -80,6 +80,9 @@
 
     <label for="contesto">Contesto (una riga, facoltativo)</label>
     <input id="contesto" type="text" placeholder="Perché ti interessa / cosa vuoi sapere">
+    <div class="hint" id="hc">Finisce in coda pubblica insieme alla richiesta.
+      <strong>Non scrivere qui cose che non vuoi far leggere al soggetto verificato</strong>
+      — trattative, cifre, intenzioni d'acquisto.</div>
 
     <input id="sito" type="text" tabindex="-1" autocomplete="off" aria-hidden="true"
       style="position:absolute;left:-5000px;width:1px;height:1px">
@@ -119,6 +122,29 @@
   }
   tipo.addEventListener("change", updateRoute);
   updateRoute();
+
+  // La coda e' pubblica: quello che si scrive nel contesto lo legge chiunque, soggetto
+  // verificato compreso. Stesse regole di scripts/guardia_privacy.py -- se cambia una,
+  // cambia l'altra. Vincolo sul soggetto in prima persona: "sto valutando l'acquisizione"
+  // scatta, "Microsoft ha completato l'acquisizione" no.
+  var SOGG = "(?:sto|stiamo|vorrei|vorremmo|voglio|vogliamo|devo|dobbiamo|ho intenzione di|abbiamo intenzione di|sono in|siamo in)";
+  var SPIE = [
+    new RegExp("\\b" + SOGG + "\\b[^.]{0,60}\\b(acquisire|acquisizione|comprare|acquistare|rilevare)\\b", "i"),
+    new RegExp("\\b" + SOGG + "\\b[^.]{0,60}\\b(trattativa|trattando|negozia\\w*)\\b", "i"),
+    /\b(riservat[oa]|confidenzial[ei]|non divulgare|sotto NDA)\b/i,
+    new RegExp("\\b" + SOGG + "\\b[^.]{0,40}(spendere|investire|versare)\\b[^.]{0,20}[\\d.,]+\\s*(euro|€|k€|mila)", "i")
+  ];
+  var contesto = document.getElementById("contesto");
+  var hc = document.getElementById("hc");
+  var hcTesto = hc.innerHTML;
+  contesto.addEventListener("input", function(){
+    var sospetto = SPIE.some(function(r){ return r.test(contesto.value); });
+    hc.classList.toggle("err", sospetto);
+    hc.innerHTML = sospetto
+      ? "⚠ <strong>Attento:</strong> sembra un'informazione che ti conviene tenere per te. "
+        + "Questo campo finisce in una coda pubblica: lo legge anche chi stai verificando."
+      : hcTesto;
+  });
 
   if(CFG.worker){
     document.getElementById("hintInvio").textContent =
