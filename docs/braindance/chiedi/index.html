@@ -81,8 +81,11 @@
     <label for="contesto">Contesto (una riga, facoltativo)</label>
     <input id="contesto" type="text" placeholder="Perché ti interessa / cosa vuoi sapere">
 
-    <button class="btn" type="submit">▶ Manda in coda</button>
-    <div class="hint">Si apre GitHub con la richiesta già compilata: premi lì &laquo;Create&raquo; per accodarla. Serve l'accesso GitHub.</div>
+    <input id="sito" type="text" tabindex="-1" autocomplete="off" aria-hidden="true"
+      style="position:absolute;left:-5000px;width:1px;height:1px">
+
+    <button class="btn" id="invia" type="submit">▶ Manda in coda</button>
+    <div class="hint" id="hintInvio">Si apre GitHub con la richiesta già compilata: premi lì &laquo;Create&raquo; per accodarla. Serve l'accesso GitHub.</div>
   </form>
 
   <div class="out" id="out">
@@ -94,11 +97,13 @@
     <button class="copy" id="copy" type="button">Copia richiesta</button>
   </div>
 
-  <div class="foot">BRAINDANCE · A.N.I.M.A. — la coda è una GitHub Issue con label <code>braindance-queue</code>.</div>
+  <div class="foot">BRAINDANCE · SYSTEMA 77 — la coda di lavoro è pubblica (GitHub, label <code>braindance-queue</code>).</div>
 </div>
 
+<script src="../../data/braindance-config.js"></script>
 <script>
 (function(){
+  var CFG = window.BRAINDANCE_CFG || {};
   var REPO = "Pierluigi-De-Palo/anima-console";
   var LABEL = "braindance-queue";
 
@@ -112,7 +117,16 @@
   tipo.addEventListener("change", updateRoute);
   updateRoute();
 
+  if(CFG.worker){
+    document.getElementById("hintInvio").textContent =
+      "La richiesta va in coda direttamente: niente account, niente passaggi extra.";
+  }
+
   function pad(n){ return String(n).padStart(2,"0"); }
+  function mostraEsito(){
+    document.getElementById("out").style.display = "block";
+    document.getElementById("out").scrollIntoView({behavior:"smooth", block:"nearest"});
+  }
 
   document.getElementById("f").addEventListener("submit", function(e){
     e.preventDefault();
@@ -140,21 +154,59 @@
       stato: tipo.value === "ditta" ? "instradata" : "pending"
     };
 
+    document.getElementById("json").textContent = JSON.stringify(req, null, 2);
+
+    if(CFG.worker){
+      // modalità diretta: il Worker crea la Issue — nessun account richiesto
+      var btnInvio = document.getElementById("invia");
+      btnInvio.disabled = true; btnInvio.textContent = "Invio…";
+      fetch(CFG.worker + "/richiesta", {
+        method: "POST", headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({tipo: tipo.value, bersaglio: bersaglio,
+          contesto: document.getElementById("contesto").value.trim(),
+          sito: document.getElementById("sito").value})
+      }).then(function(r){ return r.json(); }).then(function(res){
+        if(!res.ok) throw new Error(res.errore || "invio non riuscito");
+        req.id = res.id; req.stato = res.instradata ? "instradata" : "pending";
+        document.getElementById("json").textContent = JSON.stringify(req, null, 2);
+        document.getElementById("okline").textContent = "✓ Richiesta accodata";
+        document.getElementById("nextline").textContent = res.instradata
+          ? res.id + " — verrà instradata a KIROSHI (ditte)."
+          : res.id + " — in coda. BRAINDANCE la lavora al prossimo giro.";
+        document.getElementById("ghbtn").style.display = "none";
+        document.querySelector(".out .resta").style.display = "none";
+        document.getElementById("f").reset(); updateRoute();
+        mostraEsito();
+      }).catch(function(e){
+        document.getElementById("okline").textContent = "✗ Invio non riuscito";
+        var msg = e && e.message ? e.message : "";
+        document.getElementById("nextline").textContent =
+          msg + (msg.toLowerCase().indexOf("riprova") === -1 ? (msg ? ". " : "") + "Riprova tra qualche minuto." : "");
+        document.getElementById("ghbtn").style.display = "none";
+        document.querySelector(".out .resta").style.display = "none";
+        mostraEsito();
+      }).then(function(){
+        btnInvio.disabled = false; btnInvio.textContent = "▶ Manda in coda";
+      });
+      return;
+    }
+
+    // modalità GitHub (Worker non configurato): Issue precompilata in due passi
     var titolo = id + " · " + (bersaglio.length > 60 ? bersaglio.slice(0,57) + "…" : bersaglio);
     var corpo = "```json\n" + JSON.stringify(req, null, 2) + "\n```\n";
     var url = "https://github.com/" + REPO + "/issues/new"
       + "?labels=" + encodeURIComponent(LABEL)
       + "&title=" + encodeURIComponent(titolo)
       + "&body=" + encodeURIComponent(corpo);
-
-    document.getElementById("json").textContent = JSON.stringify(req, null, 2);
+    document.getElementById("okline").textContent = "Passo 1 di 2 · richiesta preparata ✓";
     document.getElementById("nextline").textContent =
       tipo.value === "ditta"
         ? req.id + " — verrà instradata a KIROSHI (ditte)."
         : req.id + " — al prossimo giro BRAINDANCE la lavora.";
     document.getElementById("ghbtn").href = url;
-    document.getElementById("out").style.display = "block";
-    document.getElementById("out").scrollIntoView({behavior:"smooth", block:"nearest"});
+    document.getElementById("ghbtn").style.display = "";
+    document.querySelector(".out .resta").style.display = "";
+    mostraEsito();
     window.open(url, "_blank", "noopener");
   });
 

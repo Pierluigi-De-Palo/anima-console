@@ -22,6 +22,7 @@
   .nav a{font-size:14px;color:var(--cyan);text-decoration:none;border:1px solid var(--line);
     border-radius:20px;padding:6px 14px}
   .nav a:hover{border-color:var(--cyan)}
+  .nav a.admin-on{color:var(--verde);border-color:var(--verde)}
   .strip{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 16px}
   .m{background:var(--panel);border:1px solid var(--line);border-radius:10px;
     padding:7px 14px;display:flex;align-items:baseline;gap:8px}
@@ -39,6 +40,10 @@
   .pill.fatto{background:#0f2a22;color:var(--verde);border:1px solid var(--verde)}
   .req .apri{display:inline-block;font-size:14px;color:var(--cyan);text-decoration:none;margin-top:4px}
   .req .apri:hover{text-decoration:underline}
+  .azione{background:#0e2830;border:1px solid var(--cyan);color:var(--cyan);border-radius:8px;
+    padding:6px 12px;font-size:14px;cursor:pointer;font-family:inherit;margin:4px 0 0 10px}
+  .azione:hover{background:#123540}
+  .azione:disabled{opacity:.5;cursor:wait}
   .vuoto,.err{color:var(--muted);font-size:15px;padding:12px 4px}
   .err{color:var(--rosso)}
   .come{font-size:14px;color:var(--muted);background:var(--panel);border:1px solid var(--line);
@@ -54,7 +59,7 @@
     <h1>◉ BRAINDANCE · <span class="accent">CONSOLE CODA</span></h1>
   </header>
 
-  <div class="nav">
+  <div class="nav" id="nav">
     <a href="../chiedi/index.html">✍ Nuova richiesta</a>
     <a href="../index.html">◉ Vetrina verdetti</a>
     <a href="https://github.com/Pierluigi-De-Palo/anima-console/issues?q=label%3Abraindance-queue" rel="noopener">⚙ Coda su GitHub</a>
@@ -68,16 +73,18 @@
   <p class="lab">Fatte</p>
   <div id="chiuse"><p class="vuoto">Caricamento…</p></div>
 
-  <p class="come"><b>Come si opera</b> (serve l'accesso GitHub): apri la richiesta →
+  <p class="come" id="come"><b>Come si opera</b> (serve l'accesso GitHub): apri la richiesta →
     <b>presa in carico</b> = aggiungi la label <b>braindance-in-corso</b> ·
     <b>fatta</b> = «Close with comment» con il link al verdetto.
     La verifica vera la fa BRAINDANCE in Claude Code (<code>scripts/coda.py</code>).</p>
 
-  <footer>Console operativa · la coda vive su GitHub (repo pubblico) · BRAINDANCE · A.N.I.M.A.</footer>
+  <footer>Console operativa · la coda vive su GitHub (repo pubblico) · BRAINDANCE · SYSTEMA 77</footer>
 </div>
 
+<script src="../../data/braindance-config.js"></script>
 <script>
 (function(){
+  var CFG = window.BRAINDANCE_CFG || {};
   var API = "https://api.github.com/repos/Pierluigi-De-Palo/anima-console/issues"
           + "?labels=braindance-queue&state=all&per_page=100";
   var esc = function(s){return String(s).replace(/[&<>"]/g,function(c){
@@ -91,37 +98,101 @@
     return (i.labels||[]).some(function(l){return l.name==="braindance-in-corso";}) ? "corso" : "attesa";
   }
   var NOME = {attesa:"in attesa", corso:"in corso", fatto:"fatta"};
+  var adminAttivo = false;
+
+  function chiave(){ return localStorage.getItem("bd_admin_key") || ""; }
 
   function card(i){
-    var s = statoDi(i);
+    var s = statoDi(i), azioni = "";
+    if(adminAttivo && s === "attesa")
+      azioni = '<button class="azione" data-a="prendi" data-n="'+i.number+'">▶ Prendi in carico</button>';
+    if(adminAttivo && s === "corso")
+      azioni = '<button class="azione" data-a="chiudi" data-n="'+i.number+'">✓ Segna fatta…</button>';
     return '<div class="req"><div class="top">'
       + '<span class="pill '+s+'">'+NOME[s]+'</span>'
       + '<span class="num">#'+i.number+' · '+esc(dataIT(i.created_at))+'</span></div>'
       + '<h2>'+esc(i.title)+'</h2>'
       + '<a class="apri" href="'+esc(i.html_url)+'" rel="noopener">Apri su GitHub →</a>'
+      + azioni
       + '</div>';
   }
 
-  fetch(API).then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(items){
-    items = items.filter(function(i){ return !i.pull_request; });
-    var aperte = items.filter(function(i){ return i.state === "open"; });
-    var chiuse = items.filter(function(i){ return i.state === "closed"; });
-    var attesa = aperte.filter(function(i){ return statoDi(i)==="attesa"; }).length;
+  function azione(a, n, btn){
+    var link = "";
+    if(a === "chiudi"){
+      link = prompt("Link al verdetto pubblicato (puoi lasciare vuoto):");
+      if(link === null) return;
+      link = link.trim();
+    }
+    btn.disabled = true;
+    fetch(CFG.worker + "/azione", {
+      method: "POST",
+      headers: {"Content-Type": "application/json", "X-Admin-Key": chiave()},
+      body: JSON.stringify({azione: a, numero: n, link: link})
+    }).then(function(r){ return r.json(); }).then(function(res){
+      if(!res.ok) throw new Error(res.errore || "errore");
+      setTimeout(carica, 800); // lascia propagare l'API GitHub
+    }).catch(function(e){
+      btn.disabled = false;
+      alert("Azione non riuscita: " + (e.message || e)
+        + (String(e.message).indexOf("chiave") >= 0 ? "\nRifai «Sblocca azioni» con la chiave giusta." : ""));
+    });
+  }
 
-    document.getElementById("strip").innerHTML =
-      '<div class="m"><span class="n" style="color:var(--giallo)">'+attesa+'</span><span class="l">in attesa</span></div>'
-      + '<div class="m"><span class="n" style="color:var(--cyan)">'+(aperte.length-attesa)+'</span><span class="l">in corso</span></div>'
-      + '<div class="m"><span class="n" style="color:var(--verde)">'+chiuse.length+'</span><span class="l">fatte</span></div>';
+  function carica(){
+    fetch(API).then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(items){
+      items = items.filter(function(i){ return !i.pull_request; });
+      var aperte = items.filter(function(i){ return i.state === "open"; });
+      var chiuse = items.filter(function(i){ return i.state === "closed"; });
+      var attesa = aperte.filter(function(i){ return statoDi(i) === "attesa"; }).length;
 
-    document.getElementById("aperte").innerHTML = aperte.length
-      ? aperte.map(card).join("") : '<p class="vuoto">Coda vuota — nessuna richiesta aperta.</p>';
-    document.getElementById("chiuse").innerHTML = chiuse.length
-      ? chiuse.map(card).join("") : '<p class="vuoto">Ancora nessuna richiesta completata.</p>';
-  }).catch(function(){
-    document.getElementById("aperte").innerHTML =
-      '<p class="err">API GitHub non raggiungibile (offline o limite richieste). Riprova tra un minuto, o usa la coda direttamente su GitHub dal link qui sopra.</p>';
-    document.getElementById("chiuse").innerHTML = "";
-  });
+      document.getElementById("strip").innerHTML =
+        '<div class="m"><span class="n" style="color:var(--giallo)">'+attesa+'</span><span class="l">in attesa</span></div>'
+        + '<div class="m"><span class="n" style="color:var(--cyan)">'+(aperte.length-attesa)+'</span><span class="l">in corso</span></div>'
+        + '<div class="m"><span class="n" style="color:var(--verde)">'+chiuse.length+'</span><span class="l">fatte</span></div>';
+
+      document.getElementById("aperte").innerHTML = aperte.length
+        ? aperte.map(card).join("") : '<p class="vuoto">Coda vuota — nessuna richiesta aperta.</p>';
+      document.getElementById("chiuse").innerHTML = chiuse.length
+        ? chiuse.map(card).join("") : '<p class="vuoto">Ancora nessuna richiesta completata.</p>';
+
+      Array.prototype.forEach.call(document.querySelectorAll(".azione"), function(b){
+        b.addEventListener("click", function(){ azione(b.dataset.a, b.dataset.n, b); });
+      });
+    }).catch(function(){
+      document.getElementById("aperte").innerHTML =
+        '<p class="err">API GitHub non raggiungibile (offline o limite richieste). Riprova tra un minuto, o usa la coda direttamente su GitHub dal link qui sopra.</p>';
+      document.getElementById("chiuse").innerHTML = "";
+    });
+  }
+
+  if(CFG.worker){
+    var b = document.createElement("a");
+    b.href = "#";
+    document.getElementById("nav").appendChild(b);
+    function aggiorna(){
+      adminAttivo = !!chiave();
+      b.textContent = adminAttivo ? "🔓 Azioni attive" : "🔑 Sblocca azioni";
+      b.className = adminAttivo ? "admin-on" : "";
+      document.getElementById("come").innerHTML = adminAttivo
+        ? "<b>Azioni attive su questo dispositivo</b>: ▶ prendi in carico · ✓ segna fatta (chiede il link al verdetto). La verifica vera la fa BRAINDANCE in Claude Code."
+        : "<b>Come si opera</b>: sblocca le azioni con la chiave admin (bottone qui sopra) — oppure passa da GitHub. La verifica vera la fa BRAINDANCE in Claude Code.";
+    }
+    b.addEventListener("click", function(e){
+      e.preventDefault();
+      if(chiave()){
+        if(confirm("Bloccare le azioni su questo dispositivo (dimentica la chiave)?"))
+          localStorage.removeItem("bd_admin_key");
+      } else {
+        var k = prompt("Chiave admin (la ADMIN_KEY del Worker):") || "";
+        if(k.trim()) localStorage.setItem("bd_admin_key", k.trim());
+      }
+      aggiorna(); carica();
+    });
+    aggiorna();
+  }
+
+  carica();
 })();
 </script>
 <!-- creato da Claude Code per BRAINDANCE, 2026-07-29 -->
