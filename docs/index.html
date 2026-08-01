@@ -165,7 +165,6 @@
 
     <div class="stats">
       <div class="stat"><span class="n" id="n-verdetti">—</span><span class="l">verdetti</span></div>
-      <div class="stat"><span class="n" id="n-verifiche">—</span><span class="l">verifiche</span></div>
       <div class="stat"><span class="n" id="n-agg">—</span><span class="l">aggiornato</span></div>
     </div>
   </div>
@@ -218,23 +217,25 @@
 
 </main>
 
+<script src="data/archivio.js"></script>
 <script src="data/braindance.js"></script>
-<script src="data/db.js"></script>
 <script>
 (function(){
   function set(id, val){
     var el = document.getElementById(id);
     if (el && val !== null && val !== undefined) el.textContent = val;
   }
+  // Un contatore solo: l'archivio unito (BRAINDANCE + KIROSHI), generato da
+  // scripts/build_archivio.py. Prima erano due, e uno era fermo dal 09/07.
+  var arc = window.ARCHIVIO;
+  if (arc) set('n-verdetti', arc.totale);
+  else if (window.BRAINDANCE) set('n-verdetti', window.BRAINDANCE.totale);
+
   var bd = window.BRAINDANCE;
-  if (bd) {
-    set('n-verdetti', bd.totale || (bd.verdetti ? bd.verdetti.length : null));
-    if (bd.generato) {
-      var p = String(bd.generato).split('-');
-      if (p.length === 3) set('n-agg', p[2] + '/' + p[1]);
-    }
+  if (bd && bd.generato) {
+    var p = String(bd.generato).split('-');
+    if (p.length === 3) set('n-agg', p[2] + '/' + p[1]);
   }
-  if (Array.isArray(window.KIROSHI_DB)) set('n-verifiche', window.KIROSHI_DB.length);
 })();
 </script>
 
