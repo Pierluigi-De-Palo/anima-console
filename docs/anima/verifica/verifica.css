@@ -1,0 +1,85 @@
+/* IL SIGILLO — pagina pubblica di verifica card.
+   Registro FREDDO (KIROSHI): nero #0A0A0A · ciano #16E0DC · Share Tech Mono.
+   Zero ambra, zero calore, zero emotivo. */
+
+:root{
+  --nero:#0A0A0A; --ciano:#16E0DC; --giallo:#F2E205; --rosso:#FF2E88;
+  --superficie:#141414; --linea:#2A2A26; --muto:#8F8A82;
+  --mono:"Share Tech Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--nero); color:var(--muto);
+  font-family:var(--mono); line-height:1.7;
+  min-height:100vh; padding:40px 18px 70px;
+  display:flex; flex-direction:column; align-items:center; gap:26px;
+}
+
+.testa{
+  width:100%; max-width:560px; display:flex; justify-content:space-between;
+  align-items:baseline; padding-bottom:14px; border-bottom:1px solid var(--linea);
+}
+.testa .marchio{font-size:17px; letter-spacing:.26em; color:var(--ciano)}
+.testa .etich{font-size:11px; letter-spacing:.22em; text-transform:uppercase}
+
+.pannello{
+  width:100%; max-width:560px; background:var(--superficie);
+  border:1px solid var(--linea); padding:34px 28px;
+  display:flex; flex-direction:column; align-items:center; gap:22px;
+}
+
+/* esito — il blocco che conta */
+.esito{display:flex; align-items:center; gap:18px}
+.marchio-b{
+  width:56px; height:56px; border:2px solid var(--ciano); border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--ciano); font-size:25px; flex:none; position:relative;
+}
+.marchio-b::after{content:""; position:absolute; inset:4px;
+  border:1px solid rgba(22,224,220,.35); border-radius:50%}
+.esito .l{font-size:11px; letter-spacing:.24em; text-transform:uppercase}
+.esito .v{font-size:23px; letter-spacing:.16em; color:var(--ciano)}
+
+/* varianti */
+.ko .marchio-b{border-color:var(--rosso); color:var(--rosso)}
+.ko .marchio-b::after{border-color:rgba(255,46,136,.35)}
+.ko .esito .v{color:var(--rosso)}
+.attesa .marchio-b{border-color:var(--muto); color:var(--muto)}
+.attesa .marchio-b::after{border-color:rgba(143,138,130,.3)}
+.attesa .esito .v{color:var(--muto)}
+
+/* riga stato — pill bordata */
+.pill{
+  font-size:14px; letter-spacing:.24em; text-transform:uppercase;
+  border:1px solid var(--ciano); color:var(--ciano);
+  padding:8px 24px; border-radius:2px;
+}
+.ko .pill{border-color:var(--rosso); color:var(--rosso)}
+.attesa .pill{border-color:var(--muto); color:var(--muto)}
+
+/* dati — SOLO ID, stato, esito. Nessun dato personale (vincolo KIROSHI) */
+.dati{
+  width:100%; border-top:1px solid var(--linea); padding-top:18px;
+  display:flex; flex-direction:column; gap:9px; font-size:13.5px; letter-spacing:.08em;
+}
+.dati div{display:flex; justify-content:space-between; gap:16px}
+.dati span:first-child{text-transform:uppercase; font-size:11px; letter-spacing:.2em}
+.dati b{color:var(--ciano); font-weight:400}
+
+.entra{
+  font-family:var(--mono); font-size:12px; letter-spacing:.2em; text-transform:uppercase;
+  background:transparent; color:var(--ciano); border:1px solid var(--ciano);
+  border-radius:2px; padding:12px 26px; cursor:pointer; text-decoration:none;
+}
+.entra:hover{background:rgba(22,224,220,.1)}
+
+.nota{
+  width:100%; max-width:560px; border-left:2px solid var(--ciano);
+  padding:12px 16px; background:var(--superficie);
+  font-size:13px; line-height:1.7; letter-spacing:.02em;
+}
+.nota b{color:var(--ciano); font-weight:400; display:block; font-size:10.5px;
+  letter-spacing:.2em; text-transform:uppercase; margin-bottom:5px}
+.nota.warn{border-left-color:var(--giallo)}
+.nota.warn b{color:var(--giallo)}
+[hidden]{display:none !important}
