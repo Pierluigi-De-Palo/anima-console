@@ -119,14 +119,30 @@ PAGINA = """<!DOCTYPE html>
 """
 
 
-def normalizza(seriale: str) -> str:
-    """Stessa normalizzazione del browser: maiuscolo, via trattini e spazi.
+# Caratteri che una persona confonde leggendo. Ognuno viene ricondotto a UNO solo,
+# qui e nel browser, prima di calcolare l'impronta: cosi' «Z» e «2» aprono la stessa
+# porta e nessuno resta fuori per un carattere letto male.
+#   - 0 1 8 9 NON esistono in base32: chi li digita ha sicuramente letto male.
+#   - Z/2, S/5, G/6 esistono entrambi e sono la trappola vera (segnalata da SHUTTER
+#     il 06/08: il seriale della carta 0 contiene sia G sia Z).
+#   - I/L/1 si confondono fra loro: si accorpano, non c'e' modo di indovinare.
+# Costo in sicurezza: l'alfabeto utile scende da 32 a 28 simboli, cioe' da 60 a
+# ~57,7 bit su 12 caratteri. Irrilevante — restano 2^57 tentativi.
+CONFONDIBILI = {"0": "O", "1": "I", "L": "I", "8": "B",
+                "9": "G", "6": "G", "2": "Z", "5": "S"}
 
-    Serve perche' il giocatore digita il codice come gli pare — con o senza
-    trattini, in minuscolo, con uno spazio di troppo. L'impronta deve venire
-    uguale in tutti i casi. `area.js` fa esattamente questa operazione.
+
+def normalizza(seriale: str) -> str:
+    """Stessa identica normalizzazione del browser (`area.js`).
+
+    Il giocatore digita il codice come gli pare — minuscolo, senza trattini, con
+    uno spazio di troppo, e leggendo «2» dove c'e' «Z». L'impronta deve venire
+    uguale in tutti questi casi.
+    ⚠️ Se cambi questa funzione, cambiala anche in `area.js`, e RIGENERA i JSON
+    pubblici: le impronte gia' pubblicate non corrisponderebbero piu'.
     """
-    return re.sub(r"[^A-Z0-9]", "", seriale.upper())
+    pulito = re.sub(r"[^A-Z0-9]", "", seriale.upper())
+    return "".join(CONFONDIBILI.get(c, c) for c in pulito)
 
 
 def impronta(prefisso: str, card_id: str, seriale: str) -> str:
