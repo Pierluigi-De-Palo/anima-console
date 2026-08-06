@@ -25,10 +25,19 @@
     vEsito.textContent = esito;
     vPill.textContent = dati.stato || '—';
     vId.textContent = dati.card_id || id || '—';
-    vNum.textContent = dati.numero
-      ? String(dati.numero).padStart(2, '0') + '/' + (dati.totale || '—')
-      : '—';
+    // La carta 0 esiste (è quella dell'Overlord) e in JavaScript lo zero è "falso":
+    // con un controllo di verità mostrava '—' proprio sulla prima card che verrà
+    // scansionata. Si controlla l'assenza del dato, non il suo valore.
+    vNum.textContent = (dati.numero === null || dati.numero === undefined)
+      ? '—'
+      : String(dati.numero).padStart(2, '0') + '/' + (dati.totale || '—');
     vData.textContent = dati.emessa || '—';
+    // L'area personale deve sapere quale card ha aperto la porta. Percorso assoluto:
+    // questa stessa pagina è servita da due indirizzi (/v/<ID>/ stampato sulla card
+    // e /anima/verifica/<ID>/ storico), e un relativo darebbe due risultati diversi.
+    if (dati.card_id || id) {
+      entra.href = '/anima/dashboard/?id=' + encodeURIComponent(dati.card_id || id);
+    }
     entra.hidden = stato !== null;
     if (dati.collaudo) collaudo.hidden = false;
   }

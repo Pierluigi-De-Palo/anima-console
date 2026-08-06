@@ -4,5 +4,6 @@
   "totale": 10,
   "stato": "VERIFICATA",
   "emessa": "2026-08-06",
-  "collaudo": false
+  "collaudo": false,
+  "verifica_ingresso": "6b346dff8077e1f745718e9334965fc104863c2638e226635024f0dadb13e9a1"
 }

@@ -8,7 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../verifica/verifica.css">
+<link rel="stylesheet" href="/anima/verifica/verifica.css">
+<link rel="stylesheet" href="area.css">
 </head>
 <body>
 
@@ -17,28 +18,95 @@
     <span class="etich">area personale</span>
   </div>
 
-  <div class="pannello attesa">
+  <!-- ① LA PORTA — si apre col codice stampato sul retro della carta -->
+  <div class="pannello attesa" id="porta">
     <div class="esito">
       <div class="marchio-b">◉</div>
       <div>
-        <div class="l">stato</div>
-        <div class="v">IN COSTRUZIONE</div>
+        <div class="l">la tua carta</div>
+        <div class="v" id="carta">—</div>
       </div>
     </div>
-    <span class="pill">segnaposto</span>
+
+    <p class="spiega">
+      Sul <b>retro della carta</b> c'è un codice di dodici lettere, scritto in tre gruppi.
+      Scrivilo qui sotto. Serve a dimostrare che la carta ce l'hai davvero tu, in mano.
+    </p>
+
+    <div class="modulo">
+      <label id="riga-id">
+        <span>numero della carta</span>
+        <input id="campo-id" type="text" inputmode="text" autocomplete="off"
+               autocapitalize="characters" spellcheck="false" placeholder="SYS-02">
+      </label>
+      <label>
+        <span>codice sul retro</span>
+        <input id="campo-codice" type="text" inputmode="text" autocomplete="off"
+               autocapitalize="characters" spellcheck="false" placeholder="XXXX-XXXX-XXXX">
+      </label>
+      <button class="entra" id="apri" type="button">apri la mia area</button>
+      <p class="errore" id="errore" hidden></p>
+    </div>
+  </div>
+
+  <!-- ② LA STANZA — dopo che la carta è stata riconosciuta -->
+  <div class="pannello" id="dentro" hidden>
+    <div class="esito">
+      <div class="marchio-b">◉</div>
+      <div>
+        <div class="l">esito</div>
+        <div class="v">SEI DENTRO</div>
+      </div>
+    </div>
+
+    <span class="pill">carta riconosciuta</span>
+
+    <div class="dati">
+      <div><span>ID card</span><b id="id">—</b></div>
+      <div><span>numero</span><b id="num">—</b></div>
+      <div><span>emessa</span><b id="data">—</b></div>
+    </div>
+
+    <div class="blocco">
+      <div class="l">il tuo codice di ingresso</div>
+      <div class="codice"><b id="codice">—</b><button id="copia" type="button">copia</button></div>
+      <p class="spiega">
+        Mandalo, <b>insieme al tuo nome</b>, alla persona che ti ha dato la carta.
+        È così che vieni registrato: <b>prima entri tu, poi ti registra il Direttore.</b>
+        Questo codice dice soltanto «la carta ce l'ho io»: non apre niente e non serve
+        a nessun altro.
+      </p>
+      <p class="spiega muto">
+        Il codice stampato sul retro, invece, non dirlo a nessuno: quello è la tua carta.
+      </p>
+    </div>
+
+    <a class="esci" id="esci" href="#">non è la mia carta</a>
   </div>
 
   <div class="nota">
-    <b>Cosa arriverà qui</b>
-    L'area personale legata alla tua card. Per ora è un segnaposto: la verifica della card
-    funziona, la porta c'è, la stanza dietro è ancora da costruire.
+    <b>Cosa c'è qui adesso, senza girarci intorno</b>
+    Il primo cerchio è di <em>dieci anime</em>, e la tua carta ne è una. Il gioco non è
+    ancora aperto: quando lo sarà, si entra da questa pagina, con questa stessa carta.
+    Non ti serve un account, non ti serve una password, non devi installare niente.
+    <em>La carta è la chiave.</em>
+  </div>
+
+  <div class="nota">
+    <b>Perché ti chiediamo il codice del retro</b>
+    Chi inquadra col telefono il codice sulla tua carta vede che è autentica: questo è
+    pubblico ed è giusto così. Ma solo chi ha la carta <em>in mano</em> può leggere il
+    codice stampato dietro. È quello che ti fa entrare — così nessuno può prendere il tuo
+    posto partendo da una fotografia.
   </div>
 
   <div class="nota warn">
-    <b>Nota</b>
-    Nessun dato personale è raggiungibile da questo indirizzo. L'accesso ai propri dati
-    passerà da un consenso esplicito, non dalla semplice scansione del QR.
+    <b>Cosa non c'è, e non ci sarà, a questo indirizzo</b>
+    Nessun nome, nessuna mail, nessun telefono, nessun indirizzo — né tuo né di altri.
+    Il codice che scrivi non viene spedito da nessuna parte: resta nel tuo telefono.
+    Quando ci saranno dati veri di una persona, non staranno su una pagina come questa.
   </div>
 
+<script src="area.js"></script>
 </body>
 </html>

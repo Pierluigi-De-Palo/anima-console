@@ -1,0 +1,62 @@
+/* AREA PERSONALE — aggiunte a verifica.css, non una seconda pelle.
+   Registro FREDDO invariato: nero #0A0A0A · ciano #16E0DC · Share Tech Mono.
+   Qui c'e' solo cio' che la pagina di verifica non aveva: un modulo da compilare.
+
+— creato da SQUELCH, 2026-08-06 */
+
+/* Dentro .nota il <b> è già preso: verifica.css lo usa come ETICHETTA del blocco
+   (maiuscolo, staccato, a capo). Per il grassetto dentro la frase serve un tag
+   diverso, altrimenti la riga si spezza in tre. */
+.nota em{color:var(--ciano); font-style:normal}
+
+.spiega{
+  margin:0; width:100%; font-size:13.5px; line-height:1.75;
+  letter-spacing:.02em; color:var(--muto);
+}
+.spiega b{color:var(--ciano); font-weight:400}
+.spiega.muto b{color:var(--muto)}
+
+.modulo{width:100%; display:flex; flex-direction:column; gap:16px}
+.modulo label{display:flex; flex-direction:column; gap:7px}
+.modulo label span{
+  font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--muto);
+}
+.modulo input{
+  font-family:var(--mono); font-size:19px; letter-spacing:.16em; text-align:center;
+  background:var(--nero); color:var(--ciano);
+  border:1px solid var(--linea); border-radius:2px; padding:15px 12px;
+  text-transform:uppercase; width:100%;
+}
+.modulo input::placeholder{color:#3A3A36; letter-spacing:.16em}
+.modulo input:focus{outline:none; border-color:var(--ciano)}
+.modulo .entra{width:100%; text-align:center}
+.modulo .entra:disabled{opacity:.4; cursor:default}
+
+.errore{
+  margin:0; font-size:13px; line-height:1.6; color:var(--giallo);
+  border-left:2px solid var(--giallo); padding:8px 12px; background:var(--nero);
+}
+
+/* il blocco del codice di ingresso — la cosa che si porta via da questa pagina */
+.blocco{
+  width:100%; border-top:1px solid var(--linea); padding-top:20px;
+  display:flex; flex-direction:column; gap:12px;
+}
+.blocco .l{font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--muto)}
+.codice{display:flex; align-items:center; gap:14px; flex-wrap:wrap}
+.codice b{
+  font-size:27px; letter-spacing:.2em; color:var(--ciano); font-weight:400;
+  border:1px solid var(--ciano); border-radius:2px; padding:10px 18px;
+}
+.codice button{
+  font-family:var(--mono); font-size:11px; letter-spacing:.2em; text-transform:uppercase;
+  background:transparent; color:var(--muto); border:1px solid var(--linea);
+  border-radius:2px; padding:9px 16px; cursor:pointer;
+}
+.codice button:hover{color:var(--ciano); border-color:var(--ciano)}
+
+.esci{
+  font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--muto); text-decoration:none; border-bottom:1px solid var(--linea);
+}
+.esci:hover{color:var(--ciano); border-bottom-color:var(--ciano)}
