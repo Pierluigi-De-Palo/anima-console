@@ -71,9 +71,12 @@
   function apriStanza(dati, codice) {
     vCarta.textContent = dati.card_id;
     vId.textContent = dati.card_id;
+    // «00/10 · cerchio 1» — decisione del Direttore, 06/08. Stessa forma della
+    // pagina di verifica: il numero dice anche a quale cerchio appartiene.
     vNum.textContent = (dati.numero === null || dati.numero === undefined)
       ? '—'
-      : String(dati.numero).padStart(2, '0') + '/' + (dati.totale || '—');
+      : String(dati.numero).padStart(2, '0') + '/' + (dati.totale || '—') +
+        (dati.cerchio ? ' · cerchio ' + dati.cerchio : '');
     vData.textContent = dati.emessa || '—';
     vCodice.textContent = codice;
     porta.hidden = true;

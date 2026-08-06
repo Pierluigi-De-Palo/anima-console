@@ -47,8 +47,10 @@ import re
 import sys
 
 # I soli campi che possono uscire in rete. Tutto il resto della card interna
-# (seriale, impronta, nome_anima, url_qr, cerchio) resta dove sta.
-CAMPI_PUBBLICI = ("card_id", "numero", "totale", "stato", "emessa", "collaudo")
+# (seriale, impronta, nome_anima, url_qr) resta dove sta.
+# `cerchio` è entrato il 06/08 per decisione del Direttore: la card dice «00/10 ·
+# cerchio 1», così il primo cerchio resta di 10 e i prossimi restano possibili.
+CAMPI_PUBBLICI = ("card_id", "numero", "totale", "cerchio", "stato", "emessa", "collaudo")
 
 QUI = os.path.dirname(os.path.abspath(__file__))
 DOCS = os.path.join(os.path.dirname(QUI), "docs")

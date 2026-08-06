@@ -28,9 +28,13 @@
     // La carta 0 esiste (è quella dell'Overlord) e in JavaScript lo zero è "falso":
     // con un controllo di verità mostrava '—' proprio sulla prima card che verrà
     // scansionata. Si controlla l'assenza del dato, non il suo valore.
+    // «00/10 · cerchio 1» — decisione del Direttore, 06/08. Il primo cerchio è di 10;
+    // il 77 resta il nome dell'agenzia. Dire anche il cerchio tiene aperti i prossimi
+    // senza promettere posti che oggi non esistono.
     vNum.textContent = (dati.numero === null || dati.numero === undefined)
       ? '—'
-      : String(dati.numero).padStart(2, '0') + '/' + (dati.totale || '—');
+      : String(dati.numero).padStart(2, '0') + '/' + (dati.totale || '—') +
+        (dati.cerchio ? ' · cerchio ' + dati.cerchio : '');
     vData.textContent = dati.emessa || '—';
     // L'area personale deve sapere quale card ha aperto la porta. Percorso assoluto:
     // questa stessa pagina è servita da due indirizzi (/v/<ID>/ stampato sulla card

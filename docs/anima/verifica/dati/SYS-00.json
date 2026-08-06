@@ -2,6 +2,7 @@
   "card_id": "SYS-00",
   "numero": 0,
   "totale": 10,
+  "cerchio": 1,
   "stato": "VERIFICATA",
   "emessa": "2026-08-06",
   "collaudo": false,
