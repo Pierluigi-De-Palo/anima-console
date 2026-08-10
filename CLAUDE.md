@@ -72,7 +72,7 @@ Quando lavori in **Claude Code** su questo repo (GitHub: `anima-console`), la mi
 - Commit e push **dal Mac** (le sandbox non hanno credenziali GitHub). Se `git commit` fallisce con lock: `find .git -name '*.lock' -delete`.
 - Ogni HTML destinato a Pier va **anche** in `docs/` (`../comuni/REGOLA-HTML-IN-DOCS.md`). **MAI proporre MD a Pier: solo HTML** (li apre su Brave).
 - ⛔ **Dati sensibili** (`card-dati`, cartella `RISERVATO/`) **non entrano MAI in `docs/`**.
-- Superficie **pubblica** = **Camera Oscura ambra** (design system di Judy, `../comunicazione/DESIGN-SYSTEM-ANIMA-v1.md`). Il cyan KIROSHI resta alle dashboard dati interne.
+- Superficie **pubblica** = **Camera Oscura ambra** (design system di Judy, `../comunicazione/DESIGN-SYSTEM-ANIMA-v1.md`) — **tranne le stanze del gioco, che vanno in verde `#38E08A`** (il colore segue il **mestiere della stanza**, non il dominio). Il cyan KIROSHI resta alle **dashboard dati interne** e alla **pagina di verifica**, che è un referto e deve sembrare una macchina. *(Precisazione di JUDY, instradata da D.R.A.G.O., accolta da KIROSHI//OR 2026-08-08 — canone trasversale in `../comuni/STANDARD-VISUAL.md`.)*
 
 **Linea editoriale (non negoziabile):** solo fatti con fonte cliccabile · valuto l'**affidabilità**, non accuso · punteggio con incertezza dichiarata · **diritto di replica** · data su ogni verdetto · ditte/prodotti sì, **persone no** (confine BRAINDANCE).
 

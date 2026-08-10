@@ -34,9 +34,23 @@ def main() -> int:
             problemi.append(f"{nome}: JSON non valido — {err}")
             continue
 
-        mancanti = [k for k in RICHIESTI if not v.get(k)]
+        # `in (None, "", [])` e non `not v.get(k)`: il punteggio 0 è falso per
+        # Python, e 0 è la condanna massima («quasi certamente falso»). Con la
+        # prova di falsità l'unico verdetto che il cancello respingeva era la
+        # peggiore bocciatura possibile. — KIROSHI//OR, 2026-08-10
+        mancanti = [k for k in RICHIESTI if v.get(k) in (None, "", [])]
         if mancanti:
             problemi.append(f"{nome}: campi mancanti — {', '.join(mancanti)}")
+            continue
+
+        # Il punteggio dev'essere un numero in scala: `"ottimo"` faceva esplodere
+        # lo script alla riga della media — dopo aver già scritto db.js.
+        pt = v["punteggio"]
+        if isinstance(pt, bool) or not isinstance(pt, (int, float)):
+            problemi.append(f"{nome}: punteggio non numerico — {pt!r}")
+            continue
+        if not 0 <= pt <= 100:
+            problemi.append(f"{nome}: punteggio fuori scala 0-100 — {pt}")
             continue
 
         if not v.get("fonti"):
