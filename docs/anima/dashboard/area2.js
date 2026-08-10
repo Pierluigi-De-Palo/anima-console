@@ -31,9 +31,10 @@
 
 — creato da SQUELCH, 2026-08-10 */
 (function () {
-  // La casa del Worker. Il giorno che ROGUE accende api.cyberboomer.io, cambia
-  // QUESTA riga e nient'altro.
-  var API = 'https://punti-anima.insieme.workers.dev';
+  // La casa del Worker. ✅ ACCESA il 2026-08-10 alle 14:09: e' questa, ed e' l'unica
+  // che risponde. L'indirizzo di prima (`punti-anima.insieme.workers.dev`) non e' mai
+  // esistito — questo account non ha nemmeno un sottodominio workers.dev registrato.
+  var API = 'https://api.cyberboomer.io';
   var CHIAVE = 's77.sessione';
 
   var $ = function (id) { return document.getElementById(id); };
