@@ -32,8 +32,14 @@
 — creato da SQUELCH, 2026-08-10 */
 (function () {
   // La casa del Worker. ✅ ACCESA il 2026-08-10 alle 14:09: e' questa, ed e' l'unica
-  // che risponde. L'indirizzo di prima (`punti-anima.insieme.workers.dev`) non e' mai
-  // esistito — questo account non ha nemmeno un sottodominio workers.dev registrato.
+  // che risponde — verificato, 200.
+  // 📌 Il perche' l'indirizzo di prima non risponde piu', misurato alle 14:12: NON e'
+  // che non sia mai esistito. Il sottodominio dell'account c'e' e si chiama `insieme`
+  // (l'API di Cloudflare lo conferma), e fino alle 13:55 quell'indirizzo rispondeva.
+  // Quello che e' cambiato e' che `workers.dev` e' stato SPENTO per questo Worker
+  // (`enabled: false`) nel momento in cui gli e' stato dato il dominio suo. Ed e'
+  // giusto cosi': un indirizzo `*.workers.dev` in una pagina pubblica dice a chiunque
+  // legga il sorgente come si chiama l'account. Una porta sola, e con il nostro nome.
   var API = 'https://api.cyberboomer.io';
   var CHIAVE = 's77.sessione';
 
