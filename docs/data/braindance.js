@@ -39,14 +39,18 @@ window.BRAINDANCE = {
       "id": "contenuti-sensuali-social",
       "tipo": "notizia",
       "titolo": "I contenuti sensuali femminili sono il top su Instagram/TikTok, per le statistiche di Meta?",
-      "verdetto": "Parzialmente vero",
-      "punteggio": 65,
+      "verdetto": "Falso come detto, con un nocciolo vero",
+      "punteggio": 35,
       "ambito": "verita",
-      "data": "2026-07-10",
-      "note": "L'algoritmo amplifica la pelle (documentato), ma non e' una statistica ufficiale di Meta e non e' il contenuto piu' visto in assoluto.",
-      "colore": "giallo",
+      "data": "2026-08-10",
+      "note": "Verdetto unificato con quello di KIROSHI (45) sullo stesso claim: stesso ambito, quindi conflitto vero, risolto e non mediato. Delle quattro affermazioni della frase ne regge una (l'amplificazione, documentata); le altre tre - il dato ufficiale Meta, il 'piu' visto', il 'femminili' - non reggono.",
+      "colore": "rosso",
       "scheda": "schede/contenuti-sensuali-social.html",
       "fonti": [
+        {
+          "titolo": "Meta — Widely Viewed Content Report (ufficiale)",
+          "url": "https://transparency.meta.com/reports/widely-viewed-content-report/"
+        },
         {
           "titolo": "AlgorithmWatch",
           "url": "https://algorithmwatch.org/en/instagram-algorithm-nudity/"

@@ -9,7 +9,7 @@
     --bg:#faf9f5; --card:#ffffff; --ink:#2c2c2a; --muted:#5f5e5a; --line:#e6e4dc;
     --amber-bg:#faeeda; --amber-ink:#633806; --amber-fill:#ef9f27;
     --green-bg:#eaf3de; --green-ink:#27500a;
-    --coral-bg:#faece7; --coral-ink:#712b13;
+    --coral-bg:#faece7; --coral-ink:#712b13; --coral-fill:#d9532b;
   }
   @media (prefers-color-scheme:dark){
     :root{--bg:#1c1c1a;--card:#26262a;--ink:#ece9e2;--muted:#b4b2a9;--line:#3a3a38}
@@ -22,13 +22,16 @@
     padding:1.4rem 1.5rem;max-width:640px;width:100%}
   .top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
   .src-label{font-size:13px;color:var(--muted)}
+  .pill.rosso{background:var(--coral-bg);color:var(--coral-ink)}
   .pill{background:var(--amber-bg);color:var(--amber-ink);font-size:13px;font-weight:600;
     padding:5px 13px;border-radius:20px}
   .claim{font-size:18px;line-height:1.5;margin:0 0 18px;font-style:italic}
   .conf-row{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:6px}
   .conf-val{color:var(--amber-ink);font-weight:600}
+  .conf-val.rosso{color:var(--coral-ink)}
   .track{height:8px;background:var(--bg);border:1px solid var(--line);border-radius:20px;overflow:hidden}
   .fill{height:100%;background:var(--amber-fill);border-radius:20px}
+  .fill.rosso{background:var(--coral-fill)}
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:18px 0 16px}
   .box{border-radius:12px;padding:12px 15px}
   .box.pro{background:var(--green-bg)} .box.pro h3,.box.pro li{color:var(--green-ink)}
@@ -46,14 +49,30 @@
 <body>
 <main class="card">
   <div class="top">
-    <span class="src-label">Fake-checker · BRAINDANCE — 2026-07-09</span>
-    <span class="pill">Parzialmente vero</span>
+    <span class="src-label">Fake-checker · BRAINDANCE — verdetto unificato, 2026-08-10</span>
+    <span class="pill rosso">Falso come detto, con un nocciolo vero</span>
   </div>
 
   <p class="claim">«Le statistiche di Meta (Instagram / TikTok) dicono che il contenuto più visto sono le parti sensuali femminili, forse anche maschili.»</p>
 
-  <div class="conf-row"><span>Confidenza</span><span class="conf-val">media · 65%</span></div>
-  <div class="track"><div class="fill" style="width:65%"></div></div>
+  <div class="conf-row"><span>Verità del claim</span><span class="conf-val rosso">35 / 100</span></div>
+  <div class="track"><div class="fill rosso" style="width:35%"></div></div>
+
+  <p class="take" style="margin-top:14px"><b>Da dove viene il 35, scritto per esteso.</b> La frase
+  contiene quattro affermazioni e si reggono separatamente: ① «lo dicono le statistiche di Meta»
+  → <b>falsa</b>, il report ufficiale di Meta dice il contrario · ② «è il contenuto più visto»
+  → <b>falsa</b> · ③ «femminili» → <b>non sostenuta</b>, l'amplificazione riguarda anche gli
+  uomini · ④ «i contenuti sensuali vengono amplificati» → <b>vera e documentata</b>.
+  Una su quattro regge, ed è la più debole delle quattro: la frase <i>come è detta</i> è falsa,
+  il nocciolo che sopravvive è un'altra frase, più stretta.</p>
+
+  <p class="take" style="border-left-color:#f6c453"><b>Questo verdetto ne unifica due.</b> Lo stesso
+  claim era stato verificato due volte a un giorno di distanza — da BRAINDANCE (65) e da KIROSHI
+  (45, scheda <code>0002-social-contenuti-sensuali</code>) — senza che nessuno se ne accorgesse per
+  un mese. Le due prose dicevano la stessa cosa e i due numeri no: <b>stesso ambito, stesso oggetto,
+  quindi un conflitto vero</b>, da risolvere e non da mediare (45 e 65 non fanno 55). Il verdetto
+  unificato tiene la fonte decisiva che aveva KIROSHI — il report ufficiale di Meta — e la smentita
+  del «femminili» che aveva BRAINDANCE. <b>Ambito del verdetto: verità di un'affermazione.</b></p>
 
   <div class="grid">
     <div class="box pro">
@@ -66,7 +85,8 @@
     <div class="box con">
       <h3>Perché il framing è distorto</h3>
       <ul>
-        <li>Non è una statistica ufficiale di Meta: i dati vengono da ricercatori indipendenti, non dalle piattaforme.</li>
+        <li><b>I dati ufficiali di Meta dicono il contrario.</b> Il <i>Widely Viewed Content Report</i> mette in cima meme, animali, cucina, famiglia, news e celebrità; nudità e sesso esplicito sono vietati dalle policy, quindi non possono essere «il contenuto più visto». <i>(fonte portata dal verdetto KIROSHI)</i></li>
+        <li>Non è una statistica ufficiale di Meta: i dati sull'amplificazione vengono da ricercatori indipendenti, non dalle piattaforme.</li>
         <li>Il contenuto più visto in assoluto non sono le parti sensuali: in cima ci sono sport e celebrità (Messi, Ronaldo, l'uovo record).</li>
         <li>Non riguarda solo le donne: anche gli uomini a torso nudo vengono premiati.</li>
       </ul>
@@ -81,10 +101,11 @@
     <a href="https://thenextweb.com/news/instagrams-algorithm-prioritizes-scantily-clad-photos-study-finds">The Next Web</a> ·
     <a href="https://www.kent.ac.uk/news/cyber-security-digital-technology-and-communication/34514/social-media-algorithms-amplify-misogynistic-content-to-teens">University of Kent</a> ·
     <a href="https://arxiv.org/pdf/2408.05622">arXiv (TikTok)</a> ·
+    <a href="https://transparency.meta.com/reports/widely-viewed-content-report/">Meta — Widely Viewed Content Report (ufficiale)</a> ·
     <a href="https://en.wikipedia.org/wiki/List_of_most-liked_Instagram_posts">Wikipedia — post più likati</a>
   </div>
 
-  <p class="sign">— prodotto da BRAINDANCE, 2026-07-09</p>
+  <p class="sign">— prodotto da BRAINDANCE, 2026-07-09 · verdetto unificato con KIROSHI//OR, 2026-08-10</p>
 </main>
 </body>
 </html>
