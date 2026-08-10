@@ -54,8 +54,8 @@
     </div>
   </div>
 
-  <!-- ② LA STANZA — dopo che la carta è stata riconosciuta -->
-  <div class="pannello" id="dentro" hidden>
+  <!-- ② LA STANZA DEL GIOCATORE — chi ha una carta e gioca -->
+  <div class="pannello" id="dentro-giocatore" hidden>
     <div class="esito">
       <div class="marchio-b">◉</div>
       <div>
@@ -67,28 +67,65 @@
     <span class="pill">carta riconosciuta</span>
 
     <div class="dati">
-      <div><span>ID card</span><b id="id">—</b></div>
-      <div><span>numero</span><b id="num">—</b></div>
-      <div><span>emessa</span><b id="data">—</b></div>
+      <div><span>ID card</span><b id="g-carta">—</b></div>
+      <div><span>arcano</span><b id="g-arcano">—</b></div>
+      <div><span>punti</span><b id="g-punti">—</b></div>
+      <div><span>stato</span><b id="g-stato">—</b></div>
     </div>
 
     <div class="blocco">
-      <div class="l">il tuo codice di ingresso</div>
-      <div class="codice"><b id="codice">—</b><button id="copia" type="button">copia</button></div>
-      <p class="spiega">
-        Mandalo a chi ti ha dato la carta, <b>insieme al tuo nome</b>. È l'ultimo passo,
-        e va in quest'ordine: <b>prima entri tu, poi ti registra chi ti ha invitato.</b>
-        Da solo non apre niente e a nessun altro serve — dice una cosa sola:
-        «la carta ce l'ho io, sono arrivato».
-      </p>
+      <div class="l">quello che hai consegnato</div>
+      <div class="dati" id="g-referti"></div>
+    </div>
+
+    <!-- ⛔ POSTO PRENOTATO — la dedica-canzone.
+         Il seme è di TRACE, passato a CHROME. Non si costruisce qui: si lascia
+         lo spazio, così chi arriva non deve rifare il posto. — SQUELCH, 10/08 -->
+    <div class="blocco">
+      <div class="l">la tua dedica</div>
+      <p class="spiega muto">Arriva presto. Il posto è già suo.</p>
+    </div>
+
+    <a class="esci" id="g-perduta" href="#">ho perso la carta</a>
+    <a class="esci" id="g-esci" href="#">non è la mia carta</a>
+  </div>
+
+  <!-- ③ LA STANZA DELL'OVERLORD — chi conduce il mondo, e NON gioca.
+       Stesso indirizzo della stanza qui sopra: a decidere è la CARTA, non la
+       persona. Niente punti, niente referti — quelli sono atti di gioco. -->
+  <div class="pannello" id="dentro-overlord" hidden>
+    <div class="esito">
+      <div class="marchio-b">◉</div>
+      <div>
+        <div class="l">esito</div>
+        <div class="v">LA REGIA</div>
+      </div>
+    </div>
+
+    <span class="pill">carta dell'Overlord</span>
+
+    <div class="dati">
+      <div><span>ID card</span><b id="o-carta">—</b></div>
+      <div><span>arcano</span><b id="o-arcano">—</b></div>
+      <div><span>cerchio 1</span><b id="o-cerchio">—</b></div>
+    </div>
+
+    <div class="dati">
+      <div><span>registrate</span><b id="o-registrate">—</b></div>
+      <div><span>in attesa</span><b id="o-attesa">—</b></div>
+      <div><span>smarrite</span><b id="o-smarrite">—</b></div>
+    </div>
+
+    <div class="blocco">
+      <div class="l">il mazzo</div>
+      <div class="dati" id="o-carte"></div>
       <p class="spiega muto">
-        Non confonderlo con il codice del retro. <b>Quello non si manda a nessuno,
-        nemmeno a noi.</b> Il retro è la tua carta; questo è soltanto il modo di far
-        sapere che sei entrato.
+        Solo le carte che hanno già aperto almeno una volta. Una carta consegnata
+        e mai usata non compare: qui si vede chi è entrato, non chi è stato invitato.
       </p>
     </div>
 
-    <a class="esci" id="esci" href="#">non è la mia carta</a>
+    <a class="esci" id="o-esci" href="#">esci</a>
   </div>
 
   <div class="nota">
@@ -120,11 +157,16 @@
   <div class="nota warn">
     <b>Cosa non c'è, e non ci sarà, a questo indirizzo</b>
     Nessun nome, nessuna mail, nessun telefono, nessun indirizzo — né tuo né di altri.
-    Il codice che scrivi non esce dal tuo telefono: il confronto avviene lì dentro.
-    Il giorno in cui ci saranno dati veri di una persona, non staranno su una pagina
-    come questa.
+    Di te qui c'è <em>il numero della carta</em>, e nient'altro.
+    <br><br>
+    Il codice del retro <b>esce dal telefono</b>: va al servizio che tiene la porta, che
+    è l'unico a poter dire se è giusto. Viaggia cifrato, non viene salvato da nessuna
+    parte, e serve solo ad aprire — <em>fino al 10 agosto 2026 il confronto avveniva qui
+    dentro, e quella riga adesso sarebbe falsa.</em> Il motivo del cambio è che una carta
+    che sta in un portafoglio si può perdere: una porta che si apre da sola, sul tuo
+    telefono, non si può richiudere. Quella vera sì.
   </div>
 
-<script src="area.js"></script>
+<script src="area2.js"></script>
 </body>
 </html>
