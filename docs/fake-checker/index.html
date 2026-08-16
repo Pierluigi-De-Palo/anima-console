@@ -218,7 +218,13 @@
     var url = 'https://github.com/Pierluigi-De-Palo/anima-console/issues/new'+
       '?title='+encodeURIComponent('[verifica] '+og)+
       '&body='+encodeURIComponent(body)+
-      '&labels='+encodeURIComponent('verifica');
+      // ⚠️ Qui c'era `verifica`, un'etichetta che nel repo NON ESISTE. GitHub la
+      // scarta in silenzio: la richiesta arrivava NUDA e nessuno la vedeva, perche'
+      // gli agenti la coda la cercano per etichetta. Non era teoria: al 17/08/2026
+      // tre richieste vere erano ferme cosi', la piu' vecchia da cinque giorni.
+      // Questa console e' quella di KIROSHI, che verifica ditte/venditori/cose:
+      // la sua coda e' `kiroshi-queue` (le notizie e i claim vanno a BRAINDANCE).
+      '&labels='+encodeURIComponent('kiroshi-queue');
     window.open(url,'_blank','noopener');
   });
 })();

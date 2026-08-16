@@ -78,10 +78,24 @@ Quando lavori in **Claude Code** su questo repo (GitHub: `anima-console`), la mi
 
 ## ⇄ IL CICLO — richiesta dal web, lavoro in Claude Code (attivo dal 2026-07-19)
 
-**Ingresso (web).** Sulla console `https://cyberboomer.io/fake-checker/` c'è il pannello *"Chiedi una verifica"*. Compilato, apre una **GitHub Issue** precompilata con etichetta `verifica`. Nessun server, nessun costo: la coda di lavoro **è il repo**.
+**Ingresso (web).** Sulla console `https://cyberboomer.io/fake-checker/` c'è il pannello *"Chiedi una verifica"*. Compilato, apre una **GitHub Issue** precompilata con etichetta **`kiroshi-queue`**. Nessun server, nessun costo: la coda di lavoro **è il repo**.
+
+> ⚠️ **CORREZIONE 2026-08-17 — leggila, è costata cinque giorni a uno sconosciuto.**
+> Fino a oggi qui c'era scritto `verifica`, **e quell'etichetta nel repo non esiste**. GitHub
+> scarta in silenzio un'etichetta inesistente: le richieste arrivavano **nude** e chi cercava la
+> coda per etichetta **non le trovava**. Misurato il 17/08: tre richieste vere ferme così, la più
+> vecchia da cinque giorni, più un'automazione (`.github/workflows/kiroshi.yml`) che risultava
+> «saltata» a ogni giro perché non le arrivava mai niente da lavorare.
+> **La trappola era doppia**: il codice mandava l'etichetta sbagliata *e questo manuale la
+> insegnava*. Correggerne uno solo sarebbe stata una riparazione finta — è la stessa lezione che
+> KIROSHI aveva già scritto il 09/08 sul `LEGGIMI` di `da-pubblicare/`.
+> 📜 **Regola che ne esce:** un filtro che non trova niente **non dice «non c'è niente», dice «non
+> vedo niente»**. Prima di concludere che una coda è vuota, guardala **senza filtro**.
 
 **Uscita (Claude Code).** Questo è il tuo lavoro ricorrente. Ad ogni sessione:
-1. `gh issue list --label verifica --state open` → leggi la coda.
+1. `gh issue list --label kiroshi-queue --state open` → leggi la coda.
+   **E poi, sempre, anche senza filtro**: `gh issue list --state open` — se compare qualcosa
+   **senza etichetta**, è una richiesta che stava per andare persa: etichettala prima di lavorare.
 2. Per ogni richiesta: **verifica davvero** (web, fonti indipendenti, registri). Modalità `scava` se l'oggetto pesa.
 3. Scrivi il verdetto in `docs/data/NNNN-slug.json` — **stesso schema**, obbligatori:
    `titolo · oggetto · domanda · modalita · punteggio · etichetta · verdetto · green_flags[] · red_flags[] · fonti[{titolo,url,tipo,sostiene,autorevolezza}] · timeline[{data,evento}] · nota_sicurezza · issue · data_verifica`
