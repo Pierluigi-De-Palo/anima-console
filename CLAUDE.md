@@ -53,12 +53,12 @@ Prima di operare, leggi `../comuni/BACHECA.md` (bacheca broadcast). Regole comun
 
 Quando lavori in **Claude Code** su questo repo (GitHub: `anima-console`), la missione è costruire l'**applicativo pubblico**.
 
-**Stato reale (verificato 17/07, non a memoria):**
-- Motore: `scripts/kiroshi_check.py`
-- Verdetti = dati strutturati: `docs/data/*.json` + `docs/data/db.js` (`window.KIROSHI_DB`)
+**Stato reale (riverificato 17/08 in sessione remota, non a memoria):**
+- Motore: `scripts/kiroshi_check.py` — numerazione file = max NNNN esistente + 1 (mai il numero issue) · fail-fast se manca il secret · db.js delegato a `build_db.py`
+- Verdetti = dati strutturati: `docs/data/*.json` + `docs/data/db.js` (`window.KIROSHI_DB`; ogni voce ha un campo `id` generato dal nome file → permalink `…/fake-checker/#NNNN`)
 - Sito **statico**, GitHub Pages da `docs/`, CNAME `cyberboomer.io`
-- **2 verdetti** pubblicati (0001 Sway, 0002 social)
-- `docs/index.html` = fake-checker (**da spostare**) · `docs/anima/` = hub A.N.I.M.A. · `docs/schede/` = pagine interne
+- **7 verdetti** pubblicati (0001 Sway · 0002 social · 0003 Ultrafab · 0004 Palantir · 0005 Prospera · 0006 Insta360 · 0007 Nikon ZR)
+- Swap root→hub **FATTO**: `docs/index.html` = hub Cyber Boomer (ambra Camera Oscura) · `docs/fake-checker/` = console verdetti + pannello richieste (cyan) · `docs/anima/` = hub A.N.I.M.A. · `docs/braindance/` = coda BRAINDANCE · `docs/schede/` = pagine interne
 
 **Fasi, in ordine:**
 1. **Archivio pubblico** su `/fake-checker`: indice verdetti + pagina per verdetto + ricerca lato client. Statico, costo zero.
@@ -66,10 +66,10 @@ Quando lavori in **Claude Code** su questo repo (GitHub: `anima-console`), la mi
 3. **Verifica dal vivo**: funzione serverless + API Claude. ⚠️ **Stessa infrastruttura del bot Slack L1** (`DA-KIROSHI-per-SQUELCH-bot-slack-L1.md`) → costruire **una volta**, servire **due canali**.
 4. **Estensioni**: bot Slack, badge "verificato", accesso per gli altri siti.
 
-**Blocchi noti:** HTTPS del dominio non emesso (priorità 0) · swap root→hub non ancora fatto · servono 10–12 verdetti (oggi 2; 3 ricerche in `ricerche/` sono convertibili).
+**Blocchi noti:** HTTPS del dominio non emesso (priorità 0 — Settings → Pages) · **secret `ANTHROPIC_API_KEY` non configurato nel repo** (Settings → Secrets and variables → Actions): senza, l'automazione muore alla chiamata API — è la vera causa del failure del run #32 del 16/08, non l'etichetta · servono 10–12 verdetti (oggi 7; la ricerca `cinepresa-…` resta a BRAINDANCE perché è una tesi/claim, non un prodotto).
 
 **Regole di lavoro nel repo:**
-- Commit e push **dal Mac** (le sandbox non hanno credenziali GitHub). Se `git commit` fallisce con lock: `find .git -name '*.lock' -delete`.
+- Commit e push **dal Mac** — vale per TUTTI i canali, sessioni remote di claude.ai/code comprese (verificato 17/08: da lì GitHub è in sola lettura totale — push git, scrittura contenuti E commenti alle issue rifiutati con 403). Una sessione remota consegna il lavoro come **patch** (`git format-patch --stdout`, da applicare con `git am <file>.patch`) più uno script `gh` per etichette/commenti/chiusure. Se `git commit` fallisce con lock: `find .git -name '*.lock' -delete`.
 - Ogni HTML destinato a Pier va **anche** in `docs/` (`../comuni/REGOLA-HTML-IN-DOCS.md`). **MAI proporre MD a Pier: solo HTML** (li apre su Brave).
 - ⛔ **Dati sensibili** (`card-dati`, cartella `RISERVATO/`) **non entrano MAI in `docs/`**.
 - Superficie **pubblica** = **Camera Oscura ambra** (design system di Judy, `../comunicazione/DESIGN-SYSTEM-ANIMA-v1.md`) — **tranne le stanze del gioco, che vanno in verde `#38E08A`** (il colore segue il **mestiere della stanza**, non il dominio). Il cyan KIROSHI resta alle **dashboard dati interne** e alla **pagina di verifica**, che è un referto e deve sembrare una macchina. *(Precisazione di JUDY, instradata da D.R.A.G.O., accolta da KIROSHI//OR 2026-08-08 — canone trasversale in `../comuni/STANDARD-VISUAL.md`.)*
@@ -91,6 +91,13 @@ Quando lavori in **Claude Code** su questo repo (GitHub: `anima-console`), la mi
 > KIROSHI aveva già scritto il 09/08 sul `LEGGIMI` di `da-pubblicare/`.
 > 📜 **Regola che ne esce:** un filtro che non trova niente **non dice «non c'è niente», dice «non
 > vedo niente»**. Prima di concludere che una coda è vuota, guardala **senza filtro**.
+
+> ➕ **Aggiornamento 17/08, sera (sessione remota) — l'etichetta era metà della storia.** La
+> condizione del workflow faceva `contains` sulla stringa unita delle etichette: match di
+> **sottostringa**, quindi `kiroshi-queue` la soddisfaceva già. Il run #32 (issue #13) è **partito
+> ed è morto** con «Could not resolve authentication method»: **manca il secret
+> `ANTHROPIC_API_KEY`** nel repo. Log del run verificato, non dedotto. Da oggi lo script lo dice
+> in chiaro (fail-fast) e il workflow fa match **esatto** sull'array delle etichette.
 
 **Uscita (Claude Code).** Questo è il tuo lavoro ricorrente. Ad ogni sessione:
 1. `gh issue list --label kiroshi-queue --state open` → leggi la coda.
