@@ -9,6 +9,7 @@ Un verdetto = un file JSON. Aggiungi il file, lancia questo script, pusha.
 import glob
 import json
 import os
+import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -56,6 +57,9 @@ def main() -> int:
         if not v.get("fonti"):
             problemi.append(f"{nome}: nessuna fonte — regola editoriale violata")
             continue
+
+        # Permalink: l'id è il NNNN del nome file — generato, mai scritto a mano.
+        v["id"] = re.match(r"\d+", nome).group(0)
 
         verdetti.append(v)
 

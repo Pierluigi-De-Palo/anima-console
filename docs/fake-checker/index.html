@@ -67,6 +67,8 @@
   .lab{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
     border:1px solid;border-radius:2px;padding:3px 9px;white-space:nowrap}
   .dt{font-family:var(--mono);font-size:10px;color:var(--dim);white-space:nowrap}
+  .plink{font-family:var(--mono);font-size:12px;color:var(--dim);text-decoration:none;padding:2px 6px;border-radius:2px}
+  .plink:hover{color:var(--cyan);background:rgba(34,211,238,.09)}
 
   .vbody{display:none;padding:0 18px 18px;border-top:1px solid var(--line)}
   .vc.open .vbody{display:block}
@@ -165,12 +167,13 @@
       return '<div class="src"><a href="'+esc(f.url)+'" target="_blank" rel="noopener">'+esc(f.titolo)+'</a>'+
              '<span class="au">'+esc(f.tipo||'')+' '+stars+'</span></div>';
     }).join('');
-    return '<div class="vc" style="border-left-color:'+c+'">'+
+    return '<div class="vc"'+(v.id ? ' id="'+esc(v.id)+'"' : '')+' style="border-left-color:'+c+'">'+
       '<div class="vh">'+
         '<span class="sc" style="color:'+c+'">'+esc(v.punteggio)+'</span>'+
         '<span class="vi"><span class="vt">'+esc(v.titolo)+'</span><div class="vo">'+esc(v.oggetto)+'</div></span>'+
         '<span class="lab" style="color:'+c+';border-color:'+c+'">'+esc(v.etichetta)+'</span>'+
         '<span class="dt">'+esc(v.data_verifica||'')+'</span>'+
+        (v.id ? '<a class="plink" href="#'+esc(v.id)+'" title="Link diretto a questo verdetto">§</a>' : '')+
       '</div>'+
       '<div class="vbody">'+
         '<div class="bar"><i style="width:'+Math.max(0,Math.min(100,v.punteggio||0))+'%;background:'+grad(v.punteggio||0)+'"></i></div>'+
@@ -198,13 +201,29 @@
     Array.prototype.forEach.call(list.querySelectorAll('.vh'), function(h){
       h.addEventListener('click', function(){ h.parentNode.classList.toggle('open'); });
     });
+    // il click sul § naviga soltanto: non deve anche richiudere la card
+    Array.prototype.forEach.call(list.querySelectorAll('.plink'), function(a){
+      a.addEventListener('click', function(e){ e.stopPropagation(); });
+    });
+  }
+
+  // permalink: #NNNN apre la card del verdetto e ci scorre sopra
+  function openFromHash(){
+    var id = (location.hash||'').replace(/^#/,'');
+    if(!/^\d+$/.test(id)) return;
+    var el = document.getElementById(id);
+    if(!el) return;
+    el.classList.add('open');
+    el.scrollIntoView({behavior:'smooth', block:'start'});
   }
 
   if(!DB.length){
     list.innerHTML = '<div class="empty">Archivio vuoto — nessun verdetto pubblicato.</div>';
   } else {
     render('');
+    openFromHash();
   }
+  window.addEventListener('hashchange', openFromHash);
 
   document.getElementById('flt').addEventListener('input', function(e){ render(e.target.value); });
 
