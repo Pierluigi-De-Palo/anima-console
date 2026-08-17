@@ -1,0 +1,156 @@
+{
+  "titolo": "Insta360 Luna Ultra — la gimbal-cam Leica di Insta360",
+  "oggetto": "Insta360 Luna Ultra, fotocamera gimbal palmare a doppio obiettivo (sensore 1\" 8K + tele) co-progettata con Leica, di Insta360 (Arashi Vision Inc.). Lanciata il 10 giugno 2026 a 769,99$.",
+  "domanda": "È un prodotto reale? Le specifiche dichiarate (sensore, ottica Leica, video 8K/10-bit, bitrate) reggono al confronto con le recensioni indipendenti? Ci si può fidare per un uso da B-cam nel flusso cinema di Pier? (Domanda separata, qui non trattata: se convenga comprarla — quella è una scelta d'acquisto, non un fatto da verificare.)",
+  "modalita": "rapida",
+  "punteggio": 74,
+  "etichetta": "reale, con riserve",
+  "verdetto": "Insta360 Luna Ultra è un prodotto reale, non un render né un annuncio mai concretizzato: lanciata il 10 giugno 2026 a 769,99$, è in vendita presso rivenditori terzi indipendenti di riferimento (B&H Photo Video, Amazon US) ed è stata recensita da numerose testate specializzate indipendenti — fra le altre PetaPixel, TechRadar, Engadget, RedShark, ProVideoCoalition e Gizmodo, linkate in fonti — con giudizi convergenti e non promozionali. Le specifiche dichiarate da Insta360 (sensore 1\" 8K con ottica Leica Summicron F1.8, tele 1/1.3\" f/2.0, video 8K30 in Dolby Vision, colore 10-bit I-Log a 14 stop, codec H.265 fino a 120 Mbps, zoom 6x lossless/12x digitale, gimbal 3 assi) sono confermate senza contraddizioni sostanziali su tutte le fonti indipendenti incrociate. Rispetto alla ricerca del 12 luglio 2026 emerge un dato nuovo e positivo: a fine luglio 2026 Insta360 ha rilasciato il firmware v1.0.283, che corregge parte dei difetti da \"prodotto di prima generazione\" segnalati dalle recensioni di lancio (color assist I-Log, fluidità del gimbal, precisione dello zoom, reattività del touchscreen) — segnale di supporto post-vendita attivo, non di abbandono. Un'azione legale invece c'è, ed è materiale: l'11 giugno 2026, a ridosso del lancio, DJI ha depositato due cause per violazione di brevetto contro Insta360 presso la Corte distrettuale USA del distretto orientale del Texas, proprio sulla linea Luna (design e tecnologia del gimbal della serie Osmo Pocket), chiedendo danni e un'ingiunzione permanente che vieterebbe la vendita negli Stati Uniti; il 12 giugno Insta360 ha contro-querelato rivendicando cinque propri brevetti. La causa è pendente: non tocca l'autenticità del prodotto né la disponibilità attuale, ma introduce un'incognita concreta sulla disponibilità e sul supporto futuri nel mercato statunitense. Resta però confermata la distinzione già indicata dalla ricerca originale: \"è reale\" e \"le specifiche reggono\" hanno risposta sì; \"è una cinema-cam adatta a un grading pesante\" ha risposta no — il codec è H.265 long-GOP a 120 Mbps, non RAW né ProRes, pesante da editare su macchine non recenti, ed è costruita come vlog/gimbal-cam one-man-band (batteria dichiarata ~4h, corpo pocket), non come A-cam da set strutturato. Per l'uso di Pier resta una B-cam solida, non un sostituto della camera principale. Limite dichiarato di questa verifica: in questa sessione l'accesso diretto (WebFetch) a tutti i domini delle fonti consultate — insta360.com, petapixel.com, notebookcheck.net, redsharknews.com, engadget.com, provideocoalition.com, bhphotovideo.com — è stato bloccato dal proxy di rete (\"EGRESS_BLOCKED\"); la loro esistenza e il contenuto sostanziale sono stati confermati solo indirettamente, tramite motore di ricerca che restituisce titolo e URL identici a quelli citati nella ricerca originale, non tramite lettura diretta della pagina. Punteggio 74/100: rispetto all'80 della ricerca originale pesa l'incognita legale sulla disponibilità futura, non la qualità o l'autenticità del prodotto.",
+  "green_flags": [
+    "Prodotto ampiamente recensito da numerose testate specializzate indipendenti (fra le altre PetaPixel, TechRadar, Engadget, RedShark, ProVideoCoalition, Gizmodo), con giudizi convergenti e non promozionali: non un render, non un semplice comunicato.",
+    "In vendita presso rivenditori terzi indipendenti di riferimento — B&H Photo Video e Amazon US — a conferma di disponibilità reale sul mercato, non solo di un annuncio del produttore.",
+    "Specifiche tecniche dichiarate (sensore 1\" 8K, ottica Leica Summicron F1.8 + tele 1/1.3\" f/2.0, 10-bit I-Log a 14 stop, H.265 fino a 120 Mbps, zoom 6x lossless/12x digitale) confermate senza contraddizioni sostanziali su tutte le fonti indipendenti incrociate.",
+    "Prezzo di lancio 769,99$ confermato da più fonti indipendenti e ancora corrente al 17/08/2026.",
+    "Supporto post-vendita attivo: firmware v1.0.283 (fine luglio 2026) corregge parte dei difetti da 'prima generazione' segnalati dalle recensioni di lancio (color assist I-Log, fluidità gimbal, precisione zoom, reattività touchscreen).",
+    "La co-progettazione con Leica per l'ottica è un dato tecnico riscontrato in modo coerente su tutte le recensioni indipendenti, non solo nel materiale di marketing Insta360."
+  ],
+  "red_flags": [
+    "Causa di brevetto in corso proprio su questa linea di prodotto: DJI ha citato Insta360 in Texas l'11/06/2026 (due cause: brevetti di design e di utilità della serie Osmo Pocket) chiedendo danni e un'ingiunzione permanente sulla vendita negli USA; Insta360 ha contro-querelato il 12/06 rivendicando cinque propri brevetti. Esito imprevedibile: un'eventuale ingiunzione toccherebbe disponibilità e supporto futuri sul mercato statunitense.",
+    "Codec H.265 (HEVC) fino a 120 Mbps, non RAW né ProRes: adatto a un editing/color grading leggero, pesante da decodificare su workstation non recenti — limite esplicito per un flusso di grading spinto.",
+    "Le recensioni di lancio concordano su difetti da 'prodotto di prima generazione': schermo removibile piccolo (564x318 px) poco leggibile per confermare il fuoco, istogramma visibile solo tramite app, controlli manuali giudicati scomodi da più testate.",
+    "È costruita come vlog/gimbal-cam one-man-band, non come cinema-cam da set strutturato: corpo pocket, batteria dichiarata di circa 4 ore — limiti strutturali per un uso professionale continuativo.",
+    "Prodotto di prima generazione per questa linea (la Luna Ultra è il primo prodotto Insta360 di questo tipo): nessuno storico pluriennale di affidabilità come per le action cam più mature del marchio.",
+    "Verifica di oggi limitata dal proxy di rete di questa sessione: WebFetch diretto bloccato su tutti i domini delle fonti consultate (compresi provideocoalition.com e bhphotovideo.com); esistenza e contenuto confermati solo indirettamente via motore di ricerca.",
+    "La data esatta del rilascio del firmware v1.0.283 non è stata reperita con precisione: le fonti disponibili (community, YouTube, blog) la collocano genericamente a fine luglio 2026, senza indicare il giorno."
+  ],
+  "fonti": [
+    {
+      "titolo": "Insta360 Luna Ultra — pagina prodotto ufficiale",
+      "url": "https://www.insta360.com/product/insta360-luna-ultra",
+      "tipo": "sito del produttore",
+      "sostiene": "specifiche tecniche complete (sensore, ottica, video, zoom, gimbal), prezzo di lancio 769,99$, data di uscita 10 giugno 2026",
+      "autorevolezza": "bassa — fonte diretta interessata; non raggiunta con WebFetch in questa sessione (bloccata dal proxy di rete), verificata solo indirettamente via motore di ricerca"
+    },
+    {
+      "titolo": "Insta360 Luna Ultra Review: An Excellent Vlogging Camera with a Few Caveats — PetaPixel",
+      "url": "https://petapixel.com/2026/06/18/insta360-luna-ultra-review-an-excellent-vlogging-camera-with-a-few-caveats/",
+      "tipo": "stampa fotografica/video indipendente",
+      "sostiene": "'ottima vlog camera con alcune riserve': schermo removibile piccolo (564x318 px) poco leggibile per il fuoco, istogramma visibile solo via app, controlli manuali scomodi",
+      "autorevolezza": "alta — testata fotografica indipendente di riferimento, recensione dedicata e non sponsorizzata; non raggiunta con WebFetch in questa sessione (bloccata dal proxy), contenuto confermato via motore di ricerca"
+    },
+    {
+      "titolo": "Insta360 Luna Ultra full specs appear after official reveal — Notebookcheck",
+      "url": "https://www.notebookcheck.net/Insta360-Luna-Ultra-full-specs-appear-after-official-reveal-6x-zoom-modular-design-4K-240fps.1278532.0.html",
+      "tipo": "stampa tecnica indipendente",
+      "sostiene": "specifiche hardware coerenti con quelle dichiarate: zoom 6x, design modulare, video 4K fino a 240fps",
+      "autorevolezza": "media-alta — testata tech generalista con articolo dedicato alle specifiche; non raggiunta con WebFetch in questa sessione (bloccata dal proxy), verificata via motore di ricerca"
+    },
+    {
+      "titolo": "Insta360 Luna Ultra review: 10-bit gimbal camera tested — RedShark News",
+      "url": "https://www.redsharknews.com/insta360-luna-ultra-review",
+      "tipo": "stampa di settore video/cinema indipendente",
+      "sostiene": "il colore 10-bit I-Log regge alla prova pratica, buona gamma dinamica per la fascia di prezzo",
+      "autorevolezza": "alta — testata specializzata in produzione video professionale; non raggiunta con WebFetch in questa sessione (bloccata dal proxy), verificata via motore di ricerca"
+    },
+    {
+      "titolo": "Insta360 Luna Ultra review: Let the gimbal camera wars begin — Engadget",
+      "url": "https://www.engadget.com/2195199/insta360-luna-ultra-review/",
+      "tipo": "stampa tech indipendente",
+      "sostiene": "recensione positiva, conferma le specifiche principali e la qualità dell'immagine",
+      "autorevolezza": "alta — testata tech generalista di riferimento; non raggiunta con WebFetch in questa sessione (bloccata dal proxy), verificata via motore di ricerca"
+    },
+    {
+      "titolo": "Review: Insta360 Luna Ultra (Robbie Coblentz, 29 giugno 2026) — ProVideo Coalition",
+      "url": "https://www.provideocoalition.com/review-insta360-luna-ultra/",
+      "tipo": "stampa di settore video/cinema indipendente",
+      "sostiene": "colloca la Luna Ultra nell'ecosistema video professionale a confronto con DJI Osmo Pocket 3/4; conferma doppio obiettivo, sensore 1\", video 8K",
+      "autorevolezza": "alta — testata specializzata in produzione video con pubblico professionale, prospettiva pertinente per un uso cinema; non raggiunta con WebFetch in questa sessione (bloccata dal proxy), verificata indirettamente via motore di ricerca"
+    },
+    {
+      "titolo": "Insta360 Luna Ultra Standard Combo — scheda prodotto B&H Photo Video",
+      "url": "https://www.bhphotovideo.com/c/product/1964142-REG/insta360_cinsabta_luna01_luna_ultra_standard_bundle.html",
+      "tipo": "rivenditore terzo indipendente",
+      "sostiene": "il prodotto è realmente disponibile all'acquisto presso un rivenditore fotografico/video professionale statunitense di riferimento, a 769,99$",
+      "autorevolezza": "alta — rivenditore specializzato di lunga data; riscontro indipendente di disponibilità reale sul mercato, non solo annuncio del produttore; non raggiunta con WebFetch in questa sessione (bloccata dal proxy), verificata indirettamente via motore di ricerca"
+    },
+    {
+      "titolo": "Insta360 Luna Ultra — manuale online, aggiornamento firmware",
+      "url": "https://onlinemanual.insta360.com/lunaultra/en-us/camera/maintenance/firmware-update",
+      "tipo": "sito del produttore (supporto tecnico)",
+      "sostiene": "esiste un canale ufficiale di aggiornamento firmware; la versione v1.0.283 (fine luglio 2026) corregge color assist I-Log, zoom, touchscreen e fluidità del gimbal",
+      "autorevolezza": "bassa — fonte diretta interessata, ma il contenuto dell'update è incrociato con segnalazioni indipendenti della community (YouTube, forum) coerenti fra loro"
+    },
+    {
+      "titolo": "DJI Is Suing Insta360 for Violating Multiple Osmo Pocket Patents — PetaPixel (11/06/2026)",
+      "url": "https://petapixel.com/2026/06/11/dji-is-suing-insta360-for-violating-multiple-osmo-pocket-patents/",
+      "tipo": "stampa fotografica/video indipendente",
+      "sostiene": "Le due cause DJI contro Insta360 depositate in Texas sulla linea Luna: brevetti di design e di utilità, richiesta di danni e di ingiunzione permanente sulla vendita negli USA",
+      "autorevolezza": "alta — testata indipendente di riferimento; non raggiunta con WebFetch (proxy), URL e contenuto confermati via motore di ricerca"
+    },
+    {
+      "titolo": "DJI and Insta360 sue each other: Luna Ultra patent battle escalates — RedShark News",
+      "url": "https://www.redsharknews.com/dji-sues-insta360-luna-patent-lawsuit",
+      "tipo": "stampa di settore video/cinema indipendente",
+      "sostiene": "Il quadro della battaglia legale incrociata DJI-Insta360 sulla Luna Ultra",
+      "autorevolezza": "alta — stessa testata già citata per la recensione 10-bit; non raggiunta con WebFetch (proxy), confermata via motore di ricerca"
+    },
+    {
+      "titolo": "Insta360 Countersues DJI Over Luna Ultra Patent War, Asserting Five U.S. Patents — CineD (12/06/2026)",
+      "url": "https://www.cined.com/insta360-countersues-dji-over-luna-ultra-patent-war-asserting-five-u-s-patents/",
+      "tipo": "stampa di settore cinema indipendente",
+      "sostiene": "La contro-querela di Insta360 del 12/06/2026 con cinque brevetti su stabilizzazione e controllo del gimbal",
+      "autorevolezza": "alta — testata di settore indipendente; non raggiunta con WebFetch (proxy), confermata via motore di ricerca"
+    },
+    {
+      "titolo": "Insta360 Luna Ultra review — TechRadar",
+      "url": "https://www.techradar.com/cameras/video-cameras/insta360-luna-ultra-review",
+      "tipo": "stampa tech indipendente",
+      "sostiene": "Recensione indipendente convergente con le altre sulla qualità d'immagine e sui limiti da prima generazione",
+      "autorevolezza": "media-alta — testata tech generalista; non raggiunta con WebFetch (proxy), URL confermata via motore di ricerca"
+    },
+    {
+      "titolo": "Insta360 Luna Ultra review: this is the only gimbal camera you need — Gizmodo",
+      "url": "https://gizmodo.com/insta360-luna-ultra-review-this-is-the-only-gimbal-camera-you-need-2000793434",
+      "tipo": "stampa tech indipendente",
+      "sostiene": "Recensione indipendente convergente, giudizio positivo sulla categoria gimbal-cam",
+      "autorevolezza": "media — testata tech generalista; non raggiunta con WebFetch (proxy), URL confermata via motore di ricerca"
+    }
+  ],
+  "timeline": [
+    {
+      "data": "2026-06-10",
+      "evento": "Lancio ufficiale e apertura vendite di Insta360 Luna Ultra, prezzo 769,99$."
+    },
+    {
+      "data": "2026-06-11",
+      "evento": "DJI deposita due cause per violazione di brevetto contro Insta360 in Texas, sulla linea Luna: chiesti danni e un'ingiunzione permanente sulla vendita negli USA."
+    },
+    {
+      "data": "2026-06-12",
+      "evento": "Insta360 contro-querela DJI rivendicando cinque propri brevetti su stabilizzazione e controllo del gimbal."
+    },
+    {
+      "data": "2026-06-18",
+      "evento": "Recensione indipendente PetaPixel: 'ottima vlog camera con alcune riserve' (schermo piccolo, istogramma solo via app)."
+    },
+    {
+      "data": "2026-06-29",
+      "evento": "Recensione indipendente ProVideoCoalition: colloca la Luna Ultra nell'ecosistema video professionale a confronto con DJI Osmo Pocket 3/4."
+    },
+    {
+      "data": "2026-07",
+      "evento": "Insta360 rilascia il firmware v1.0.283: corregge color assist I-Log, fluidità gimbal, precisione zoom, reattività touchscreen (giorno esatto non reperito)."
+    },
+    {
+      "data": "2026-07-12",
+      "evento": "Ricerca originale KIROSHI//OR (ricerche/insta360-luna-ultra.md)."
+    },
+    {
+      "data": "2026-08-17",
+      "evento": "Conversione in verdetto pubblicato."
+    }
+  ],
+  "nota_sicurezza": "Nessun segnale di malware, phishing o raggiro rilevato: si tratta di un prodotto hardware di un produttore consolidato (Insta360 / Arashi Vision Inc.), in vendita su canali retail verificabili (B&H Photo Video, Amazon US). Limite dichiarato di questa verifica: il proxy di rete di questa sessione ha bloccato l'accesso diretto (WebFetch, errore \"EGRESS_BLOCKED\") a tutti i domini delle fonti consultate: quelli della ricerca originale (insta360.com, petapixel.com, notebookcheck.net, redsharknews.com, engadget.com) e anche provideocoalition.com e bhphotovideo.com. La loro esistenza, il titolo esatto e il contenuto sostanziale sono stati confermati solo indirettamente, tramite motore di ricerca che ne restituisce titolo e URL identici a quelli citati nella ricerca originale, non tramite lettura diretta della pagina in questa sessione. Chi voglia leggere personalmente le recensioni trova i link nelle fonti. Sulla data esatta dell'aggiornamento firmware v1.0.283 le fonti reperite (community, YouTube, blog) non riportano un giorno preciso, solo \"fine luglio 2026\": riportato con questa approssimazione dichiarata, non come dato certo. Sulla causa DJI-Insta360: i depositi dell'11-12 giugno 2026 sono riportati in modo concorde da più testate indipendenti (PetaPixel, RedShark News, CineD, in fonti); gli atti giudiziari non sono stati letti direttamente e l'esito è imprevedibile — qui si registra il fatto, non una previsione.",
+  "issue": 0,
+  "data_verifica": "2026-08-17"
+}
