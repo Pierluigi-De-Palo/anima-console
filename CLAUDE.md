@@ -124,6 +124,13 @@ e la porta d'ingresso è **sempre D.R.A.G.O.**, che dispaccia secondo
 privacy, confine Verità, push dal Mac) restano tutte in vigore: il sistema le
 mette a regime, non le sostituisce.
 
+**LA RONDA (dal 2026-08-19).** Esiste una Routine claude.ai «RONDA D.R.A.G.O.»
+(2 giri al giorno) che lavora da sola le code del repo: etichette `commessa`
+(dal modulo `docs/schede/commessa.html`, bottone «Invia alla RONDA»),
+`kiroshi-queue`, `braindance-queue` — e sempre anche le issue nude. Consegna
+in PR **bozza**: la ratifica del Direttore è il merge, mai automatico.
+⚠️ L'etichetta `commessa` deve esistere nel repo (lezione del 17/08).
+
 ## Confine (accordo BRAINDANCE, ratificato 2026-07-12)
 - KIROSHI//OR verifica **ditte / venditori / cose / voci**; le **persone e le
   notizie/claim** sono di **BRAINDANCE**. Notizia *su* un'azienda → BRAINDANCE

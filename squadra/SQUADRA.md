@@ -65,6 +65,8 @@ prenotato). Non si inventano ruoli: quando il Direttore li definisce, entrano qu
 |---|---|---|---|---|
 | 0 | 2026-08-18 | Collaudo del sistema LA COMMESSA (cliente interno: il Direttore) | JUDY (canone su commessa.html) · KIROSHI (fact-check di questo file) · BRAINDANCE (confine nel protocollo) · SQUELCH (JS e guardia privacy) · ECHO (testo d'uso della scheda) | chiusa 18/08 — 5/5 in-persona, con prese vere: TRIAGE corretto (BRAINDANCE: «persone», non «persone pubbliche», + rotta imprenditore), denylist pubblica bonificata (SQUELCH: i nomi interni non stanno più nel sorgente), 3 citazioni integrate (KIROSHI, 93/100), testo d'uso riscritto (ECHO), canone conforme (JUDY) |
 
+| 1 | 2026-08-18 | Automazione della catena (ordine diretto del Direttore): RONDA autonoma · filiera fascicoli NotebookLM · inventario ROOT_CLODE | D.R.A.G.O. (RONDA + modulo) · SQUELCH-stile (build_fascicolo.py, inventario_root_clode.sh) | consegnata 18/08 — Routine «RONDA D.R.A.G.O.» creata (spenta fino a push + etichetta `commessa`), bottone «Invia alla RONDA» sul modulo (guardia che respinge collaudata), fascicolo pilota trappole-digitali generato, script inventario collaudato su albero finto senza leak |
+
 Segnalazioni aperte dalla commessa 0 (decide il Direttore):
 - **Debito visivo di famiglia** (JUDY): la firma `.foot` in `#5a6b7d` (~3.4:1 di
   contrasto) sta sia in `commessa.html` sia in `competenze-v1.1.html` — o si

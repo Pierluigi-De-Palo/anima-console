@@ -41,6 +41,8 @@
     font:inherit;font-weight:700;letter-spacing:.06em;padding:11px 22px;cursor:pointer}
   button:hover{filter:brightness(1.1)}
   button:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+  button.sec{background:transparent;color:var(--cyan);border:1px solid var(--cyan);font-weight:600}
+  button.sec:hover{background:rgba(34,211,238,.09);filter:none}
   .esito{font-size:13px;color:var(--green);min-height:1em}
   .vuoti{font-size:12px;color:var(--muted)}
   .vuoti b{color:var(--amber)}
@@ -86,7 +88,9 @@
   browser finché non incolli tu. Ma il prompt può finire in superfici pubbliche
   (issue, verdetti, pagine): <b>le intenzioni riservate restano fuori dai campi</b> —
   se il contesto è sensibile, scrivi «contesto riservato a voce» e D.R.A.G.O. lo
-  tratta da guardia privacy.</div>
+  tratta da guardia privacy. «Invia alla RONDA» apre una GitHub Issue
+  <b>pubblica</b>: lì la regola vale doppio, e sui testi sensibili il bottone si
+  rifiuta da solo.</div>
 
   <div id="avviso" class="avviso" aria-live="polite">⚠ ATTENZIONE — nel testo compaiono parole da
   guardia privacy (<span id="avviso-parole"></span>). Se è un'intenzione riservata,
@@ -94,6 +98,7 @@
 
   <div class="barra">
     <button id="copia" type="button">COPIA IL PROMPT</button>
+    <button id="invia" type="button" class="sec">INVIA ALLA RONDA →</button>
     <span id="esito" class="esito" aria-live="polite"></span>
     <span id="vuoti" class="vuoti"></span>
   </div>
@@ -193,10 +198,34 @@
     }
   }
 
+  /* Via asincrona: la commessa diventa una GitHub Issue con etichetta `commessa`
+     e la lavora la RONDA D.R.A.G.O. L'etichetta DEVE esistere nel repo — lezione
+     del 17/08: GitHub scarta in silenzio le etichette inesistenti; la crea la
+     procedura di attivazione della RONDA, non questa pagina. */
+  function invia(){
+    var r = componi();
+    var esito = document.getElementById("esito");
+    /* guardia dura sul canale pubblico: un'issue la legge chiunque */
+    if (r.testo.match(SENSIBILI)) {
+      esito.textContent = "fermo io: parole sensibili nel testo — questa commessa passala in chat.";
+      return;
+    }
+    var necessita = document.getElementById("necessita").value.trim();
+    var titolo = "[commessa] " + (necessita || "senza necessità dichiarata").slice(0, 60);
+    var corpo = r.testo + "\n\n---\n_Inviata dal modulo LA COMMESSA · in coda per la RONDA D.R.A.G.O._";
+    var url = "https://github.com/Pierluigi-De-Palo/anima-console/issues/new" +
+      "?title=" + encodeURIComponent(titolo) +
+      "&body=" + encodeURIComponent(corpo) +
+      "&labels=" + encodeURIComponent("commessa");
+    window.open(url, "_blank", "noopener");
+    esito.textContent = "issue aperta in un'altra scheda: controlla e conferma lì.";
+  }
+
   CAMPI.forEach(function(c){
     document.getElementById(c[1]).addEventListener("input", aggiorna);
   });
   document.getElementById("copia").addEventListener("click", copia);
+  document.getElementById("invia").addEventListener("click", invia);
   aggiorna();
 })();
 </script>
