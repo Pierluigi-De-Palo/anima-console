@@ -112,6 +112,18 @@ Quando lavori in **Claude Code** su questo repo (GitHub: `anima-console`), la mi
 
 **Regola:** un verdetto senza fonti **non si pubblica**. Lo script lo blocca, ma la responsabilità resta tua.
 
+## LA SQUADRA — commesse e dispatch (dal 2026-08-18)
+
+Il testimone passato di mano in mano è **pensionato** per i lavori di commessa.
+Al suo posto: l'identità dei caposquadra vive in `.claude/agents/*.md` (JUDY ·
+KIROSHI · BRAINDANCE · SQUELCH · ECHO), il Direttore compila **una commessa**
+(`squadra/COMMESSA-TEMPLATE.md`, versione cliccabile `docs/schede/commessa.html`)
+e la porta d'ingresso è **sempre D.R.A.G.O.**, che dispaccia secondo
+`squadra/PROTOCOLLO-DISPATCH.md`. Organigramma e registro commesse:
+`squadra/SQUADRA.md`. Le regole esistenti (ratifica del Direttore, guardia
+privacy, confine Verità, push dal Mac) restano tutte in vigore: il sistema le
+mette a regime, non le sostituisce.
+
 ## Confine (accordo BRAINDANCE, ratificato 2026-07-12)
 - KIROSHI//OR verifica **ditte / venditori / cose / voci**; le **persone e le
   notizie/claim** sono di **BRAINDANCE**. Notizia *su* un'azienda → BRAINDANCE
