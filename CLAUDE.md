@@ -131,6 +131,12 @@ mette a regime, non le sostituisce.
 in PR **bozza**: la ratifica del Direttore è il merge, mai automatico.
 ⚠️ L'etichetta `commessa` deve esistere nel repo (lezione del 17/08).
 
+**I DUE DRAGHI (dal 2026-08-19).** Esiste un gemello commerciale,
+**D.R.A.G.O.//CLIENT** (chat claude.ai, identità in `squadra/DRAGO-CLIENT.md`):
+lui vende ai clienti, la casa produce. Integrazione per handoff di file col
+Direttore come unico ponte, clienti solo per sigla (C-0N) nel repo — regole in
+`squadra/CONVENZIONE-DUE-DRAGHI.md`.
+
 ## Confine (accordo BRAINDANCE, ratificato 2026-07-12)
 - KIROSHI//OR verifica **ditte / venditori / cose / voci**; le **persone e le
   notizie/claim** sono di **BRAINDANCE**. Notizia *su* un'azienda → BRAINDANCE
