@@ -60,5 +60,10 @@ passi — in ogni sessione, locale o remota.
   ostili, patch su clone pulito.
 - **Spesa**: subagent > sessione principale per ogni lavoro delegabile; la
   scomposizione in lotti è anche la politica di risparmio.
+- **I piani non muoiono con le sessioni** (lezione del 19/08: il piano Linux
+  proposto in un'altra chat è andato perso — le sessioni sono container
+  temporanei). Ogni piano approvato si esporta in HTML e si consegna col
+  lavoro; la casa è `ROOT_CLODE/PIANI/`, l'archivia il Direttore. Un piano
+  che vive solo in chat è un piano già perso.
 
 — creato da D.R.A.G.O., 2026-08-17
