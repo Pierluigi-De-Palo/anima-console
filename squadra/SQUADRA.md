@@ -67,6 +67,8 @@ prenotato). Non si inventano ruoli: quando il Direttore li definisce, entrano qu
 
 | 1 | 2026-08-18 | Automazione della catena (ordine diretto del Direttore): RONDA autonoma · filiera fascicoli NotebookLM · inventario ROOT_CLODE | D.R.A.G.O. (RONDA + modulo) · SQUELCH-stile (build_fascicolo.py, inventario_root_clode.sh) | consegnata 18/08 — Routine «RONDA D.R.A.G.O.» creata (spenta fino a push + etichetta `commessa`), bottone «Invia alla RONDA» sul modulo (guardia che respinge collaudata), fascicolo pilota trappole-digitali generato, script inventario collaudato su albero finto senza leak |
 
+| 2 | 2026-08-19 | Console v2 del Direttore + casa delle chiavi + igiene segreti (ordine diretto) | D.R.A.G.O. (console, registro) · SQUELCH-stile (chiavi.sh, .gitignore ×3) | consegnata 19/08 — console v2 (telefono-first, code vive da API, zoo agenti pensionato) e REGISTRO-CHIAVI consegnati come file per il Mac (mai in repo); chiavi.sh collaudato con casi ostili; sezione Segreti chiusa su anima-console e .gitignore nuovi su ninja e solar. Censimento 5 repo: nessun valore segreto mai entrato in git |
+
 Segnalazioni aperte dalla commessa 0 (decide il Direttore):
 - **Debito visivo di famiglia** (JUDY): la firma `.foot` in `#5a6b7d` (~3.4:1 di
   contrasto) sta sia in `commessa.html` sia in `competenze-v1.1.html` — o si
