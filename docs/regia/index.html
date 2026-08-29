@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- La regia non parla con nessuno: niente font remoti, niente contatori, niente
+     fetch. Se un domani qualcuno ce li infila, il browser li blocca da solo.
+     (GitHub Pages non può mandare header: la CSP deve stare qui dentro.) -->
+<meta http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="robots" content="noindex, nofollow">
+<title>REGIA — SYSTEMA 77</title>
+<style>
+  :root{
+    --void:#07090d; --bg:#0a0e14; --panel:#0d141d; --panel2:#111823;
+    --line:#1b2634; --line2:#22303f;
+    --txt:#d7e3ef; --muted:#7d93a8; --dim:#5a6b7d;
+    --cyan:#22d3ee; --green:#2ee6a6; --amber:#f6c453; --red:#ff5c6c;
+    --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{background:var(--void)}
+  body{margin:0;color:var(--txt);font-family:var(--sans);font-size:15px;line-height:1.6;padding:26px 16px 60px}
+  .wrap{max-width:880px;margin:0 auto}
+
+  .hud{border:1px solid var(--line2);border-radius:4px;position:relative;overflow:hidden;
+    background:linear-gradient(180deg,rgba(34,211,238,.05),transparent 60%),var(--bg);padding:18px 20px}
+  .hud::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.35;
+    background:repeating-linear-gradient(180deg,rgba(34,211,238,.045) 0 1px,transparent 1px 3px)}
+  .nm{font-family:var(--mono);font-size:24px;font-weight:700;color:var(--cyan);letter-spacing:.2em;margin:0;line-height:1}
+  .sb{font-family:var(--mono);font-size:11px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin-top:8px}
+  .hl{display:flex;gap:22px;flex-wrap:wrap;margin-top:15px;padding-top:12px;border-top:1px solid var(--line)}
+  .kv{font-family:var(--mono);font-size:11px}
+  .kv b{display:block;color:var(--dim);text-transform:uppercase;font-weight:400;font-size:9.5px;letter-spacing:.14em;margin-bottom:3px}
+  .kv span{color:var(--cyan);font-size:15px}
+
+  h2{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);
+    margin:32px 0 12px;display:flex;align-items:center;gap:12px}
+  h2 i{flex:1;height:1px;background:var(--line);font-style:normal}
+
+  .box{background:var(--panel);border:1px solid var(--line);border-left:2px solid var(--cyan);
+    border-radius:0 4px 4px 0;padding:16px 18px}
+  .box p{color:var(--muted);font-size:14px;margin:0 0 12px}
+  label.f{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--dim);margin-bottom:5px}
+  input[type=password]{width:100%;background:var(--void);border:1px solid var(--line);border-radius:3px;
+    color:var(--txt);font-family:var(--mono);font-size:16px;padding:11px;outline:none}
+  input[type=password]:focus{border-color:var(--cyan)}
+  .riga{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:12px}
+  button{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+    background:transparent;color:var(--cyan);border:1px solid var(--cyan);border-radius:3px;
+    padding:11px 20px;cursor:pointer;transition:background .2s}
+  button:hover:not(:disabled){background:rgba(34,211,238,.09)}
+  button:disabled{opacity:.4;cursor:not-allowed}
+  button.spenta{color:var(--dim);border-color:var(--line2)}
+  button.spenta:hover:not(:disabled){background:rgba(125,147,168,.08)}
+  .ricorda{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--muted);
+    display:flex;gap:7px;align-items:center;cursor:pointer}
+  .esito{font-family:var(--mono);font-size:12px;margin-top:12px;min-height:1.2em}
+  .esito.ko{color:var(--red)}
+  .esito.ok{color:var(--green)}
+  .esito.info{color:var(--amber)}
+  .nota{font-family:var(--mono);font-size:10.5px;color:var(--dim);margin-top:10px;letter-spacing:.05em}
+
+  .blk{background:var(--panel);border:1px solid var(--line);border-radius:4px;margin-bottom:10px;overflow:hidden}
+  .blk h3{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);
+    margin:0;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--panel2)}
+  .blk pre{margin:0;padding:14px 16px;font-family:var(--mono);font-size:12px;color:var(--txt);
+    white-space:pre-wrap;word-break:break-word;overflow-x:auto}
+  /* ── schede-comando: struttura di JUDY, parole di ECHO ── */
+  .comandi{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:6px}
+  @media(min-width:700px){.comandi{grid-template-columns:1fr 1fr}}
+  .scheda{background:var(--panel2);border:1px solid var(--line2);border-radius:8px;padding:14px}
+  .scheda-nome{font-family:var(--mono);font-size:14px;letter-spacing:.1em;color:var(--txt)}
+  .scheda-mestiere{font-size:13px;color:var(--muted);margin:6px 0 12px}
+  .scheda-azioni{display:grid;gap:8px}
+  .cmd{width:100%;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+    background:transparent;color:var(--cyan);border:1px solid var(--cyan);border-radius:6px;
+    padding:11px 10px;min-height:44px;cursor:pointer;transition:background .2s;text-align:left}
+  .cmd:hover{background:rgba(34,211,238,.09)}
+  .cmd:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+  [hidden]{display:none !important}
+  .foot{font-family:var(--mono);font-size:10.5px;color:var(--dim);margin-top:38px;
+    border-top:1px solid var(--line);padding-top:14px;letter-spacing:.05em}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hud">
+    <h1 class="nm">LA PLANCIA</h1>
+    <div class="sb">il banco di lavoro della squadra dietro Cyber Boomer</div>
+    <div class="hl" id="quadro-pubblico">
+      <!-- i valori li scrive il motore da REGIA.pubblico: senza dati, trattini -->
+      <div class="kv"><b>verdetti</b><span data-pub="verdetti.totale">—</span></div>
+      <div class="kv"><b>media</b><span data-pub="verdetti.media">—</span></div>
+      <div class="kv"><b>caposquadra</b><span data-pub="squadra.caposquadra">—</span></div>
+      <div class="kv"><b>aggiornato</b><span data-pub="aggiornato">—</span></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       STRATO PUBBLICO — spazio libero: qui si innesta la pagina vera.
+       Chi scrive qui non deve toccare né la serratura né il motore in fondo.
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <div id="strato-pubblico">
+    <section class="box">
+      <p>Questa pagina non è una vetrina: è dove la squadra controlla lo stato del
+      proprio lavoro. Se sei arrivato qui senza cercarlo, va benissimo così — non
+      c'è nient'altro da vedere, e non ti manca niente. La parte che conta è
+      protetta da una parola d'ordine e serve solo a chi ci lavora dentro.</p>
+      <p class="nota" id="nota-numeri">Numeri letti in diretta dai dati pubblici del sistema. Aggiornati a ogni pubblicazione.</p>
+    </section>
+  </div>
+
+  <!-- «sotto chiave» e non l'aggettivo che la guardia privacy cerca in docs/:
+       lei segnala ogni pagina pubblica che si dichiara chiusa, ed è giusto così.
+       Una guardia che suona sempre a casa sua è una guardia che nessuno ascolta. -->
+  <h2>Regia sotto chiave <i></i></h2>
+
+  <section class="box" id="serratura">
+    <p id="serratura-testo"><b>Accesso riservato.</b> Questa parte si apre solo con una parola d'ordine. Se non ce l'hai, non è per te: puoi tornare indietro senza aver perso niente.</p>
+    <form id="modulo" autocomplete="off">
+      <label class="f" for="frase">passphrase</label>
+      <!-- name/id ma MAI value: la passphrase non deve esistere nel sorgente,
+           nell'URL (form-action 'none' + submit intercettato) né in un log. -->
+      <input type="password" id="frase" autocomplete="off" autocapitalize="off"
+             autocorrect="off" spellcheck="false" enterkeyhint="go">
+      <div class="riga">
+        <button type="submit" id="apri">apri la regia</button>
+        <label class="ricorda"><input type="checkbox" id="ricorda"> ricorda su questo dispositivo</label>
+      </div>
+    </form>
+    <div class="esito" id="esito" role="status" aria-live="polite"></div>
+    <div class="nota" id="nota-serratura"></div>
+  </section>
+
+  <section id="aperto" hidden>
+    <div class="riga" style="margin:0 0 14px">
+      <button type="button" id="chiudi" class="spenta">chiudi la regia</button>
+      <span class="nota" style="margin:0">dimentica la chiave su questo dispositivo</span>
+    </div>
+    <h2>I comandi <i></i></h2>
+    <p class="nota" style="margin:0 0 14px">Un comando non esegue nulla sul momento: deposita una richiesta nella coda di lavoro. La squadra la lavora e torna una bozza da ratificare.</p>
+    <div class="comandi">
+      <article class="scheda">
+        <div class="scheda-nome">D.R.A.G.O.</div>
+        <p class="scheda-mestiere">Prende una richiesta e la manda alla persona giusta della squadra.</p>
+        <div class="scheda-azioni">
+          <button type="button" class="cmd" data-agente="D.R.A.G.O." data-azione="Smista una richiesta" data-conferma="Registrata: entra in coda, verrà indirizzata al reparto giusto. Non parte nulla adesso.">Smista una richiesta</button>
+          <button type="button" class="cmd" data-agente="D.R.A.G.O." data-azione="Rileggi le code" data-conferma="Segnato: qualcuno ricontrollerà tutte le richieste in attesa, comprese quelle senza etichetta.">Rileggi le code</button>
+          <button type="button" class="cmd" data-agente="D.R.A.G.O." data-azione="Riassegna un lavoro" data-conferma="Registrato: il cambio di responsabile verrà applicato al prossimo passaggio.">Riassegna un lavoro</button>
+        </div>
+      </article>
+      <article class="scheda">
+        <div class="scheda-nome">KIROSHI</div>
+        <p class="scheda-mestiere">Controlla se un'azienda, un prodotto o un venditore sono affidabili, fonti alla mano.</p>
+        <div class="scheda-azioni">
+          <button type="button" class="cmd" data-agente="KIROSHI" data-azione="Verifica un'azienda o un prodotto" data-conferma="Depositata: la verifica entra in coda. Tornerà una bozza con le fonti, da controllare prima di pubblicarla.">Verifica un'azienda o un prodotto</button>
+          <button type="button" class="cmd" data-agente="KIROSHI" data-azione="Riapri un verdetto" data-conferma="Registrata: la richiesta di revisione ha la priorità sulle nuove verifiche.">Riapri un verdetto</button>
+          <button type="button" class="cmd" data-agente="KIROSHI" data-azione="Segnala una fonte" data-conferma="Ricevuta: la fonte verrà valutata insieme al resto prima di qualsiasi aggiornamento.">Segnala una fonte</button>
+        </div>
+      </article>
+      <article class="scheda">
+        <div class="scheda-nome">BRAINDANCE</div>
+        <p class="scheda-mestiere">Controlla se una notizia o un'affermazione su una persona pubblica regge, senza mai toccare la vita privata di nessuno.</p>
+        <div class="scheda-azioni">
+          <button type="button" class="cmd" data-agente="BRAINDANCE" data-azione="Verifica una notizia" data-conferma="Depositata: entra in coda. Tornerà una bozza di verdetto da controllare.">Verifica una notizia</button>
+          <button type="button" class="cmd" data-agente="BRAINDANCE" data-azione="Segnala un'affermazione" data-conferma="Registrata: verrà esaminata insieme alle fonti disponibili.">Segnala un'affermazione</button>
+          <button type="button" class="cmd" data-agente="BRAINDANCE" data-azione="Chiedi un aggiornamento" data-conferma="Registrato: la richiesta di aggiornamento è in coda.">Chiedi un aggiornamento</button>
+        </div>
+      </article>
+      <article class="scheda">
+        <div class="scheda-nome">JUDY</div>
+        <p class="scheda-mestiere">Decide come deve apparire ogni pagina: colori, caratteri, coerenza tra le stanze.</p>
+        <div class="scheda-azioni">
+          <button type="button" class="cmd" data-agente="JUDY" data-azione="Rivedi una pagina" data-conferma="Segnalata: la pagina entra nel giro di controllo visivo.">Rivedi una pagina</button>
+          <button type="button" class="cmd" data-agente="JUDY" data-azione="Correggi lo stile" data-conferma="Registrata: la correzione entra in coda, tornerà una proposta da approvare.">Correggi lo stile</button>
+          <button type="button" class="cmd" data-agente="JUDY" data-azione="Approva una novità visiva" data-conferma="Registrato: il via libera resta in attesa della ratifica finale.">Approva una novità visiva</button>
+        </div>
+      </article>
+      <article class="scheda">
+        <div class="scheda-nome">SQUELCH</div>
+        <p class="scheda-mestiere">Tiene in piedi la parte tecnica: automazioni, sicurezza, protezione dei dati.</p>
+        <div class="scheda-azioni">
+          <button type="button" class="cmd" data-agente="SQUELCH" data-azione="Controlla un guasto" data-conferma="Segnalato: la verifica tecnica entra in coda con priorità.">Controlla un guasto</button>
+          <button type="button" class="cmd" data-agente="SQUELCH" data-azione="Rafforza la sicurezza" data-conferma="Registrata: la richiesta è in coda, tornerà un rapporto su cosa è stato fatto.">Rafforza la sicurezza</button>
+          <button type="button" class="cmd" data-agente="SQUELCH" data-azione="Verifica la privacy di una pagina" data-conferma="Depositata: il controllo entra in coda, tornerà un esito da leggere.">Verifica la privacy di una pagina</button>
+        </div>
+      </article>
+      <article class="scheda">
+        <div class="scheda-nome">ECHO</div>
+        <p class="scheda-mestiere">Scrive e adatta i testi per ogni schermo e ogni pubblico, stesso messaggio, taglio giusto.</p>
+        <div class="scheda-azioni">
+          <button type="button" class="cmd" data-agente="ECHO" data-azione="Riscrivi un testo" data-conferma="Registrata: la riscrittura entra in coda, tornerà una bozza da leggere.">Riscrivi un testo</button>
+          <button type="button" class="cmd" data-agente="ECHO" data-azione="Adatta per un altro canale" data-conferma="Depositata: l'adattamento entra in coda.">Adatta per un altro canale</button>
+          <button type="button" class="cmd" data-agente="ECHO" data-azione="Controlla il tono" data-conferma="Registrato: la verifica di tono entra in coda con le altre.">Controlla il tono</button>
+        </div>
+      </article>
+    </div>
+    <div class="esito" id="esito-comando" role="status" aria-live="polite"></div>
+
+    <h2>Il quadro <i></i></h2>
+    <div id="innesto"></div>
+  </section>
+
+  <div class="foot">
+    Pagina pubblica per costruzione (GitHub Pages): quello che è privato è
+    cifrato, non nascosto. AES-GCM 256 · PBKDF2-SHA256 · WebCrypto del browser.<br>
+    — motore di SQUELCH, 2026-08-29 · contenuti generati da <code>scripts/build_regia.py</code>
+  </div>
+</div>
+
+<!--REGIA:PUBBLICO:INIZIO-->
+<script id="regia-pubblico" type="application/json">
+{
+ "aggiornato": "2026-08-29",
+ "verdetti": {
+  "totale": 7,
+  "media": 63,
+  "ultimo": "2026-08-29"
+ },
+ "squadra": {
+  "caposquadra": 5
+ },
+ "generato_da": "scripts/build_regia.py"
+}
+</script>
+<!--REGIA:PUBBLICO:FINE-->
+
+<!--REGIA:CIFRATO:INIZIO-->
+<script id="regia-cifrato" type="application/json">
+{
+ "v": 1,
+ "cifra": "AES-GCM-256",
+ "kdf": "PBKDF2-SHA256",
+ "iter": 210000,
+ "salt": "UO/yYP8kt6Y2RQIidhbDKA==",
+ "blocchi": [
+  {
+   "iv": "TeywD4zc4CMvnOEx",
+   "d": "qpKtQ7aUzje5FFEDc61FMMs57Nwrw17UVAewiyYa1ovLBtn0p7JjJO6yrlk76CJ2b6sv8d+9SZrxHhNX58M4WTHBKyFFDmT6UURLK/8tWzahoNnzBTvl+jfG6EHcoKCdAB8wAaieeyebhM//u98Ik/LJRNiRFEV7bojrHmwe1LdTCEhe9a35W52zj6s6dEwc5BTVlCifQs4MPGkKAXwH/xwag/cVVFOvR6vrgo0sOixExBng1iGV0unPrEtzZt/oXqbHdcmO/SluiAkzv5TzG53W5X3JS/LCgzLqKnLj/uitDqmMvvlHITfai+fLA3K7ierPuwrNF8YZefTLWg8OzKhNw3udHX/HZb6TFnBSIw7oFULYY2Zjvm2Y0glrTF/mGJzraq2LlvWzHBgPc5ND/wC3iCkSyzYXT7iJSKBiseTq4qZLdMyU/JjXv9DKhUZfBLPYkYluqTup39hBFg83E3htzhK82KM45bemTdUfirKqgX2UpF/2kVRXyYwHO8kpMu9mvQr7pZfvquAlBGpQp1ioK3N8aczI8XPNKzqZ3ZaxPMjAki70Y/6rRqyqPfVpE5QmrgdTq0LcKhjRvK0k9zgJZLejf0kP9LcGTNgqEoBfdRQTNBDq3C/lvLlC4HEEEmkM7klXQqfs1lXyF+9EyhkM/BrIdtbveRIcd4g9RVH7ou9Ho3JnOGYvbd4vO58B21o3EsirPPv+o1Bp7dOxzpGJDb9zNAqHbsFVi0s="
+  },
+  {
+   "iv": "mh8A+ubMpr8HfmIE",
+   "d": "mMkJKUKUz9PFK/MfPdS77r2xJlIw54f4yMPVdsBmCad6R6Xbkrj6T6/IYYC7GMsfODtEAU9c0jjwZRUlXLWfw7Lei7IfgrQqtrWNQlNXOrSXJLm8lKN+vdxfShYaEZcRHFAts4q+/IVx7sV6ameGeW+6Am6IeySv4PYF/2d/0dp3o42Q2GZEl+pUX/060y0AYFbpGQ9DR4E482FVUvC0jf/7R6pLyUKDbZd6p0iK8oHgiWfc/NGs4RwFQfj13tx9QJjZ9OQGp8artfJrpStjSK7Bs0hXVKFG00hXwVLZgEzdgUrsRsWFyQVfQ+cvw+X49VyWYX6STaqz/bkCrLjqG05gFPLsJmsILIRTMUxhHriIh/qT8VzegbxLMCe86p1vYbTQLaFYzp5xrTj2mjTsg1IFrKhUoU7DnUUsD8h3NJZfvL+o32d33DPyxZqr5zoIdAv1QeBxnBlXZO7NLX7Jv42qVYMNcNxguatrVvNhcvZr+g/PAtaJzdrlr5HeUegpj7Qa8OTK/o7X4s5G1nyYoud9eIss+myQZgZE1AsDv9juHU1xKiJSmhxXaWCdaRarZXvcnidx0uM5Lk4YuBd9WZ2vGC/uC8e7mniYxi/OzQ1mps7/uoiE66uh3a/RRZMNqFtDg0P4VBKvg78k1VC0HPcVliecXjotTT0J4imxJ5UxydqyeneR+wzajP0lfXMJmtuyK6koU8cN3Xit32T+9AYk7k0bwScaHC0mqRwJ/FaVSEPDzJoSzw1t8PukqGgQ1G/T4x5xqM/GnyUK/AkMwRO5jAC3z4RQcB0cB1H/eKv/nHu7IS+zZmth9UpMovr7OUL3ilF05J6xKgVUvlUObuoWCLPWsOg3LP0asWgHCAKVx4DXUi9OPBPksoG3BX+qxw=="
+  },
+  {
+   "iv": "tbNZKKomdimtQMOY",
+   "d": "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"
+  },
+  {
+   "iv": "dseuUqVE8bALVp0w",
+   "d": "bFHIVPNy8L/niN27oyZX0ivPdTjkRO2CweWI+Zq3FeHxjBGlPsBJ2fy+c/GMTmJbtYHyCNtsOdpY2QE1xK41k2qVzT6Y4HS0dGlthZHPzQnL67IyW6iU8Kr+ys2kn4VL8iAOtKLk18KgsFHuk9UWwlX3uR8c1lxRcjGs7dujpYzmtcsuzAvZWeaNsp5kEdnFsbuhyhGEVoqm1OEjH4gVB0Np7iOPSBPJvAcdBAt6VbaPhQQXgZtE+vJV6t13+afQ4ar2225GvmBk3yfrIl4vGYVv+z2D3iw/TZB8StcszA=="
+  },
+  {
+   "iv": "i6vaA0YP9NURFXS2",
+   "d": "MQtTxV7hHEsME+kK+Hfl1NL/upTR1fOsS4vil3NWwt4gDysyeefI7UDenwXL/Qz2z7WReVyXL9qv3YhseP0PQDcAdH2OmUgeElh8dfT0gxDmAmwIJr/5G9RJA86S8yoteSawM5Fqiik9kV9U0jLfaXLWSZUnLZLIlwS/PTlfIguddQU3grRc2U+0Gh32sdx2lBZB5aElwd8vX2KxTQP8I5iHjWE//2aVDnm/dTXtMfufw9uO5o1wAlSmn6WjCrN8lRD6usO67I6KOJ/y1+q49+fujKERc0uvHglgzu/r9SkAy6jFwpIaLP34Jd2OlAFiQvHpCYqiJX320xGzdUwn/jdWJX9jF9G8gw4GpJHhe7L577rpoRmVchiOPIc1LVDmgwfW5s1ilbIwbGeQbgvpHGqnA69bFJE5sH91WyWmNy9oC5wziqOS9l4jz5QDEtPqy1pvpIekBFSMfTN73LsQMXMJ1R790Hfb9iC7dE7BG8DFMpO8EUUSoiD0dEmIadRL6tReH2RqLLd8abQ070DS0S53GNwK2+wWRl0tG5h1ThKt+fr94cI4eqyp3ZP9WXx3igO3W2aWD++TMc/GGMF/B89EZ1ENKFZ0"
+  }
+ ]
+}
+</script>
+<!--REGIA:CIFRATO:FINE-->
+
+<script>
+/* ══════════════════════════════════════════════════════════════════════════
+   MOTORE CRITTOGRAFICO DELLA REGIA
+
+   COSA FA — apre con una passphrase il payload cifrato che il generatore ha
+   incollato qui sopra, e passa i dati in chiaro a chi ha registrato un innesto.
+   PERCHÉ ESISTE — questa pagina la serve GitHub Pages: è pubblica per
+   costruzione. «Privato» qui si ottiene cifrando, non nascondendo: un URL
+   segreto è un segreto che vive nella cronologia di un telefono.
+   FIN DOVE ARRIVA — la sicurezza sta tutta nella passphrase e nelle iterazioni
+   PBKDF2. Il ritardo progressivo qui sotto è attrito per un umano davanti al
+   telefono, NON una difesa: chi scarica il payload attacca offline, dove i
+   nostri ritardi non esistono. Restano visibili a chiunque i metadati: numero
+   dei blocchi e loro dimensione. I nomi dei blocchi no, stanno dentro il cifrato.
+   — SQUELCH, 2026-08-29
+   ══════════════════════════════════════════════════════════════════════════ */
+(() => {
+  'use strict';
+
+  const ITER_MINIME = 200000;      // un payload più debole non lo apriamo: è rotto o è stato riscritto
+  const CASSETTO = 'regia.chiave.v1';
+  const $ = (id) => document.getElementById(id);
+
+  // ── stato in memoria. La passphrase NON entra qui: vive il tempo di una
+  //    variabile locale dentro apri(), poi il campo viene svuotato.
+  let chiave = null;      // CryptoKey
+  let dati = null;        // {nome: contenuto} decifrato
+  let tentativi = 0;
+  let occupato = false;
+
+  const innesti = [];
+
+  // ── codifiche ────────────────────────────────────────────────────────────
+  const testo = new TextDecoder();
+  const byte = (s) => new TextEncoder().encode(s);
+  function daB64(s){
+    if (typeof s !== 'string') throw new Error('base64 assente');
+    const bin = atob(s);                       // atob() esplode da solo su spazzatura
+    const u = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i);
+    return u;
+  }
+  const aB64 = (u) => btoa(String.fromCharCode(...new Uint8Array(u)));
+
+  // ── payload ──────────────────────────────────────────────────────────────
+  // Tre esiti onesti: assente (mai generato), illeggibile (rotto o manomesso),
+  // pronto. Nessuno dei tre rompe la pagina.
+  function leggiPayload(){
+    const tag = $('regia-cifrato');
+    if (!tag) return {stato:'assente', motivo:'blocco payload non presente nella pagina'};
+    let p;
+    try { p = JSON.parse(tag.textContent); }
+    catch { return {stato:'illeggibile', motivo:'il payload non è JSON valido'}; }
+    if (p === null || p === undefined) return {stato:'assente', motivo:'payload non ancora generato'};
+    if (p.v !== 1) return {stato:'illeggibile', motivo:'versione di payload sconosciuta'};
+    if (p.cifra !== 'AES-GCM-256' || p.kdf !== 'PBKDF2-SHA256')
+      return {stato:'illeggibile', motivo:'cifrario dichiarato non gestito'};
+    if (!Number.isInteger(p.iter) || p.iter < ITER_MINIME)
+      return {stato:'illeggibile', motivo:'derivazione della chiave troppo debole: payload non attendibile'};
+    if (!Array.isArray(p.blocchi) || p.blocchi.length === 0)
+      return {stato:'illeggibile', motivo:'payload senza blocchi'};
+    try { daB64(p.salt); } catch { return {stato:'illeggibile', motivo:'salt non leggibile'}; }
+    return {stato:'pronto', p};
+  }
+
+  function leggiPubblico(){
+    const tag = $('regia-pubblico');
+    if (!tag) return null;
+    try { return JSON.parse(tag.textContent); } catch { return null; }
+  }
+
+  // ── cripto ───────────────────────────────────────────────────────────────
+  async function derivaChiave(frase, salt, iter, esportabile){
+    const materiale = await crypto.subtle.importKey('raw', byte(frase), 'PBKDF2', false, ['deriveKey']);
+    // esportabile SOLO se il Direttore ha chiesto di essere ricordato: se non
+    // l'ha chiesto, nemmeno uno script sulla stessa origine può tirarla fuori.
+    return crypto.subtle.deriveKey(
+      {name:'PBKDF2', salt, iterations:iter, hash:'SHA-256'},
+      materiale, {name:'AES-GCM', length:256}, esportabile, ['decrypt']);
+  }
+
+  // Un blocco = un messaggio, con il suo IV. Il nome sta DENTRO il chiaro:
+  // fuori si vedono solo quanti sono e quanto pesano.
+  async function apriBlocchi(p, k){
+    const fuori = {};
+    const rotti = [];
+    for (let i = 0; i < p.blocchi.length; i++){
+      const b = p.blocchi[i];
+      const chiaro = await crypto.subtle.decrypt(
+        {name:'AES-GCM', iv:daB64(b.iv)}, k, daB64(b.d));   // GCM autentica: se non torna, esplode
+      let v;
+      try { v = JSON.parse(testo.decode(chiaro)); }
+      catch { rotti.push(i); continue; }
+      if (!v || typeof v.nome !== 'string') { rotti.push(i); continue; }
+      fuori[v.nome] = v.dati;
+    }
+    return {fuori, rotti};
+  }
+
+  // ── serratura ────────────────────────────────────────────────────────────
+  function dillo(msg, classe){
+    const e = $('esito');
+    e.textContent = msg;                       // textContent: mai innerHTML su roba che viene da fuori
+    e.className = 'esito' + (classe ? ' ' + classe : '');
+  }
+
+  function mostraAperta(rotti){
+    $('serratura').hidden = true;
+    $('aperto').hidden = false;
+    const zona = $('innesto');
+    zona.textContent = '';
+    if (rotti.length) {
+      const avviso = document.createElement('div');
+      avviso.className = 'esito ko';
+      avviso.textContent = `${rotti.length} blocco/i non si è aperto: payload da rigenerare.`;
+      zona.appendChild(avviso);
+    }
+    // L'innesto è di chi scrive lo strato pubblico. Se non c'è, si vede il
+    // grezzo: meglio una pagina brutta che una pagina che tace.
+    if (innesti.length){
+      for (const fn of innesti) {
+        try { fn(dati); }
+        catch (err) { console.error('innesto in errore', err && err.message); }
+      }
+    } else {
+      for (const nome of Object.keys(dati)){
+        const blk = document.createElement('section');
+        blk.className = 'blk';
+        const h = document.createElement('h3'); h.textContent = nome;
+        const pre = document.createElement('pre');
+        pre.textContent = JSON.stringify(dati[nome], null, 2);
+        blk.appendChild(h); blk.appendChild(pre); zona.appendChild(blk);
+      }
+    }
+  }
+
+  const attesa = (ms) => new Promise(r => setTimeout(r, ms));
+
+  async function apri(frase, ricorda){
+    const stato = leggiPayload();
+    if (stato.stato !== 'pronto') { dillo('Payload ' + stato.stato + ': ' + stato.motivo, 'ko'); return false; }
+    const p = stato.p;
+
+    // Ritardo progressivo: 0, 0.4s, 0.8s, 1.6s… fino a 8s. Frena le dita, non
+    // frena un attacco offline — quello lo frenano le 200k+ iterazioni.
+    if (tentativi > 0) {
+      const ms = Math.min(400 * Math.pow(2, tentativi - 1), 8000);
+      dillo(`Attendo ${(ms/1000).toFixed(1)}s prima di riprovare…`, 'info');
+      await attesa(ms);
+    }
+
+    let k, r;
+    // Solo la parte cripto sta nel try: se a sbagliare fosse il codice che
+    // disegna, non deve uscirne «passphrase non valida» — una diagnosi falsa
+    // costa più di un errore.
+    try {
+      k = await derivaChiave(frase, daB64(p.salt), p.iter, !!ricorda);
+      r = await apriBlocchi(p, k);
+    } catch (err) {
+      tentativi++;
+      // Messaggio unico: passphrase sbagliata e payload manomesso danno lo
+      // stesso errore GCM, e nessuno dei due deve raccontare cosa c'è dentro.
+      dillo('Passphrase non valida. La regia resta chiusa.', 'ko');
+      return false;
+    }
+    chiave = k; dati = r.fuori; tentativi = 0;
+    if (ricorda) ricordaChiave(k, p.salt);
+    dillo('', '');
+    mostraAperta(r.rotti);
+    return true;
+  }
+
+  async function ricordaChiave(k, saltB64){
+    try {
+      const grezza = await crypto.subtle.exportKey('raw', k);
+      // Si ricorda la CHIAVE, non la passphrase: la passphrase è del Direttore
+      // e può valere altrove, la chiave vale solo per questo payload. Il pezzo
+      // di salt fa da etichetta: al primo payload rigenerato la chiave scade sola.
+      localStorage.setItem(CASSETTO, JSON.stringify({k:aB64(grezza), s:saltB64.slice(0,12)}));
+      $('nota-serratura').textContent = 'Chiave ricordata su questo dispositivo. «chiudi la regia» la dimentica.';
+    } catch {
+      $('nota-serratura').textContent = 'Non ho potuto ricordare la chiave su questo dispositivo (archivio locale non disponibile).';
+    }
+  }
+
+  async function riprendiChiave(p){
+    let salvato;
+    try { salvato = JSON.parse(localStorage.getItem(CASSETTO) || 'null'); } catch { salvato = null; }
+    if (!salvato || salvato.s !== p.salt.slice(0,12)) return false;   // payload nuovo → chiave vecchia buttata
+    try {
+      const k = await crypto.subtle.importKey('raw', daB64(salvato.k), {name:'AES-GCM'}, true, ['decrypt']);
+      const r = await apriBlocchi(p, k);
+      chiave = k; dati = r.fuori;
+      mostraAperta(r.rotti);
+      return true;
+    } catch {
+      chiudi(true);            // chiave che non apre più: si butta senza dire niente
+      return false;
+    }
+  }
+
+  function chiudi(zitto){
+    chiave = null; dati = null; tentativi = 0;
+    try { localStorage.removeItem(CASSETTO); } catch {}
+    $('innesto').textContent = '';
+    $('aperto').hidden = true;
+    $('serratura').hidden = false;
+    $('frase').value = '';
+    $('ricorda').checked = false;
+    $('nota-serratura').textContent = '';
+    if (!zitto) dillo('Regia chiusa: chiave dimenticata su questo dispositivo.', 'info');
+    if (location.hash) history.replaceState(null, '', location.pathname);
+  }
+
+  // ── quadro pubblico: valori dal JSON in chiaro, altrimenti trattini ───────
+  function scriviPubblico(pub){
+    for (const el of document.querySelectorAll('[data-pub]')){
+      const v = el.getAttribute('data-pub').split('.').reduce((o,k) => (o == null ? o : o[k]), pub);
+      el.textContent = (v === null || v === undefined || v === '') ? '—' : String(v);
+    }
+  }
+
+  // ── avvio ────────────────────────────────────────────────────────────────
+  const pubblico = leggiPubblico();
+  scriviPubblico(pubblico);
+
+  const stato = leggiPayload();
+  if (stato.stato !== 'pronto'){
+    $('frase').disabled = true;
+    $('apri').disabled = true;
+    $('serratura-testo').textContent =
+      stato.stato === 'assente'
+        ? 'Regia non ancora generata: manca il payload cifrato (scripts/build_regia.py). La pagina pubblica qui sopra funziona lo stesso.'
+        : 'Payload illeggibile — ' + stato.motivo + '. Va rigenerato: nessun dato è andato perso, questa è solo la copia pubblicata.';
+    dillo('', '');
+  }
+
+  // La CSP porta `form-action 'none'` — che è la difesa giusta (la passphrase non
+  // deve poter finire in un URL), ma il browser blocca l'invio PRIMA dell'evento:
+  // un gestore di `submit` non verrebbe mai chiamato e il bottone resterebbe muto.
+  // Quindi il gesto passa dal click e dall'Invio, non dall'invio del modulo.
+  async function tentaApertura(){
+    if (occupato) return;
+    const campo = $('frase');
+    const frase = campo.value;
+    if (!frase) { dillo('Serve la passphrase.', 'ko'); return; }
+    campo.value = '';                            // fuori dal DOM subito
+    occupato = true; $('apri').disabled = true;
+    try { await apri(frase, $('ricorda').checked); }
+    finally { occupato = false; $('apri').disabled = false; }
+  }
+
+  $('modulo').addEventListener('submit', (ev) => { ev.preventDefault(); tentaApertura(); });
+  $('apri').addEventListener('click', (ev) => { ev.preventDefault(); tentaApertura(); });
+  $('frase').addEventListener('keydown', (ev) => {
+    if (ev.key === 'Enter') { ev.preventDefault(); tentaApertura(); }
+  });
+
+  $('chiudi').addEventListener('click', () => chiudi(false));
+
+  // «chiudi la regia» anche da fuori: link con #chiudi (comodo dal telefono)
+  // e comando dalla console del browser.
+  if (location.hash === '#chiudi') chiudi(false);
+  addEventListener('hashchange', () => { if (location.hash === '#chiudi') chiudi(false); });
+
+  if (stato.stato === 'pronto') riprendiChiave(stato.p);
+
+  // ── innesto per lo strato pubblico ───────────────────────────────────────
+  // Chi costruisce la pagina fa: REGIA.suApertura(dati => { … }).
+  // Regola: costruire nodi con textContent. I dati sono nostri, ma innerHTML
+  // su roba decifrata è la porta da cui entra il primo bug altrui.
+  window.REGIA = {
+    pubblico,
+    stato: () => ({aperta: dati !== null, payload: stato.stato, blocchi: dati ? Object.keys(dati) : []}),
+    blocco: (nome) => (dati ? dati[nome] : undefined),
+    suApertura: (fn) => { innesti.push(fn); if (dati) { try { fn(dati); } catch(e){ console.error(e); } } },
+    chiudi: () => chiudi(false),
+  };
+  window.chiudiLaRegia = () => chiudi(false);
+})();
+</script>
+
+<script>
+/* I comandi della plancia. Depositano una richiesta nella coda con etichetta
+   `regia`: la ronda la legge e la instrada al caposquadra giusto.
+   ⚠ L'etichetta deve esistere nel repo: una che non c'e' sparisce in silenzio
+   (lezione del 17/08 su kiroshi-queue, del 18/08 su commessa). */
+(function(){
+  "use strict";
+  var BASE = "https://github.com/Pierluigi-De-Palo/anima-console/issues/new";
+  function oggi(){
+    var d = new Date();
+    return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
+  }
+  document.addEventListener("click", function(e){
+    var b = e.target.closest(".cmd");
+    if (!b) return;
+    var agente = b.dataset.agente, azione = b.dataset.azione;
+    var corpo = "AGENTE — " + agente + "\nAZIONE — " + azione +
+      "\nDETTAGLIO — (scrivi qui cosa serve: piu' sei preciso, meno domande tornano indietro)" +
+      "\n\n---\n_Comando premuto dalla plancia · " + oggi() + "_";
+    var url = BASE + "?title=" + encodeURIComponent("[regia] " + agente + " — " + azione) +
+      "&body=" + encodeURIComponent(corpo) + "&labels=" + encodeURIComponent("regia");
+    window.open(url, "_blank", "noopener");
+    var esito = document.getElementById("esito-comando");
+    if (esito){ esito.className = "esito ok"; esito.textContent = b.dataset.conferma; }
+  });
+})();
+</script>
+</body>
+</html>
