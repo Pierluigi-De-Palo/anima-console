@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verdetto — Il paradosso di Fermi · BRAINDANCE</title>
+<style>
+  :root{
+    --bg:#faf9f5; --card:#ffffff; --ink:#2c2c2a; --muted:#5f5e5a; --line:#e6e4dc;
+    --amber-bg:#faeeda; --amber-ink:#633806; --amber-fill:#ef9f27;
+    --green-bg:#eaf3de; --green-ink:#27500a;
+    --coral-bg:#faece7; --coral-ink:#712b13;
+    --blue-bg:#e8eef8; --blue-ink:#1e3a63;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{--bg:#1c1c1a;--card:#26262a;--ink:#ece9e2;--muted:#b4b2a9;--line:#3a3a38;
+      --amber-bg:#3d2f18;--amber-ink:#f3c98b;--green-bg:#233318;--green-ink:#bfe39a;
+      --coral-bg:#3a221b;--coral-ink:#f0b49b;--blue-bg:#1d2836;--blue-ink:#a9c6ee}
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.65;padding:2rem 1rem;display:flex;justify-content:center}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.5rem 1.6rem;max-width:720px;width:100%}
+  .top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+  .src-label{font-size:13px;color:var(--muted)}
+  .pill{background:var(--amber-bg);color:var(--amber-ink);font-size:13px;font-weight:600;
+    padding:5px 13px;border-radius:20px}
+  .claim{font-size:18px;line-height:1.5;margin:0 0 6px;font-style:italic}
+  .chiesto{font-size:13px;color:var(--muted);margin:0 0 18px}
+  .conf-row{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:6px}
+  .conf-val{color:var(--amber-ink);font-weight:600}
+  .track{height:8px;background:var(--bg);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+  .fill{height:100%;background:var(--amber-fill);border-radius:20px}
+  h2{font-size:15px;margin:26px 0 10px;letter-spacing:.02em}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin:16px 0}
+  .box{border-radius:12px;padding:12px 15px}
+  .box.pro{background:var(--green-bg)} .box.pro h3,.box.pro li{color:var(--green-ink)}
+  .box.con{background:var(--coral-bg)} .box.con h3,.box.con li{color:var(--coral-ink)}
+  .box h3{font-size:13px;font-weight:600;margin:0 0 10px}
+  .box ul{margin:0;padding-left:18px;font-size:14px;line-height:1.55}
+  .box li{margin:0 0 8px}
+  .take{font-size:14.5px;background:var(--bg);border:1px solid var(--line);border-radius:12px;
+    padding:13px 16px;margin:0 0 14px}
+  .take.blu{background:var(--blue-bg);border-color:transparent;color:var(--blue-ink)}
+  .conto{font-size:14px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:4px 16px 12px;margin:0 0 16px}
+  .conto table{width:100%;border-collapse:collapse;font-size:14px}
+  .conto td{padding:7px 4px;border-bottom:1px solid var(--line);vertical-align:top}
+  .conto tr:last-child td{border-bottom:0}
+  .conto td.e{width:30px;font-weight:700;color:var(--muted)}
+  .conto td.v{width:104px;font-weight:700;text-align:right;white-space:nowrap}
+  .v.si{color:var(--green-ink)} .v.no{color:var(--coral-ink)} .v.forse{color:var(--amber-ink)}
+
+  /* linea del tempo */
+  .tl{margin:14px 0 6px;padding:0;list-style:none;position:relative}
+  .tl::before{content:"";position:absolute;left:66px;top:6px;bottom:6px;width:2px;background:var(--line)}
+  .tl li{position:relative;padding:0 0 16px 92px;min-height:34px}
+  .tl .anno{position:absolute;left:0;top:0;width:56px;text-align:right;font-weight:700;font-size:14px;color:var(--ink)}
+  .tl li::before{content:"";position:absolute;left:61px;top:6px;width:12px;height:12px;border-radius:50%;
+    background:var(--card);border:2px solid var(--muted)}
+  .tl li.pub::before{background:var(--amber-fill);border-color:var(--amber-fill)}
+  .tl li.priv::before{background:var(--card);border-color:var(--muted)}
+  .tl .cosa{font-size:14.5px;line-height:1.5}
+  .tl .cosa b{font-weight:600}
+  .tl .tag{display:inline-block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+    padding:1px 7px;border-radius:10px;margin-left:6px;vertical-align:1px}
+  .tag.privato{background:var(--coral-bg);color:var(--coral-ink)}
+  .tag.stampa{background:var(--amber-bg);color:var(--amber-ink)}
+  .tag.pubblico{background:var(--green-bg);color:var(--green-ink)}
+  .legenda{font-size:12.5px;color:var(--muted);margin:2px 0 0}
+
+  .sources{border-top:1px solid var(--line);padding-top:14px;font-size:13.5px;color:var(--muted);margin-top:22px}
+  .sources ol{padding-left:20px;margin:8px 0 0}
+  .sources li{margin:0 0 9px;line-height:1.5}
+  .sources a{color:inherit}
+  .sources .stato{font-size:12px;display:block;color:var(--muted);opacity:.85}
+  .sign{margin-top:16px;font-size:12px;color:var(--muted)}
+  @media(max-width:520px){
+    .tl::before{left:0}
+    .tl li{padding-left:22px}
+    .tl .anno{position:static;display:block;width:auto;text-align:left;margin-bottom:2px}
+    .tl li::before{left:-5px;top:8px}
+  }
+</style>
+</head>
+<body>
+<main class="card">
+  <div class="top">
+    <span class="src-label">Verdetto · BRAINDANCE — 17 agosto 2026 · richiesta #12</span>
+    <span class="pill">In parte — ma l'anno è un altro</span>
+  </div>
+
+  <p class="claim">«Il paradosso di Fermi. In cosa consiste? Sviluppa: sia a livello di impatto
+  nell'anno in cui tale paradosso ha interrogato l'opinione pubblica, sia nel proseguo accademico.»</p>
+  <p class="chiesto">Chi ha chiesto ha aggiunto: <i>«Mi interessano molto gli UFO e le loro ipotetiche
+  apparizioni sulla terra.»</i> — e quella frase, come si vedrà, è più centrata di quanto sembri.</p>
+
+  <div class="conf-row"><span>Verità della premessa — <b>che cosa misura questo numero:</b> quanto regge l'affermazione contenuta nella domanda, non il valore della domanda</span><span class="conf-val">55 / 100</span></div>
+  <div class="track"><div class="fill" style="width:55%"></div></div>
+
+  <h2>La risposta in tre righe</h2>
+  <p class="take"><b>Il paradosso esiste, conta, ed è discusso ancora oggi</b> — ma <b>non</b> ha
+  interrogato l'opinione pubblica nell'anno in cui nacque. Nel 1950 fu una <b>battuta a pranzo fra
+  quattro fisici</b>, e nessuno fuori da quel tavolo lo seppe. <b>Il rapporto è rovesciato:</b> non
+  fu il paradosso a far parlare la gente di dischi volanti — furono i dischi volanti, di cui la
+  gente già parlava, a far venire la domanda a Fermi. E la domanda «in che anno ha interrogato
+  l'opinione pubblica» <b>una risposta ce l'ha, ed è il 1975-1977</b>: venticinque anni dopo,
+  e non per merito di Fermi.</p>
+
+  <h2>Che cos'è, detto senza gergo</h2>
+  <p class="take">L'universo è vecchio e grande: di stelle simili al Sole ce ne sono miliardi, e
+  molte sono più antiche della nostra di miliardi di anni. Se anche una piccolissima parte avesse
+  prodotto civiltà capaci di viaggiare, in tutto quel tempo avrebbero avuto modo di attraversare
+  la galassia molte volte. <b>Quindi dovrebbero essere qui — e non li vediamo.</b> Quella distanza
+  fra «dovrebbero esserci» e «non ci sono» è ciò che oggi si chiama paradosso di Fermi.</p>
+
+  <h2>Come è andata davvero — la linea del tempo</h2>
+  <p class="legenda">◯ privato o accademico &nbsp;·&nbsp; ● in stampa. Il punto è dove passa da uno all'altro.</p>
+  <ul class="tl">
+    <li class="priv"><span class="anno">1947</span><span class="cosa">Comincia l'ondata dei dischi
+      volanti in America. <b>È l'opinione pubblica che si interroga</b>, molto prima di qualunque
+      paradosso.<span class="tag privato">contesto</span></span></li>
+    <li class="priv"><span class="anno">20 mag<br>1950</span><span class="cosa">Il <i>New Yorker</i>
+      pubblica una vignetta di <b>Alan Dunn</b>: dischi volanti che portano via i bidoni della
+      spazzatura spariti a New York.<span class="tag stampa">in stampa</span></span></li>
+    <li class="priv"><span class="anno">est.<br>1950</span><span class="cosa">A <b>Los Alamos</b>,
+      camminando verso la mensa, quattro fisici parlano di quella vignetta: <b>Enrico Fermi, Emil
+      Konopinski, Edward Teller, Herbert York</b>. A tavola, su tutt'altro argomento, Fermi se ne
+      esce con <b>«Where is everybody?»</b> — «e allora dove sono tutti?». Risero.
+      <b>Fine. Quattro persone.</b><span class="tag privato">privato</span></span></li>
+    <li class="pub"><span class="anno">1963</span><span class="cosa"><b>Carl Sagan</b> è il primo a
+      metterla in stampa, in una nota di un articolo scientifico — e la chiama già
+      «<i>una discussione a tavola ormai piuttosto nota</i>». <b>Ma sbaglia l'epoca:</b> scrive
+      «durante la Seconda guerra mondiale».<span class="tag stampa">in stampa</span></span></li>
+    <li class="pub"><span class="anno">1966</span><span class="cosa">La storia entra in
+      <i>Intelligent Life in the Universe</i> di <b>Sagan e Šklovskij</b>, il libro che fonda la
+      ricerca di vita extraterrestre.<span class="tag stampa">in stampa</span></span></li>
+    <li class="pub"><span class="anno">1975</span><span class="cosa">🔑 <b>Michael Hart</b> pubblica
+      l'argomento vero e proprio: «non sono qui, <b>quindi non esistono</b>». <b>Questa conclusione
+      non è di Fermi</b> — è di Hart, e cambia tutto.<span class="tag pubblico">l'argomento</span></span></li>
+    <li class="pub"><span class="anno">1977</span><span class="cosa">Compare per la prima volta in
+      stampa il <b>nome</b> «paradosso di Fermi». Da qui in poi la cosa ha un titolo, e i titoli
+      viaggiano.<span class="tag pubblico">il nome</span></span></li>
+    <li class="pub"><span class="anno">1980</span><span class="cosa"><b>Frank Tipler</b> irrigidisce
+      l'argomento di Hart in un articolo intitolato, senza mezzi termini, «gli esseri intelligenti
+      extraterrestri non esistono».<span class="tag pubblico">accademia</span></span></li>
+    <li class="pub"><span class="anno">1985</span><span class="cosa"><b>Eric Jones</b>, a Los Alamos,
+      scrive ai tre superstiti e ricostruisce il pranzo con le loro lettere. <b>Non è qui che la
+      storia esce</b>: è qui che diventa <b>documentata</b> — i quattro nomi, le parole esatte,
+      e la correzione dell'errore di Sagan sulla guerra.<span class="tag pubblico">la prova</span></span></li>
+    <li class="pub"><span class="anno">2015<br>2016</span><span class="cosa"><b>Robert Gray</b>
+      sostiene che il paradosso «non è di Fermi e non è un paradosso». <b>Gli rispondono</b>:
+      <b>Milan Ćirković</b> lo giudica poco convincente. <b>La disputa è aperta</b> — e qui sotto
+      si spiega chi ha ragione su cosa.<span class="tag pubblico">disputa</span></span></li>
+  </ul>
+
+  <h2>Il conto, voce per voce — da dove viene il 55</h2>
+  <div class="conto">
+    <table>
+      <tr><td class="e">①</td><td>Esiste una questione chiamata «paradosso di Fermi», ed è un
+        oggetto di studio serio</td><td class="v si">VERO</td></tr>
+      <tr><td class="e">②</td><td>Ha avuto un seguito accademico vero, dal 1975 a oggi</td>
+        <td class="v si">VERO</td></tr>
+      <tr><td class="e">③</td><td>Ha interrogato l'opinione pubblica <b>nell'anno in cui nacque</b>
+        (1950)</td><td class="v no">FALSO</td></tr>
+      <tr><td class="e">④</td><td>È di Fermi</td><td class="v forse">IN PARTE</td></tr>
+    </table>
+  </div>
+  <p class="take">Due voci su quattro reggono, e sono le due che tengono in piedi la domanda: la
+  cosa <b>esiste</b> e <b>conta</b>. Le due che cadono sono la data e la paternità. Non è una
+  bocciatura: è una domanda giusta con l'anno sbagliato — e l'anno sbagliato, in questo caso, è
+  la parte più interessante della storia.</p>
+
+  <div class="grid">
+    <div class="box pro">
+      <h3>Quello che regge</h3>
+      <ul>
+        <li>Il pranzo c'è stato: quattro testimoni, tre dei quali misero per iscritto il ricordo nel 1984-85.</li>
+        <li>La domanda di Fermi è autentica, nelle tre versioni ricordate: «Where is everybody?», «But where is everybody?», «Don't you ever wonder where everybody is?».</li>
+        <li>L'argomento formale esiste, è pubblicato, e ha una data: Hart 1975, poi Tipler 1980.</li>
+        <li>Il seguito è vivo: si discute ancora nel 2015-2016 su rivista, con botta e risposta.</li>
+      </ul>
+    </div>
+    <div class="box con">
+      <h3>Quello che non regge</h3>
+      <ul>
+        <li><b>Fermi non pubblicò mai nulla</b> sull'argomento. Non un articolo, non una nota.</li>
+        <li><b>Fermi non concluse che gli extraterrestri non esistono.</b> Quella conclusione è di Hart, venticinque anni dopo.</li>
+        <li>Nel 1950 l'opinione pubblica non poteva interrogarsi su una cosa che non sapeva: erano quattro persone a pranzo.</li>
+        <li><b>Anche l'anno è incerto.</b> York ricordava «1950, 1951 o 1952, molto probabilmente 1951»; i registri di viaggio sono stati distrutti.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Sugli UFO — e qui la domanda era più giusta di quanto sembri</h2>
+  <p class="take blu">🛸 <b>Gli UFO non sono un corollario del paradosso: sono la sua causa.</b>
+  La conversazione che porta alla domanda di Fermi nasce da una <b>vignetta sui dischi volanti</b>,
+  in un anno in cui i giornali americani ne erano pieni. Chi ha scritto la richiesta ha legato le
+  due cose d'istinto, e il legame c'è davvero — solo che va nell'altro verso.</p>
+  <p class="take blu">🔎 <b>E la posizione di chi crede agli UFO non è fuori dal dibattito: è una
+  delle voci previste.</b> L'argomento di Hart parte dal presupposto «non sono qui». Se gli UFO
+  fossero navi aliene, quel presupposto salta e il paradosso non si pone nemmeno. Hart lo sapeva:
+  fra le spiegazioni che passa in rassegna c'è <b>«la Terra è stata visitata, ma adesso non li
+  osserviamo»</b>. La esamina e la scarta — ma la esamina. Due anni prima, nel 1973, John Ball
+  aveva proposto sulla rivista <i>Icarus</i> l'<b>«ipotesi zoo»</b>: ci sono, ci osservano, e non
+  interferiscono. È letteratura scientifica, non fantascienza.</p>
+  <p class="take blu">📄 <b>Le fonti che quasi nessuno mette in mano a chi si interessa di UFO</b>
+  sono i tre rapporti ufficiali recenti: la valutazione preliminare dell'ODNI sui fenomeni aerei
+  non identificati (25 giugno 2021), il rapporto finale del gruppo indipendente della NASA
+  (settembre 2023) e il rapporto storico dell'AARO, volume I (marzo 2024). <b>Nessuno dei tre ha
+  trovato prove verificabili che un avvistamento sia tecnologia extraterrestre</b>, e tutti e tre
+  dicono che una parte dei casi resta senza spiegazione per mancanza di dati. Sono documenti
+  pubblici: vanno letti, non riassunti da altri.</p>
+
+  <h2>Il seguito accademico, e la disputa che c'è oggi</h2>
+  <p class="take"><b>Su una cosa il campo è d'accordo:</b> la ricostruzione storica. Fermi non
+  pubblicò, la conclusione «non esistono» è di Hart, il nome arriva nel 1977. Questo non lo
+  contesta nessuno.</p>
+  <p class="take"><b>Su un'altra no, ed è giusto dirlo:</b> Gray sostiene che allora il paradosso
+  «non è un paradosso» e non dovrebbe pesare contro la ricerca di segnali extraterrestri. Ćirković
+  gli risponde che il nome di una cosa non cambia il problema che descrive: comunque lo si chiami,
+  <b>il silenzio là fuori va spiegato</b>. Su questo <b>non c'è consenso</b>, e chiunque ve lo
+  presenti come chiuso vi sta vendendo una parte per il tutto.</p>
+  <p class="take">📌 <b>Una nota di prudenza su un punto che gira molto.</b> Si legge spesso che il
+  paradosso «fu usato al Congresso americano per cancellare il programma SETI della NASA». La
+  fonte è una sola — Gray — che scrive che nel 1981 il senatore Proxmire fece <b>il nome di
+  Tipler</b> tagliando i fondi. <b>Non abbiamo potuto verificare l'atto parlamentare</b>, e
+  Ćirković definisce quel nesso una speculazione. Lo riportiamo come lo abbiamo trovato: attribuito,
+  non accertato.</p>
+
+  <div class="sources">
+    <b>Le fonti, una per una — e cosa abbiamo potuto controllare di ciascuna.</b>
+    <ol>
+      <li><a href="https://www.osti.gov/biblio/5746675">Eric M. Jones, <i>«Where is everybody?» An account of Fermi's question</i>, Los Alamos, rapporto LA-10311-MS, marzo 1985</a> — la fonte primaria: le lettere dei tre testimoni.
+        <span class="stato">✔ controllata: risponde, ed è davvero quel rapporto (titolo, sigla e anno letti nella pagina).</span></li>
+      <li><a href="https://www.physics.unlv.edu/~jeffery/astro/astronomer/enrico_fermi_question.txt">Trascrizione del testo di Jones</a> (università del Nevada) — comoda da leggere.
+        <span class="stato">⚠ controllata, ma è una ricopiatura di terzi con errori di scansione e si interrompe prima delle lettere. Da leggere, non da citare al posto dell'originale.</span></li>
+      <li><a href="https://arxiv.org/abs/1605.09187">Robert H. Gray, <i>The Fermi Paradox is Neither Fermi's Nor a Paradox</i>, «Astrobiology» 15(3):195-199, 2015</a> — la tesi sull'attribuzione.
+        <span class="stato">✔ controllata: è davvero l'articolo, con rivista, volume e pagine dichiarati. Sul sito dell'editore l'accesso è bloccato, ma questa copia dell'autore è aperta.</span></li>
+      <li>Milan M. Ćirković, <i>Fermi's Paradox Is a Daunting Problem — Under Whatever Label</i>, «Astrobiology» 16(10):737-740, 2016 — la replica a Gray.
+        <span class="stato">✔ esistenza e riferimenti confermati nel registro internazionale degli articoli scientifici. Testo dietro abbonamento.</span></li>
+      <li><a href="https://articles.adsabs.harvard.edu/pdf/1975QJRAS..16..128H">Michael H. Hart, <i>An Explanation for the Absence of Extraterrestrials on Earth</i>, QJRAS 16:128-135, 1975</a> — l'argomento vero.
+        <span class="stato">⚠ controllato: il documento c'è ed è di 8 pagine, che corrispondono a 128-135. È però una scansione senza testo: <b>non l'abbiamo potuto leggere</b>, e il contenuto lo riferiamo dalla bibliografia di Gray.</span></li>
+      <li>Carl Sagan, <i>Direct contact among galactic civilizations by relativistic interstellar spaceflight</i>, «Planetary and Space Science» 11(5):485-498, 1963 — la prima menzione a stampa.
+        <span class="stato">✔ articolo confermato nel registro internazionale a quel numero e a quelle pagine. La nota su Fermi è riportata da Gray e da fonti indipendenti.</span></li>
+      <li>John A. Ball, <i>The zoo hypothesis</i>, «Icarus» 19(3):347-349, 1973.
+        <span class="stato">✔ confermato nel registro internazionale.</span></li>
+      <li><a href="https://condenaststore.com/featured/new-yorker-may-20th-1950-alan-dunn.html">La vignetta di Alan Dunn, «The New Yorker», 20 maggio 1950</a> — archivio dell'editore.
+        <span class="stato">✔ controllata: la vignetta di quella data esiste, di quell'autore. <b>Che sia quella ricordata a pranzo</b> lo dice il ricordo di un testimone, raccolto 35 anni dopo: è l'anello più debole della catena, e lo diciamo.</span></li>
+      <li><a href="https://science.nasa.gov/wp-content/uploads/2023/09/uap-independent-study-team-final-report.pdf">NASA, rapporto finale del gruppo indipendente sui fenomeni aerei non identificati, settembre 2023</a>.
+        <span class="stato">✔ controllato: il documento si scarica.</span></li>
+      <li>ODNI, <i>Preliminary Assessment: Unidentified Aerial Phenomena</i>, 25 giugno 2021 · AARO, <i>Report on the Historical Record of U.S. Government Involvement with UAP</i>, vol. I, marzo 2024.
+        <span class="stato">⚠ citati per titolo e data: i siti governativi americani rifiutano le nostre richieste automatiche. Un rifiuto non vuol dire che il documento non esista — vuol dire che non l'abbiamo potuto scaricare noi.</span></li>
+    </ol>
+    <p style="margin-top:14px"><b>Come è stato fatto questo verdetto.</b> Ricerca sulle fonti,
+    controllo di ogni indirizzo (guardando <i>cosa</i> risponde, non solo <i>se</i> risponde), e
+    infine una passata di un secondo agente pagato solo per demolirlo. Quella passata ha bocciato
+    <b>due affermazioni nostre</b> prima che uscissero: avevamo scritto che la storia era rimasta
+    segreta fino al 1985 — falso, era in stampa dal 1963 — e avevamo dato per accertato il taglio
+    al SETI, che è attribuito e non verificato. <b>Le correzioni sono nel testo che avete letto.</b></p>
+  </div>
+
+  <p class="sign">— prodotto da BRAINDANCE, 17 agosto 2026 · in risposta alla richiesta #12 dell'11 agosto</p>
+</main>
+</body>
+</html>

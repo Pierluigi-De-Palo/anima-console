@@ -51,17 +51,67 @@
     padding:7px 12px;font-size:14px;cursor:pointer;font-family:inherit}
   .copy:hover{color:var(--testo);border-color:var(--cyan)}
   .foot{margin-top:20px;border-top:1px solid var(--line);padding-top:11px;color:var(--muted);font-size:14px}
+  /* --- le parole della porta (testo di ECHO, 2026-08-17) --- */
+  .titolone{font-size:27px;line-height:1.18;font-weight:800;letter-spacing:-.01em;margin:2px 0 16px}
+  .grande{font-size:16.5px;line-height:1.62;margin:0 0 14px}
+  .piccola{font-size:14px;color:var(--muted);margin:0 0 16px}
+  .promessa{font-size:16.5px;font-weight:700;color:var(--verde);margin:18px 0 7px}
+  .muro{font-size:14px;color:var(--muted);border:1px solid var(--line);border-radius:9px;
+    background:var(--panel);padding:11px 13px;margin:12px 0 0;line-height:1.55}
+  .perche{margin-top:10px}
+  .perche summary{font-size:14px;color:var(--cyan);cursor:pointer;list-style:none}
+  .perche summary::-webkit-details-marker{display:none}
+  .perche summary::before{content:"▸ ";}
+  .perche[open] summary::before{content:"▾ ";}
+  .perche .testo{font-size:14px;color:var(--muted);line-height:1.6;margin-top:9px;
+    border-left:2px solid var(--line);padding-left:12px}
+  .perche .testo b{color:var(--testo)}
+  .contatore{margin-top:20px;border-top:1px solid var(--line);padding-top:14px;font-size:15px;line-height:1.6}
+  .contatore .n{color:var(--cyan);font-weight:700}
+  .contatore a{color:var(--cyan)}
+  .solo-tel{display:none}
+  @media(max-width:430px){
+    .titolone{font-size:23px}
+    .solo-desk{display:none}
+    .solo-tel{display:block}
+  }
 </style>
 </head>
 <body>
 <div class="frame">
 
   <div class="head">
-    <div class="t">◉ BRAINDANCE · <span class="accent">NUOVA RICHIESTA</span></div>
+    <div class="t">◉ <span class="accent">BRAINDANCE</span></div>
     <a class="indietro" href="../index.html">← i verdetti</a>
   </div>
-  <p class="sub">Lancia una verifica. La compili qui, va in coda, BRAINDANCE la raccoglie al prossimo giro (2 volte al giorno).</p>
-  <p class="avviso">⚠ Non inserire nomi di <strong>persone private</strong>: la coda passa da GitHub.</p>
+
+  <p class="titolone">TI MANDANO UN LINK<br>E NON SAI SE FIDARTI.</p>
+
+  <div class="solo-desk">
+    <p class="grande">Mandacelo. Lo apriamo, lo leggiamo fino in fondo e ti diciamo se è vero,
+    con le fonti in chiaro — una per una, che le puoi aprire tu.</p>
+    <p class="grande">E la risposta non te la mandiamo di nascosto: la pubblichiamo qui,
+    dove la può leggere e controllare chiunque. Anche chi non sei tu.</p>
+  </div>
+  <div class="solo-tel">
+    <p class="grande">Mandacelo. Lo leggiamo fino in fondo e ti diciamo se è vero,
+    con le fonti in chiaro, che le puoi aprire tu.<br>
+    La risposta la pubblichiamo qui: la controlla chiunque.</p>
+  </div>
+
+  <p class="piccola">Gratis. Notizie, aziende, prodotti, venditori.<br>
+  Persone private no, mai.</p>
+
+  <p class="promessa">Ti rispondiamo, e la risposta è pubblica.</p>
+  <p class="piccola solo-desk">Non scriviamo «entro tot ore»: sarebbe una promessa, e le promesse
+  non le può controllare nessuno. Qui sotto trovi quante richieste stanno aspettando adesso
+  e quando abbiamo pubblicato l'ultima risposta: il tempo che ci mettiamo lo vedi da solo,
+  prima di chiedere.</p>
+  <p class="piccola solo-tel">Niente «entro tot ore»: una promessa non la controlla nessuno.
+  Qui sotto c'è quante richieste aspettano adesso e quando abbiamo risposto l'ultima volta:
+  il tempo lo vedi da solo, prima di chiedere.</p>
+
+  <p class="avviso">⚠ Non scrivere nomi di <strong>persone private</strong>: quello che mandi finisce in una lista pubblica.</p>
 
   <form id="f" novalidate>
     <label for="bersaglio">Cosa verifico <span class="req">*</span></label>
@@ -80,27 +130,51 @@
 
     <label for="contesto">Contesto (una riga, facoltativo)</label>
     <input id="contesto" type="text" placeholder="Perché ti interessa / cosa vuoi sapere">
-    <div class="hint" id="hc">Finisce in coda pubblica insieme alla richiesta.
-      <strong>Non scrivere qui cose che non vuoi far leggere al soggetto verificato</strong>
-      — trattative, cifre, intenzioni d'acquisto.</div>
+    <div class="hint" id="hc">Quello che scrivi qui lo può leggere anche chi stai facendo verificare.
+      <strong>Niente trattative, cifre o intenzioni d'acquisto.</strong></div>
 
     <input id="sito" type="text" tabindex="-1" autocomplete="off" aria-hidden="true"
       style="position:absolute;left:-5000px;width:1px;height:1px">
 
-    <button class="btn" id="invia" type="submit">▶ Manda in coda</button>
-    <div class="hint" id="hintInvio">Si apre GitHub con la richiesta già compilata: premi lì &laquo;Create&raquo; per accodarla. Serve l'accesso GitHub.</div>
+    <button class="btn" id="invia" type="submit">Manda la tua domanda</button>
+    <div class="hint" id="hintInvio">Si apre GitHub con la richiesta già compilata: premi lì &laquo;Create&raquo; per mandarla.</div>
+
+    <div class="muro solo-desk">Per mandarla serve un account GitHub: è gratis e ci vogliono due minuti.
+      La nostra lista di richieste è pubblica, e resta pubblica.
+      È il motivo per cui puoi controllarci.</div>
+    <div class="muro solo-tel">Serve un account GitHub (gratis, due minuti).
+      La nostra lista di richieste è pubblica e resta pubblica:
+      è il motivo per cui puoi controllarci.</div>
+
+    <details class="perche">
+      <summary>Perché non ci chiedete semplicemente una mail?</summary>
+      <div class="testo">
+        <p>Perché una mail arriva solo a noi, e da lì in poi devi fidarti sulla parola.
+        Su GitHub — il sito dove teniamo la lista — la tua domanda è scritta in un posto
+        che <b>non possiamo cambiare di nascosto</b>: si vede il giorno in cui è arrivata,
+        se è ancora aperta, e cosa abbiamo risposto.</p>
+        <p>È la stessa lista che guardiamo noi. Non ce n'è un'altra, privata.</p>
+        <p>È un muro, e lo sappiamo. L'alternativa era una casella dove scrivi a noi
+        e nessuno vede più niente. <b>Abbiamo scelto il muro.</b></p>
+      </div>
+    </details>
   </form>
 
   <div class="out" id="out">
     <div class="ok" id="okline">Passo 1 di 2 · richiesta preparata ✓</div>
     <div class="next" id="nextline"></div>
     <a class="btn" id="ghbtn" href="#" rel="noopener" target="_blank">▶ Passo 2 di 2 · apri GitHub e premi «Create»</a>
-    <div class="resta">Finché non premi «Create» su GitHub, la richiesta <strong>non</strong> è in coda.</div>
+    <div class="resta">Finché non premi «Create» su GitHub, la richiesta <strong>non</strong> ci è arrivata.</div>
     <pre id="json"></pre>
     <button class="copy" id="copy" type="button">Copia richiesta</button>
   </div>
 
-  <div class="foot">BRAINDANCE · SYSTEMA 77 — la coda di lavoro è pubblica (GitHub, label <code>braindance-queue</code> · le ditte vanno in <code>kiroshi-queue</code>).</div>
+  <div class="contatore" id="contatore">
+    Il conto delle richieste aperte lo tiene GitHub, e lo puoi guardare tu:
+    <a href="https://github.com/Pierluigi-De-Palo/anima-console/issues?q=is%3Aissue+is%3Aopen+label%3Abraindance-queue" rel="noopener" target="_blank">la lista, adesso</a>.
+  </div>
+
+  <div class="foot">BRAINDANCE · SYSTEMA 77 — la lista delle richieste è pubblica.</div>
 </div>
 
 <script src="../../data/braindance-config.js"></script>
@@ -123,7 +197,7 @@
   tipo.addEventListener("change", updateRoute);
   updateRoute();
 
-  // La coda e' pubblica: quello che si scrive nel contesto lo legge chiunque, soggetto
+  // La lista e' pubblica: quello che si scrive nel contesto lo legge chiunque, soggetto
   // verificato compreso. Stesse regole di scripts/guardia_privacy.py -- se cambia una,
   // cambia l'altra. Vincolo sul soggetto in prima persona: "sto valutando l'acquisizione"
   // scatta, "Microsoft ha completato l'acquisizione" no.
@@ -142,13 +216,13 @@
     hc.classList.toggle("err", sospetto);
     hc.innerHTML = sospetto
       ? "⚠ <strong>Attento:</strong> sembra un'informazione che ti conviene tenere per te. "
-        + "Questo campo finisce in una coda pubblica: lo legge anche chi stai verificando."
+        + "Questo campo finisce in una lista pubblica: lo legge anche chi stai verificando."
       : hcTesto;
   });
 
   if(CFG.worker){
     document.getElementById("hintInvio").textContent =
-      "La richiesta va in coda direttamente: niente account, niente passaggi extra.";
+      "La richiesta ci arriva direttamente: niente account, niente passaggi extra.";
   }
 
   function pad(n){ return String(n).padStart(2,"0"); }
@@ -198,10 +272,10 @@
         if(!res.ok) throw new Error(res.errore || "invio non riuscito");
         req.id = res.id; req.stato = res.instradata ? "instradata" : "pending";
         document.getElementById("json").textContent = JSON.stringify(req, null, 2);
-        document.getElementById("okline").textContent = "✓ Richiesta accodata";
+        document.getElementById("okline").textContent = "✓ Richiesta arrivata";
         document.getElementById("nextline").textContent = res.instradata
           ? res.id + " — verrà instradata a KIROSHI (ditte)."
-          : res.id + " — in coda. BRAINDANCE la lavora al prossimo giro.";
+          : res.id + " — ci è arrivata. La risposta la pubblichiamo qui.";
         document.getElementById("ghbtn").style.display = "none";
         document.querySelector(".out .resta").style.display = "none";
         document.getElementById("f").reset(); updateRoute();
@@ -215,7 +289,7 @@
         document.querySelector(".out .resta").style.display = "none";
         mostraEsito();
       }).then(function(){
-        btnInvio.disabled = false; btnInvio.textContent = "▶ Manda in coda";
+        btnInvio.disabled = false; btnInvio.textContent = "Manda la tua domanda";
       });
       return;
     }
@@ -231,7 +305,7 @@
     document.getElementById("nextline").textContent =
       tipo.value === "ditta"
         ? req.id + " — verrà instradata a KIROSHI (ditte)."
-        : req.id + " — al prossimo giro BRAINDANCE la lavora.";
+        : req.id + " — ci è arrivata. La risposta la pubblichiamo qui.";
     document.getElementById("ghbtn").href = url;
     document.getElementById("ghbtn").style.display = "";
     document.querySelector(".out .resta").style.display = "";
@@ -248,6 +322,44 @@
   });
 })();
 </script>
-<!-- creato da Claude Code per BRAINDANCE, 2026-07-19 -->
+<script>
+// IL CONTATORE — la sola misura di noi che si aggiorna da sola.
+// Regola di ECHO (17/08): va online solo dal giorno della prima risposta pubblicata,
+// perche' "4 in attesa · ultima risposta: —" non e' una misura, e' un cartello di chiuso.
+// Se uno dei due numeri non arriva, NON si scrive niente di finto: resta la riga
+// gia' in pagina, che manda a contare su GitHub. Meglio un gesto di una promessa.
+(function(){
+  var box = document.getElementById("contatore");
+  if (!box) return;
+  var API = "https://api.github.com/repos/Pierluigi-De-Palo/anima-console/issues"
+          + "?state=open&labels=braindance-queue&per_page=100";
+  var MESI = ["gennaio","febbraio","marzo","aprile","maggio","giugno",
+              "luglio","agosto","settembre","ottobre","novembre","dicembre"];
+
+  function inItaliano(iso){
+    var p = String(iso).slice(0,10).split("-");
+    if (p.length !== 3) return null;
+    var m = MESI[parseInt(p[1],10) - 1];
+    return m ? (parseInt(p[2],10) + " " + m + " " + p[0]) : null;
+  }
+
+  Promise.all([
+    fetch(API).then(function(r){ return r.ok ? r.json() : Promise.reject(r.status); }),
+    fetch("../../data/braindance.json").then(function(r){ return r.ok ? r.json() : Promise.reject(r.status); })
+  ]).then(function(res){
+    var aperte = res[0].filter(function(i){ return !i.pull_request; }).length;
+    var date = (res[1].verdetti || []).map(function(v){ return v.data; }).filter(Boolean).sort();
+    var ultima = inItaliano(date[date.length - 1]);
+    if (ultima === null) return;                       // niente data vera -> non scrivo niente
+    var testa = aperte === 0
+      ? "In questo momento non sta aspettando nessuna richiesta."
+      : "In questo momento stanno aspettando <span class=\"n\">" + aperte + "</span> "
+        + (aperte === 1 ? "richiesta" : "richieste") + ".";
+    box.innerHTML = testa + "<br>L'ultima risposta l'abbiamo pubblicata il <span class=\"n\">"
+      + ultima + "</span>.";
+  }).catch(function(){ /* resta la riga che manda a contare su GitHub */ });
+})();
+</script>
+<!-- creato da Claude Code per BRAINDANCE, 2026-07-19 · parole rifatte 2026-08-17 (testo di ECHO, applicato da BRAINDANCE) -->
 </body>
 </html>

@@ -1,0 +1,10 @@
+{
+  "card_id": "SYS-03",
+  "numero": 3,
+  "totale": 10,
+  "cerchio": 1,
+  "stato": "VERIFICATA",
+  "emessa": "2026-08-19",
+  "collaudo": false,
+  "verifica_ingresso": "bbf30aaccfd07be49cd353fb8ae12af850d0ed84ace2ef5e69943c67e4024a00"
+}

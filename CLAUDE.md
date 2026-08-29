@@ -47,7 +47,7 @@ Ogni file generato chiude con: `— creato da KIROSHI, AAAA-MM-GG`.
 — creato da KIROSHI, 2026-07-09
 
 ## Comunicazione tra agenti
-Prima di operare, leggi `../comuni/BACHECA.md` (bacheca broadcast). Regole comuni in `../comuni/CONVENZIONE-AGENTI.md`.
+Prima di operare, leggi `../comuni/BACHECA-RECENTE.md` (bacheca broadcast). Regole comuni in `../comuni/CONVENZIONE-AGENTI.md`.
 
 ## MISSIONE DI SVILUPPO — il fake-checker su cyberboomer.io (dal 2026-07-17)
 

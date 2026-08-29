@@ -1,10 +1,48 @@
 window.BRAINDANCE = {
   "schema": "braindance/dati/SCHEMA.md",
-  "aggiornato": "2026-08-10",
-  "generato": "2026-08-10",
+  "aggiornato": "2026-08-17",
+  "generato": "2026-08-17",
   "agente": "BRAINDANCE",
-  "totale": 11,
+  "totale": 12,
   "verdetti": [
+    {
+      "id": "paradosso-fermi",
+      "tipo": "domanda",
+      "titolo": "Il paradosso di Fermi: in che anno ha interrogato l'opinione pubblica?",
+      "verdetto": "In parte — ma l'anno e' un altro",
+      "punteggio": 55,
+      "ambito": "verita",
+      "data": "2026-08-17",
+      "note": "Il paradosso esiste ed e' discusso, ma nel 1950 fu una battuta a pranzo fra quattro fisici: nessun dibattito pubblico. Il rapporto e' rovesciato — furono i dischi volanti a provocare la domanda di Fermi, non il contrario. L'anno in cui la cosa diventa pubblica e' il 1975-1977 (Hart, poi il nome). Fermi non pubblico' mai nulla e non concluse che gli extraterrestri non esistono.",
+      "colore": "giallo",
+      "scheda": "schede/paradosso-fermi.html",
+      "fonti": [
+        {
+          "titolo": "Eric M. Jones, «Where is everybody?», Los Alamos LA-10311-MS, 1985 (fonte primaria)",
+          "url": "https://www.osti.gov/biblio/5746675"
+        },
+        {
+          "titolo": "Robert H. Gray, «The Fermi Paradox is Neither Fermi's Nor a Paradox», Astrobiology 15(3), 2015",
+          "url": "https://arxiv.org/abs/1605.09187"
+        },
+        {
+          "titolo": "Michael H. Hart, QJRAS 16:128-135, 1975 (scansione senza testo)",
+          "url": "https://articles.adsabs.harvard.edu/pdf/1975QJRAS..16..128H"
+        },
+        {
+          "titolo": "La vignetta di Alan Dunn, The New Yorker, 20 maggio 1950 (archivio dell'editore)",
+          "url": "https://condenaststore.com/featured/new-yorker-may-20th-1950-alan-dunn.html"
+        },
+        {
+          "titolo": "NASA, rapporto finale del gruppo indipendente sui fenomeni aerei non identificati, 2023",
+          "url": "https://science.nasa.gov/wp-content/uploads/2023/09/uap-independent-study-team-final-report.pdf"
+        },
+        {
+          "titolo": "Trascrizione del testo di Jones (comoda, ma ricopiatura di terzi)",
+          "url": "https://www.physics.unlv.edu/~jeffery/astro/astronomer/enrico_fermi_question.txt"
+        }
+      ]
+    },
     {
       "id": "pensioni-2035",
       "tipo": "notizia",
