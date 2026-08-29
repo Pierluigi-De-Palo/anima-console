@@ -8,4 +8,4 @@ Disallow: /braindance/coda/
 Disallow: /braindance/chiedi/
 Disallow: /schede/
 
-# creato da D.R.A.G.O., 2026-08-21
+# creato da D.R.A.G.O., 2026-08-29

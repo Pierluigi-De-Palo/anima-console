@@ -1,4 +1,4 @@
-# PROMPT DI CAMPAGNA — REGIA (dal 2026-08-21)
+# PROMPT DI CAMPAGNA — REGIA (dal 2026-08-29)
 
 Tutti i prompt operativi della campagna che trasforma `cyberboomer.io` nella
 sala di regia del sistema. Doppio aggancio, come vuole il Direttore: ogni
@@ -6,7 +6,7 @@ prompt vive **qui** (versionato, non si perde con la chat) e si **incolla**
 dove serve. Le identità permanenti stanno altrove: i caposquadra in
 `.claude/agents/*.md`, il gemello commerciale in `squadra/DRAGO-CLIENT.md`.
 
-**L'assetto deciso il 21/08** — da tenere presente leggendo ogni prompt:
+**L'assetto deciso il 29/08** — da tenere presente leggendo ogni prompt:
 
 | Dominio | Ruolo | Registro | Motori |
 |---|---|---|---|
@@ -37,7 +37,7 @@ Vive in: `squadra/CANONE-KIROSHI-2.md`.
 4. Guardie: `guardia_privacy.py` oltre `docs/`; chiudere le due fughe note
    (`area2.js` nomina il sottodominio nel commento che spiega di non farlo;
    `braindance/index.html:117` mostra un percorso interno all'utente).
-5. Igiene: `.nojekyll`, `robots.txt`. *(fatto il 21/08)*
+5. Igiene: `.nojekyll`, `robots.txt`. *(fatto il 29/08)*
 
 ## P3 · ECHO — le parole della regia e del gioco
 Strato pubblico della plancia · la porta cifrata · sei schede-comando con
@@ -52,7 +52,7 @@ non invecchiati) · testi di chiusura per #13 e #15 col permalink · causa esatt
 del contatore «Ultimo» fermo a «—» e correzione minima, senza numeri a mano.
 
 ## P5 · BRAINDANCE — archivio e coerenza
-`archivio.js` rigenerato *(fatto il 21/08: 19 voci)* · schede senza firma, con
+`archivio.js` rigenerato *(fatto il 29/08: 19 voci)* · schede senza firma, con
 percorsi interni o orfane · quali reggono il passaggio alla vista di gioco.
 
 ## P6 · RONDA — aggiunte al prompt della Routine
@@ -70,7 +70,7 @@ preventivo con sforzi per voce e importi «— da ratificare», riga REGISTRO in
 coda. Il prompt JUDY per logo/claim non lo esegue lui: JUDY è della casa.
 Perimetro invariato: niente push, clienti per sigla.
 
-## P8 · IGIENE del sito *(fatto il 21/08, commit `a2971bd`)*
+## P8 · IGIENE del sito *(fatto il 29/08, commit `a2971bd`)*
 Home → termini v1 · indice schede non più orfano · `archivio.js` rigenerato ·
 ponte `/anima/` → animagame.io · `.nojekyll` · `robots.txt`.
 Nota di ricognizione: le rotte storiche `/anima/verifica/<ID>/` esistono **solo**
@@ -85,4 +85,4 @@ mai una pagina rotta.
 
 ---
 
-— creato da D.R.A.G.O., 2026-08-21 · su commessa del Direttore
+— creato da D.R.A.G.O., 2026-08-29 · su commessa del Direttore
