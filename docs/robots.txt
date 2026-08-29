@@ -1,0 +1,11 @@
+# cyberboomer.io — sala di regia e archivio del sistema.
+# Chi cerca il nome deve trovarci; le stanze di lavoro no: non sono vetrina.
+User-agent: *
+Disallow: /regia/
+Disallow: /anima/
+Disallow: /v/
+Disallow: /braindance/coda/
+Disallow: /braindance/chiedi/
+Disallow: /schede/
+
+# creato da D.R.A.G.O., 2026-08-21
