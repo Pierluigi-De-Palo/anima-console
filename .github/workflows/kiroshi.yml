@@ -1,6 +1,6 @@
 name: KIROSHI fake checker
 
-# Si attiva quando apri (o riapri) una issue con l'etichetta "kiroshi".
+# Si attiva quando apri (o riapri) una issue con l'etichetta "kiroshi-queue".
 on:
   issues:
     types: [opened, reopened, labeled]
@@ -11,8 +11,9 @@ permissions:
 
 jobs:
   verifica:
-    # Gira solo sulle issue etichettate "kiroshi"
-    if: contains(join(github.event.issue.labels.*.name, ','), 'kiroshi')
+    # Gira solo sulle issue etichettate "kiroshi-queue" — match esatto sull'array,
+    # non sottostringa sulla join: prima girava (e falliva) anche su etichette parenti.
+    if: contains(github.event.issue.labels.*.name, 'kiroshi-queue')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

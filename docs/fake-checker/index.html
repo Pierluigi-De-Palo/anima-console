@@ -67,6 +67,8 @@
   .lab{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
     border:1px solid;border-radius:2px;padding:3px 9px;white-space:nowrap}
   .dt{font-family:var(--mono);font-size:10px;color:var(--dim);white-space:nowrap}
+  .plink{font-family:var(--mono);font-size:12px;color:var(--dim);text-decoration:none;padding:2px 6px;border-radius:2px}
+  .plink:hover{color:var(--cyan);background:rgba(34,211,238,.09)}
 
   .vbody{display:none;padding:0 18px 18px;border-top:1px solid var(--line)}
   .vc.open .vbody{display:block}
@@ -147,12 +149,20 @@
   function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g, function(c){
     return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
 
-  // indicatori
+  // indicatori — guardia difensiva 2026-08-29: `v.punteggio`/`v.data_verifica`
+  // letti senza controllare che `v` sia un oggetto valido facevano dipendere
+  // "Ultimo" (calcolato per ultimo) dalla sopravvivenza di tutta la riga: un
+  // solo elemento non-oggetto in db.js (es. voce corrotta da una modifica a
+  // mano) avrebbe fatto fallire silenziosamente SOLO questo indicatore,
+  // lasciando "Verdetti" e "Punteggio medio" già scritti nelle righe precedenti.
+  // Con i 7 verdetti attuali (tutti con data_verifica, guardia già imposta da
+  // build_db.py) il sintomo non è riproducibile: questa è una difesa in
+  // profondità contro la stessa classe di bug, non una correzione di dati.
   if (DB.length){
     document.getElementById('k-n').textContent = DB.length;
-    var avg = Math.round(DB.reduce(function(a,v){ return a + (v.punteggio||0); },0) / DB.length);
+    var avg = Math.round(DB.reduce(function(a,v){ return a + ((v && v.punteggio) || 0); },0) / DB.length);
     document.getElementById('k-avg').textContent = avg + '/100';
-    var dates = DB.map(function(v){ return v.data_verifica || ''; }).filter(Boolean).sort();
+    var dates = DB.map(function(v){ return (v && v.data_verifica) || ''; }).filter(Boolean).sort();
     document.getElementById('k-last').textContent = dates.length ? dates[dates.length-1] : '—';
   }
 
@@ -161,16 +171,26 @@
     var gf = (v.green_flags||[]).map(function(x){ return '<li>'+esc(x)+'</li>'; }).join('');
     var rf = (v.red_flags||[]).map(function(x){ return '<li>'+esc(x)+'</li>'; }).join('');
     var src = (v.fonti||[]).map(function(f){
-      var stars = '●'.repeat(Math.max(0,Math.min(5, f.autorevolezza||0)));
+      // Il peso della fonte e' scritto in due modi diversi nei verdetti: a numero
+      // (1-5, i primi due) e a parole ("alta — testata indipendente", gli altri
+      // cinque). Il codice leggeva solo i numeri, quindi per cinque verdetti su
+      // sette il peso spariva dalla pagina. Ora si mostra come e' scritto: pallini
+      // se e' un numero, la parola del giudizio se e' una frase. Niente conversioni
+      // inventate tra le due scale — sarebbero un peso che nessuno ha assegnato.
+      var peso = f.autorevolezza;
+      var stars = typeof peso === 'number'
+        ? '●'.repeat(Math.max(0, Math.min(5, peso)))
+        : (typeof peso === 'string' ? peso.split('—')[0].trim() : '');
       return '<div class="src"><a href="'+esc(f.url)+'" target="_blank" rel="noopener">'+esc(f.titolo)+'</a>'+
              '<span class="au">'+esc(f.tipo||'')+' '+stars+'</span></div>';
     }).join('');
-    return '<div class="vc" style="border-left-color:'+c+'">'+
+    return '<div class="vc"'+(v.id ? ' id="'+esc(v.id)+'"' : '')+' style="border-left-color:'+c+'">'+
       '<div class="vh">'+
         '<span class="sc" style="color:'+c+'">'+esc(v.punteggio)+'</span>'+
         '<span class="vi"><span class="vt">'+esc(v.titolo)+'</span><div class="vo">'+esc(v.oggetto)+'</div></span>'+
         '<span class="lab" style="color:'+c+';border-color:'+c+'">'+esc(v.etichetta)+'</span>'+
         '<span class="dt">'+esc(v.data_verifica||'')+'</span>'+
+        (v.id ? '<a class="plink" href="#'+esc(v.id)+'" title="Link diretto a questo verdetto">§</a>' : '')+
       '</div>'+
       '<div class="vbody">'+
         '<div class="bar"><i style="width:'+Math.max(0,Math.min(100,v.punteggio||0))+'%;background:'+grad(v.punteggio||0)+'"></i></div>'+
@@ -198,13 +218,29 @@
     Array.prototype.forEach.call(list.querySelectorAll('.vh'), function(h){
       h.addEventListener('click', function(){ h.parentNode.classList.toggle('open'); });
     });
+    // il click sul § naviga soltanto: non deve anche richiudere la card
+    Array.prototype.forEach.call(list.querySelectorAll('.plink'), function(a){
+      a.addEventListener('click', function(e){ e.stopPropagation(); });
+    });
+  }
+
+  // permalink: #NNNN apre la card del verdetto e ci scorre sopra
+  function openFromHash(){
+    var id = (location.hash||'').replace(/^#/,'');
+    if(!/^\d+$/.test(id)) return;
+    var el = document.getElementById(id);
+    if(!el) return;
+    el.classList.add('open');
+    el.scrollIntoView({behavior:'smooth', block:'start'});
   }
 
   if(!DB.length){
     list.innerHTML = '<div class="empty">Archivio vuoto — nessun verdetto pubblicato.</div>';
   } else {
     render('');
+    openFromHash();
   }
+  window.addEventListener('hashchange', openFromHash);
 
   document.getElementById('flt').addEventListener('input', function(e){ render(e.target.value); });
 

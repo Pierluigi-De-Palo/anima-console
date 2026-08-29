@@ -1,0 +1,152 @@
+{
+  "titolo": "Nikon ZR — la cinema camera Nikon+RED è reale?",
+  "oggetto": "Nikon ZR, fotocamera cinema full-frame della linea Nikon Z-CINEMA, nata dalla fusione Nikon+RED (Nikon acquisisce il 100% di RED Digital Cinema nel 2024). Annunciata il 10 settembre 2025, in vendita dal 24 ottobre 2025 a 2.199,95$ (solo corpo, USA) / circa 2.379-2.449€ in Italia. Candidata di Pier a sostituire il 5D Mark III.",
+  "domanda": "È una fotocamera reale, o marketing/vaporware? Le specifiche dichiarate — sensore full-frame, RAW REDCODE (R3D NE) interno, 6K/60p, 15+ stop di gamma dinamica — reggono al controllo indipendente? Ci si può fidare per l'uso cinema di Pier? (Domanda separata, non trattata qui: se convenga comprarla al prezzo che ha visto lui.)",
+  "modalita": "rapida",
+  "punteggio": 84,
+  "etichetta": "affidabile",
+  "verdetto": "La Nikon ZR è un prodotto reale, non un render o un annuncio mai concretizzato: fotocamera cinema full-frame nata dalla fusione Nikon-RED (Nikon acquisisce il 100% di RED Digital Cinema, accordo rivelato il 7 marzo 2024 e chiuso l'8 aprile 2024), annunciata ufficialmente il 10 settembre 2025 e in vendita dal 24 ottobre 2025 a 2.199,95$ corpo (USA) / circa 2.379-2.449€ in Italia secondo i comparatori indipendenti. Le specifiche della ricerca originale reggono e sono confermate non solo dal comunicato del produttore ma da almeno tre testate di settore indipendenti che hanno testato l'unità fisica (DPReview, Engadget, Filmmaker Magazine): sensore full-frame 35,9×23,9mm 24,5MP parzialmente stacked, RAW REDCODE (R3D NE) 12-bit interno fino a 6K/60p — primo caso del settore — più N-RAW e ProRes RAW, 15+ stop di gamma dinamica, audio 32-bit float, schermo 4\" 1000 nit. Il confronto con l'Insta360 Luna Ultra proposto nella ricerca originale (sensore 1\" contro full-frame) resta valido sul piano delle specifiche: la ZR punta al \"look cinema\" con grading vero, non al video pronto all'uso.\n\nSull'affidabilità per uso professionale, due fatti erano emersi dopo la ricerca del 12/07: un problema di fabbricazione riconosciuto pubblicamente da Nikon il 17 marzo 2026 (alcune unità di ZR, Z6III e Z5II prodotte con componenti sotto lo standard qualitativo, riparazione gratuita), e il limite strutturale del RAW registrabile solo su CFexpress interna, senza uscita su SSD esterno via USB.\n\nRiverifica di freschezza del 29/08/2026, dodici giorni dopo la prima pubblicazione: nessun fatto nuovo di rilievo. Il firmware resta fermo alla versione 1.11 (rilasciata il 17/03/2026, contestualmente alla service advisory): un aggiornamento maggiore — con focus peaking durante la registrazione R3D, tono Log 3G10 in H.265, LUT su HDMI — era stato annunciato da Nikon al NAB 2026 (aprile) ma, secondo una rassegna di settore indipendente e datata (CineD, 26/08/2026), non risulta ancora rilasciato né calendarizzato: Nikon non ha mai comunicato una data, un mese o un trimestre per questo aggiornamento, e i proprietari lo segnalano ancora come mancante — in particolare l'assenza di focus peaking mentre si registra in R3D NE, un limite non da poco su una fotocamera il cui punto di forza dichiarato è proprio quel codec. Nessuna nuova service advisory o richiamo è stato reperito oltre a quello di marzo. Sul prezzo: il corpo nuovo resta sopra i 2.000$/€ su tutti i canali ufficiali tracciati (nessuno sconto Nikon USA riscontrato a fine agosto); un'unità RICONDIZIONATA è stata segnalata a 1.695$ in un forum specializzato (26/08/2026) — un dato di mercato dell'usato/ricondizionato, non una conferma del prezzo di circa 1.600€ che Pier dice di aver visto, e comunque non equivalente a un acquisto nuovo con garanzia piena. Il punteggio non cambia: 84/100, autenticità e tenuta delle specifiche piene, il difetto di fabbricazione gestito con trasparenza resta l'unico vero freno.\n\nLimite di verifica dichiarato, invariato: tutte le fonti di questo verdetto sono risultate irraggiungibili con WebFetch diretto in questa sessione, sia il 17/08 sia il 29/08, bloccate dal proxy di rete (EGRESS_BLOCKED). La loro esistenza e i contenuti sono stati confermati per via indiretta tramite ricerca web, con corrispondenza testuale di titolo e citazioni dirette — un riscontro solido ma non equivalente a un fetch diretto riuscito.",
+  "green_flags": [
+    "Prodotto reale e ampiamente documentato: annunciato ufficialmente da Nikon il 10 settembre 2025, in vendita dal 24 ottobre 2025, recensito in modo approfondito da almeno tre testate indipendenti di rilievo (DPReview, Engadget, Filmmaker Magazine), tutte concordi sulle specifiche dichiarate.",
+    "Filiazione societaria verificabile, non un badge di marketing: Nikon ha acquisito il 100% di RED Digital Cinema (accordo marzo 2024, chiuso aprile 2024), confermato da stampa di settore indipendente (Newsshooter e altre testate cinema).",
+    "Specifiche tecniche riscontrate da terzi indipendenti, non solo dal comunicato Nikon: sensore full-frame 24,5MP parzialmente stacked, RAW REDCODE (R3D NE) 12-bit interno fino a 6K/60p, N-RAW, ProRes RAW, 15+ stop DR, audio 32-bit float, schermo 4\" 1000 nit.",
+    "Prezzo trasparente e coerente su più rivenditori, invariato dal lancio a fine agosto 2026: 2.199,95$ USA; in Italia 2.379-2.449€ su comparatori indipendenti.",
+    "Produttore attivo nel supporto post-vendita: primo firmware (v1.10) rilasciato a fine gennaio 2026 con miglioramenti concreti (timecode via cavo, tempo di registrazione esteso), seguito da un secondo (v1.11, marzo 2026, insieme alla service advisory).",
+    "Nessun segnale di prodotto fantasma: disponibilità confermata da rivenditori multipli su un arco di quasi un anno, recensioni hands-on con file reali, ritardi di spedizione per eccesso di domanda al lancio — tratto tipico di un lancio vero, non di un annuncio mai concretizzato.",
+    "Il produttore riconosce pubblicamente il proprio difetto di fabbricazione e offre riparazione gratuita indipendentemente dalla garanzia: comportamento contro il proprio interesse immediato, segno di trasparenza più che di occultamento; alla riverifica del 29/08/2026 nessun nuovo richiamo o advisory è stato reperito oltre a quello di marzo."
+  ],
+  "red_flags": [
+    "Recall/service advisory reale del 17 marzo 2026 su alcune unità di Z6III, Z5II e ZR che potrebbero diventare inutilizzabili; riparazione gratuita disponibile ma richiede controllo del numero di serie. Alla riverifica del 29/08/2026 nessuna estensione o aggravamento risulta essere stato comunicato, ma nessuna fonte conferma nemmeno la chiusura del programma di riparazione.",
+    "Limite di workflow strutturale confermato anche dalle recensioni indipendenti: il RAW (R3D NE, N-RAW, ProRes RAW) si registra solo su CFexpress Type B interna, non su SSD esterno via USB; lo slot scheda è nella parte inferiore del corpo, scomodo su gimbal/rig.",
+    "L'aggiornamento firmware maggiore annunciato da Nikon al NAB 2026 (aprile) — focus peaking in R3D, Log 3G10 in H.265, LUT su HDMI — non risulta ancora rilasciato alla data del 29/08/2026, oltre quattro mesi dopo l'annuncio: fonte di settore indipendente (CineD, 26/08/2026) descrive i proprietari ancora in attesa, senza alcuna data comunicata da Nikon.",
+    "L'assenza di focus peaking durante la registrazione in R3D NE resta un limite pratico non risolto per chi lavora in RAW: confermato ancora presente alla riverifica.",
+    "Costo dei consumabili da mettere in conto: il RAW REDCODE ad alto bitrate richiede schede CFexpress Type B veloci e capienti, una voce di spesa aggiuntiva reale che il solo prezzo del corpo non comunica.",
+    "Il prezzo \"1.600€\" citato da Pier non trova ancora riscontro in nessuna fonte consultata, nemmeno alla riverifica: i prezzi ufficiali/comparati per l'unità nuova oscillano fra 2.199$ (USA) e 2.379-2.449€ (Italia); un'unità ricondizionata è stata vista a 1.695$ (fonte: discussione forum DPReview, 26/08/2026) — un dato di mercato dell'usato, non una conferma della cifra vista da Pier né un'offerta equivalente per condizioni e garanzia.",
+    "Nessuna delle fonti di questo verdetto è stata raggiungibile con fetch diretto in questa sessione, né il 17/08 né il 29/08 (proxy di rete: EGRESS_BLOCKED); tutte confermate solo per via indiretta tramite ricerca web con corrispondenza testuale."
+  ],
+  "fonti": [
+    {
+      "titolo": "Nikon releases the ZR — comunicato ufficiale, Nikon.com (10 settembre 2025)",
+      "url": "https://www.nikon.com/company/news/2025/0910_imaging_01/",
+      "tipo": "comunicato del produttore",
+      "sostiene": "Annuncio ufficiale della fotocamera cinema full-frame ZR nata dalla sinergia Nikon-RED; sensore full-frame parzialmente stacked, registrazione RAW R3D NE interna, N-RAW, ProRes RAW, prezzo 2.199,95$",
+      "autorevolezza": "alta — fonte primaria del produttore; verifica diretta bloccata dal proxy di rete di questa sessione (dominio nikon.com non raggiungibile), contenuto riscontrato per corrispondenza testuale via ricerca web incrociata con più testate"
+    },
+    {
+      "titolo": "Nikon ZR review: it might not be what you think — DPReview",
+      "url": "https://www.dpreview.com/reviews/nikon-zr-in-depth-review-compact-full-frame-video-camera-6k-60/",
+      "tipo": "stampa specializzata indipendente",
+      "sostiene": "Conferma le specifiche dichiarate (R3D NE, N-RAW, ProRes RAW interni) e valuta la ZR come una delle migliori fotocamere per video/vlogging viste dalla testata, con qualità video superiore alla fascia Sony A7C/R",
+      "autorevolezza": "alta — testata storica e indipendente del settore fotografico; verifica diretta bloccata dal proxy (dpreview.com non raggiungibile), contenuto riscontrato via ricerca web con citazioni corrispondenti"
+    },
+    {
+      "titolo": "Review: The New Nikon ZR Shoots RED RAW Footage on a Budget — Filmmaker Magazine",
+      "url": "https://filmmakermagazine.com/133316-review-nikon-zr/",
+      "tipo": "stampa specializzata indipendente (settore cinema)",
+      "sostiene": "Conferma REDCODE RAW 12-bit interno fino a 6K/60p al prezzo di 2.199$, schermo 4'' 1000 nit, audio 32-bit float; segnala come limite l'assenza di RAW su SSD esterno (solo CFexpress Type B) e la scomodità dello slot scheda su rig",
+      "autorevolezza": "alta — testata di settore cinema indipendente; verifica diretta bloccata dal proxy (filmmakermagazine.com non raggiungibile), contenuto riscontrato via ricerca web"
+    },
+    {
+      "titolo": "Nikon ZR review: A highly capable cinema camera at a reasonable price — Engadget",
+      "url": "https://www.engadget.com/cameras/nikon-zr-review-a-highly-capable-cinema-camera-at-a-reasonable-price-152634311.html",
+      "tipo": "stampa tecnologica indipendente",
+      "sostiene": "Conferma prezzo 2.200$, autofocus rapido, stabilizzazione in-body, audio 32-bit float; qualità video giudicata superiore a fotocamere di prezzo doppio/triplo; concorrenti diretti Sony FX2 (2.998$) e Canon R5C (3.899$)",
+      "autorevolezza": "alta — testata tecnologica generalista di ampia diffusione; verifica diretta bloccata dal proxy (engadget.com non raggiungibile), contenuto riscontrato via ricerca web"
+    },
+    {
+      "titolo": "Technical Service Advisory Z-TSA-3-2026 — Nikon USA",
+      "url": "https://www.nikonusa.com/service-advisories/z-tsa-3-2026",
+      "tipo": "comunicazione ufficiale del produttore",
+      "sostiene": "Alcune unità di Z6III, Z5II e ZR sono state prodotte con componenti sotto lo standard qualitativo Nikon e potrebbero diventare inutilizzabili; riparazione gratuita indipendentemente dalla garanzia, spese di spedizione incluse; richieste aperte dal 23 marzo 2026",
+      "autorevolezza": "massima — comunicazione diretta del produttore su un problema che lo danneggia commercialmente, quindi dichiarazione contro il proprio interesse"
+    },
+    {
+      "titolo": "Nikon Issues Technical Service Advisory for Z6III, Z5II, and ZR Cameras — CineD",
+      "url": "https://www.cined.com/nikon-issues-technical-service-advisory-for-z6iii-z5ii-and-zr-cameras/",
+      "tipo": "stampa di settore indipendente",
+      "sostiene": "Riscontro indipendente della service advisory Nikon, con dettaglio sui mercati coinvolti (negli USA anche la Z6III; in Giappone solo Z5II e ZR; in Europa la Z6III non risulta coinvolta)",
+      "autorevolezza": "alta — testata di settore cinema/video indipendente"
+    },
+    {
+      "titolo": "Nikon acquires RED — Newsshooter",
+      "url": "https://www.newsshooter.com/2024/03/06/nikon-acquires-red/",
+      "tipo": "stampa di settore indipendente",
+      "sostiene": "Nikon acquisisce il 100% di RED Digital Cinema, accordo rivelato il 7 marzo 2024 e perfezionato l'8 aprile 2024",
+      "autorevolezza": "alta — testata di settore cinema indipendente e specializzata"
+    },
+    {
+      "titolo": "Nikon Zr cinema camera officially announced — Nikon Rumors",
+      "url": "https://nikonrumors.com/2025/09/10/nikon-zr-cinema-camera-officially-announced.aspx/",
+      "tipo": "stampa di settore indipendente (rumor/news site)",
+      "sostiene": "Riscontro incrociato dell'annuncio ufficiale del 10 settembre 2025 e delle specifiche dichiarate; storico affidabile su tempistiche firmware e disponibilità",
+      "autorevolezza": "media-alta — sito specializzato Nikon di lunga data, non ufficiale ma con forte track record di accuratezza sulle date"
+    },
+    {
+      "titolo": "Nikon Zr Body — confronto prezzi, Trovaprezzi.it",
+      "url": "https://www.trovaprezzi.it/prezzo_fotocamere-digitali_nikon_zr_body.aspx",
+      "tipo": "comparatore prezzi indipendente",
+      "sostiene": "Prezzo corpo macchina in Italia nell'ordine di 2.379-2.449 euro presso rivenditori tracciati; nessun riscontro di un prezzo vicino a 1.600 euro",
+      "autorevolezza": "media — aggregatore di prezzi al dettaglio, utile come riscontro di mercato ma non un registro ufficiale"
+    },
+    {
+      "titolo": "Nikon ZR Owners Are Still Waiting – Where Is the Big Firmware Update? — CineD (26/08/2026)",
+      "url": "https://www.cined.com/nikon-zr-owners-are-still-waiting-where-is-the-big-firmware-update/",
+      "tipo": "stampa di settore cinema indipendente",
+      "sostiene": "A fine agosto 2026 il grande aggiornamento firmware annunciato al NAB 2026 (focus peaking in R3D, Log 3G10, LUT HDMI) non è ancora stato rilasciato; nessuna data comunicata da Nikon; i proprietari lo segnalano ancora mancante sui social",
+      "autorevolezza": "alta — testata di settore cinema indipendente, articolo datato a tre giorni prima di questa riverifica; fetch diretto bloccato dal proxy in questa sessione, contenuto ripreso via snippet di ricerca"
+    }
+  ],
+  "timeline": [
+    {
+      "data": "2024-03-07",
+      "evento": "Nikon rivela l'accordo per acquisire il 100% di RED Digital Cinema; operazione perfezionata l'8 aprile 2024."
+    },
+    {
+      "data": "2025-09-10",
+      "evento": "Annuncio ufficiale della Nikon ZR, prima fotocamera Z-CINEMA nata dalla sinergia con RED."
+    },
+    {
+      "data": "2025-10-08",
+      "evento": "Nikon avverte di possibili ritardi nelle spedizioni per l'elevato numero di ordini."
+    },
+    {
+      "data": "2025-10-24",
+      "evento": "Inizio disponibilità della Nikon ZR: 2.199,95$ per il solo corpo (USA)."
+    },
+    {
+      "data": "2026-01-26",
+      "evento": "Primo firmware (v1.10): timecode via cavo, tempo di registrazione esteso, naming file in stile RED."
+    },
+    {
+      "data": "2026-03-17",
+      "evento": "Nikon annuncia la service advisory Z-TSA-3-2026 per un problema di fabbricazione su alcune unità di Z6III, Z5II e ZR; riparazione gratuita, richieste aperte dal 23 marzo. Lo stesso giorno esce il firmware ZR v1.11."
+    },
+    {
+      "data": "2026-04-23",
+      "evento": "Al NAB 2026 Nikon annuncia funzioni firmware future: focus peaking in R3D, Log 3G10 in H.265, LUT su uscita HDMI."
+    },
+    {
+      "data": "2026-05-14",
+      "evento": "Sconto del 16% su Amazon UK segnalato dalla stampa specializzata; corpo sceso sotto le 2.000£ presso London Camera Exchange, minimo storico nel Regno Unito."
+    },
+    {
+      "data": "2026-07-12",
+      "evento": "Ricerca originale KIROSHI//OR (ricerche/nikon-zr.md)."
+    },
+    {
+      "data": "2026-08-17",
+      "evento": "Conversione in verdetto pubblicato, punteggio 84/100."
+    },
+    {
+      "data": "2026-08-26",
+      "evento": "CineD riporta che il firmware maggiore annunciato al NAB resta senza data, oltre quattro mesi dopo l'annuncio; un forum DPReview segnala un'unità ricondizionata a 1.695$."
+    },
+    {
+      "data": "2026-08-29",
+      "evento": "Riverifica di freschezza KIROSHI//OR: nessun cambiamento sostanziale, punteggio confermato a 84/100."
+    }
+  ],
+  "nota_sicurezza": "Nessun segnale di malware, phishing o raggiro: la Nikon ZR è un prodotto regolarmente distribuito nei canali retail ufficiali di un produttore identificabile, non un'offerta anomala o un link da trattare con sospetto. Limite dichiarato, invariato dalla prima pubblicazione: tutte le fonti di questo verdetto sono risultate irraggiungibili con WebFetch diretto in questa sessione, sia il 17/08 sia il 29/08, bloccate dal proxy di rete (errore EGRESS_BLOCKED), quindi non è stato possibile confermarne lo stato \"live\" con una richiesta HTTP diretta; sono state ritrovate tramite ricerca web, con titolo e contenuto testuale corrispondenti. Se Pier ha visto un prezzo di circa 1.600€, non trova ancora corrispondenza in nessuna fonte di questa verifica per un'unità nuova: alla riverifica del 29/08/2026 il dato più vicino reperito è un'unità ricondizionata a 1.695$ segnalata su un forum specializzato, non un'offerta equivalente. Prima di acquistare da chi propone quella cifra, verificare che sia un rivenditore autorizzato Nikon (o un canale ricondizionato dichiarato come tale), chiedere fattura e garanzia ufficiale, e diffidare di pagamenti anomali. Il problema di fabbricazione (service advisory Z-TSA-3-2026) va controllato con il numero di serie sul sito Nikon prima dell'acquisto, specie se il corpo è usato o di provenienza incerta; nessuna estensione o chiusura di questo programma è stata reperita alla data della riverifica. Questa verifica riguarda l'esistenza e la tenuta delle specifiche del prodotto, non se convenga comprarlo: quella è una scelta che dipende dal budget e dal flusso di lavoro di Pier, non da questo verdetto.",
+  "issue": 0,
+  "data_verifica": "2026-08-29"
+}

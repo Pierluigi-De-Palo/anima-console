@@ -10,6 +10,9 @@ import os
 import re
 import pathlib
 import datetime
+import subprocess
+import sys
+
 import anthropic
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -23,13 +26,21 @@ issue_labels = os.environ.get("ISSUE_LABELS", "") or ""
 # Modalità: "scava" se scritto nel corpo o presente come etichetta.
 modalita = "scava" if ("scava" in issue_body.lower() or "scava" in issue_labels.lower()) else "rapida"
 
+# Fail-fast leggibile: senza questo, il traceback del client arriva fino a
+# «Could not resolve authentication method» e nessuno capisce cosa manca.
+if not os.environ.get("ANTHROPIC_API_KEY", "").strip():
+    raise SystemExit(
+        "ANTHROPIC_API_KEY mancante o vuota: il secret non è configurato nel repo.\n"
+        "Su GitHub: Settings → Secrets and variables → Actions → New repository secret."
+    )
+
 client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
 
 resp = client.messages.create(
     model="claude-sonnet-5",
     max_tokens=4000,
     system=PROMPT,
-    tools=[{"type": "web_search_20250305", "name": "web_search", "max_uses": 8 if modalita == "scava" else 4}],
+    tools=[{"type": "web_search_20260209", "name": "web_search", "max_uses": 8 if modalita == "scava" else 4}],
     messages=[{
         "role": "user",
         "content": f"Modalità: {modalita}\n\nDa verificare:\n{issue_body}",
@@ -45,20 +56,18 @@ verdetto = json.loads(match.group(0))
 verdetto["issue"] = int(issue_num)
 verdetto["data_verifica"] = datetime.date.today().isoformat()
 
-# --- salvataggio: docs/data/NNNN.json (record) + rigenerazione bundle db.js ---
+# --- salvataggio: docs/data/NNNN-slug.json (record) ---
 DATA.mkdir(parents=True, exist_ok=True)
 slug = re.sub(r"[^a-z0-9]+", "-", verdetto.get("titolo", f"check-{issue_num}").lower()).strip("-")
-fname = f"{int(issue_num):04d}-{slug}.json"
+# NNNN = massimo esistente + 1, NON il numero della issue: una issue con numero
+# già usato come prefisso (es. #6, #13) sovrascriverebbe un verdetto pubblicato.
+esistenti = [int(m.group(1)) for p in DATA.glob("[0-9]*.json") if (m := re.match(r"(\d+)", p.name))]
+fname = f"{max(esistenti, default=0) + 1:04d}-{slug}.json"
 (DATA / fname).write_text(json.dumps(verdetto, ensure_ascii=False, indent=2), encoding="utf-8")
 
-# Rigenero un unico bundle da tutti i verdetti salvati. La dashboard lo carica
-# via <script> (niente fetch), così funziona anche aperta in locale.
-checks = [json.loads(p.read_text(encoding="utf-8")) for p in sorted(DATA.glob("[0-9]*.json"))]
-checks.sort(key=lambda c: c.get("issue", 0))
-(DATA / "db.js").write_text(
-    "window.KIROSHI_DB = " + json.dumps(checks, ensure_ascii=False, indent=2) + ";\n",
-    encoding="utf-8",
-)
+# Il bundle db.js lo rigenera SOLO build_db.py: è lui il cancello editoriale
+# (verdetti senza fonti scartati). Rigenerarlo qui inline bypasserebbe i guardrail.
+subprocess.run([sys.executable, str(ROOT / "scripts" / "build_db.py")], check=True)
 
 # --- commento per la issue ---
 emoji = {"affidabile": "🟢", "dubbio": "🟡", "falso": "🔴"}.get(verdetto.get("etichetta"), "⚪")

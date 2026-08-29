@@ -10,3 +10,12 @@ KIROSHI.md
 standard/
 STATO.md
 APERTURA.md
+
+# ── Segreti: non dovrebbero mai arrivare qui, ma la porta si chiude lo stesso
+# (era l'unico repo grande senza questa sezione — e proprio quello che gira
+#  in CI con una chiave. Censimento del 19/08: storia pulita, porta chiusa ora.)
+.env
+.env.*
+*.pem
+*.key
+.dev.vars
