@@ -1,245 +1,268 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cyber Boomer — SYSTEMA 77</title>
-<meta name="description" content="Cyber Boomer, voce pubblica di SYSTEMA 77. Verifiche, verdetti e strumenti aperti: BRAINDANCE, KIROSHI//OR fake checker, console.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta http-equiv="Content-Security-Policy"
+      content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data:; form-action 'none'; base-uri 'none'">
+<title>◉</title>
 <style>
-  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+:root{--sf:#070a0f;--pan:#0d141d;--bor:#1e2a38;--txt:#d7e3ef;--dim:#7d93a8;--cia:#22d3ee;--ver:#2ee6a6;--gia:#f6c453;--ros:#ff6b6b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--sf);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:15px;line-height:1.6}
+.mono{font-family:ui-monospace,Menlo,Consolas,monospace}
 
-  :root{
-    /* Camera oscura — una lampada calda in una stanza buia */
-    --bg-deep:    #0C0B0E;
-    --bg-surface: #141216;
-    --amber:      #C9A15E;
-    --amber-soft: rgba(201,161,94,.10);
-    --text-hi:    #ECE7DF;
-    --text-lo:    #A7A29B;
-    --line:       #3A3730;
-    --font-mono:  'Courier Prime','Courier New','Lucida Console',monospace;
-    --font-serif: 'Iowan Old Style','Palatino Linotype',Palatino,'Georgia',serif;
-  }
+/* ── la porta ── */
+#porta{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;gap:22px}
+#porta .marchio{font-family:ui-monospace,Menlo,monospace;font-size:30px;letter-spacing:.3em;color:var(--cia);text-indent:.3em}
+#porta .sotto{font-family:ui-monospace,Menlo,monospace;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);text-align:center}
+#modulo{display:flex;flex-direction:column;gap:10px;width:100%;max-width:330px}
+#frase{width:100%;background:var(--pan);border:1px solid var(--bor);border-radius:7px;padding:13px 15px;color:var(--txt);font-family:ui-monospace,Menlo,monospace;font-size:15px;text-align:center;letter-spacing:.04em}
+#frase:focus{outline:none;border-color:var(--cia);box-shadow:0 0 0 3px rgba(34,211,238,.1)}
+#apri{background:transparent;border:1px solid var(--cia);color:var(--cia);font-family:ui-monospace,Menlo,monospace;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;padding:12px;border-radius:7px;cursor:pointer}
+#apri:hover:not(:disabled){background:var(--cia);color:var(--sf)}
+#apri:disabled{opacity:.5;cursor:wait}
+#esito{min-height:19px;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;text-align:center;color:var(--ros)}
+#esito.lavora{color:var(--dim)}
 
-  html{ scroll-behavior:smooth; }
-
-  body{
-    background:var(--bg-deep);
-    color:var(--text-hi);
-    font-family:var(--font-serif);
-    line-height:1.6;
-    min-height:100vh;
-    overflow-x:hidden;
-  }
-
-  /* vignettatura */
-  body::before{
-    content:''; position:fixed; inset:0; pointer-events:none; z-index:9998;
-    background:radial-gradient(ellipse at 50% 45%, transparent 55%, rgba(0,0,0,.55) 100%);
-  }
-  /* grana 16mm */
-  body::after{
-    content:''; position:fixed; inset:0; pointer-events:none; z-index:9999; opacity:.04;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-
-  .wrap{ max-width:760px; margin:0 auto; padding:0 1.5rem; }
-
-  /* ── HERO ─────────────────────────────────────── */
-  .hero{
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    min-height:88vh; padding:4rem 1.5rem 3rem; text-align:center; position:relative;
-  }
-  .hero::before{
-    content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
-    background:radial-gradient(ellipse at 50% 38%, rgba(201,161,94,.10), transparent 60%);
-  }
-  .hero-content{ position:relative; z-index:1; animation:rise .9s ease-out both; }
-
-  .logo{
-    font-family:var(--font-mono);
-    font-size:clamp(2rem,6vw,4.2rem);
-    font-weight:700; letter-spacing:.12em; text-transform:uppercase;
-    color:var(--text-hi); margin-bottom:.3em;
-  }
-  .logo .dot{ color:var(--amber); opacity:.8; }
-
-  .subtitle{
-    font-family:var(--font-mono);
-    font-size:clamp(.7rem,2vw,.95rem);
-    letter-spacing:.35em; text-transform:uppercase;
-    color:var(--text-lo); margin-bottom:2.5rem;
-  }
-
-  .manifesto{
-    max-width:540px; margin:0 auto;
-    font-size:clamp(1.02rem,2.4vw,1.25rem);
-    color:var(--text-lo); line-height:1.75;
-    border-left:2px solid var(--amber);
-    padding-left:1.25rem; text-align:left;
-  }
-
-  /* ── CONTATORI ────────────────────────────────── */
-  .stats{
-    display:flex; flex-wrap:wrap; justify-content:center; gap:2.5rem;
-    margin-top:3rem; font-family:var(--font-mono);
-  }
-  .stat .n{
-    display:block; font-size:2rem; font-weight:700; color:var(--amber); line-height:1;
-  }
-  .stat .l{
-    display:block; margin-top:.5rem; font-size:.68rem; letter-spacing:.22em;
-    text-transform:uppercase; color:var(--text-lo);
-  }
-
-  /* ── SEZIONI ──────────────────────────────────── */
-  section{ padding:3.5rem 0; border-top:1px solid var(--line); }
-
-  .eyebrow{
-    font-family:var(--font-mono); font-size:.68rem; letter-spacing:.3em;
-    text-transform:uppercase; color:var(--amber); margin-bottom:1.75rem;
-  }
-
-  .tools{ display:grid; gap:1rem; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
-
-  a.tool{
-    display:block; text-decoration:none; color:inherit;
-    background:var(--bg-surface); border:1px solid var(--line);
-    padding:1.4rem 1.5rem; transition:border-color .25s, background .25s, transform .25s;
-  }
-  a.tool:hover, a.tool:focus-visible{
-    border-color:var(--amber); background:var(--amber-soft); transform:translateY(-2px);
-  }
-  a.tool .t{
-    font-family:var(--font-mono); font-size:.95rem; font-weight:700;
-    letter-spacing:.08em; color:var(--text-hi); margin-bottom:.45rem;
-  }
-  a.tool .d{ font-size:.95rem; color:var(--text-lo); line-height:1.55; }
-  a.tool .go{
-    display:inline-block; margin-top:.9rem; font-family:var(--font-mono);
-    font-size:.68rem; letter-spacing:.22em; text-transform:uppercase; color:var(--amber);
-  }
-
-  /* ── DOCUMENTI ────────────────────────────────── */
-  ul.docs{ list-style:none; }
-  ul.docs li{ border-bottom:1px solid var(--line); }
-  ul.docs li:first-child{ border-top:1px solid var(--line); }
-  ul.docs a{
-    display:flex; justify-content:space-between; align-items:baseline; gap:1rem;
-    padding:1rem .25rem; text-decoration:none; color:var(--text-hi);
-    transition:color .2s, padding-left .2s;
-  }
-  ul.docs a:hover, ul.docs a:focus-visible{ color:var(--amber); padding-left:.6rem; }
-  ul.docs .meta{
-    font-family:var(--font-mono); font-size:.68rem; letter-spacing:.18em;
-    text-transform:uppercase; color:var(--text-lo); white-space:nowrap;
-  }
-
-  /* ── FOOTER ───────────────────────────────────── */
-  footer{
-    border-top:1px solid var(--line); padding:3rem 0 4rem;
-    font-family:var(--font-mono); font-size:.78rem; color:var(--text-lo);
-  }
-  footer .dom{ display:flex; flex-direction:column; gap:.6rem; margin-bottom:2rem; }
-  footer .dom b{ color:var(--text-hi); font-weight:700; }
-  footer .soon{ color:var(--text-lo); opacity:.65; }
-  footer .sig{ font-size:.68rem; letter-spacing:.22em; text-transform:uppercase; opacity:.6; }
-
-  @keyframes rise{ from{ opacity:0; transform:translateY(18px); } to{ opacity:1; transform:none; } }
-  @media (prefers-reduced-motion:reduce){
-    *, *::before, *::after{ animation:none !important; transition:none !important; }
-  }
+/* ── il banco ── */
+#banco{max-width:820px;margin:0 auto;padding:20px 16px 40px}
+.testa{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--bor);padding-bottom:11px;margin-bottom:8px}
+.testa h1{font-family:ui-monospace,Menlo,monospace;font-size:15px;letter-spacing:.16em;color:var(--cia);margin:0;text-transform:uppercase}
+#chiudi{background:transparent;border:1px solid var(--bor);color:var(--dim);font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:5px 11px;border-radius:5px;cursor:pointer}
+#chiudi:hover{border-color:var(--ros);color:var(--ros)}
+h2{font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin:30px 0 10px;border-bottom:1px solid var(--bor);padding-bottom:5px}
+a{color:var(--cia);text-decoration:none;border-bottom:1px solid rgba(34,211,238,.25)}
+a:hover{border-bottom-color:var(--cia)}
+.griglia{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+.att{background:var(--pan);border:1px solid var(--bor);border-radius:9px;padding:13px 15px}
+.att .n{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;letter-spacing:.06em;color:var(--cia);margin-bottom:5px}
+.att .c{font-size:13px;color:var(--dim);line-height:1.5}
+.riga{display:flex;gap:11px;align-items:baseline;padding:7px 0;border-bottom:1px solid rgba(30,42,56,.55);font-size:13.5px;flex-wrap:wrap}
+.riga:last-child{border-bottom:none}
+.id{font-family:ui-monospace,Menlo,monospace;color:var(--cia);font-size:12px;min-width:34px}
+.eta{font-family:ui-monospace,Menlo,monospace;font-size:11px;margin-left:auto;white-space:nowrap}
+.fresco{color:var(--ver)}.medio{color:var(--gia)}.vecchio{color:var(--ros)}
+.cif{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin:12px 0}
+.cif div{background:var(--pan);border:1px solid var(--bor);border-radius:9px;padding:12px 14px}
+.cif b{display:block;font-family:ui-monospace,Menlo,monospace;font-size:23px;color:var(--cia);line-height:1.2}
+.cif span{font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--dim)}
+.avv{border-left:2px solid var(--gia);background:rgba(246,196,83,.06);padding:10px 14px;margin:12px 0;border-radius:0 8px 8px 0;font-size:13.5px}
+.cmd{background:var(--pan);border:1px solid var(--bor);border-radius:8px;padding:10px 13px;margin:8px 0}
+.cmd .q{font-size:12.5px;color:var(--dim);margin-bottom:5px}
+.cmd code{display:block;font-family:ui-monospace,Menlo,monospace;font-size:12.5px;color:var(--ver);word-break:break-all}
+table{border-collapse:collapse;width:100%;font-size:13px;margin:10px 0}
+th,td{border:1px solid var(--bor);padding:7px 9px;text-align:left;vertical-align:top}
+th{color:var(--cia);font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:400}
+.pie{margin-top:32px;padding-top:12px;border-top:1px solid var(--bor);font-family:ui-monospace,Menlo,monospace;font-size:9.5px;color:#4a5a6b;letter-spacing:.09em;line-height:1.8}
 </style>
 </head>
 <body>
 
-<header class="hero">
-  <div class="hero-content">
-    <h1 class="logo">Cyber<span class="dot">.</span>Boomer</h1>
-    <p class="subtitle">Systema 77</p>
-    <p class="manifesto">
-      Ci muoviamo in un immaginario cyberpunk, ma senza rumore:
-      la ribellione, per noi, è l'<strong>arte</strong> — non la violenza.
-      Qui sotto c'è quello che facciamo, non quello che promettiamo.
-    </p>
-
-    <div class="stats">
-      <div class="stat"><span class="n" id="n-verdetti">—</span><span class="l">verdetti</span></div>
-      <div class="stat"><span class="n" id="n-agg">—</span><span class="l">aggiornato</span></div>
-    </div>
+<div id="porta">
+  <div class="marchio">◉</div>
+  <div class="sotto">banco di lavoro · accesso riservato</div>
+  <div id="modulo">
+    <input id="frase" type="password" autocomplete="off" autocapitalize="off"
+           autocorrect="off" spellcheck="false" placeholder="frase di sblocco" aria-label="frase di sblocco">
+    <button id="apri" type="button">apri</button>
+    <div id="esito" role="status" aria-live="polite"></div>
   </div>
-</header>
+</div>
 
-<main class="wrap">
+<div id="banco" hidden></div>
 
-  <section>
-    <p class="eyebrow">Gli strumenti — aperti, funzionanti</p>
-    <div class="tools">
-
-      <a class="tool" href="braindance/">
-        <div class="t">◉ BRAINDANCE</div>
-        <div class="d">I verdetti. Vero, falso o incerto, con punteggio e fonti in chiaro.</div>
-        <span class="go">Apri i verdetti →</span>
-      </a>
-
-      <a class="tool" href="fake-checker/">
-        <div class="t">◉ KIROSHI//OR</div>
-        <div class="d">Il fake checker. Prodotti, annunci e promesse passati al setaccio.</div>
-        <span class="go">Apri il checker →</span>
-      </a>
-
-      <a class="tool" href="braindance/chiedi/">
-        <div class="t">◉ CHIEDI UNA VERIFICA</div>
-        <div class="d">Hai una notizia che non ti torna? Mandacela: entra in coda e riceve un verdetto.</div>
-        <span class="go">Fai una domanda →</span>
-      </a>
-
-    </div>
-  </section>
-
-  <section>
-    <p class="eyebrow">Documenti pubblici</p>
-    <ul class="docs">
-      <li><a href="schede/competenze-v1.1.html"><span>Scheda Competenze — Squadra di Ripresa</span><span class="meta">v1.1</span></a></li>
-      <li><a href="schede/consiglio-animagame-2026-07-17.html"><span>Consiglio Anima Game</span><span class="meta">17 · 07 · 2026</span></a></li>
-      <li><a href="schede/termini-consenso-v1.html"><span>Termini e consenso</span><span class="meta">v1</span></a></li>
-      <li><a href="schede/"><span>Tutte le schede</span><span class="meta">indice</span></a></li>
-    </ul>
-  </section>
-
-  <footer>
-    <div class="dom">
-      <span><b>cyberboomer.io</b> — Cyber Boomer, la voce <em>(sei qui)</em></span>
-      <span><a href="https://systema77.com"><b>systema77.com</b></a> — SYSTEMA 77, la casa</span>
-      <span><a href="https://animagame.io"><b>animagame.io</b></a> — Anima Game</span>
-    </div>
-    <div class="sig">Systema 77 · 2026</div>
-  </footer>
-
-</main>
-
-<script src="data/archivio.js"></script>
-<script src="data/braindance.js"></script>
-<script>
-(function(){
-  function set(id, val){
-    var el = document.getElementById(id);
-    if (el && val !== null && val !== undefined) el.textContent = val;
+<script type="application/json" id="PORTA_PAYLOAD">
+{
+ "v": 1,
+ "cifra": "AES-GCM-256",
+ "kdf": "PBKDF2-SHA256",
+ "iter": 210000,
+ "salt": "SqF5JQ9sLGTA5J70npqs2A==",
+ "blocchi": [
+  {
+   "iv": "1Q3E35a+xokqYTUl",
+   "d": "s0u98nxyMk7S/wV86jD15KdXN3yJsZ4cc6dz78WPv3hdD6v3FWTjO6KLexDclZUIYwfhJYOf+4bEHpqgO0dffiNRNhbHl9sqznZX9IGi159JU7v6SGGa/bx3P09ZlefJ7+HXmQTyO+ikOqvA6c36h2bcsMwhzLZHeXNrvaZlRftGxsrVW7ISa7QX7Hv1/F/J6HnuOGtPInBgMXeUmVmfLhMCLRAPD2Tu0+Mpc+2o0u/OrKyIcsHGaeE4z6zT0iVUcOZiLfgcPYIJNd5afYibv9ADYJg1EXdSu26Wg8koCIcCmBmqx8L1UBkk7ASv+h2Kg7qW1F/VCcyhDPdv2bA9TZoZweGxYmBTOl9sYnCTcjp3PIHeF3YvWWdGuEFexYODyOoOfZkUcPT/n1m0CsHnfiSBy8QgnJ+MGe1llErW6G6bnnOTl1Zy11dGVUG/a0sdED/VnKpcbEPsFudBqeIvevrJuOSGMPekWs7hRUQG5gY8C9DVIa1gknt7tQJMX2m9zKg1gG4AmxYZojCMrHu04cliNDLVdpwcuH4IYQApPK/bQWu6fIaG9x5I+TcXUVfM9biPQIR0uk7+OuycZ8dY7XzC/ua3gTkyXrfieVMKiU9vIIqPpKdqtnrfOBKrJvkLxez5eU8R6PW//Fcup64r/W8DobuuhkTv0BEj+b6E9zGtFR+q1b/zXEhgDPY4koRC3EzettxRKI9lIR5QhdUoNknm/q4lHyzGkQWRFVbW4eYdqV+ThKqBFLSyLeLAo2k23s7wovbC3tBuKQUzlZCPp/0dDQuMDbG7zykcjhRpTiiR1uvFGIUn3pruQ9uzLw0Ng7r+gLa8kcdUjtUdeTZzUYs/bd8zMSffsAIFEU5rEtwQ6BLd+WHFdW+K8e2/cfPUEbok5ZeprwaO9sJAVS2zcxVB5CXRT2BmiAeXq+4ftB2AAT0Zqr7JMVswmx8Q+GRPpyTkR8XHMO0OwgDuNdMB/BzRDnQZ8+pKKVoqoEbddH3aFfjcyDpt+m1kWUmN9S6LTzvsLQ0JsjtJ6Lw3d5v5ODx6Ebpv8yPyXR3gHVpwga8k9PGIVpg3yEXHLWAQNmjiuS8j4dzcd7qrWWP5GIgR+MwJMlJ8BoBeP5xrmrBhZuppaJ9xUJWN0Yf5WujzKxBqJzE5/IFIDyPO9TX2ESPjToGO8fqSvZjr+N1ZyOYoErBQ3A2NkorSGkQWJfWu4U/ubjJmXJwewtzFjIMJkS+/B0mFzTecYys6Z9RdRh+4c5+nheu5Q23SfStfpCpYO378CZPuVkvJKhcLc5omFFUdCVaiUZ0tZeF4ZfOS3xlvy2q74TUU6bO5j+UhNE4x69JZGLkpDHh5Eo214Uvbto4XprX7cGEF7G9flLmGGc2wCUPPD96oWB8rPtTW1/1S/wda3lZDYoASVN8vDIzvpXeJJGK5TYQzhdu7rXgX1ySVV6s4Vh8WWUFwBbaNcbRn7vN4yVcjkWpjz4BTgs7as6K2RuyEpbukUdKYHMR1WTBTK5y4lWIdaNujSb2kuy45oFo8dHFBXF6sRYxMSDuKy9OK1ecOr7qhQChQU/vcDB0gw1VoB1bYLjSE3Ciem+CeWaTDQ1MwMD1Ftm3P3HlDjhJFBKuYuu9F/5tIUBq6VgSLH7FbI3aOAck1BkXnA2hxRh5m+FixaCryN103MiiY9YUnnrKj/TtPDurZzX3L9sC5Exx8IaN6ZUAB4KPdpS86oEeHkeOGyqI3Ztq2ML3qiqJ1BHVmZDoDGQ21260s20urCbH5xXOl0mGsIeCYuYEI/3MI/U+hOcAjGSSXrC8eYMtIyY9GzYZ8qApgylAY6VtiPqP1cS1U2GTBIJMBgi2N8jDXiodFR1W63OqGVB62l5gVbr9YRqMs2+WQecYCgwZYmKzLjKp9KakMYg358egA2w0q8PjmvA=="
+  },
+  {
+   "iv": "Dn/U1uSHUpvIUrTB",
+   "d": "I31ZdeJH+Uiu5SOltTBCOzh8yA0r8xO99d5QKkYEUh6oSVFdzKbaK/qodhOJPKGwGpFKqqnaQJo9VX/GHG6WFhM07XSiPAH5nNW3U49x93RenxQ2JKRcHhonA1m3HXHiMl7Ywsf0xPtTCo/vzflvpVI9zjAJ/aQ2Yj8nz3xgLNd+fqEIWD55KmmujCwDM/Z/2Sy+DZGdpKIvvYZY6DImOjQR8zjDs52NVinJOVEvRlUS3cmlfdJQ6nG8/KGmCIMnCiCmAx+I1zGj3sXs4igc/DtEn7TL91hncDKaoPKsEteEL5gm33lLBJ34Uw06A6F1936A5NZHuzdJ/OR8kSKMOX/DXixIZmV8FwxqEcP7xh3qvqp/tZQ5MnqxSOtburACyiYWR7rTg19wCOjTrAkUg1NUfRICh6Iz2w9C8s/PwL98hgFmDR6VE5APsz5g11XH3Lf1a8WmYXj1ILoZltnDkCJoC1/+ehqmPDtxGW9z03fwNZk6XjGkvDfsD8u/fxwdAgqznzXjTxuwsttFsdWepWU97u/3SY0e8NmCjVUscv42EUfKESp7g7CLnkhXGJ9heexmHTvi42KgblM6j3WqUw+nRDjptW2TbHbY5CWlP898ACN6Ggi9YYDP4pmeKkzyzTzcuKWCCLk2S7DT8l2esU6Om+J5ai6VszuydZ3kV8Dj2sFmz/ehvHXD36Onv0ULtyQmD0WuCTaioHSR3nmfwuJz2u9+xbIwcCnh8RuzrtAzViXA6x/k28dE2i045QXLEohTMOl+I/ZKdXDsnFZSEcFylTEDwnyGsU4hNN9l5GrQlG6P5360/TMu36IkO6BYPNt9Ov8vlmkRJlanXcMmLPqBV2bw2dkv/30RPR9m3RRuHdGey7TIJ1XZLPm8A6k6iDCQnbWcInzHISvn8ucBO8HUxjkTPXFctfhl7GL56O5RfH7bnOKCr+3Ia5VBkQPVtVdZZ99uv0U5c/22NzmBTkMYcZ4FmTexu2Z8pEp8FgJK31uDk90wkUnJQif21Q4ZjimmAL/wBpyyVLNxfNW4bi6C2rUgVvPOm3TlhxUUrEi04KtOQL8OnLLeNbnvZLCqfWERXI4q6H2EsanCQMzW6Td7+do0VJmlIlzx6jPrCDyAvdIWTQywPvlQ5XqAWwzUqfUhP8EKAzwm+PAx2MFt8snm2x8tlLacnhII3t3JUKKzQcoEHIoYV9N/quJbq8Ag3wr5B2wMDyRK/mxQb2v1sY0U8k1orr4E/+hia/TBNvU="
+  },
+  {
+   "iv": "oT/7sedXsPN4nbvA",
+   "d": "wrDZti2r2XhuMTDu9x4vZDbZiB9rxQXM+EZTsIrjV/jhAnRbNU/R9H1SH5ukjjtRZI7je7ksGGQfW54QMm30NLRmdH+SRfQ3rbXXyCld2oabYTdjcwsQNS7npW55I4+yW6lN2mMd5+em7IogOQ2qIqglEYwbaigbmYqz41NgACkz5AbLHZ3XV22M1L5AuqHykYkIIIOZQjcl1aFec36Q9wxRmXQ+LWAv5j70g+TVhixnTKMk9gg7vDF8A1mLJvJH0XmUiBUN7r3hKCrxM4shZp1UJRu4+VnCaGzeo3C3VtrHn6tvYpfIyZvn9o65zguMv6VbqPMn82oPqgITvyYE5Tk0wz2qlct8hxrx79Negxxy5SzSnZmZ8EXldRdEkv53WPaUJkQulycN60LIov16I8KM6JqkADhJREBNWsB9Soh2soFlSOF03W76ETiXt31ax539lAdBjvnRnxd0/Jv8sKE2Tu/QWyAeW2/t8z3DGHQ2x/eevbj9eHQeIGTV4ZbsxZaVJAvev3z5k/5TJbpoQlCWU69NciI9oUgJsKsUaWLEnzG6cfd94Ss4QPSJAoZPvNFrOGd4h9ACVK/Zd6zPdciGLrLaIqbraCGxFihguw2FfGHifljhN+BhLkICUOSj7REApb/cH01uIOCDU3cJ5vzrd3JQy57u18KIPFAlhr25wki8nvd/Z+tedoDGANXwSmNnzx8Vw7xwjaZwIE6vjg1FWmtF3O4M7FFwKSH71g38atDL422IfRgRw2l3sRCIQBu5y7623dMY0uN+EBQshz7+pfUKvnK0oGUQEw68yq4KXxtafrNQn2YhHWrEIM9yUZLg1gP4z4kXe0IoQDlisd/DZBhEtSMGDKHUWQFFJKvw3FfpX+05qnmqeBDwaT4IxPkZJeRfLdInMsvqqErwGm62pIH6xvYNW8wKoTnudgJK30EiqG9VCSAlridgJ4QjPpC7yOYN6Nrh+j3OQZvIn454fJY6NRxXer4qil52SfNPkpIUzL6As6h5Big38P10+SutZVyKRaw3Hbt/5Mu3smFPmea7R16B/+g3OAj4TJGLtSeCGbx0GybhDehvKTn3/TbnSfDsE1qh+6TQy2YdQqVZP9rmhXcPnDr5vkQncwvKUfGs8G6qMucCnn1Qwcr0lUAI8CC0eF0OZQfEv+oaayijMJ+BS+LVYGLRH7QASSvlAbFr/RVkfawKew2u27jnOW9oAEO/2CSxXn+0MkGCgWQnF1KO5+2PNYKO+XoMAtPhvnE5Ep34fAXXDrPBm4LpQuob31IlfH3qZmoFFxUHQRit4sV7GuqmU1mFQEOnAdrbzMnKTC5OPbQCWLjczQXa+t2fOO3MdGbpHQLWUbKYMGQ="
+  },
+  {
+   "iv": "c/jg7VLZ0ESj5MC+",
+   "d": "v/1Xh0uegXolGFovTxi9Kq4ktO2dxAOkGGU5iyKvMEvIK/OkFkhZSkI5xiQ6KGlfV1vIuD+OPxmmj1g1M9hui7J2UuQerTk9pjRWENVFOoeT9XYQGiLmEx11g3hJTeFk3KB3KfmaIk8E98O49KOP+aObulnMHSJHntkMWTTM+6jhopM70hMBGk1jpS9Hu7R5tffQ0VO1qvYXazuZL3CMfUpvliV3U6HXPN3ORDP/yEquSrwVoY9G0zOp/bE/xr4WjL+uPlZ0zY/OZTiZfSd3KEpqkBslua30b0SMCCzbxQkdnD7gOZ7misxigPcX2jSbhBBRJd1e/J3TgReIa53MiFJB3xTXs7C5LiUs8AnYTSfeXO/pmPkCV3iczHbjCV6ITLs21WiEHHTFZg6KaWivnSafii0/Ho6vyqspDKGbU4s/p8umIR92BuCXOpr7Vl7cA4boPBWbbMRzackAwOM1lql0QoRxr6ggPVeTZiqGk/xkR+ENkFAZCoOV7vzbw0jkFXyWsATpw4kMb/b/VTjDsFtturQtSviTDgkhoaiOl1cNbh1w+CFqwXFaDR8vXqTiDrKXzoiMnSx3gs+jDPaRZi/8N2mKjcYNAKdnifTzK1MVoiX++EQ7XDAcUyZoiPI4KnrZLhyAZIWvnzRciuN5Peagb6Vv4tzwSuP0ghU9GXVEXRjLdE6bp3sYJdbbAfIaOsXXpcSsrPA="
   }
-  // Un contatore solo: l'archivio unito (BRAINDANCE + KIROSHI), generato da
-  // scripts/build_archivio.py. Prima erano due, e uno era fermo dal 09/07.
-  var arc = window.ARCHIVIO;
-  if (arc) set('n-verdetti', arc.totale);
-  else if (window.BRAINDANCE) set('n-verdetti', window.BRAINDANCE.totale);
-
-  var bd = window.BRAINDANCE;
-  if (bd && bd.generato) {
-    var p = String(bd.generato).split('-');
-    if (p.length === 3) set('n-agg', p[2] + '/' + p[1]);
-  }
-})();
+ ]
+}
 </script>
 
+<script>
+/*
+  COSA FA — chiede la frase, deriva la chiave (PBKDF2-SHA256, 210.000 giri) e
+    decifra i blocchi AES-GCM incorporati qui sopra. Se la frase è sbagliata,
+    GCM non autentica e non esce niente: non c'è un «quasi giusto».
+  FIN DOVE ARRIVA — protegge QUESTO contenuto. Non protegge le pagine che
+    elenca: quelle restano raggiungibili da chi ne indovina l'indirizzo finché
+    il repo è pubblico. Serratura qui, tenda là — ed è scritto anche in pagina.
+  ZERO RETE — la CSP vieta ogni connessione. Niente esce da questa pagina.
+*/
+(function () {
+  'use strict';
+  var ITER_MINIME = 200000;   // un payload più debole è rotto o riscritto
+  var $ = function (id) { return document.getElementById(id); };
+  var porta = $('porta'), banco = $('banco'), campo = $('frase'),
+      bottone = $('apri'), esito = $('esito');
+
+  function b64(s) {
+    var g = atob(s), a = new Uint8Array(g.length);
+    for (var i = 0; i < g.length; i++) a[i] = g.charCodeAt(i);
+    return a;
+  }
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  var payload = null;
+  try {
+    var tag = document.getElementById('PORTA_PAYLOAD');
+    payload = tag ? JSON.parse(tag.textContent) : null;
+  } catch (e) { payload = null; }
+
+  function guasto(m) { esito.className = ''; esito.textContent = m; }
+
+  if (!payload || payload.v !== 1 || !payload.blocchi || !payload.blocchi.length) {
+    guasto('porta non generata: manca il contenuto cifrato');
+    bottone.disabled = true;
+  } else if (!(payload.iter >= ITER_MINIME)) {
+    guasto('derivazione troppo debole: payload non attendibile');
+    bottone.disabled = true;
+  }
+
+  async function apri() {
+    var frase = campo.value;
+    if (!frase) { guasto('serve la frase'); campo.focus(); return; }
+    bottone.disabled = true;
+    esito.className = 'lavora';
+    esito.textContent = 'apro…';
+    await new Promise(function (r) { setTimeout(r, 20); });   // lascia dipingere
+
+    try {
+      var base = await crypto.subtle.importKey('raw', new TextEncoder().encode(frase),
+                                               'PBKDF2', false, ['deriveKey']);
+      var chiave = await crypto.subtle.deriveKey(
+        { name: 'PBKDF2', salt: b64(payload.salt), iterations: payload.iter, hash: 'SHA-256' },
+        base, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+
+      var dati = {};
+      for (var i = 0; i < payload.blocchi.length; i++) {
+        var b = payload.blocchi[i];
+        var chiaro = await crypto.subtle.decrypt(
+          { name: 'AES-GCM', iv: b64(b.iv) }, chiave, b64(b.d));
+        var o = JSON.parse(new TextDecoder().decode(chiaro));
+        dati[o.nome] = o.dati;
+      }
+      campo.value = '';
+      mostra(dati);
+    } catch (e) {
+      // Messaggio unico: frase sbagliata e payload manomesso danno lo stesso
+      // esito, e distinguerli in pagina aiuterebbe solo chi prova a indovinare.
+      guasto('non si apre');
+      bottone.disabled = false;
+      campo.focus();
+      campo.select();
+    }
+  }
+
+  function classeEta(g) { return g == null ? '' : g > 21 ? 'vecchio' : g > 7 ? 'medio' : 'fresco'; }
+
+  function mostra(d) {
+    var h = '';
+    h += '<div class="testa"><h1>◉ banco di lavoro</h1>'
+       + '<button id="chiudi" type="button">chiudi</button></div>';
+
+    var s = d.stato || {};
+    // Numeri E etichette vengono dal cifrato: il modello di pagina non nomina
+    // nulla del sistema, così a lucchetto chiuso non c'è niente da leggere.
+    h += '<div class="cif">';
+    (s.cifre || []).forEach(function (c) {
+      h += '<div><b>' + esc(c.n) + '</b><span>' + esc(c.etichetta) + '</span></div>';
+    });
+    h += '</div>';
+
+    if ((s.da_riverificare || []).length) {
+      h += '<div class="avv"><b>Invecchiati oltre tre settimane.</b> Dodici giorni sono bastati, '
+         + 'una volta, a rendere da correggere due verdetti su tre.<br>'
+         + s.da_riverificare.map(esc).join('<br>') + '</div>';
+    }
+
+    h += '<h2>Strumenti</h2><div class="griglia">';
+    ((d.strumenti || {}).voci || []).forEach(function (v) {
+      h += '<div class="att"><div class="n"><a href="' + esc(v.dove) + '">' + esc(v.nome) + ' →</a></div>'
+         + '<div class="c">' + esc(v.cosa) + '</div></div>';
+    });
+    h += '</div>';
+
+    h += '<h2>Verdetti pubblicati</h2>';
+    (s.elenco || []).forEach(function (v) {
+      h += '<div class="riga"><span class="id">' + esc(v.id) + '</span>'
+         + '<span>' + esc(v.titolo) + '</span>'
+         + '<span class="eta ' + classeEta(v.eta) + '">'
+         + esc(v.data) + (v.eta == null ? '' : ' · ' + v.eta + 'g') + '</span></div>';
+    });
+
+    var k = d.chiavi || {};
+    h += '<h2>Chiavi</h2>';
+    h += '<div class="avv">' + esc(k.regola) + '</div>';
+    h += '<table><tr><th>Chiave</th><th>A cosa serve</th><th>Dove vive</th><th>Stato</th></tr>';
+    (k.voci || []).forEach(function (v) {
+      h += '<tr><td class="mono">' + esc(v.nome) + '</td><td>' + esc(v.serve)
+         + '</td><td>' + esc(v.vive) + '</td><td>' + esc(v.stato) + '</td></tr>';
+    });
+    h += '</table>';
+    (k.comandi || []).forEach(function (c) {
+      h += '<div class="cmd"><div class="q">' + esc(c.cosa) + '</div><code>' + esc(c.come) + '</code></div>';
+    });
+
+    h += '<h2>Da ricordare</h2>';
+    ((d.note || {}).voci || []).forEach(function (n) { h += '<div class="avv">' + esc(n) + '</div>'; });
+
+    h += '<div class="pie">stato generato il ' + esc(s.generato) + ' da scripts/build_porta.py<br>'
+       + 'la porta cifra questo contenuto; le pagine che elenca restano raggiungibili<br>'
+       + 'da chi ne indovina l\'indirizzo finché il repo è pubblico</div>';
+
+    banco.innerHTML = h;
+    porta.hidden = true;
+    banco.hidden = false;
+    document.getElementById('chiudi').addEventListener('click', chiudi);
+    window.scrollTo(0, 0);
+  }
+
+  function chiudi() {
+    // Chiudere deve svuotare davvero: il DOM decifrato non resta in memoria.
+    banco.innerHTML = '';
+    banco.hidden = true;
+    porta.hidden = false;
+    esito.textContent = '';
+    bottone.disabled = false;
+    campo.value = '';
+    campo.focus();
+  }
+
+  // Il click E l'Invio: la CSP vieta l'azione di un <form>, e il browser
+  // blocca l'invio prima dell'evento — quindi il gesto passa da qui.
+  bottone.addEventListener('click', apri);
+  campo.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { e.preventDefault(); apri(); }
+  });
+  campo.focus();
+})();
+</script>
 </body>
 </html>
-<!-- creato da D.R.A.G.O., 2026-07-27 -->
