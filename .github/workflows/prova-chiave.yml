@@ -21,19 +21,73 @@ jobs:
   prova:
     runs-on: ubuntu-latest
     steps:
-      - name: 1 · La chiave è configurata?
+      - name: 1 · La chiave c'è, ed è di forma legale?
         env:
           CHIAVE: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          if [ -z "$CHIAVE" ]; then
-            echo "✗ ANTHROPIC_API_KEY NON è configurato in questo repo."
-            echo ""
-            echo "  Dove si mette: Settings → Secrets and variables → Actions"
-            echo "  → New repository secret → nome esatto: ANTHROPIC_API_KEY"
-            exit 1
-          fi
-          echo "✓ Il secret esiste. Lunghezza: ${#CHIAVE} caratteri."
-          echo "  (il valore non viene stampato, e non deve esserlo mai)"
+          python - <<'PY'
+          # PERCHE QUESTO PASSO E' CRESCIUTO — incidente del 30/08, run #3.
+          # Il secret c'era, ma il valore conteneva DUE a capo e una dozzina di
+          # caratteri cirillici al posto dei latini (К per K, С per C, а per a...):
+          # una chiave incollata da un testo passato per una conversione.
+          # Conseguenze, in ordine di gravita':
+          #  1. l'SDK non poteva nemmeno spedire la richiesta — un a capo dentro
+          #     un'intestazione HTTP e' illegale (LocalProtocolError);
+          #  2. e soprattutto: l'a capo ha ROTTO IL MASCHERAMENTO di GitHub, che
+          #     nasconde il segreto riga per riga. Meta' chiave e' finita in chiaro
+          #     nel log di un repository PUBBLICO.
+          # Da qui la regola: la forma si controlla PRIMA di usare il valore, e il
+          # controllo non stampa mai il valore — nemmeno un pezzo, nemmeno per aiutare.
+          import os, sys, unicodedata
+
+          k = os.environ.get("CHIAVE", "")
+          if not k:
+              print("✗ ANTHROPIC_API_KEY NON e' configurato in questo repo.")
+              print("")
+              print("  Dove si mette: Settings -> Secrets and variables -> Actions")
+              print("  -> New repository secret -> nome esatto: ANTHROPIC_API_KEY")
+              sys.exit(1)
+
+          problemi = []
+
+          righe = k.count("\n") + k.count("\r")
+          if righe:
+              problemi.append(f"contiene {righe} a capo")
+
+          bordi = len(k) - len(k.strip())
+          if bordi:
+              problemi.append(f"ha {bordi} spazi ai bordi")
+
+          fuori = [(i, c) for i, c in enumerate(k) if not (32 <= ord(c) <= 126)]
+          if fuori:
+              # Si nominano le POSIZIONI e i NOMI Unicode, mai i caratteri della chiave.
+              elenco = ", ".join(
+                  f"pos.{i+1} ({unicodedata.name(c, 'sconosciuto')})" for i, c in fuori[:6])
+              piu = f" e altri {len(fuori)-6}" if len(fuori) > 6 else ""
+              problemi.append(f"{len(fuori)} caratteri non-ASCII: {elenco}{piu}")
+
+          if problemi:
+              print("✗ LA CHIAVE E' MALFORMATA. Non la uso: la spedirei in chiaro nei log.")
+              print("")
+              for x in problemi:
+                  print(f"  · {x}")
+              print("")
+              print("  Caratteri cirillici o accentati al posto dei latini vogliono dire")
+              print("  che la chiave e' passata da una conversione di testo: ricopiata a")
+              print("  mano, letta da un'immagine, o incollata da un documento formattato.")
+              print("")
+              print("  COSA FARE, in quest'ordine:")
+              print("  1. REVOCA la chiave su console.anthropic.com: se un a capo era")
+              print("     gia' finito in un log, il mascheramento di GitHub si e' rotto")
+              print("     e parte del valore e' stata scritta in chiaro.")
+              print("  2. Generane una nuova e copiala col bottone «Copy», mai a mano.")
+              print("  3. Incollala nel secret senza premere Invio prima di salvare.")
+              sys.exit(1)
+
+          print(f"✓ Il secret c'e' ed e' di forma legale. Lunghezza: {len(k)} caratteri.")
+          print("  Nessun a capo, nessuno spazio ai bordi, tutti caratteri ASCII stampabili.")
+          print("  (il valore non viene stampato, e non deve esserlo mai)")
+          PY
 
       - uses: actions/setup-python@v5
         with:
@@ -82,9 +136,13 @@ jobs:
               # La causa vera NON si ingoia: senza, il referto dice «rete» e si ferma lì.
               # È il difetto che ha reso muto il run #1 del 30/08.
               print("✗ Non sono riuscito a raggiungere l'API dal runner.")
-              print(f"  Causa: {e!r}")
+              # Il testo dell'eccezione puo' CONTENERE il valore dell'intestazione,
+              # cioe' la chiave: e' cosi' che il 30/08 e' finita nel log. Si stampa
+              # il tipo, mai il messaggio.
+              print(f"  Causa: {type(e).__name__}")
               if e.__cause__:
-                  print(f"  Sotto: {type(e.__cause__).__name__}: {e.__cause__}")
+                  print(f"  Sotto: {type(e.__cause__).__name__} (messaggio omesso:")
+                  print("         puo' contenere il valore della chiave)")
               print("  NON dice niente sulla chiave: guarda il passo 3 qui sopra —")
               print("  se anche api.github.com dà 000, il guasto è la rete del runner.")
               sys.exit(1)
