@@ -494,10 +494,34 @@ th{color:var(--cia);font-family:ui-monospace,Menlo,monospace;font-size:10px;lett
   async function apri() {
     var frase = campo.value;
     if (!frase) { guasto('serve la frase'); campo.focus(); return; }
+
+    // PERCHE' QUESTO CONTROLLO ESISTE — 30/08: il Direttore ha scritto la frase
+    // giusta sul sito vero e la porta «restava in attesa». Il motivo possibile
+    // e' che il browser SPEGNE crypto.subtle quando la pagina non arriva in
+    // HTTPS, e la serratura di questa porta e' tutta li' dentro. Prima, il
+    // guasto finiva nel catch e diceva «non si apre»: la stessa frase che dice
+    // «hai sbagliato la parola». Mandava a cercare nel posto sbagliato.
+    // Dirlo non regala niente a nessuno: parla della CONNESSIONE, non della
+    // frase. Su un segreto si tace; su un impianto rotto si parla.
+    if (!(window.crypto && crypto.subtle)) {
+      guasto(location.protocol === 'https:'
+        ? 'questo browser non offre la serratura (crypto.subtle assente)'
+        : 'pagina non servita in HTTPS: il browser spegne la serratura');
+      return;
+    }
+
     bottone.disabled = true;
     esito.className = 'lavora';
     esito.textContent = 'apro…';
     await new Promise(function (r) { setTimeout(r, 20); });   // lascia dipingere
+
+    // Un'attesa senza fine non e' un esito: dopo venti secondi la pagina lo dice.
+    // (La derivazione della chiave e' 210.000 giri: lenta su un telefono vecchio,
+    //  ma non venti secondi. Se ci arriva, e' rotto qualcosa d'altro.)
+    var troppo = setTimeout(function () {
+      if (bottone.disabled) guasto('ci sta mettendo troppo: ricarica la pagina e riprova');
+      bottone.disabled = false;
+    }, 20000);
 
     try {
       var base = await crypto.subtle.importKey('raw', new TextEncoder().encode(frase),
@@ -515,8 +539,11 @@ th{color:var(--cia);font-family:ui-monospace,Menlo,monospace;font-size:10px;lett
         dati[o.nome] = o.dati;
       }
       campo.value = '';
+      clearTimeout(troppo);
+      esito.className = ''; esito.textContent = '';   // «apro…» non resta acceso
       mostra(dati);
     } catch (e) {
+      clearTimeout(troppo);
       // Messaggio unico: frase sbagliata e payload manomesso danno lo stesso
       // esito, e distinguerli in pagina aiuterebbe solo chi prova a indovinare.
       guasto('non si apre');
