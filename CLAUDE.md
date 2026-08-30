@@ -69,7 +69,26 @@ Quando lavori in **Claude Code** su questo repo (GitHub: `anima-console`), la mi
 **Blocchi noti:** HTTPS del dominio non emesso (priorità 0 — Settings → Pages) · **secret `ANTHROPIC_API_KEY` non configurato nel repo** (Settings → Secrets and variables → Actions): senza, l'automazione muore alla chiamata API — è la vera causa del failure del run #32 del 16/08, non l'etichetta · servono 10–12 verdetti (oggi 7; la ricerca `cinepresa-…` resta a BRAINDANCE perché è una tesi/claim, non un prodotto).
 
 **Regole di lavoro nel repo:**
-- Commit e push **dal Mac** — vale per TUTTI i canali, sessioni remote di claude.ai/code comprese (verificato 17/08: da lì GitHub è in sola lettura totale — push git, scrittura contenuti E commenti alle issue rifiutati con 403). Una sessione remota consegna il lavoro come **patch** (`git format-patch --stdout`, da applicare con `git am <file>.patch`) più uno script `gh` per etichette/commenti/chiusure. Se `git commit` fallisce con lock: `find .git -name '*.lock' -delete`.
+- Commit e push: **anche dalle sessioni remote**, sul branch di lavoro, mai su `main`.
+
+  > ⚠️ **CORREZIONE 2026-08-30 — questa riga diceva il falso e va letta.**
+  > Fino a oggi qui c'era scritto che da claude.ai/code «GitHub è in sola lettura totale, 403 su
+  > tutto», e che una sessione remota poteva consegnare **solo** patch da applicare a mano. Era
+  > vero il 17/08, quando l'app Claude non era ancora autorizzata sull'account. **Non lo è più**:
+  > il 29/08 una sessione remota ha spinto 18 commit, aperto la PR #16 e l'ha vista fondere in
+  > `main` (commit di merge `cd65dba`). Misurato, non dedotto.
+  > **Perché conta:** la regola stale costava a ogni sessione remota il giro lungo — patch da
+  > salvare, `git am`, script `gh` — per un divieto che non esisteva più. È la stessa trappola
+  > dell'etichetta `verifica`: **il manuale insegnava l'ostacolo**, e finché lo insegnava nessuno
+  > provava la strada dritta.
+  > 📜 **Regola che ne esce:** un limite verificato una volta ha una **data di scadenza**. Quando
+  > una regola dice «non si può», si riprova prima di obbedirle — e se si può, si corregge il
+  > manuale nello stesso momento in cui si fa la cosa.
+
+  Resta fermo: la **ratifica** del Direttore è il merge, mai automatico; la PR nasce in **bozza**.
+  Se `git commit` fallisce con lock: `find .git -name '*.lock' -delete`. La strada della patch
+  (`git format-patch --stdout`, applicata con `git am <file>.patch`) resta valida come ripiego
+  se un giorno l'autorizzazione dovesse cadere di nuovo.
 - Ogni HTML destinato a Pier va **anche** in `docs/` (`../comuni/REGOLA-HTML-IN-DOCS.md`). **MAI proporre MD a Pier: solo HTML** (li apre su Brave).
 - ⛔ **Dati sensibili** (`card-dati`, cartella `RISERVATO/`) **non entrano MAI in `docs/`**.
 - Superficie **pubblica** = **Camera Oscura ambra** (design system di Judy, `../comunicazione/DESIGN-SYSTEM-ANIMA-v1.md`) — **tranne le stanze del gioco, che vanno in verde `#38E08A`** (il colore segue il **mestiere della stanza**, non il dominio). Il cyan KIROSHI resta alle **dashboard dati interne** e alla **pagina di verifica**, che è un referto e deve sembrare una macchina. *(Precisazione di JUDY, instradata da D.R.A.G.O., accolta da KIROSHI//OR 2026-08-08 — canone trasversale in `../comuni/STANDARD-VISUAL.md`.)*
@@ -107,7 +126,8 @@ Quando lavori in **Claude Code** su questo repo (GitHub: `anima-console`), la mi
 3. Scrivi il verdetto in `docs/data/NNNN-slug.json` — **stesso schema**, obbligatori:
    `titolo · oggetto · domanda · modalita · punteggio · etichetta · verdetto · green_flags[] · red_flags[] · fonti[{titolo,url,tipo,sostiene,autorevolezza}] · timeline[{data,evento}] · nota_sicurezza · issue · data_verifica`
 4. `python3 scripts/build_db.py` → rigenera `docs/data/db.js` (scarta i verdetti senza fonti: è un guardrail, non un bug).
-5. Commit + push **dal Mac**. La console si aggiorna da sola.
+5. Commit + push sul branch di lavoro (dal Mac **o** da una sessione remota, vedi la correzione
+   del 30/08 sopra), poi PR in bozza. Fusa la PR, la console si aggiorna da sola.
 6. `gh issue close <n> --comment "Verdetto pubblicato: …"` → chiudi il cerchio.
 
 **Regola:** un verdetto senza fonti **non si pubblica**. Lo script lo blocca, ma la responsabilità resta tua.
