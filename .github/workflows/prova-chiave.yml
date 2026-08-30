@@ -1,0 +1,91 @@
+# COSA FA — risponde a una domanda sola: «la chiave ANTHROPIC_API_KEY è al suo
+#   posto e funziona?». Si lancia a mano dal bottone "Run workflow", non parte
+#   mai da sola.
+# PERCHÉ ESISTE — dal 16/08 l'automazione era ferma perché il secret mancava, e
+#   l'unico modo di scoprirlo era aprire una richiesta vera e guardarla morire.
+#   Un guasto che si misura solo rompendo qualcosa non si misura mai.
+# FIN DOVE ARRIVA — dice se la chiave c'è e se autentica. NON dice se hai
+#   credito residuo, e non produce verdetti.
+# COSTO — zero token. La prova usa GET /v1/models, che richiede autenticazione
+#   ma non genera niente: nessuna spesa, nemmeno un centesimo.
+# SICUREZZA — il valore della chiave non viene MAI stampato. Si stampa solo la
+#   lunghezza, che non permette di ricostruirla.
+# — creato da D.R.A.G.O., 2026-08-30
+
+name: Prova della chiave
+
+on:
+  workflow_dispatch:
+
+jobs:
+  prova:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 1 · La chiave è configurata?
+        env:
+          CHIAVE: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -z "$CHIAVE" ]; then
+            echo "✗ ANTHROPIC_API_KEY NON è configurato in questo repo."
+            echo ""
+            echo "  Dove si mette: Settings → Secrets and variables → Actions"
+            echo "  → New repository secret → nome esatto: ANTHROPIC_API_KEY"
+            exit 1
+          fi
+          echo "✓ Il secret esiste. Lunghezza: ${#CHIAVE} caratteri."
+          echo "  (il valore non viene stampato, e non deve esserlo mai)"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 2 · Installa la libreria
+        run: pip install --quiet anthropic
+
+      - name: 3 · La chiave autentica davvero?
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          python - <<'PY'
+          import sys
+          import anthropic
+
+          # GET /v1/models: richiede autenticazione, non genera testo.
+          # È la prova più economica possibile che la chiave sia valida —
+          # zero token, quindi zero spesa.
+          try:
+              modelli = anthropic.Anthropic().models.list()
+          except anthropic.AuthenticationError:
+              print("✗ La chiave c'è ma NON è valida (401).")
+              print("  Probabile: chiave revocata, scaduta, o incollata con spazi/a metà.")
+              print("  Rifalla su console.anthropic.com e reincollala nel secret.")
+              sys.exit(1)
+          except anthropic.PermissionDeniedError:
+              print("✗ Chiave valida ma senza permessi su questa risorsa (403).")
+              sys.exit(1)
+          except anthropic.APIStatusError as e:
+              print(f"✗ L'API ha risposto {e.status_code}: la chiave non è la causa più probabile.")
+              print("  Riprova fra poco; se persiste, guarda lo stato del servizio.")
+              sys.exit(1)
+          except anthropic.APIConnectionError:
+              print("✗ Non sono riuscito a raggiungere l'API (rete).")
+              print("  Non dice niente sulla chiave: riprova.")
+              sys.exit(1)
+
+          nomi = [m.id for m in modelli.data]
+          print(f"✓ LA CHIAVE FUNZIONA. {len(nomi)} modelli raggiungibili.")
+          print("")
+          print("  L'automazione KIROSHI può girare. Il modello che usa oggi")
+          print("  (scripts/kiroshi_check.py) è claude-sonnet-5.")
+          atteso = "claude-sonnet-5"
+          if atteso in nomi:
+              print(f"  ✓ {atteso} è fra quelli disponibili.")
+          else:
+              print(f"  ⚠ {atteso} NON compare fra i modelli disponibili:")
+              print("    l'automazione fallirebbe. Modelli visti:", ", ".join(nomi[:8]))
+              sys.exit(1)
+          PY
+
+      - name: Esito
+        if: success()
+        run: echo "✓ Chiave presente, valida, e il modello dell'automazione è raggiungibile."
