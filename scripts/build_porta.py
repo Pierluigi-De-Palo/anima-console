@@ -180,6 +180,133 @@ def blocco_chiavi() -> dict:
     }
 
 
+def blocco_squadra() -> dict:
+    """CHI FA COSA — letto dai file veri, mai scritto a mano.
+
+    Nasce da una domanda del Direttore (30/08): «l'agenzia è enorme e gli agenti
+    girano poco, alcuni fermi da settimane; vorrei visione di chi fa cosa».
+    Misurata, l'agenzia NON è enorme: gli agenti che esistono davvero sono
+    quelli che hanno un file in `.claude/agents/`. Tutto il resto sono POSTI
+    SULLA CARTA — mansioni descritte in una pagina di competenze, mai diventate
+    un agente. Un posto sulla carta non può essere «fermo da settimane»: non è
+    mai partito. Tenere le due colonne separate è tutto il senso di questo
+    blocco, ed è il motivo per cui si genera dai file invece di ricopiarli:
+    una tabella scritta a mano invecchia in silenzio, questa no.
+    """
+    veri = []
+    cartella = os.path.join(ROOT, ".claude", "agents")
+    for nome in sorted(os.listdir(cartella)) if os.path.isdir(cartella) else []:
+        if not nome.endswith(".md"):
+            continue
+        percorso = os.path.join(cartella, nome)
+        with open(percorso, encoding="utf-8") as f:
+            testo = f.read()
+        m = re.match(r"---\n(.*?)\n---\n", testo, re.S)
+        testa = m.group(1) if m else ""
+        def campo(k, default=""):
+            r = re.search(rf"^{k}:\s*(.+)$", testa, re.M)
+            return r.group(1).strip() if r else default
+        desc = campo("description")
+        mestiere = _mestiere(desc)
+        sigla = campo("name", nome[:-3])
+        # A chi risponde: i caposquadra a D.R.A.G.O.; gli specialisti al proprio
+        # caposquadra, nominato nella descrizione («sotto JUDY», «di SQUELCH»).
+        capo = "D.R.A.G.O."
+        if "caposquadra" not in desc.lower():
+            for c in ("JUDY", "SQUELCH", "ECHO", "KIROSHI", "BRAINDANCE"):
+                if re.search(rf"\b(sotto|di)\s+{c}\b", desc):
+                    capo = c
+                    break
+        nato = _prima_data(percorso)
+        veri.append({
+            "sigla": sigla.upper(),
+            "mestiere": mestiere,
+            "modello": campo("model", "?"),
+            "grado": "caposquadra" if capo == "D.R.A.G.O." else "specialista",
+            "capo": capo,
+            "nato": nato,
+        })
+
+    carta = _posti_sulla_carta()
+    n_capi = len([a for a in veri if a["grado"] == "caposquadra"])
+    n_spec = len(veri) - n_capi
+    return {
+        "cifre": [
+            {"n": len(veri), "etichetta": f"agenti veri ({n_capi} capi + {n_spec} specialisti)"},
+            {"n": len(carta), "etichetta": "posti sulla carta, mai nati"},
+        ],
+        "veri": veri,
+        "carta": carta,
+        "nota": "Un agente esiste se ha un file in .claude/agents/: quello lo rende "
+                "chiamabile. I posti sulla carta sono mansioni descritte in una pagina "
+                "di competenze e mai diventate un agente — non sono «fermi da settimane», "
+                "non sono mai partiti. Questa tabella si rigenera dai file: se qualcuno "
+                "nasce o muore, cambia da sola.",
+    }
+
+
+def _mestiere(desc: str) -> str:
+    """Una riga sola dalla descrizione dell'agente.
+
+    La descrizione è scritta per far scegliere l'agente a chi dispaccia, quindi
+    dice già la cosa giusta — ma è lunga. Si accorcia in quest'ordine, fermandosi
+    appena sta in una riga di tabella: prima frase → testa prima del trattone →
+    via le parentesi → taglio netto. Non si riscrive a mano: una riga ricopiata
+    diverge dal file il giorno in cui il file cambia, e nessuno se ne accorge.
+    """
+    LIMITE = 92
+    m = re.split(r"\.\s+(?=[A-Z«])", desc)[0].strip().rstrip(".")
+    if len(m) > LIMITE and " — " in m:
+        testa = m.split(" — ")[0].strip()
+        if len(testa) > 20:
+            m = testa
+    if len(m) > LIMITE:
+        senza = re.sub(r"\s*\([^)]*\)", "", m).strip().rstrip(",;—- ")
+        if 20 < len(senza) < len(m):
+            m = senza
+    return m if len(m) <= LIMITE else m[:LIMITE - 3].rstrip(" ,;—-") + "…"
+
+
+def _prima_data(percorso: str) -> str:
+    """Il giorno del primo commit che ha creato il file. Se git non risponde
+    (albero non versionato, storia troncata), si dice «?» invece di inventare."""
+    try:
+        out = subprocess.run(
+            ["git", "log", "--diff-filter=A", "--format=%ad", "--date=short", "-1", "--", percorso],
+            cwd=ROOT, capture_output=True, text=True, timeout=10)
+        return out.stdout.strip() or "?"
+    except Exception:
+        return "?"
+
+
+def _posti_sulla_carta() -> list:
+    """Legge la tabella «Censiti, non ancora attivabili» di squadra/SQUADRA.md.
+    È l'elenco delle mansioni che esistono su una pagina e non come agente."""
+    percorso = os.path.join(ROOT, "squadra", "SQUADRA.md")
+    if not os.path.exists(percorso):
+        return []
+    with open(percorso, encoding="utf-8") as f:
+        testo = f.read()
+    # Il titolo di quella sezione è già cambiato una volta (era «Censiti, non
+    # ancora attivabili»): si accettano entrambe le forme, così un ritocco al
+    # testo non fa sparire in silenzio mezza tabella dalla porta.
+    m = re.search(r"##\s*(?:Censiti|Posti sulla carta)[^\n]*\n(.*?)(?=\n##\s|\Z)",
+                  testo, re.S)
+    if not m:
+        return []
+    voci = []
+    for riga in m.group(1).splitlines():
+        celle = [c.strip() for c in riga.strip().strip("|").split("|")]
+        if len(celle) < 3 or celle[0].startswith("---") or celle[0] == "Agente":
+            continue
+        voci.append({
+            "nome": re.sub(r"\*\*", "", celle[0]),
+            "posto": celle[1],
+            "fonte": re.sub(r"`", "", celle[2]),
+        })
+    return voci
+
+
 def blocco_note() -> dict:
     return {"voci": [
         "cyberboomer.io è il banco di lavoro del Direttore: officina privata, non vetrina. "
@@ -290,6 +417,11 @@ a:hover{border-bottom-color:var(--cia)}
 .cmd{background:var(--pan);border:1px solid var(--bor);border-radius:8px;padding:10px 13px;margin:8px 0}
 .cmd .q{font-size:12.5px;color:var(--dim);margin-bottom:5px}
 .cmd code{display:block;font-family:ui-monospace,Menlo,monospace;font-size:12.5px;color:var(--ver);word-break:break-all}
+/* Misurato il 30/08 a 390px: il ruolino della squadra sfondava di 92px e
+   faceva scorrere TUTTA la pagina di lato — sul telefono del Direttore
+   ogni riga finiva storta. La tabella scorre dentro il suo riquadro. */
+.scorre{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:10px 0}
+.scorre table{margin:0;min-width:520px}
 table{border-collapse:collapse;width:100%;font-size:13px;margin:10px 0}
 th,td{border:1px solid var(--bor);padding:7px 9px;text-align:left;vertical-align:top}
 th{color:var(--cia);font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:400}
@@ -362,10 +494,34 @@ th{color:var(--cia);font-family:ui-monospace,Menlo,monospace;font-size:10px;lett
   async function apri() {
     var frase = campo.value;
     if (!frase) { guasto('serve la frase'); campo.focus(); return; }
+
+    // PERCHE' QUESTO CONTROLLO ESISTE — 30/08: il Direttore ha scritto la frase
+    // giusta sul sito vero e la porta «restava in attesa». Il motivo possibile
+    // e' che il browser SPEGNE crypto.subtle quando la pagina non arriva in
+    // HTTPS, e la serratura di questa porta e' tutta li' dentro. Prima, il
+    // guasto finiva nel catch e diceva «non si apre»: la stessa frase che dice
+    // «hai sbagliato la parola». Mandava a cercare nel posto sbagliato.
+    // Dirlo non regala niente a nessuno: parla della CONNESSIONE, non della
+    // frase. Su un segreto si tace; su un impianto rotto si parla.
+    if (!(window.crypto && crypto.subtle)) {
+      guasto(location.protocol === 'https:'
+        ? 'questo browser non offre la serratura (crypto.subtle assente)'
+        : 'pagina non servita in HTTPS: il browser spegne la serratura');
+      return;
+    }
+
     bottone.disabled = true;
     esito.className = 'lavora';
     esito.textContent = 'apro…';
     await new Promise(function (r) { setTimeout(r, 20); });   // lascia dipingere
+
+    // Un'attesa senza fine non e' un esito: dopo venti secondi la pagina lo dice.
+    // (La derivazione della chiave e' 210.000 giri: lenta su un telefono vecchio,
+    //  ma non venti secondi. Se ci arriva, e' rotto qualcosa d'altro.)
+    var troppo = setTimeout(function () {
+      if (bottone.disabled) guasto('ci sta mettendo troppo: ricarica la pagina e riprova');
+      bottone.disabled = false;
+    }, 20000);
 
     try {
       var base = await crypto.subtle.importKey('raw', new TextEncoder().encode(frase),
@@ -383,8 +539,11 @@ th{color:var(--cia);font-family:ui-monospace,Menlo,monospace;font-size:10px;lett
         dati[o.nome] = o.dati;
       }
       campo.value = '';
+      clearTimeout(troppo);
+      esito.className = ''; esito.textContent = '';   // «apro…» non resta acceso
       mostra(dati);
     } catch (e) {
+      clearTimeout(troppo);
       // Messaggio unico: frase sbagliata e payload manomesso danno lo stesso
       // esito, e distinguerli in pagina aiuterebbe solo chi prova a indovinare.
       guasto('non si apre');
@@ -434,15 +593,47 @@ th{color:var(--cia);font-family:ui-monospace,Menlo,monospace;font-size:10px;lett
     var k = d.chiavi || {};
     h += '<h2>Chiavi</h2>';
     h += '<div class="avv">' + esc(k.regola) + '</div>';
+    h += '<div class="scorre">';
     h += '<table><tr><th>Chiave</th><th>A cosa serve</th><th>Dove vive</th><th>Stato</th></tr>';
     (k.voci || []).forEach(function (v) {
       h += '<tr><td class="mono">' + esc(v.nome) + '</td><td>' + esc(v.serve)
          + '</td><td>' + esc(v.vive) + '</td><td>' + esc(v.stato) + '</td></tr>';
     });
-    h += '</table>';
+    h += '</table></div>';
     (k.comandi || []).forEach(function (c) {
       h += '<div class="cmd"><div class="q">' + esc(c.cosa) + '</div><code>' + esc(c.come) + '</code></div>';
     });
+
+    // CHI FA COSA — due colonne che non vanno confuse: chi esiste come agente
+    // chiamabile, e chi è solo una mansione scritta su una pagina.
+    var q = d.squadra || {};
+    h += '<h2>Chi fa cosa</h2>';
+    h += '<div class="cif">';
+    (q.cifre || []).forEach(function (c) {
+      h += '<div><b>' + esc(c.n) + '</b><span>' + esc(c.etichetta) + '</span></div>';
+    });
+    h += '</div>';
+    h += '<div class="scorre">';
+    h += '<table><tr><th>Agente</th><th>Mestiere</th><th>Risponde a</th><th>Modello</th><th>Dal</th></tr>';
+    (q.veri || []).forEach(function (a) {
+      h += '<tr><td class="mono">' + esc(a.sigla) + '</td><td>' + esc(a.mestiere)
+         + '</td><td>' + esc(a.capo) + '</td><td class="mono">' + esc(a.modello)
+         + '</td><td class="mono">' + esc(a.nato) + '</td></tr>';
+    });
+    h += '</table></div>';
+    if ((q.carta || []).length) {
+      h += '<div class="avv"><b>Posti sulla carta.</b> Mansioni descritte in una pagina '
+         + 'di competenze e mai diventate un agente: non sono fermi, non sono mai partiti. '
+         + 'Diventano veri solo con un file in .claude/agents/.</div>';
+      h += '<div class="scorre">';
+      h += '<table><tr><th>Posto</th><th>Mansione</th><th>Dove è scritto</th></tr>';
+      (q.carta || []).forEach(function (a) {
+        h += '<tr><td class="mono">' + esc(a.nome) + '</td><td>' + esc(a.posto)
+           + '</td><td class="mono">' + esc(a.fonte) + '</td></tr>';
+      });
+      h += '</table></div>';
+    }
+    h += '<div class="avv">' + esc(q.nota) + '</div>';
 
     h += '<h2>Da ricordare</h2>';
     ((d.note || {}).voci || []).forEach(function (n) { h += '<div class="avv">' + esc(n) + '</div>'; });
@@ -492,6 +683,7 @@ def main() -> None:
         "stato": blocco_stato(verdetti),
         "strumenti": blocco_strumenti(),
         "chiavi": blocco_chiavi(),
+        "squadra": blocco_squadra(),
         "note": blocco_note(),
     }
 
@@ -506,7 +698,11 @@ def main() -> None:
     # leggibile. Si toglie dalla pagina il blocco cifrato e si cerca nel resto:
     # se una spia compare lì, sta in chiaro e non si pubblica.
     html = pagina(payload)
-    spie = ["fake-checker", "braindance", "systema77.regia", "ANTHROPIC_API_KEY", "Portachiavi"]
+    spie = ["fake-checker", "braindance", "systema77.regia", "ANTHROPIC_API_KEY", "Portachiavi",
+        # Dal 30/08 la porta porta anche il ruolino della squadra: le sigle
+        # degli agenti sono nomi interni e non stanno in piazza (CLAUDE.md:
+        # «nessun nome di agente in vetrina»).
+        "SQUELCH", "KIROSHI", "collaudo-superfici", "provino"]
     visibili = [s for s in spie if s in re.sub(
         rf'<script[^>]*id="{SEGNO}"[^>]*>.*?</script>', "", html, flags=re.S)]
     if visibili:
@@ -520,6 +716,8 @@ def main() -> None:
           f"{len(html)} byte")
     print(f"  {len(verdetti)} verdetti · {vecchi} da riverificare · "
           f"{ITERAZIONI:,} iterazioni PBKDF2".replace(",", "."))
+    sq = blocchi["squadra"]
+    print(f"  {len(sq['veri'])} agenti veri · {len(sq['carta'])} posti sulla carta")
     print("  nessuna parola spia visibile a lucchetto chiuso (controllato)")
 
 

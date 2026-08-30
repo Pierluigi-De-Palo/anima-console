@@ -26,6 +26,35 @@ persona → BRAINDANCE, impresa → KIROSHI (accordo ratificato 2026-07-12).
 **Porta d'ingresso: sempre D.R.A.G.O.** (decisione del Direttore, 17/08). La
 commessa arriva a lui, il dispatch segue `squadra/PROTOCOLLO-DISPATCH.md`.
 
+## Specialisti (roster v2 — ratificati dal Direttore, 30/08)
+
+Uno specialista non risponde a D.R.A.G.O.: risponde al **suo caposquadra**. Nasce
+solo quando un caposquadra dimostra, su un lavoro vero, che gli serve una mano
+che lui non ha — non per completare un organigramma.
+
+| Specialista | Sotto | Mestiere | File-persona | Modello |
+|---|---|---|---|---|
+| **collaudo-superfici** | JUDY | Rende la pagina in Chromium headless e torna misure: pixel accesi, palette, contrasto, lessico vietato, link che escono | `.claude/agents/collaudo-superfici.md` | sonnet |
+| **provino** | SQUELCH | Trasforma le affermazioni in misure: un servizio «online», un secret «configurato», una guardia «che blocca» | `.claude/agents/provino.md` | opus |
+
+## Quanto è grande davvero l'agenzia (misurato 30/08, non ricordato)
+
+Il Direttore, il 30/08: «l'agenzia è enorme ora e infatti gli agenti girano poco,
+alcuni fermi da settimane». Contati i file, il quadro è un altro — e la differenza
+cambia cosa c'è da fare:
+
+| | Quanti | Da quando | Stato vero |
+|---|---|---|---|
+| Agenti **veri** (hanno un file in `.claude/agents/`) | **7** | 5 dal 18/08, 2 dal 30/08 | i 5 caposquadra hanno consegnato **tutti** il 30/08 (`squadra/risposte/`) |
+| **Posti sulla carta** (una riga in una pagina di competenze, mai un file) | **5** | mai nati | non sono fermi: **non sono mai partiti** |
+
+📜 **La regola che ne esce:** un posto sulla carta non può essere «fermo da
+settimane», e riaccenderlo non è un rilancio — è una nascita, col suo costo e la
+sua ratifica. Il conto vero non è «quanti agenti abbiamo», ma **quanti file ci
+sono in `.claude/agents/`**: è l'unica cosa che rende un agente chiamabile.
+Per questo il ruolino nella porta (`docs/index.html`) **si genera da quella
+cartella** e non si scrive a mano: una tabella ricopiata mente il giorno dopo.
+
 ## Vertice e dispatch
 
 - **IL DIRETTORE** (carta 0 · OVERLORD) — ordina, ratifica, decide colori e
@@ -36,7 +65,12 @@ commessa arriva a lui, il dispatch segue `squadra/PROTOCOLLO-DISPATCH.md`.
 - **D.R.A.G.O.** — dispatch e fixer: instrada, registra gli accordi
   (`DA-BRAINDANCE-accordo-confine.md:27`), convoca il Consiglio, tiene questo registro.
 
-## Censiti, non ancora attivabili (posti veri, tool assenti in sandbox)
+## Posti sulla carta — censiti, mai nati come agente
+
+Il titolo diceva «tool assenti in sandbox», e la causa non era stata misurata:
+questi posti non sono agenti perché **nessuno ha mai scritto il file**, e la
+questione degli strumenti viene dopo, non prima. Vanno tenuti in elenco — sono
+mansioni vere, citate — ma contati a parte dagli agenti che esistono.
 
 | Agente | Posto | Fonte |
 |---|---|---|
