@@ -120,7 +120,31 @@ Quando lavori in **Claude Code** su questo repo (GitHub: `anima-console`), la mi
   > una regola dice «non si può», si riprova prima di obbedirle — e se si può, si corregge il
   > manuale nello stesso momento in cui si fa la cosa.
 
-  Resta fermo: la **ratifica** del Direttore è il merge, mai automatico; la PR nasce in **bozza**.
+  > 🔓 **CORREZIONE 2026-08-30 (sera) — la ratifica si restringe a dove serve.**
+  > La regola diceva «la ratifica del Direttore è il merge, **mai** automatico», senza distinguere
+  > *cosa* si stesse ratificando. Applicata alla lettera ha prodotto questo: in una sola giornata
+  > il Direttore ha premuto «Ready for review → Merge → Confirm» **quattro volte**, e due erano per
+  > correggere errori miei dentro un workflow diagnostico che nessun estraneo vedrà mai.
+  > Lì non stava ratificando niente: stava facendo da braccio a una decisione già presa.
+  > Parole sue: «ormai il mio lavoro è schiacciare tasti».
+  > 📜 **La regola nasceva per proteggere ciò che diventa pubblico, e va riportata a quel confine.**
+
+  **CHI FONDE COSA — confine ratificato dal Direttore il 30/08:**
+
+  | Cosa | Chi fonde |
+  |---|---|
+  | `scripts/`, `.github/workflows/`, `CLAUDE.md`, `squadra/`, `.claude/` | **D.R.A.G.O.**, senza chiedere |
+  | Riparazione di un guasto misurato, in qualunque file non pubblico | **D.R.A.G.O.**, senza chiedere |
+  | **Qualsiasi cosa dentro `docs/`** — cioè ciò che una persona può leggere | **Solo il Direttore** |
+  | **Ogni verdetto pubblicato** — è la firma del Dipartimento Verità | **Solo il Direttore** |
+  | Un cambio di rotta, un costo nuovo, una decisione non ancora presa | **Solo il Direttore** |
+
+  Vincoli che restano, e non sono negoziabili nemmeno per la manutenzione:
+  1. **Non si fonde ciò che non si è verificato.** La misura precede il merge, sempre.
+  2. **Il merge non chiude una discussione aperta col Direttore.** Se c'è una domanda in sospeso su
+     quel lavoro, la PR aspetta lui anche se è manutenzione.
+  3. **Si dice sempre cosa si è fuso**, in una riga, senza fargli aprire GitHub per scoprirlo.
+  4. La PR nasce comunque, anche quando la fondo io: è il registro di cosa è cambiato e perché.
   Se `git commit` fallisce con lock: `find .git -name '*.lock' -delete`. La strada della patch
   (`git format-patch --stdout`, applicata con `git am <file>.patch`) resta valida come ripiego
   se un giorno l'autorizzazione dovesse cadere di nuovo.
