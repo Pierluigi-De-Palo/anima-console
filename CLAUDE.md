@@ -49,7 +49,42 @@ Ogni file generato chiude con: `— creato da KIROSHI, AAAA-MM-GG`.
 ## Comunicazione tra agenti
 Prima di operare, leggi `../comuni/BACHECA-RECENTE.md` (bacheca broadcast). Regole comuni in `../comuni/CONVENZIONE-AGENTI.md`.
 
+## IL DISEGNO — tre mestieri, non uno (dalla voce del Direttore, 2026-08-30)
+
+> ⚠️ **Leggi questo PRIMA della missione qui sotto, che è scritta per un mondo precedente.**
+> Fino al 30/08 tutto questo repo dava per scontato che il lavoro avesse **una** destinazione:
+> il pubblico su cyberboomer.io. Il Direttore ha chiarito che le destinazioni sono **tre**, e
+> che erano state impilate su un dominio solo.
+
+| | Cos'è | Chi entra | Cosa ci succede |
+|---|---|---|---|
+| **SYSTEMA 77** | L'**agenzia**: produce contenuti di alta qualità usando il progresso | I clienti | Il mestiere che fattura |
+| **ANIMA GAME** | Il **campo**: un gioco a invito, non un social | I giocatori | Giocano e, **producendo con i nostri strumenti**, fanno contenuti di alta qualità; se li scambiano, approfondiscono |
+| **cyberboomer.io** | Il **banco di lavoro** del Direttore | **Solo lui** | Strumenti, script, output. Il posto da cui «si va a lavorare in agenzia» da remoto, senza laptop personale |
+
+**Regole che ne discendono, testuali:**
+- Ai giocatori **non si vende niente**. Non sono clienti: sono chi produce.
+- **ANIMA GAME dà la rete organica.** I clienti arriveranno da lì, giocando.
+- **Non è un social:** non è aperto a tutti, e non si parla di sé — si parla di **contenuti
+  utili al miglioramento dell'esistenza**.
+- cyberboomer.io **non è una vetrina**: è un'officina privata. Un giorno con un server dietro.
+
+📜 **Conseguenza operativa per ogni agente:** «pubblico» non è più una destinazione. Ogni cosa
+prodotta ha **uno di tre indirizzi** — il banco del Direttore, la stanza del gioco, o il
+cliente dell'agenzia. Se non sai quale dei tre, il lavoro non è finito.
+
+⚙️ **Conseguenza tecnica:** un banco di lavoro deve **eseguire**, e un sito statico non esegue.
+La migrazione a Cloudflare decisa il 29/08 per *chiudere* il sito è la stessa piattaforma che
+serve per *farlo eseguire* (Pages serve, Workers esegue, Access è la porta). Non è una
+coincidenza da subire: è l'ordine delle cose da fare.
+
 ## MISSIONE DI SVILUPPO — il fake-checker su cyberboomer.io (dal 2026-07-17)
+
+> ⚠️ **Sezione da leggere alla luce del disegno qui sopra.** Dove dice «applicativo pubblico»,
+> oggi si legge: **strumento**, con tre possibili destinazioni. Il fake-checker non è un
+> archivio pubblico da tenere fresco — è una **stanza del gioco** (`animagame-site/strumenti.html`:
+> «gli strumenti non sono demo: sono il gioco») e uno strumento sul banco del Direttore.
+> Le fasi 1-4 restano valide come lavoro tecnico; cambia per chi lo si fa.
 
 Quando lavori in **Claude Code** su questo repo (GitHub: `anima-console`), la missione è costruire l'**applicativo pubblico**.
 
