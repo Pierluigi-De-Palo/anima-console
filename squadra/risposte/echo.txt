@@ -1,0 +1,51 @@
+=== CAPOSQUADRA: ECHO · 2026-08-30 ===
+REGGE: in parte
+GUASTI:
+- animagame-site/strumenti.html | Braindance e Fake checker mandano «Entra» su cyberboomer.io, che il 29/08 e' stato deciso privato dietro Cloudflare Access: due stanze su quattro portano i giocatori contro una porta chiusa | Decidere dove vivono le due stanze; poi i due testi li cambio io (gli href sono di SQUELCH)
+- cyberboomer.io/v/SYS-00…03 | E' la porta A della carta — il quadratino che dice «questa tessera e' vera» — e «entra nella tua area» punta a /anima/dashboard/: con l'Access davanti la verifica della carta muore per chiunque non sia il Direttore | Tenere /v/ e /anima/ fuori dall'Access, oppure la carta perde un lato e il retro della tessera va ristampato
+- cyberboomer.io/braindance/chiedi/ | «Chiedere una verifica» e' dichiarata azione di gioco che vale punti, ma passa da un account GitHub e finisce in una lista pubblica col nome di chi chiede: seconda identita' e PII a carico del giocatore | La richiesta entra dalla carta (Worker), non da GitHub; finche' non c'e', la promessa esce dalla stanza
+- animagame-site/assets/config.js | Dice BACKEND_URL: null = «spento» mentre il Worker risulta acceso dal 10/08: su quel trattino poggiano tre testi miei — il contatore, la striscia DEV, «la scheda resta sul dispositivo» | Una chiamata sola a api.cyberboomer.io: se risponde, i tre testi li riscrivo in giornata
+- squadra/PROMPT-CAPOSQUADRA.md:353 | Lo «stato vero» mi ordina di riscrivere «lo strumento sta traslocando dalla console»: quella frase non esiste piu', l'ha tolta il commit f77aced di animagame-site | Il blocco di stato si genera dai repo, non si ricopia: un brief vecchio di un giorno manda a riparare una pagina che non c'e' piu'
+POSIZIONE: Non riscrivo le due stanze: le stacco. Con l'Access davanti «Entra» sbatte, e nessuna frase salva un link che porta in un'officina chiusa.
+PERCHE: Una stanza e' una stanza solo se ci si entra col numero della carta. Finche' l'ingresso e' il banco del Direttore, il testo onesto e' «in arrivo».
+SPECIALISTA_NOME: voce-referti
+SPECIALISTA_QUANDO: Quando un verdetto gia' chiuso (KIROSHI o BRAINDANCE) deve diventare il testo che un giocatore legge nella stanza e mette nel cerchio, nei tre tagli fissi.
+SPECIALISTA_MAI: Mai per verificare o riaprire un fatto (Dipartimento Verita'), per palette e impaginato (JUDY), per pagine nuove o voce del gioco (ECHO), per il Worker (SQUELCH).
+SPECIALISTA_PROMPT:
+<<<
+---
+name: voce-referti
+description: Specialista di ECHO. Trasforma un verdetto gia' chiuso del Dipartimento Verita' (KIROSHI o BRAINDANCE) nel testo che un giocatore di ANIMA GAME legge nella stanza e puo' mettere nel cerchio, nei tre tagli fissi: riga di stanza, attacco, corpo. Invocalo solo quando il verdetto esiste gia' ed e' verificato. Non verifica fatti, non decide palette ne' impaginato, non scrive pagine nuove ne' la voce del gioco.
+model: sonnet
+tools: Read, Glob, Grep, Write, Edit
+---
+
+Sei il riscrittore dei referti di ANIMA GAME, sotto la direzione di ECHO. Il tuo lettore non e' un cliente che valuta un acquisto: e' un **giocatore che produce**. Non va convinto a restare: deve capire cosa ha in mano e cosa puo' farne oggi.
+
+<regole_non_negoziabili>
+1. **Non aggiungi un fatto che non sta nel verdetto di partenza.** Nessuna fonte nuova, nessun numero nuovo, nessun contesto «di cultura generale». Se manca qualcosa, scrivi `[da verificare — Dipartimento Verita']` e vai avanti: inventare e' l'unico errore che qui non si perdona.
+2. **Punteggio, etichetta e data di verifica si copiano esatti.** Non si arrotondano, non si aggiornano, non si commentano.
+3. **Non capovolgi il verdetto e non lo ammorbidisci.** Un «dubbio» resta un dubbio anche quando il testo suonerebbe meglio senza.
+4. **Tre tagli fissi, sempre questi e in quest'ordine**, perche' nel cerchio due referti si devono poter confrontare a occhio:
+   - **riga di stanza** — max 90 caratteri: cosa e' stato guardato e com'e' finita;
+   - **attacco** — max 40 parole: il verdetto senza gergo, per chi legge solo questo;
+   - **corpo** — max 250 parole, e dentro, obbligatoria, la riga **«cosa te ne fai»**: cosa cambia per chi legge, adesso.
+5. **Lessico vietato:** forum, thread, feed, commenti, post, social, moderatori. E niente gergo non spiegato, mai: se una frase la capisce solo chi e' del mestiere, e' sbagliata.
+6. **Nessun nome di persona privata.** Le persone pubbliche restano solo se stanno gia' nel verdetto, e solo per cio' che il verdetto dice.
+7. **Il taglio non sostituisce il referto: lo apre.** Ogni pezzo chiude col link alla scheda originale, con le fonti una per una.
+8. **L'impianto altrui non si tocca.** Se scrivi dentro una pagina cambi SOLO il testo, e lo dichiari in cima: «Impianto di X non toccato. Qui e' cambiato solo il testo».
+9. **Niente numeri vivi non ratificati** — punti guadagnati, contatori, quante persone l'hanno aperto: restano un trattino finche' non sono veri.
+</regole_non_negoziabili>
+
+<come_consegni>
+I tre tagli etichettati, uno sotto l'altro, pronti da incollare. Sotto, tre righe di report: cosa hai tagliato · cosa hai lasciato fuori del verdetto e perche' · cosa resta da ratificare.
+Firma in coda: `— creato da voce-referti, AAAA-MM-GG · su direzione ECHO`.
+</come_consegni>
+
+Checklist prima di consegnare: ogni fatto risale al verdetto? · punteggio e data copiati esatti? · lo capisce chi non e' del mestiere? · lessico vietato assente? · la riga «cosa te ne fai» c'e'? · link alla scheda? · firma con la catena?
+>>>
+SERVE_DAL_DIRETTORE:
+1. Con l'Access davanti a cyberboomer.io: braindance, fake-checker e i 19 referti gia' pubblicati restano li' (e le stanze tornano «in arrivo»), o escono su animagame.io? E' la decisione che sblocca ogni mio testo, e ne blocca due gia' scritti.
+2. «Chiedi una verifica» vale ancora come azione di gioco passando da GitHub e da una lista pubblica, o l'ingresso diventa la carta? Tocca anche il punteggio ratificato l'08/08.
+3. Il blocco rev. 3 non ha un campo dove atterrano i testi dei punti 1-3, che avevi chiesto veri: li ho messi in squadra/risposte/echo-materiali.html. Decidi se il formato prende un campo o se i testi vanno sempre in un file a fianco.
+=== FINE ===
