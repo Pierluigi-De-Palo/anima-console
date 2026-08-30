@@ -42,7 +42,18 @@ jobs:
       - name: 2 · Installa la libreria
         run: pip install --quiet anthropic
 
-      - name: 3 · La chiave autentica davvero?
+      - name: 3 · La rete del runner arriva all'API?
+        run: |
+          # BERSAGLIO DI CONTROLLO — senza questo, un fallimento di rete non dice di
+          # chi è la colpa. Il run #1 del 30/08 è morto con «non raggiungo l'API» e
+          # nessuno poteva sapere se fosse l'API, il runner o il nostro codice.
+          for host in https://api.github.com https://api.anthropic.com; do
+            codice=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 20 "$host" 2>&1 || echo "000")
+            echo "  $host → HTTP $codice"
+          done
+          echo "  (401 o 404 vanno benissimo: dicono che l'host risponde. 000 = non ci arrivo.)"
+
+      - name: 4 · La chiave autentica davvero?
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
@@ -67,9 +78,15 @@ jobs:
               print(f"✗ L'API ha risposto {e.status_code}: la chiave non è la causa più probabile.")
               print("  Riprova fra poco; se persiste, guarda lo stato del servizio.")
               sys.exit(1)
-          except anthropic.APIConnectionError:
-              print("✗ Non sono riuscito a raggiungere l'API (rete).")
-              print("  Non dice niente sulla chiave: riprova.")
+          except anthropic.APIConnectionError as e:
+              # La causa vera NON si ingoia: senza, il referto dice «rete» e si ferma lì.
+              # È il difetto che ha reso muto il run #1 del 30/08.
+              print("✗ Non sono riuscito a raggiungere l'API dal runner.")
+              print(f"  Causa: {e!r}")
+              if e.__cause__:
+                  print(f"  Sotto: {type(e.__cause__).__name__}: {e.__cause__}")
+              print("  NON dice niente sulla chiave: guarda il passo 3 qui sopra —")
+              print("  se anche api.github.com dà 000, il guasto è la rete del runner.")
               sys.exit(1)
 
           nomi = [m.id for m in modelli.data]
