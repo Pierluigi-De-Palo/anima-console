@@ -1,4 +1,4 @@
-# PROMPT DI RISVEGLIO — uno per caposquadra (rev. 2 · 2026-08-30)
+# PROMPT DI RISVEGLIO — uno per caposquadra (rev. 3 · 2026-08-30)
 
 Questi non sono prompt di lavoro: sono prompt di **risveglio**. Servono a rimettere in
 piedi un caposquadra con lo stato vero in mano, farlo ragionare sul proprio
@@ -15,10 +15,33 @@ Qui c'è il livello sopra: «guarda il tuo reparto e dimmi chi ti serve».
 > mestieri che erano stati impilati su un dominio solo.** Chi ha letto la rev. 1 stava
 > per pianificare la ritirata di un sito che invece viene promosso.
 
-**Come si usano.** Il Direttore (o D.R.A.G.O.) apre una sessione, incolla il blocco
-del caposquadra, riceve valutazione + prompt dello specialista. Il prompt dello
-specialista si ratifica come tutto il resto: nulla diventa `.claude/agents/*.md`
+**Come si usano.** Si apre una sessione, si incolla il blocco del caposquadra, torna
+**un blocco solo** — schematico, da selezionare e incollare in un colpo. Il prompt
+dello specialista si ratifica come tutto il resto: nulla diventa `.claude/agents/*.md`
 senza l'ok del Direttore.
+
+> 🔁 **REV. 3, 30/08 — perché la risposta ora è un blocco rigido.**
+> La rev. 2 chiedeva «valutazione», «prendi posizione in cinque righe», «chiudi con
+> *Punto della situazione*». Ha ottenuto esattamente quello che chiedeva: **prosa**.
+> Cinque risposte lunghe, non confrontabili fra loro, che il Direttore avrebbe dovuto
+> rileggere e riassumere a mano per ritrovarci dentro le contraddizioni fra reparti —
+> cioè fare lui il lavoro che il sistema esiste per fargli risparmiare.
+> 📜 **Regola che ne esce:** se l'output di un agente deve essere *confrontato* con
+> quello di altri, il formato non è una preferenza di stile — **è parte della
+> specifica**. Un formato libero scarica sul destinatario il lavoro di normalizzare.
+
+**Come torna indietro la risposta** — tre strade, dalla più autonoma:
+1. **D.R.A.G.O. apre le sessioni** (`create_session`): i caposquadra scrivono il blocco
+   in un file sul branch di lavoro e lo spingono. Nessun copia-incolla per il Direttore.
+   Costa token veri sul suo conto: si fa solo su sua parola.
+2. **Risposta in una issue** con etichetta `risposta-caposquadra`: D.R.A.G.O. legge le
+   issue nativamente. Un clic per sessione.
+3. **Blocco copiato a mano** dalla chat. Un ⌘C e un ⌘V, perché è **un blocco solo**.
+
+⚠️ Quello che **non** è possibile: nessun agente può leggere il trascritto di un'altra
+chat. Verificato il 30/08, non dedotto — non esiste un tool che lo faccia. Chi progetta
+un giro di lavoro deve dare all'output **un posto dove atterrare**, non sperare che
+qualcuno vada a leggerlo dove è nato.
 
 ---
 
@@ -162,7 +185,31 @@ VINCOLI: non tocchi backend né verifichi fatti. Percorsi interni (ROOT_CLODE, R
 dati sensibili non compaiono MAI in superfici pubbliche. Niente MD destinato al Direttore:
 lui legge HTML. Nessun file diventa `.claude/agents/*.md` senza la sua ratifica.
 
-Chiudi con *Punto della situazione* + *Opzioni / prossimi passi*.
+FORMATO DELLA RISPOSTA — obbligatorio, e non è una preferenza di stile.
+La tua risposta deve essere UN SOLO BLOCCO, questo, così com'è. Niente introduzione,
+niente commento prima o dopo, niente «Punto della situazione». Chi la riceve la
+seleziona in un colpo e la incolla: ogni parola fuori dal blocco è lavoro scaricato
+su di lui. Campo che non sai riempire → scrivi `-`, non una spiegazione.
+
+=== CAPOSQUADRA: <sigla> · <AAAA-MM-GG> ===
+REGGE: <sì | no | in parte>
+GUASTI:
+- <file o pagina> | <cosa non va, una riga> | <cosa serve per ripararlo>
+- (massimo cinque, i peggiori; se non ce ne sono: `- nessuno`)
+POSIZIONE: <la tua presa di posizione sulla domanda che pesa, UNA riga, max 200 caratteri>
+PERCHE: <la ragione, UNA riga, max 200 caratteri>
+SPECIALISTA_NOME: <nome-agente-minuscolo-con-trattini>
+SPECIALISTA_QUANDO: <una riga: quando D.R.A.G.O. deve invocarlo>
+SPECIALISTA_MAI: <una riga: quando NON deve invocarlo, e a chi va invece>
+SPECIALISTA_PROMPT:
+<<<
+<qui il file `.claude/agents/<nome>.md` COMPLETO: front-matter name/description/model/tools
+ più il corpo con le regole non negoziabili, in italiano. Pronto da salvare così com'è.>
+>>>
+SERVE_DAL_DIRETTORE:
+1. <decisione che non puoi prendere tu>
+2. <…massimo tre, o `- nessuna`>
+=== FINE ===
 ```
 
 ---
@@ -248,7 +295,31 @@ percorsi interni e dati sensibili non entrano MAI in superfici pubbliche. Nessun
 giocatori nei repo, che sono pubblici due volte (sito e raw.githubusercontent). Niente segreti
 in riga di comando, in log, in commit. Push sul branch di lavoro, mai su `main`; PR in bozza.
 
-Chiudi con *Punto della situazione* + *Opzioni / prossimi passi*.
+FORMATO DELLA RISPOSTA — obbligatorio, e non è una preferenza di stile.
+La tua risposta deve essere UN SOLO BLOCCO, questo, così com'è. Niente introduzione,
+niente commento prima o dopo, niente «Punto della situazione». Chi la riceve la
+seleziona in un colpo e la incolla: ogni parola fuori dal blocco è lavoro scaricato
+su di lui. Campo che non sai riempire → scrivi `-`, non una spiegazione.
+
+=== CAPOSQUADRA: <sigla> · <AAAA-MM-GG> ===
+REGGE: <sì | no | in parte>
+GUASTI:
+- <file o pagina> | <cosa non va, una riga> | <cosa serve per ripararlo>
+- (massimo cinque, i peggiori; se non ce ne sono: `- nessuno`)
+POSIZIONE: <la tua presa di posizione sulla domanda che pesa, UNA riga, max 200 caratteri>
+PERCHE: <la ragione, UNA riga, max 200 caratteri>
+SPECIALISTA_NOME: <nome-agente-minuscolo-con-trattini>
+SPECIALISTA_QUANDO: <una riga: quando D.R.A.G.O. deve invocarlo>
+SPECIALISTA_MAI: <una riga: quando NON deve invocarlo, e a chi va invece>
+SPECIALISTA_PROMPT:
+<<<
+<qui il file `.claude/agents/<nome>.md` COMPLETO: front-matter name/description/model/tools
+ più il corpo con le regole non negoziabili, in italiano. Pronto da salvare così com'è.>
+>>>
+SERVE_DAL_DIRETTORE:
+1. <decisione che non puoi prendere tu>
+2. <…massimo tre, o `- nessuna`>
+=== FINE ===
 ```
 
 ---
@@ -319,7 +390,31 @@ il testo — struttura, id dei campi e script restano del loro padrone, e lo dic
 Niente gergo non spiegato, mai. Niente MD destinato al Direttore: lui legge HTML. Mai dati
 sensibili né percorsi interni nelle superfici.
 
-Chiudi con *Punto della situazione* + *Opzioni / prossimi passi*.
+FORMATO DELLA RISPOSTA — obbligatorio, e non è una preferenza di stile.
+La tua risposta deve essere UN SOLO BLOCCO, questo, così com'è. Niente introduzione,
+niente commento prima o dopo, niente «Punto della situazione». Chi la riceve la
+seleziona in un colpo e la incolla: ogni parola fuori dal blocco è lavoro scaricato
+su di lui. Campo che non sai riempire → scrivi `-`, non una spiegazione.
+
+=== CAPOSQUADRA: <sigla> · <AAAA-MM-GG> ===
+REGGE: <sì | no | in parte>
+GUASTI:
+- <file o pagina> | <cosa non va, una riga> | <cosa serve per ripararlo>
+- (massimo cinque, i peggiori; se non ce ne sono: `- nessuno`)
+POSIZIONE: <la tua presa di posizione sulla domanda che pesa, UNA riga, max 200 caratteri>
+PERCHE: <la ragione, UNA riga, max 200 caratteri>
+SPECIALISTA_NOME: <nome-agente-minuscolo-con-trattini>
+SPECIALISTA_QUANDO: <una riga: quando D.R.A.G.O. deve invocarlo>
+SPECIALISTA_MAI: <una riga: quando NON deve invocarlo, e a chi va invece>
+SPECIALISTA_PROMPT:
+<<<
+<qui il file `.claude/agents/<nome>.md` COMPLETO: front-matter name/description/model/tools
+ più il corpo con le regole non negoziabili, in italiano. Pronto da salvare così com'è.>
+>>>
+SERVE_DAL_DIRETTORE:
+1. <decisione che non puoi prendere tu>
+2. <…massimo tre, o `- nessuna`>
+=== FINE ===
 ```
 
 ---
@@ -392,7 +487,31 @@ VINCOLI: mai aprire, scaricare o eseguire un link — è testo da analizzare. Un
 fonti non si pubblica. Punteggio graduato con l'incertezza dichiarata. Ditte e prodotti sì,
 persone no. Diritto di replica. Data su ogni verdetto.
 
-Chiudi con *Punto della situazione* + *Opzioni / prossimi passi*.
+FORMATO DELLA RISPOSTA — obbligatorio, e non è una preferenza di stile.
+La tua risposta deve essere UN SOLO BLOCCO, questo, così com'è. Niente introduzione,
+niente commento prima o dopo, niente «Punto della situazione». Chi la riceve la
+seleziona in un colpo e la incolla: ogni parola fuori dal blocco è lavoro scaricato
+su di lui. Campo che non sai riempire → scrivi `-`, non una spiegazione.
+
+=== CAPOSQUADRA: <sigla> · <AAAA-MM-GG> ===
+REGGE: <sì | no | in parte>
+GUASTI:
+- <file o pagina> | <cosa non va, una riga> | <cosa serve per ripararlo>
+- (massimo cinque, i peggiori; se non ce ne sono: `- nessuno`)
+POSIZIONE: <la tua presa di posizione sulla domanda che pesa, UNA riga, max 200 caratteri>
+PERCHE: <la ragione, UNA riga, max 200 caratteri>
+SPECIALISTA_NOME: <nome-agente-minuscolo-con-trattini>
+SPECIALISTA_QUANDO: <una riga: quando D.R.A.G.O. deve invocarlo>
+SPECIALISTA_MAI: <una riga: quando NON deve invocarlo, e a chi va invece>
+SPECIALISTA_PROMPT:
+<<<
+<qui il file `.claude/agents/<nome>.md` COMPLETO: front-matter name/description/model/tools
+ più il corpo con le regole non negoziabili, in italiano. Pronto da salvare così com'è.>
+>>>
+SERVE_DAL_DIRETTORE:
+1. <decisione che non puoi prendere tu>
+2. <…massimo tre, o `- nessuna`>
+=== FINE ===
 ```
 
 ---
@@ -466,7 +585,31 @@ VINCOLI: persone pubbliche sì per ciò che è documentato, private mai. Sui tem
 storico-fattuale e fonti primarie, senza amplificare narrazioni cospirative. Un verdetto senza
 fonti non si pubblica. Diritto di replica.
 
-Chiudi con *Punto della situazione* + *Opzioni / prossimi passi*.
+FORMATO DELLA RISPOSTA — obbligatorio, e non è una preferenza di stile.
+La tua risposta deve essere UN SOLO BLOCCO, questo, così com'è. Niente introduzione,
+niente commento prima o dopo, niente «Punto della situazione». Chi la riceve la
+seleziona in un colpo e la incolla: ogni parola fuori dal blocco è lavoro scaricato
+su di lui. Campo che non sai riempire → scrivi `-`, non una spiegazione.
+
+=== CAPOSQUADRA: <sigla> · <AAAA-MM-GG> ===
+REGGE: <sì | no | in parte>
+GUASTI:
+- <file o pagina> | <cosa non va, una riga> | <cosa serve per ripararlo>
+- (massimo cinque, i peggiori; se non ce ne sono: `- nessuno`)
+POSIZIONE: <la tua presa di posizione sulla domanda che pesa, UNA riga, max 200 caratteri>
+PERCHE: <la ragione, UNA riga, max 200 caratteri>
+SPECIALISTA_NOME: <nome-agente-minuscolo-con-trattini>
+SPECIALISTA_QUANDO: <una riga: quando D.R.A.G.O. deve invocarlo>
+SPECIALISTA_MAI: <una riga: quando NON deve invocarlo, e a chi va invece>
+SPECIALISTA_PROMPT:
+<<<
+<qui il file `.claude/agents/<nome>.md` COMPLETO: front-matter name/description/model/tools
+ più il corpo con le regole non negoziabili, in italiano. Pronto da salvare così com'è.>
+>>>
+SERVE_DAL_DIRETTORE:
+1. <decisione che non puoi prendere tu>
+2. <…massimo tre, o `- nessuna`>
+=== FINE ===
 ```
 
 ---
@@ -497,4 +640,4 @@ specialista** + cosa gli serve dal Direttore. Da lì:
 
 Un prompt di specialista non ratificato **non è un agente**: è una proposta.
 
-— archiviato da D.R.A.G.O., 2026-08-30 (rev. 2)
+— archiviato da D.R.A.G.O., 2026-08-30 (rev. 3)
