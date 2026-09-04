@@ -1,3 +1,13 @@
+[PUBBLICATA 2026-09-04] Ferma 54 giorni, decisione del 30/08 eseguita: le tre
+fonti deboli qui sotto (Wikipedia + un blog + un sito di contenuti) sono state
+sostituite da fonti che reggono lo standard dell'archivio (studio accademico
+peer-reviewed, istituzioni museali, stampa indipendente specializzata).
+Scheda pubblicata: `docs/braindance/schede/cinepresa-linguaggio.html` ·
+voce dati: `docs/data/braindance.json` → id `cinepresa-linguaggio`, punteggio
+72, colore verde. Il testo originale sotto resta come documento di lavoro.
+
+---
+
 # Ricerca (fork) — La cinepresa si rimpicciolisce, il linguaggio cambia
 *KIROSHI//OR · 2026-07-12 · tesi: REGGE, con una nuance onesta*
 

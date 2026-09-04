@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verdetto — La cinepresa si rimpicciolisce, il linguaggio cambia? · BRAINDANCE</title>
+<meta name="description" content="Verifica BRAINDANCE: il rimpicciolimento delle macchine da presa ha cambiato il linguaggio del cinema? Regge come racconto di cinque svolte tecniche reali, non come legge meccanica.">
+<style>
+  :root{--bg:#0a0e14;--panel:#111823;--line:#1e2a38;--ink:#d7e3ef;--muted:#7d93a8;
+    --cyan:#22d3ee;--green:#2ee6a6;--yellow:#f6c453;--red:#ff5c6c;}
+  *{box-sizing:border-box}
+  body{margin:0;background:#05070b;color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6;padding:24px 14px;display:flex;justify-content:center}
+  .frame{background:var(--bg);border-radius:14px;padding:22px 24px;max-width:760px;width:100%}
+  .head{display:flex;align-items:center;justify-content:space-between;gap:12px;
+    border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:8px}
+  .head .name{font-size:15px;font-weight:600;letter-spacing:.08em;color:var(--cyan)}
+  .head .date{font-size:14px;color:var(--muted)}
+  .sub{font-size:14px;color:var(--muted);margin:0 0 18px}
+  .lab{font-size:14px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin:22px 0 10px}
+  .claim{font-size:18px;line-height:1.5;font-style:italic;margin:0 0 18px}
+  .gaugewrap{display:grid;grid-template-columns:200px 1fr;gap:18px;align-items:center;margin-bottom:6px}
+  .legend{font-size:14px;color:var(--muted);text-align:center;margin:6px 0 0}
+  .col{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+  .box{border-radius:12px;padding:12px 14px}
+  .box.pro{background:#0f2a22} .box.pro h3,.box.pro li{color:#7ff0c9}
+  .box.con{background:#2a1114} .box.con h3,.box.con li{color:#ffb3ba}
+  .box h3{font-size:14px;font-weight:600;margin:0 0 8px}
+  .box ul{margin:0;padding-left:16px;font-size:14px;line-height:1.5}
+  .box li{margin:0 0 6px}
+  .pill{font-size:14px;font-weight:600;padding:4px 12px;border-radius:20px}
+  .pill.green{background:#0f2a22;color:var(--green);border:1px solid var(--green)}
+  .take{font-size:14px;line-height:1.6;background:var(--panel);border:1px solid var(--line);
+    border-radius:12px;padding:12px 14px;margin:16px 0}
+  .take b{color:var(--cyan);font-weight:500}
+  .nota{font-size:14px;line-height:1.6;background:var(--panel);border:1px solid var(--line);
+    border-left:3px solid var(--cyan);border-radius:12px;padding:12px 14px;margin:16px 0;color:var(--muted)}
+  .warn{border:1px solid var(--yellow);border-left:4px solid var(--yellow);background:#1a1508;
+    border-radius:10px;padding:14px 16px;margin:16px 0}
+  .warn .wt{color:var(--yellow);font-size:12px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:8px}
+  .warn p{margin:0;font-size:14px;line-height:1.6}
+
+  /* linea del tempo */
+  .tl{margin:14px 0 6px;padding:0;list-style:none;position:relative}
+  .tl::before{content:"";position:absolute;left:66px;top:6px;bottom:6px;width:2px;background:var(--line)}
+  .tl li{position:relative;padding:0 0 16px 92px;min-height:34px}
+  .tl .anno{position:absolute;left:0;top:0;width:56px;text-align:right;font-weight:700;font-size:14px;color:var(--ink)}
+  .tl li::before{content:"";position:absolute;left:61px;top:6px;width:12px;height:12px;border-radius:50%;
+    background:var(--bg);border:2px solid var(--muted)}
+  .tl li.up::before{background:var(--green);border-color:var(--green)}
+  .tl li.down::before{background:var(--red);border-color:var(--red)}
+  .tl li.open::before{background:var(--yellow);border-color:var(--yellow)}
+  .tl .cosa{font-size:14.5px;line-height:1.55}
+  .tl .cosa b{font-weight:600;color:var(--ink)}
+  .tl .tag{display:inline-block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+    padding:1px 7px;border-radius:10px;margin-left:6px;vertical-align:1px}
+  .tag.su{background:#0f2a22;color:var(--green)}
+  .tag.giu{background:#2a1114;color:var(--red)}
+  .tag.apre{background:#2a2410;color:var(--yellow)}
+  .legenda-tl{font-size:12.5px;color:var(--muted);margin:2px 0 0}
+
+  .sources{border-top:1px solid var(--line);padding-top:14px;margin-top:16px}
+  .sources a{color:var(--ink);text-decoration:none}
+  .srow{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--muted);margin:6px 0}
+  .dots{color:var(--cyan);letter-spacing:1px;font-size:11px;min-width:52px;padding-top:1px}
+  .sign{margin-top:16px;font-size:12px;color:var(--muted)}
+  @media(max-width:540px){.gaugewrap{grid-template-columns:1fr}.col{grid-template-columns:1fr}
+    .tl::before{left:0} .tl li{padding-left:22px}
+    .tl .anno{position:static;display:block;width:auto;text-align:left;margin-bottom:2px}
+    .tl li::before{left:-5px;top:8px}}
+</style>
+</head>
+<body>
+<main class="frame">
+
+  <div class="head">
+    <span class="name">◉ BRAINDANCE · verdetto</span>
+    <span class="date">2026-09-04</span>
+  </div>
+  <p class="sub">Ricerca interna, ferma dal 12/07 (54 giorni) · giro 1, dispatch D.R.A.G.O. · protocollo KIROSHI v1</p>
+
+  <p class="lab">La domanda</p>
+  <p class="claim">«Nel tempo le macchine da presa si sono rimpicciolite, e questo ha cambiato il linguaggio del cinema.» Caso cardine citato: il 16mm portatile dietro la Nouvelle Vague.</p>
+
+  <div class="gaugewrap">
+    <div>
+      <svg viewBox="0 0 200 128" width="100%" role="img" aria-label="Tenuta della tesi: 72 su 100, zona verde">
+        <path d="M20,100 A80,80 0 0 1 75.3,23.9" fill="none" stroke="#ff5c6c" stroke-width="13" stroke-linecap="round"/>
+        <path d="M75.3,23.9 A80,80 0 0 1 147,35.3" fill="none" stroke="#f6c453" stroke-width="13" stroke-linecap="round"/>
+        <path d="M147,35.3 A80,80 0 0 1 180,100" fill="none" stroke="#2ee6a6" stroke-width="13" stroke-linecap="round"/>
+        <line x1="100" y1="100" x2="158.2" y2="55.8" stroke="#d7e3ef" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="100" cy="100" r="5" fill="#d7e3ef"/>
+        <text x="100" y="90" text-anchor="middle" fill="#2ee6a6" font-size="30" font-weight="500">72</text>
+        <text x="100" y="118" text-anchor="middle" fill="#7d93a8" font-size="11" letter-spacing=".08em">TENUTA DELLA TESI</text>
+      </svg>
+      <p class="legend">0-40 rosso · 41-70 giallo · 71-100 verde</p>
+    </div>
+    <div style="font-size:14px">
+      <span class="pill green">Regge, ma non è una discesa continua</span><br><br>
+      Cinque svolte tecniche reali e documentate, dal 1895 al 2026 — <b style="color:#2ee6a6;font-weight:500">ma la curva ha una risalita</b>: il sonoro (1927) fece l'opposto, e uno storico del cinema avverte che il caso cardine è in parte un racconto che i cineasti hanno costruito su di sé.
+    </div>
+  </div>
+
+  <p class="lab">Le due facce</p>
+  <div class="col">
+    <div class="box pro">
+      <h3>Il nucleo vero</h3>
+      <ul>
+        <li>Il caso cardine è documentato da fonti indipendenti: la camera Éclair 16 (Coutant, 1960-63), <b>autosilenziata</b> — la prima abbastanza silenziosa da fare a meno della cassa insonorizzante — accoppiata al registratore Nagra sincrono liberò la macchina dal treppiede e portò il suono in presa diretta fuori dallo studio.</li>
+        <li>Il passo precedente conta quanto quello famoso: la Cameflex 35mm a spalla (Coutant, 1947, premiata con un Oscar tecnico nel 1950) rese possibile «Fino all'ultimo respiro» di Godard — Coutard la portava a spalla su una sedia a rotelle spinta a mano.</li>
+        <li>Il video leggero rese possibile Dogme95 (1995): «camera a mano» diventa un voto del manifesto proprio perché lo strumento lo permetteva a basso costo, non prima.</li>
+        <li>Il DSLR (Canon 5D Mark II, 2008) mise l'estetica «cinema» a portata di prezzo consumer: l'indipendente e perfino il video di matrimonio cambiarono stile nel giro di pochi anni.</li>
+        <li>Anche l'origine, 1895: il Cinématographe Lumière — camera, stampatrice e proiettore in un solo corpo leggero — era portabile all'aperto, a differenza del pesante Kinetografo di Edison.</li>
+      </ul>
+    </div>
+    <div class="box con">
+      <h3>Perché non è una legge meccanica</h3>
+      <ul>
+        <li><b>La curva non è monotona.</b> Il sonoro (1927) fece l'opposto: le cineprese finirono chiuse in casse insonorizzanti («blimp»), spesso inchiodate al treppiede, fino a inizio anni '30 — una risalita vera, non un dettaglio.</li>
+        <li><b>Uno storico del cinema ammonisce contro la lettura troppo semplice.</b> Lo studio più approfondito sul caso cardine — pubblicato sulla rivista accademica di storia del cinema «1895» — sostiene che il racconto «la macchina leggera ha causato da sola la rivoluzione del cinema diretto» è in parte una leggenda costruita a posteriori dagli stessi cineasti, che «spinsero» la tecnica per ottenere un effetto di sincronismo e soprattutto per catturare lo spirito dell'epoca. Scelta artistica e contesto culturale pesano quanto l'hardware.</li>
+        <li><b>Il ritardo fra tecnica e stile non si spiega da solo con la tecnica.</b> Il 16mm leggero esisteva anni prima di essere usato così: la Nouvelle Vague nasce nel 1958-60, non appena la camera è pronta.</li>
+        <li><b>L'ultimo anello è troppo giovane per fare stile.</b> L'Insta360 Luna Ultra (2026, motore Leica) è un prodotto reale e appena uscito, ma non esiste ancora un linguaggio cinematografico riconoscibile che se ne possa dire figlio: è un punto d'arrivo proiettato, non (ancora) verificato come gli altri.</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="lab">Come è andata, tappa per tappa</p>
+  <p class="legenda-tl">▲ la macchina si alleggerisce / si libera &nbsp;·&nbsp; ▼ la macchina si appesantisce / si vincola &nbsp;·&nbsp; ● capitolo ancora aperto</p>
+  <ul class="tl">
+    <li class="up"><span class="anno">1895</span><span class="cosa"><b>Cinématographe Lumière</b>: camera, stampatrice e proiettore in un solo corpo leggero, portabile all'aperto — molto più leggero del Kinetografo di Edison. Ma è cinema delle origini: nessuna «grammatica» ancora da rompere.<span class="tag su">alleggerisce</span></span></li>
+    <li class="down"><span class="anno">1927</span><span class="cosa"><b>Il sonoro sincrono</b> (Vitaphone, <i>Il cantante di jazz</i>) impone motori rumorosi da isolare: le cineprese finiscono chiuse in casse insonorizzanti («blimp»), spesso <b>inchiodate al treppiede</b>. La macchina si appesantisce e si irrigidisce fino a inizio anni '30.<span class="tag giu">appesantisce</span></span></li>
+    <li class="up"><span class="anno">1947</span><span class="cosa"><b>Éclair Cameflex</b> (André Coutant): 35mm a spalla, mirino reflex, ~4,8 kg. Premiata con un Oscar tecnico nel 1950 (Coutant e Mathot). Diventa la camera-simbolo della Nouvelle Vague — Godard la usa su «Fino all'ultimo respiro» (1960).<span class="tag su">alleggerisce</span></span></li>
+    <li class="up"><span class="anno">1960-63</span><span class="cosa">🔑 <b>Éclair 16 (NPR/Coutant)</b> + registratore <b>Nagra</b> sincrono: prima camera 16mm abbastanza silenziosa da fare a meno del blimp. Nasce da una commessa precisa — Jean Rouch ed Edgar Morin chiedono a Coutant una camera per il sonoro sincrono fuori studio, e il risultato è «Cronaca di un'estate» (1961). Base tecnica di <b>cinéma vérité</b> e <b>Nouvelle Vague</b>.<span class="tag su">alleggerisce</span></span></li>
+    <li class="up"><span class="anno">1995</span><span class="cosa"><b>Dogme95</b> (Von Trier, Vinterberg): il video digitale leggero rende economicamente possibile il «voto di castità» — camera a mano obbligatoria, niente luci artificiali. Il manifesto trasforma un vincolo tecnico in un'estetica dichiarata.<span class="tag su">alleggerisce</span></span></li>
+    <li class="up"><span class="anno">2008</span><span class="cosa"><b>Canon EOS 5D Mark II</b>: prima reflex full-frame con video Full HD. Mette la profondità di campo «da cinema» a un prezzo consumer — nasce la «rivoluzione DSLR» dell'indipendente e del video professionale a basso costo.<span class="tag su">alleggerisce</span></span></li>
+    <li class="open"><span class="anno">2026</span><span class="cosa"><b>Insta360 Luna Ultra</b> (ottiche Leica, 8K, gimbal integrato): esiste davvero ed è in vendita da giugno 2026. <b>Ma qui il capitolo è aperto</b>: nessuno stile riconoscibile se ne è ancora detto figlio.<span class="tag apre">da verificare</span></span></li>
+  </ul>
+
+  <div class="warn">
+    <div class="wt">⚠ la correzione che nessuna delle tre fonti originarie diceva</div>
+    <p>Lo studio di Vincent Sorrel — rivista «1895», n°82, 2017, la sola pubblicazione accademica peer-reviewed fra le fonti di questa scheda — non smentisce che la camera leggera abbia contato. Dice una cosa più fine: <b>la «rivoluzione tecnica» del cinema diretto è stata in parte «leggendata» dagli stessi cineasti</b>, che raccontarono a posteriori una storia più lineare di quanto i fatti tecnici permettano, per catturare — dice il suo abstract — «lo spirito dell'epoca». È l'avviso che mancava alle tre fonti deboli (Wikipedia, un blog, un sito di contenuti) con cui questa ricerca era partita il 12/07: non un dettaglio in più, ma un correttivo al modo di raccontare l'intera tesi.</p>
+  </div>
+
+  <p class="take"><b>In una riga —</b> La tesi regge come racconto di cinque svolte tecniche reali e verificabili, non come legge meccanica «più piccola = linguaggio nuovo»: la curva ha una risalita netta (il sonoro, 1927), e anche nel caso cardine che tiene in piedi tutto il resto — 16mm più Nagra, Nouvelle Vague — uno storico del cinema avverte che parte del racconto è mitologia costruita dagli autori stessi, non pura causalità dell'hardware.</p>
+
+  <p class="nota">Nota di metodo: in questa sessione l'accesso diretto alle pagine (WebFetch) era bloccato dalla rete — ogni fonte qui sotto è confermata per convergenza fra più ricerche indipendenti sugli stessi fatti, non da lettura diretta del testo integrale. Il dettaglio dell'Oscar tecnico 1950 a Coutant e Mathot compare identico in più fonti secondarie convergenti, ma non abbiamo potuto controllarlo sul registro ufficiale dell'Academy: trattatelo con un grado di fiducia in meno rispetto al resto.</p>
+
+  <div class="sources">
+    <p class="lab">Fonti · pallino = peso</p>
+    <div class="srow"><span class="dots">●●●●●</span><a href="https://journals.openedition.org/1895/5390">Vincent Sorrel — «L'invention de la caméra Éclair 16 : du direct au synchrone», rivista «1895. Revue d'histoire du cinéma» n°82 (AFRHC), 2017</a></div>
+    <div class="srow"><span class="dots">●●●●●</span><a href="https://americanhistory.si.edu/collections/object/nmah_759313">Smithsonian, National Museum of American History — «Lumière Cinématographe Camera, Printer, and Projector, 1895»</a></div>
+    <div class="srow"><span class="dots">●●●●○</span><a href="https://artsandculture.google.com/story/the-cam%C3%A9flex-%C3%89clair-coutant-la-cin%C3%A9math%C3%A8que-fran%C3%A7aise/oQVxIoPa33EcKg?hl=en">La Cinémathèque française — «Le Caméflex Éclair-Coutant» (Google Arts &amp; Culture)</a></div>
+    <div class="srow"><span class="dots">●●●●○</span><a href="https://www.afcinema.com/Retour-sur-L-invention-de-la-camera-Eclair-16-une-etude-de-Vincent-Sorrel.html?lang=fr">AFC (Association Française des directeurs de la photographie) — resoconto dello studio di Sorrel</a></div>
+    <div class="srow"><span class="dots">●●●●○</span><a href="https://www.criterion.com/current/posts/8756-pixel-visions-dogme-95-and-the-emergence-of-digital-cinema">The Criterion Collection — «Pixel Visions: Dogme 95 and the Emergence of Digital Cinema»</a></div>
+    <div class="srow"><span class="dots">●●●●○</span><a href="https://www.dpreview.com/articles/0094797836/on-this-day-2008-canon-launches-eos-5d-ii-the-filmmakers-dslr">DPReview — «On this day 2008: Canon launches EOS 5D II, the filmmakers' DSLR»</a></div>
+    <div class="srow"><span class="dots">●●●○○</span><a href="https://www.britannica.com/art/history-of-film/The-pre-World-War-II-sound-era">Encyclopaedia Britannica — «History of film: the pre-World War II sound era»</a></div>
+    <div class="srow"><span class="dots">●●●○○</span><a href="https://www.dpreview.com/news/2755937450/insta360-luna-ultra-camera-gimbal-announcement">DPReview — annuncio Insta360 Luna Ultra (2026)</a></div>
+  </div>
+
+  <p class="sign">— creato da BRAINDANCE · giro 1 · dispatch D.R.A.G.O. · 2026-09-04 · scheda condivisibile (HTML autoportante)</p>
+
+</main>
+</body>
+</html>
