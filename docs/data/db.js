@@ -1,5 +1,368 @@
 window.KIROSHI_DB = [
   {
+    "titolo": "Sway - Audima Labs",
+    "oggetto": "Sway, controller MIDI a gesti di Audima Labs (Batch 4, pre-ordine)",
+    "domanda": "È hardware vero o fuffa renderizzata? Ci si può fidare prima di spendere 600+$?",
+    "modalita": "scava",
+    "punteggio": 87,
+    "etichetta": "affidabile",
+    "verdetto": "Sway è un prodotto reale, non un render. Dietro c'è un'azienda australiana con fondatori identificabili, passata da Shark Tank Australia, con una campagna Indiegogo di successo e due lotti già consegnati in oltre 35 paesi. Non è una truffa. Il rischio residuo non è la frode ma il pre-ordine: paghi ora per una consegna prevista a fine 2026, e lo strumento è di nicchia e polarizzante. La domanda 'mi arriverà ed è reale?' ha risposta sì; la domanda 'vale 615$ per me?' dipende dai tuoi gusti.\n\nAggiornamento della riverifica del 04/09/2026, 57 giorni dopo la prima pubblicazione: il fatto che pesava di più — la timeline dichiarava una 'Consegna Batch 3' a giugno 2026 come se fosse un evento avvenuto, mentre era solo una previsione del venditore mai confermata da una fonte indipendente — resta, a rigore, non risolto: questa riverifica non ha trovato una conferma diretta e indipendente (un backer reale che dichiari di aver ricevuto la propria unità del Batch 3) perché Indiegogo, Elektronauts e Trustpilot sono risultati bloccati dal proxy di rete di questa sessione (dominio per dominio, vedi nota di sicurezza). Il dato 'tre batch spediti in oltre 35 paesi' resta quindi una dichiarazione del venditore stesso, non una conferma di terzi. Detto questo, la ricerca ha prodotto un fatto nuovo e pesante nella direzione opposta al sospetto: la testata musicale indipendente MusicTech (in un'intervista/reportage dedicato) documenta che l'artista Illenium ha usato due unità Sway sul palco durante la sua residency 'ODYSSEY' alla Sphere di Las Vegas (5 marzo - 4 aprile 2026) — una delle produzioni dal vivo più sorvegliate e costose al mondo, con oltre un anno di sviluppo dichiarato dal team di produzione. Un uso professionale di questo livello, ripreso anche da Magnetic Magazine, Mixmag Asia e LiveForLiveMusic, è un riscontro indipendente difficile da falsificare, più forte delle foto amatoriali sui forum già in fonti. A questo si aggiunge continuità operativa osservabile: Batch 4 è stato aperto regolarmente il 18/08/2026 con termini commerciali specifici e verificabili (acconto 25$ rimborsabile al 100% fino al lancio, prezzo VIP 615$ contro un listino dichiarato di 830$), e Magnetic Magazine ha pubblicato una recensione indipendente ad agosto 2026 che definisce Sway 'il controller MIDI più innovativo del 2026' — la stampa di settore continua a occuparsene quasi due anni dopo la campagna, segnale di continuità più che di abbandono. Ricerche mirate su reclami, mancate consegne o rimborsi negati non hanno prodotto alcun riscontro negativo. Bilancio: la promessa specifica sul Batch 3 resta tecnicamente non confermata da fonte indipendente, ma il quadro complessivo attorno all'azienda si è rafforzato, non indebolito, nel periodo passato dalla prima verifica. Punteggio rivisto da 85 a 87.",
+    "green_flags": [
+      "Fondatori reali e identificabili: Jeremy Buckley e Isaac Jack (Australia)",
+      "Passati da Shark Tank Australia: deal da 50.000$ per il 15% (confermato dalla pagina ufficiale Shark Tank AU)",
+      "Indiegogo 2024: 256 finanziatori reali, 220.958$ raccolti (900% del goal)",
+      "Batch 1 consegnato giu 2025 e Batch 2 dic 2025, in 35+ paesi",
+      "Recensioni indipendenti (AltWire, Mixmag Asia, Magnetic Magazine) e video YouTube di terzi",
+      "Unità reali fotografate da utenti sui forum di appassionati (Elektronauts)",
+      "Aggiornamenti di produzione regolari sulla campagna Indiegogo",
+      "Uso professionale documentato da stampa musicale indipendente: Illenium ha usato due unità Sway durante la residency 'ODYSSEY' alla Sphere di Las Vegas (5 marzo - 4 aprile 2026), confermato da MusicTech e ripreso da Magnetic Magazine, Mixmag Asia e LiveForLiveMusic — riscontro indipendente di alto livello, difficile da falsificare",
+      "Copertura stampa indipendente ancora attiva ad agosto 2026 (Magnetic Magazine, 'il controller MIDI più innovativo del 2026'), quasi due anni dopo la campagna Indiegogo: segnale di continuità operativa",
+      "Batch 4 aperto regolarmente il 18/08/2026 con termini commerciali chiari e verificabili (acconto 25$ rimborsabile al 100% fino al lancio): comportamento coerente con un'azienda operativa",
+      "Nessuna segnalazione di truffa, mancata consegna o rimborso negato trovata in questa riverifica (ricerche mirate)"
+    ],
+    "red_flags": [
+      "È un pre-ordine: paghi ora, consegna stimata nov-dic 2026 (rischio slittamento)",
+      "Team piccolo, produzione a lotti: capacità limitata",
+      "Strumento di nicchia e polarizzante, ergonomia del controllo a gesti discussa dai forum",
+      "Molte recensioni 5★ ospitate sul sito del venditore: pesano meno di quelle indipendenti",
+      "La consegna del Batch 3 (dichiarata dal venditore per giu/lug 2026) non è stata confermata in modo diretto e indipendente in questa riverifica: Indiegogo, Elektronauts, Trustpilot e il sito audima.com.au sono risultati bloccati dal proxy di rete di questa sessione. Il claim 'tre batch spediti in 35+ paesi' resta una dichiarazione del venditore, non incrociata con un backer reale"
+    ],
+    "fonti": [
+      {
+        "titolo": "Indiegogo - campagna Sway",
+        "url": "https://www.indiegogo.com/en/projects/audimalabs/sway-the-world-s-most-expressive-midi-controller",
+        "tipo": "ufficiale",
+        "sostiene": "vero",
+        "autorevolezza": 4
+      },
+      {
+        "titolo": "Shark Tank AU (pagina Facebook ufficiale)",
+        "url": "https://www.facebook.com/sharktankau/posts/1378105513464163/",
+        "tipo": "ufficiale",
+        "sostiene": "vero",
+        "autorevolezza": 5
+      },
+      {
+        "titolo": "Elektronauts - forum, foto utente",
+        "url": "https://www.elektronauts.com/t/audima-labs-sway-midi-controller/242226",
+        "tipo": "forum",
+        "sostiene": "vero",
+        "autorevolezza": 4
+      },
+      {
+        "titolo": "Poly Expression - forum",
+        "url": "https://community.polyexpression.com/t/audima-labs-sway/2050",
+        "tipo": "forum",
+        "sostiene": "vero",
+        "autorevolezza": 3
+      },
+      {
+        "titolo": "AltWire - recensione",
+        "url": "https://altwire.net/audima-labs-the-sway-review/",
+        "tipo": "stampa",
+        "sostiene": "vero",
+        "autorevolezza": 3
+      },
+      {
+        "titolo": "Mixmag Asia",
+        "url": "https://mixmag.asia/read/audima-labs-midi-instrument-sway-turns-movement-into-music-tech",
+        "tipo": "stampa",
+        "sostiene": "vero",
+        "autorevolezza": 4
+      },
+      {
+        "titolo": "The Awesomer",
+        "url": "https://theawesomer.com/sway-gesture-midi-music-controller/751174/",
+        "tipo": "stampa",
+        "sostiene": "vero",
+        "autorevolezza": 2
+      },
+      {
+        "titolo": "Trustpilot - audima.com.au",
+        "url": "https://www.trustpilot.com/review/audima.com.au",
+        "tipo": "altro",
+        "sostiene": "vero",
+        "autorevolezza": 3
+      },
+      {
+        "titolo": "Sito ufficiale Audima Labs",
+        "url": "https://audima.com.au/",
+        "tipo": "venditore",
+        "sostiene": "neutro",
+        "autorevolezza": 2
+      },
+      {
+        "titolo": "Inside Illenium's Odyssey at Las Vegas Sphere — MusicTech",
+        "url": "https://musictech.com/features/interviews/interview-illenium-odyssey-las-vegas-sphere/",
+        "tipo": "stampa musicale indipendente",
+        "sostiene": "Illenium ha usato due unità Sway durante la residency ODYSSEY alla Sphere di Las Vegas (5 marzo - 4 aprile 2026): uso professionale documentato, non promozionale",
+        "autorevolezza": 4
+      },
+      {
+        "titolo": "The Sway by Audima Labs Could Be the Most Innovative MIDI Controller of 2026 — Magnetic Magazine",
+        "url": "https://magneticmag.com/2026/08/the-sway-by-audima-labs-could-be-the-most-innovative-midi-controller-of-2026/",
+        "tipo": "stampa musicale indipendente",
+        "sostiene": "Recensione indipendente pubblicata ad agosto 2026: copertura stampa ancora attiva quasi due anni dopo la campagna; conferma Batch 1 esaurito in 7 minuti e prezzo di listino 830$",
+        "autorevolezza": 4
+      },
+      {
+        "titolo": "ILLENIUM Turns Sphere Into Audiovisual EDM Cinema With ODYSSEY Residency — LiveForLiveMusic",
+        "url": "https://liveforlivemusic.com/news/illenium-turns-sphere-into-audio-visual-edm-cinema-with-odyssey-residency/",
+        "tipo": "stampa musicale indipendente",
+        "sostiene": "Conferma indipendente delle date della residency ODYSSEY (5 marzo - 4 aprile 2026) alla Sphere di Las Vegas",
+        "autorevolezza": 3
+      },
+      {
+        "titolo": "SWAY - Audima Labs, pagina ordine Batch 4",
+        "url": "https://audima.com.au/op/sway-b4/",
+        "tipo": "venditore",
+        "sostiene": "Pre-ordini Batch 4 aperti dal 18/08/2026, consegna stimata nov-dic 2026, prezzo VIP 615$ contro listino 830$",
+        "autorevolezza": 2
+      },
+      {
+        "titolo": "FAQs | Sway — Audima Labs",
+        "url": "https://audima.com.au/faqs/",
+        "tipo": "venditore",
+        "sostiene": "Politica di rimborso: acconto di 25$ rimborsabile al 100% fino al lancio di circa agosto 2026",
+        "autorevolezza": 2
+      },
+      {
+        "titolo": "Audima Labs Sway Review — 3 Months In (YouTube, 18/05/2026)",
+        "url": "https://www.youtube.com/watch?v=cNUrNzzTwc4",
+        "tipo": "recensione utente indipendente",
+        "sostiene": "Recensione indipendente dopo tre mesi d'uso reale in set dal vivo",
+        "autorevolezza": 3
+      }
+    ],
+    "timeline": [
+      {
+        "data": "2023-03",
+        "evento": "Fondazione di Audima Labs (Australia)"
+      },
+      {
+        "data": "2024-07",
+        "evento": "Registrazione puntata Shark Tank Australia"
+      },
+      {
+        "data": "2024-10",
+        "evento": "Lancio campagna Indiegogo"
+      },
+      {
+        "data": "2024-11",
+        "evento": "Campagna chiusa: 256 backer, 220.958$ (+900%). Puntata Shark Tank in onda"
+      },
+      {
+        "data": "2025-06",
+        "evento": "Consegna Batch 1"
+      },
+      {
+        "data": "2025-12",
+        "evento": "Consegna Batch 2"
+      },
+      {
+        "data": "2026-03-05",
+        "evento": "Inizio della residency 'ODYSSEY' di Illenium alla Sphere di Las Vegas (fino al 4 aprile): uso in scena di due unità Sway, documentato da MusicTech e ripreso da più testate musicali indipendenti"
+      },
+      {
+        "data": "2026-05-18",
+        "evento": "Recensione utente indipendente su YouTube dopo tre mesi d'uso reale ('3 Months In')"
+      },
+      {
+        "data": "2026-06/07",
+        "evento": "Consegna del Batch 3 dichiarata dal venditore (stimata giu/lug 2026); non confermata da fonte indipendente in nessuna delle verifiche KIROSHI//OR effettuate finora, incluso questa del 04/09/2026"
+      },
+      {
+        "data": "2026-08",
+        "evento": "Magnetic Magazine pubblica una recensione indipendente che definisce Sway 'il controller MIDI più innovativo del 2026': copertura stampa ancora attiva quasi due anni dopo la campagna"
+      },
+      {
+        "data": "2026-08-18",
+        "evento": "Apertura pre-ordini Batch 4, con acconto rimborsabile 25$"
+      },
+      {
+        "data": "2026-11/12",
+        "evento": "Consegna Batch 4 stimata (nov-dic 2026), invariata rispetto alla verifica precedente"
+      },
+      {
+        "data": "2026-09-04",
+        "evento": "Riverifica di freschezza KIROSHI//OR: nessuna conferma indipendente diretta della consegna del Batch 3 (Indiegogo, Elektronauts, Trustpilot e audima.com.au bloccati dal proxy di rete di questa sessione); punteggio rivisto da 85 a 87 sulla base dell'uso professionale documentato (Illenium/Sphere), della continuità operativa (Batch 4 regolarmente aperto, stampa indipendente ancora attiva) e dell'assenza di segnalazioni negative"
+      }
+    ],
+    "nota_sicurezza": "Nessun segnale di malware o phishing. Dominio ufficiale audima.com.au coerente; nessun link sospetto nel materiale analizzato. Limite dichiarato della riverifica del 04/09/2026: il proxy di rete di questa sessione ha bloccato l'accesso diretto (WebFetch, errore 'EGRESS_BLOCKED') a tutti i domini rilevanti per questo verdetto, inclusi indiegogo.com, audima.com.au, elektronauts.com, trustpilot.com, reverb.com e magneticmag.com. L'esistenza e il contenuto sostanziale delle fonti citate sono stati confermati solo indirettamente, tramite motore di ricerca, e non con lettura diretta della pagina. Questo pesa in particolare sulla conferma della consegna del Batch 3: non è stato possibile leggere direttamente un aggiornamento Indiegogo o un post di un backer reale che confermi la ricezione dell'unità.",
+    "issue": 1,
+    "data_verifica": "2026-09-04",
+    "id": "0001"
+  },
+  {
+    "titolo": "ULTRAFAB srl — chi c'è dietro ultrafab.it",
+    "oggetto": "ULTRAFAB SRL, P.IVA 03832080984, Brescia. Software e IoT per la digitalizzazione industriale (prodotto «Bishop»). Sito ultrafab.it.",
+    "domanda": "Richiesta di «tutte le informazioni riguardanti questa ditta milanese». Esiste davvero? Chi la controlla? Che conti ha? E che rapporto ha con la «Dot Dot Dot srl» citata nella richiesta?",
+    "modalita": "scava",
+    "punteggio": 65,
+    "etichetta": "reale, con riserve",
+    "verdetto": "Azienda vera e operativa, non una scatola vuota: dieci anni di attività, stampa indipendente che ne parla dal 2019, sede fisica, bilanci depositati. Ma la richiesta parte da tre premesse sbagliate, e la più importante cambia la partita. Primo: non è milanese, è bresciana — sede legale in Via Orzinuovi 12, Brescia. Secondo: non c'è alcun legame documentato con una «Dot Dot Dot srl»; quella esiste ed è milanese davvero (DOTDOTDOT SRL, studio di exhibition design, P.IVA 05570390962), ma è tutt'altra azienda per attività, sede e dimensione. Terzo, ed è il punto che pesa di più: dal settembre 2024 ULTRAFAB non è più indipendente — l'ingresso in Regesta Group è stato annunciato dal gruppo stesso, che la elenca fra le proprie cinque società. La quota acquisita non è pubblica. Il sito ultrafab.it non lo dice da nessuna parte: chi valuta l'azienda leggendo solo il sito legge una versione superata dai fatti da quasi due anni, su una piattaforma ferma al 2019. I conti sono quelli di una micro-impresa in oscillazione: due esercizi consecutivi in perdita (2023 e 2024, con il rosso 2024 pari a oltre sette volte il capitale sociale) e un ritorno all'utile nel 2025. Tutti i dati economici qui riportati vengono da aggregatori commerciali che rielaborano il Registro Imprese: nessun bilancio depositato è stato letto direttamente, e la visura ufficiale è a pagamento. Per una valutazione che comporti impegni, la visura camerale non è un optional.\n\nAggiornamento della riverifica del 04/09/2026, 33 giorni dopo la prima pubblicazione: i due punti indicati come più fragili dal triage — l'utile 2025 e la quota Regesta — sono stati ricontrollati. Sull'utile 2025 il quadro si è rafforzato: la verifica precedente si basava su un solo aggregatore (reportaziende.it) e segnalava esplicitamente il dato come 'non incrociato'; questa riverifica trova le stesse cifre (fatturato 564,4 mila euro, +62,2% sul 2024; utile netto 27,0 mila euro, dopo la perdita di 143,9 mila del 2024) ripetute in modo identico anche su registroaziende.it e companyreports.it. Tre aggregatori indipendenti che convergono sullo stesso numero riducono il rischio di un errore isolato di trascrizione, ma non equivalgono alla lettura diretta del bilancio depositato: è possibile che più aggregatori attingano alla stessa fonte primaria (Registro Imprese) senza rielaborazione incrociata reale, quindi il limite dichiarato nella prima verifica resta valido nella sostanza, solo attenuato. Sulla quota Regesta, invece, nulla è cambiato: nessuna fonte reperita in questa riverifica rende pubblica la percentuale acquisita nel settembre 2024; resta un dato non disponibile, non solo non trovato. Un fatto nuovo, non presente nella prima verifica: secondo la scheda aggiornata di Regesta Group, nel 2026 Ultrafab ha ottenuto una certificazione per il proprio sistema di gestione della sicurezza delle informazioni (SGSI, tipo ISO/IEC 27001), con la relativa policy resa scaricabile — un segnale di investimento organizzativo continuativo sotto la nuova proprietà, non di abbandono. Sul fronte opposto, i due red flag tecnici legati al sito (WordPress 5.3.2 fuori supporto, mancata menzione di Regesta Group) non sono stati ricontrollabili in questa sessione: il dominio ultrafab.it, così come regestaitalia.eu e gli aggregatori camerali, sono risultati bloccati dal proxy di rete per l'accesso diretto (WebFetch); le ricerche mirate non hanno trovato evidenza che il sito sia stato aggiornato né che ora citi l'appartenenza al gruppo, ma è un'assenza di prova, non una prova di assenza — va dichiarata come tale. Bilancio: il dato economico più fragile si è irrobustito, la questione di trasparenza societaria resta aperta tale e quale, e un fatto nuovo e positivo emerge sul fronte della governance operativa. Punteggio rivisto da 62 a 65.",
+    "green_flags": [
+      "Identità verificabile: la P.IVA 03832080984 pubblicata sul sito corrisponde a un'impresa realmente iscritta e attiva al Registro Imprese di Brescia, REA BS-566716.",
+      "Stampa indipendente su più anni e non promozionale: Giornale di Brescia (21 aprile 2019) sul prodotto Bishop, Il Sole 24 Ore (10 aprile 2020) con l'azienda come soggetto principale e dettagli fisici verificabili, fra cui un fablab di circa 450 mq.",
+      "Presenza fisica riscontrabile su fonti terze indipendenti: indirizzo e telefono fisso coincidenti su più elenchi, partecipazione come espositore a fiere industriali bresciane.",
+      "Dominio registrato l'8 gennaio 2016 presso registrar italiano, rinnovato fino al 2027, con storico di archiviazione web continuo dal 19 aprile 2016: nessun tratto da dominio riciclato o parcheggiato.",
+      "Bilanci depositati e consultabili per più esercizi, stato camerale «attiva»: nessun segnale di società dormiente, e nessuna notizia di procedure concorsuali emersa dalle fonti aperte consultate.",
+      "Inserimento in un gruppo strutturato: Regesta Group, capogruppo bresciana attiva dal 2007 che dichiara oltre 250 persone e cinque società.",
+      "Riconoscimento da ente terzo: vittoria della tappa bresciana del premio CNA «Cambiamenti» nell'ottobre 2018.",
+      "Case history con clienti nominati e descrizioni tecniche specifiche, non testi generici con segnaposto.",
+      "Il ritorno all'utile 2025 (fatturato 564,4 mila euro, +62,2%; utile netto 27,0 mila euro) è ora confermato in modo identico da tre aggregatori camerali indipendenti (reportaziende.it, registroaziende.it, companyreports.it), non da uno solo come nella prima verifica.",
+      "Segnale di investimento organizzativo continuativo sotto Regesta Group: secondo la scheda del gruppo, nel 2026 Ultrafab ha ottenuto una certificazione per il proprio sistema di gestione della sicurezza delle informazioni, con policy SGSI pubblicata."
+    ],
+    "red_flags": [
+      "La premessa della richiesta è errata: non è una ditta milanese. Sede legale a Brescia, Via Orzinuovi 12. Nessuna fonte consultata le attribuisce sedi o unità locali a Milano.",
+      "Il sito non menziona in nessuna pagina l'appartenenza a Regesta Group, annunciata a settembre 2024: chi valuta il fornitore dal solo sito non sa chi lo controlla. Questa riverifica non ha potuto ricontrollare direttamente la pagina (dominio bloccato dal proxy di rete) e non ha trovato, tramite ricerca, alcuna indicazione che la situazione sia cambiata: resta un'assenza di prova, non una conferma che il sito sia rimasto identico.",
+      "Il sito risultava, alla verifica precedente, tecnicamente abbandonato: WordPress 5.3.2 (dicembre 2019) e componenti coeve, fuori supporto da circa sei anni. Non è stato possibile ricontrollare questo dato in questa riverifica (accesso diretto al dominio bloccato dal proxy): riportato come non riverificato, né confermato né smentito.",
+      "Perdita 2024 di 143.944 euro su ricavi di 347.990, secondo esercizio consecutivo in rosso dopo la perdita di 26.773 euro del 2023. Il rosso 2024 supera di oltre sette volte il capitale sociale.",
+      "Ricavi 2024 in calo di circa il 13-14% sull'anno precedente.",
+      "Il footer del sito espone soltanto la partita IVA: mancano ragione sociale completa, sede iscritta al registro imprese e capitale sociale, e non è stata trovata alcuna pagina di privacy o cookie policy fra i link interni. Non riverificato direttamente in questa sessione per il blocco del proxy.",
+      "Il dominio ultrafab.it non è intestato alla società ma a una persona fisica, con dati di registrazione mai aggiornati dal 2016: asset digitale fuori dal perimetro societario. Pratica diffusa nelle PMI, ma rilevante in una due diligence.",
+      "Le fonti pubbliche si contraddicono sull'anno di fondazione: 2016 per registri, Giornale di Brescia e LinkedIn; 2017 nel comunicato di Regesta.",
+      "Il claim «20 anni di esperienza» accostato a «Start Up» non è mai spiegato: la società è del 2016.",
+      "La pagina «Partner» non nomina alcun partner: è solo un invito a diventarlo.",
+      "Nessuna recensione pubblica di clienti reperibile su alcuna piattaforma: non esiste riscontro indipendente della soddisfazione, né positivo né negativo.",
+      "Rischio concreto di confusione con Ultrafab Inc. (Farmington, New York), produttore statunitense di guarnizioni per serramenti, estraneo alla società bresciana: le recensioni che compaiono cercando «Ultrafab» non riguardano quest'azienda.",
+      "La quota di Regesta Group in Ultrafab resta non pubblica: nessuna fonte reperita in questa riverifica (04/09/2026) la rende nota. Confermato di nuovo, non solo non trovato in precedenza."
+    ],
+    "fonti": [
+      {
+        "titolo": "Ultrafab — sito ufficiale (homepage e pagina Contattaci)",
+        "url": "https://ultrafab.it/it/",
+        "tipo": "sito del soggetto",
+        "sostiene": "P.IVA 03832080984 e indirizzo operativo Via Orzinuovi 10; assenza di REA, capitale sociale e privacy policy; nessuna menzione di Regesta Group",
+        "autorevolezza": "bassa — fonte diretta interessata, ma è l'unico punto in cui il soggetto dichiara la propria P.IVA. Non raggiunta con WebFetch nella riverifica del 04/09/2026 (bloccata dal proxy di rete): il contenuto qui riportato risale alla verifica precedente e non è stato riconfermato"
+      },
+      {
+        "titolo": "Covid, la startup che stampa valvole per maschere da sub — Il Sole 24 Ore, 10 aprile 2020",
+        "url": "https://www.ilsole24ore.com/art/covid-startup-che-stampa-valvole-maschere-decathlon-ADlgNSE",
+        "tipo": "stampa nazionale indipendente",
+        "sostiene": "Esistenza fisica e operativa: fablab di circa 450 mq, riconversione produttiva durante il Covid, struttura di cinque persone oltre al fondatore più collaboratori",
+        "autorevolezza": "alta — quotidiano economico nazionale, articolo dedicato e non promozionale"
+      },
+      {
+        "titolo": "Regesta Group — scheda Ultrafab e comunicato sull'acquisizione",
+        "url": "https://www.regestaitalia.eu/il-gruppo/ultrafab/",
+        "tipo": "comunicazione dell'acquirente",
+        "sostiene": "Ingresso di Ultrafab in Regesta Group annunciato il 6 settembre 2024; composizione del gruppo; indicazione del 2017 come anno di fondazione, in contrasto con i registri; nel 2026 Ultrafab ha ottenuto una certificazione per il proprio sistema di gestione della sicurezza delle informazioni (SGSI), con policy pubblicata",
+        "autorevolezza": "media — parte interessata, ma è l'unica fonte diretta sull'operazione e dichiara contro il proprio interesse la data di fondazione discordante. Contenuto aggiornato confermato solo indirettamente via motore di ricerca nella riverifica del 04/09/2026 (dominio bloccato dal proxy di rete per l'accesso diretto)"
+      },
+      {
+        "titolo": "ULTRAFAB SRL — scheda d'impresa, aziende.it",
+        "url": "https://www.aziende.it/ultrafab-srl",
+        "tipo": "aggregatore del Registro Imprese",
+        "sostiene": "REA BS-566716, sede legale Via Orzinuovi 12, forma giuridica srl, stato attiva, capitale sociale di 20.000 euro (dato presente su questa sola fonte), contributi pubblici ricevuti",
+        "autorevolezza": "media — rielabora dati camerali ma è un servizio commerciale che vende la visura; la colonna «capitale» risulta internamente incoerente"
+      },
+      {
+        "titolo": "ULTRAFAB SRL — dati di bilancio, reportaziende.it",
+        "url": "https://www.reportaziende.it/ultrafab_srl_bs",
+        "tipo": "aggregatore del Registro Imprese",
+        "sostiene": "Ricavi e risultato d'esercizio 2023, 2024 e 2025 (fatturato 2025: 564,4 mila euro, +62,2%; utile netto 2025: 27,0 mila euro); codice ATECO 62.10.00",
+        "autorevolezza": "media — unica fonte per i dati 2025 nella prima verifica; nella riverifica del 04/09/2026 le stesse cifre sono state trovate anche su registroaziende.it e companyreports.it"
+      },
+      {
+        "titolo": "ULTRAFAB SRL — scheda, fatturatoitalia.it",
+        "url": "https://app.fatturatoitalia.it/ultrafab_srl-03832080984",
+        "tipo": "aggregatore del Registro Imprese",
+        "sostiene": "Fascia di addetti e costo del personale 2024; codice ATECO indicato come 62.01, diverso da quello di reportaziende.it",
+        "autorevolezza": "media"
+      },
+      {
+        "titolo": "Registro .it — whois del dominio ultrafab.it (interrogazione su whois.nic.it)",
+        "url": "https://web-whois.nic.it/",
+        "tipo": "registro ufficiale",
+        "sostiene": "Dominio creato l'8 gennaio 2016, scadenza 8 gennaio 2027, registrar italiano, intestazione a persona fisica e non alla società",
+        "autorevolezza": "massima — registro ufficiale del ccTLD italiano. Il dato è stato ottenuto interrogando il registro col protocollo whois; a questo indirizzo il lettore può ripetere la stessa interrogazione dal browser."
+      },
+      {
+        "titolo": "DOTDOTDOT SRL — scheda d'impresa, aziende.it",
+        "url": "https://www.aziende.it/dotdotdot-srl",
+        "tipo": "aggregatore del Registro Imprese",
+        "sostiene": "La società milanese con questo nome ha P.IVA 05570390962, ATECO 74.14.09 (design), 24 dipendenti: attività, sede e dimensione diverse da Ultrafab, nessun legame rilevato",
+        "autorevolezza": "media"
+      },
+      {
+        "titolo": "ULTRAFAB — scheda su PagineBianche",
+        "url": "https://www.paginebianche.it/scheda/brescia/ultrafab.11109845",
+        "tipo": "elenco pubblico",
+        "sostiene": "Recapito telefonico e indirizzo a Brescia coerenti con i registri",
+        "autorevolezza": "media — riscontro indipendente sull'esistenza fisica"
+      },
+      {
+        "titolo": "ULTRAFAB SRL — dati di bilancio, registroaziende.it",
+        "url": "https://registroaziende.it/azienda/ultrafab-srl-brescia",
+        "tipo": "aggregatore del Registro Imprese",
+        "sostiene": "Conferma indipendente delle stesse cifre 2024-2025 di reportaziende.it (fatturato 2025: 564,4 mila euro, +62,2%; utile netto 2025: 27,0 mila euro; perdita 2024: 143,9 mila euro)",
+        "autorevolezza": "media — secondo aggregatore camerale che converge sulle stesse cifre; non è escluso che attinga alla stessa fonte primaria senza rielaborazione indipendente reale. Non raggiunta con WebFetch (bloccata dal proxy di rete), confermata solo tramite motore di ricerca"
+      },
+      {
+        "titolo": "ULTRAFAB SRL — visura e fatturato, CompanyReports.it",
+        "url": "https://m.companyreports.it/visura/ultrafab-srl-03832080984",
+        "tipo": "aggregatore del Registro Imprese",
+        "sostiene": "Terza conferma indipendente delle stesse cifre 2024-2025 (fatturato 2025: 564,4 mila euro; utile netto 2025: 27,0 mila euro)",
+        "autorevolezza": "media — terzo aggregatore camerale convergente; stesso limite del precedente sulla non indipendenza della fonte primaria. Non raggiunta con WebFetch (bloccata dal proxy di rete), confermata solo tramite motore di ricerca"
+      }
+    ],
+    "timeline": [
+      {
+        "data": "2016-01-08",
+        "evento": "Registrazione del dominio ultrafab.it, precedente alla costituzione della società."
+      },
+      {
+        "data": "2016",
+        "evento": "Costituzione di ULTRAFAB SRL a Brescia. Il giorno esatto varia fra gli aggregatori; il comunicato di Regesta indica invece il 2017."
+      },
+      {
+        "data": "2018-10",
+        "evento": "Vittoria della tappa bresciana del premio CNA «Cambiamenti»."
+      },
+      {
+        "data": "2019-04-21",
+        "evento": "Il Giornale di Brescia dedica un articolo al prodotto Bishop, descrivendo fondazione, fondatori, partner e funzionamento tecnico, e collocando la sede operativa in Via Orzinuovi 10."
+      },
+      {
+        "data": "2020-04-10",
+        "evento": "Il Sole 24 Ore documenta il fablab di circa 450 mq e la riconversione produttiva durante il Covid."
+      },
+      {
+        "data": "2023",
+        "evento": "Esercizio in perdita: ricavi 401.836 euro, perdita 26.773 euro (dati da aggregatori)."
+      },
+      {
+        "data": "2024",
+        "evento": "Secondo esercizio in perdita: ricavi 347.990 euro, perdita 143.944 euro (dati da aggregatori)."
+      },
+      {
+        "data": "2024-09-06",
+        "evento": "Regesta Group annuncia l'ingresso di Ultrafab nel gruppo. La quota acquisita non viene resa pubblica."
+      },
+      {
+        "data": "2025",
+        "evento": "Ritorno all'utile: ricavi 564,4 mila euro, utile 27,0 mila euro. Alla prima verifica (02/08/2026) il dato veniva da un solo aggregatore; alla riverifica del 04/09/2026 risulta identico su altri due aggregatori indipendenti."
+      },
+      {
+        "data": "2026",
+        "evento": "Secondo la scheda aggiornata di Regesta Group, Ultrafab ottiene una certificazione per il proprio sistema di gestione della sicurezza delle informazioni (SGSI), con policy pubblicata: fatto nuovo, non presente nella verifica di agosto."
+      },
+      {
+        "data": "2026-08-02",
+        "evento": "Prima pubblicazione del verdetto. Il sito ultrafab.it non menzionava ancora l'appartenenza al gruppo."
+      },
+      {
+        "data": "2026-09-04",
+        "evento": "Riverifica di freschezza KIROSHI//OR: l'utile 2025 è ora confermato da tre aggregatori invece di uno, la quota Regesta resta non pubblica, i red flag tecnici sul sito (WordPress obsoleto, mancata menzione di Regesta) non sono stati riverificabili per blocco del proxy di rete su ultrafab.it e regestaitalia.eu. Punteggio rivisto da 62 a 65."
+      }
+    ],
+    "nota_sicurezza": "Nessun segnale di malware, phishing o raggiro: il dominio è autentico, decennale e presidiato, e l'azienda è realmente iscritta e attiva. I limiti di questa verifica vanno però dichiarati. Primo: tutti i dati economici e societari provengono da aggregatori commerciali che rielaborano il Registro Imprese e ne vendono l'accesso completo; nessun bilancio depositato è stato letto direttamente e la visura camerale ufficiale non è stata consultata. Secondo: organo amministrativo e compagine sociale sono dietro paywall su tutte le fonti aperte, quindi non affermiamo nulla sull'assetto societario dopo l'ingresso nel gruppo — la quota di Regesta non risulta pubblica da nessuna parte, riconfermato il 04/09/2026. Terzo: la sezione «procedure e pregiudizievoli» degli aggregatori è a pagamento, quindi l'assenza di procedure concorsuali non è dimostrata, è soltanto non emersa. Quarto, limite emerso nella riverifica del 04/09/2026: il proxy di rete di questa sessione ha bloccato l'accesso diretto (WebFetch, errore 'EGRESS_BLOCKED') a ultrafab.it, regestaitalia.eu, reportaziende.it e agli altri aggregatori camerali citati; tutti i dati di questa riverifica sono stati confermati solo indirettamente, tramite motore di ricerca, non con lettura diretta della pagina. In particolare non è stato possibile ricontrollare se il sito ultrafab.it sia ancora fermo tecnicamente (WordPress 5.3.2) o se abbia nel frattempo aggiunto una menzione di Regesta Group: questi due punti restano come alla verifica precedente, non riconfermati né smentiti. Chi debba assumere impegni economici su questa società parta da una visura camerale aggiornata e dai bilanci depositati, non da questo verdetto. Per scelta editoriale non pubblichiamo il nome dell'intestatario privato del dominio: è un dato di registro pubblico, ma nominare una persona fisica non aggiunge nulla al merito.",
+    "issue": 6,
+    "data_verifica": "2026-09-04",
+    "id": "0003"
+  },
+  {
     "titolo": "Próspera — la «città senza Stato» di Roatán alla prova dei fatti",
     "oggetto": "Honduras Próspera Inc., corporation di diritto del Delaware (USA) fondata da Erick Brimen (LLC dall'agosto 2017, corporation dal dicembre 2020), e Próspera ZEDE, zona a statuto speciale su oltre 400 acri dell'isola di Roatán, Honduras. Sito prospera.co.",
     "domanda": "Richiesta di Pier (issue #14, 13/08/2026): «Prospera. Fammi una ricerca approfondita. Grazie», a fronte del titolo circolante «Prospera, la città senza Stato di Peter Thiel diventa realtà». È reale? Cos'è davvero — un ente, un progetto, un luogo? Ci si può fidare di ciò che dichiara? E il «diventa realtà» del titolo regge?",
@@ -594,150 +957,6 @@ window.KIROSHI_DB = [
     "id": "0007"
   },
   {
-    "titolo": "ULTRAFAB srl — chi c'è dietro ultrafab.it",
-    "oggetto": "ULTRAFAB SRL, P.IVA 03832080984, Brescia. Software e IoT per la digitalizzazione industriale (prodotto «Bishop»). Sito ultrafab.it.",
-    "domanda": "Richiesta di «tutte le informazioni riguardanti questa ditta milanese». Esiste davvero? Chi la controlla? Che conti ha? E che rapporto ha con la «Dot Dot Dot srl» citata nella richiesta?",
-    "modalita": "scava",
-    "punteggio": 62,
-    "etichetta": "reale, con riserve",
-    "verdetto": "Azienda vera e operativa, non una scatola vuota: dieci anni di attività, stampa indipendente che ne parla dal 2019, sede fisica, bilanci depositati. Ma la richiesta parte da tre premesse sbagliate, e la più importante cambia la partita. Primo: non è milanese, è bresciana — sede legale in Via Orzinuovi 12, Brescia. Secondo: non c'è alcun legame documentato con una «Dot Dot Dot srl»; quella esiste ed è milanese davvero (DOTDOTDOT SRL, studio di exhibition design, P.IVA 05570390962), ma è tutt'altra azienda per attività, sede e dimensione. Terzo, ed è il punto che pesa di più: dal settembre 2024 ULTRAFAB non è più indipendente — l'ingresso in Regesta Group è stato annunciato dal gruppo stesso, che la elenca fra le proprie cinque società. La quota acquisita non è pubblica. Il sito ultrafab.it non lo dice da nessuna parte: chi valuta l'azienda leggendo solo il sito legge una versione superata dai fatti da quasi due anni, su una piattaforma ferma al 2019. I conti sono quelli di una micro-impresa in oscillazione: due esercizi consecutivi in perdita (2023 e 2024, con il rosso 2024 pari a oltre sette volte il capitale sociale) e un ritorno all'utile nel 2025. Tutti i dati economici qui riportati vengono da aggregatori commerciali che rielaborano il Registro Imprese: nessun bilancio depositato è stato letto direttamente, e la visura ufficiale è a pagamento. Per una valutazione che comporti impegni, la visura camerale non è un optional.",
-    "green_flags": [
-      "Identità verificabile: la P.IVA 03832080984 pubblicata sul sito corrisponde a un'impresa realmente iscritta e attiva al Registro Imprese di Brescia, REA BS-566716.",
-      "Stampa indipendente su più anni e non promozionale: Giornale di Brescia (21 aprile 2019) sul prodotto Bishop, Il Sole 24 Ore (10 aprile 2020) con l'azienda come soggetto principale e dettagli fisici verificabili, fra cui un fablab di circa 450 mq.",
-      "Presenza fisica riscontrabile su fonti terze indipendenti: indirizzo e telefono fisso coincidenti su più elenchi, partecipazione come espositore a fiere industriali bresciane.",
-      "Dominio registrato l'8 gennaio 2016 presso registrar italiano, rinnovato fino al 2027, con storico di archiviazione web continuo dal 19 aprile 2016: nessun tratto da dominio riciclato o parcheggiato.",
-      "Bilanci depositati e consultabili per più esercizi, stato camerale «attiva»: nessun segnale di società dormiente, e nessuna notizia di procedure concorsuali emersa dalle fonti aperte consultate.",
-      "Inserimento in un gruppo strutturato: Regesta Group, capogruppo bresciana attiva dal 2007 che dichiara oltre 250 persone e cinque società.",
-      "Riconoscimento da ente terzo: vittoria della tappa bresciana del premio CNA «Cambiamenti» nell'ottobre 2018.",
-      "Case history con clienti nominati e descrizioni tecniche specifiche, non testi generici con segnaposto."
-    ],
-    "red_flags": [
-      "La premessa della richiesta è errata: non è una ditta milanese. Sede legale a Brescia, Via Orzinuovi 12. Nessuna fonte consultata le attribuisce sedi o unità locali a Milano.",
-      "Il sito non menziona in nessuna pagina l'appartenenza a Regesta Group, annunciata a settembre 2024: chi valuta il fornitore dal solo sito non sa chi lo controlla.",
-      "Il sito è tecnicamente abbandonato: WordPress 5.3.2 (dicembre 2019) e componenti coeve, tutte fuori supporto da circa sei anni. Contenuti fermi al 2020-2022 e autodefinizione ancora come «startup».",
-      "Perdita 2024 di 143.944 euro su ricavi di 347.990, secondo esercizio consecutivo in rosso dopo la perdita di 26.773 euro del 2023. Il rosso 2024 supera di oltre sette volte il capitale sociale.",
-      "Ricavi 2024 in calo di circa il 13-14% sull'anno precedente.",
-      "Il footer del sito espone soltanto la partita IVA: mancano ragione sociale completa, sede iscritta al registro imprese e capitale sociale, e non è stata trovata alcuna pagina di privacy o cookie policy fra i link interni.",
-      "Il dominio ultrafab.it non è intestato alla società ma a una persona fisica, con dati di registrazione mai aggiornati dal 2016: asset digitale fuori dal perimetro societario. Pratica diffusa nelle PMI, ma rilevante in una due diligence.",
-      "Le fonti pubbliche si contraddicono sull'anno di fondazione: 2016 per registri, Giornale di Brescia e LinkedIn; 2017 nel comunicato di Regesta.",
-      "Il claim «20 anni di esperienza» accostato a «Start Up» non è mai spiegato: la società è del 2016.",
-      "La pagina «Partner» non nomina alcun partner: è solo un invito a diventarlo.",
-      "Nessuna recensione pubblica di clienti reperibile su alcuna piattaforma: non esiste riscontro indipendente della soddisfazione, né positivo né negativo.",
-      "Rischio concreto di confusione con Ultrafab Inc. (Farmington, New York), produttore statunitense di guarnizioni per serramenti, estraneo alla società bresciana: le recensioni che compaiono cercando «Ultrafab» non riguardano quest'azienda."
-    ],
-    "fonti": [
-      {
-        "titolo": "Ultrafab — sito ufficiale (homepage e pagina Contattaci)",
-        "url": "https://ultrafab.it/it/",
-        "tipo": "sito del soggetto",
-        "sostiene": "P.IVA 03832080984 e indirizzo operativo Via Orzinuovi 10; assenza di REA, capitale sociale e privacy policy; nessuna menzione di Regesta Group",
-        "autorevolezza": "bassa — fonte diretta interessata, ma è l'unico punto in cui il soggetto dichiara la propria P.IVA"
-      },
-      {
-        "titolo": "Covid, la startup che stampa valvole per maschere da sub — Il Sole 24 Ore, 10 aprile 2020",
-        "url": "https://www.ilsole24ore.com/art/covid-startup-che-stampa-valvole-maschere-decathlon-ADlgNSE",
-        "tipo": "stampa nazionale indipendente",
-        "sostiene": "Esistenza fisica e operativa: fablab di circa 450 mq, riconversione produttiva durante il Covid, struttura di cinque persone oltre al fondatore più collaboratori",
-        "autorevolezza": "alta — quotidiano economico nazionale, articolo dedicato e non promozionale"
-      },
-      {
-        "titolo": "Regesta Group — scheda Ultrafab e comunicato sull'acquisizione",
-        "url": "https://www.regestaitalia.eu/il-gruppo/ultrafab/",
-        "tipo": "comunicazione dell'acquirente",
-        "sostiene": "Ingresso di Ultrafab in Regesta Group annunciato il 6 settembre 2024; composizione del gruppo; indicazione del 2017 come anno di fondazione, in contrasto con i registri",
-        "autorevolezza": "media — parte interessata, ma è l'unica fonte diretta sull'operazione e dichiara contro il proprio interesse la data di fondazione discordante"
-      },
-      {
-        "titolo": "ULTRAFAB SRL — scheda d'impresa, aziende.it",
-        "url": "https://www.aziende.it/ultrafab-srl",
-        "tipo": "aggregatore del Registro Imprese",
-        "sostiene": "REA BS-566716, sede legale Via Orzinuovi 12, forma giuridica srl, stato attiva, capitale sociale di 20.000 euro (dato presente su questa sola fonte), contributi pubblici ricevuti",
-        "autorevolezza": "media — rielabora dati camerali ma è un servizio commerciale che vende la visura; la colonna «capitale» risulta internamente incoerente"
-      },
-      {
-        "titolo": "ULTRAFAB SRL — dati di bilancio, reportaziende.it",
-        "url": "https://www.reportaziende.it/ultrafab_srl_bs",
-        "tipo": "aggregatore del Registro Imprese",
-        "sostiene": "Ricavi e risultato d'esercizio 2023, 2024 e 2025; codice ATECO 62.10.00",
-        "autorevolezza": "media — unica fonte per i dati 2025, non incrociata con un secondo aggregatore"
-      },
-      {
-        "titolo": "ULTRAFAB SRL — scheda, fatturatoitalia.it",
-        "url": "https://app.fatturatoitalia.it/ultrafab_srl-03832080984",
-        "tipo": "aggregatore del Registro Imprese",
-        "sostiene": "Fascia di addetti e costo del personale 2024; codice ATECO indicato come 62.01, diverso da quello di reportaziende.it",
-        "autorevolezza": "media"
-      },
-      {
-        "titolo": "Registro .it — whois del dominio ultrafab.it (interrogazione su whois.nic.it)",
-        "url": "https://web-whois.nic.it/",
-        "tipo": "registro ufficiale",
-        "sostiene": "Dominio creato l'8 gennaio 2016, scadenza 8 gennaio 2027, registrar italiano, intestazione a persona fisica e non alla società",
-        "autorevolezza": "massima — registro ufficiale del ccTLD italiano. Il dato è stato ottenuto interrogando il registro col protocollo whois; a questo indirizzo il lettore può ripetere la stessa interrogazione dal browser."
-      },
-      {
-        "titolo": "DOTDOTDOT SRL — scheda d'impresa, aziende.it",
-        "url": "https://www.aziende.it/dotdotdot-srl",
-        "tipo": "aggregatore del Registro Imprese",
-        "sostiene": "La società milanese con questo nome ha P.IVA 05570390962, ATECO 74.14.09 (design), 24 dipendenti: attività, sede e dimensione diverse da Ultrafab, nessun legame rilevato",
-        "autorevolezza": "media"
-      },
-      {
-        "titolo": "ULTRAFAB — scheda su PagineBianche",
-        "url": "https://www.paginebianche.it/scheda/brescia/ultrafab.11109845",
-        "tipo": "elenco pubblico",
-        "sostiene": "Recapito telefonico e indirizzo a Brescia coerenti con i registri",
-        "autorevolezza": "media — riscontro indipendente sull'esistenza fisica"
-      }
-    ],
-    "timeline": [
-      {
-        "data": "2016-01-08",
-        "evento": "Registrazione del dominio ultrafab.it, precedente alla costituzione della società."
-      },
-      {
-        "data": "2016",
-        "evento": "Costituzione di ULTRAFAB SRL a Brescia. Il giorno esatto varia fra gli aggregatori; il comunicato di Regesta indica invece il 2017."
-      },
-      {
-        "data": "2018-10",
-        "evento": "Vittoria della tappa bresciana del premio CNA «Cambiamenti»."
-      },
-      {
-        "data": "2019-04-21",
-        "evento": "Il Giornale di Brescia dedica un articolo al prodotto Bishop, descrivendo fondazione, fondatori, partner e funzionamento tecnico, e collocando la sede operativa in Via Orzinuovi 10."
-      },
-      {
-        "data": "2020-04-10",
-        "evento": "Il Sole 24 Ore documenta il fablab di circa 450 mq e la riconversione produttiva durante il Covid."
-      },
-      {
-        "data": "2023",
-        "evento": "Esercizio in perdita: ricavi 401.836 euro, perdita 26.773 euro (dati da aggregatori)."
-      },
-      {
-        "data": "2024",
-        "evento": "Secondo esercizio in perdita: ricavi 347.990 euro, perdita 143.944 euro (dati da aggregatori)."
-      },
-      {
-        "data": "2024-09-06",
-        "evento": "Regesta Group annuncia l'ingresso di Ultrafab nel gruppo. La quota acquisita non viene resa pubblica."
-      },
-      {
-        "data": "2025",
-        "evento": "Ritorno all'utile secondo un solo aggregatore: ricavi 564,4 mila euro, utile 27,0 mila euro. Dato non incrociato."
-      },
-      {
-        "data": "2026-08-02",
-        "evento": "Data di questa verifica. Il sito ultrafab.it non menziona ancora l'appartenenza al gruppo."
-      }
-    ],
-    "nota_sicurezza": "Nessun segnale di malware, phishing o raggiro: il dominio è autentico, decennale e presidiato, e l'azienda è realmente iscritta e attiva. I limiti di questa verifica vanno però dichiarati. Primo: tutti i dati economici e societari provengono da aggregatori commerciali che rielaborano il Registro Imprese e ne vendono l'accesso completo; nessun bilancio depositato è stato letto direttamente e la visura camerale ufficiale non è stata consultata. Secondo: organo amministrativo e compagine sociale sono dietro paywall su tutte le fonti aperte, quindi non affermiamo nulla sull'assetto societario dopo l'ingresso nel gruppo — la quota di Regesta non risulta pubblica da nessuna parte. Terzo: la sezione «procedure e pregiudizievoli» degli aggregatori è a pagamento, quindi l'assenza di procedure concorsuali non è dimostrata, è soltanto non emersa. Chi debba assumere impegni economici su questa società parta da una visura camerale aggiornata e dai bilanci depositati, non da questo verdetto. Per scelta editoriale non pubblichiamo il nome dell'intestatario privato del dominio: è un dato di registro pubblico, ma nominare una persona fisica non aggiunge nulla al merito.",
-    "issue": 6,
-    "data_verifica": "2026-08-02",
-    "id": "0003"
-  },
-  {
     "titolo": "Palantir è crollata «per i documentari e la stampa moralista»?",
     "oggetto": "Palantir Technologies (PLTR), quotata al Nasdaq. Andamento del titolo fra il massimo storico del novembre 2025 e il 31 luglio 2026.",
     "domanda": "«Come mai sono crollati in borsa? Da 180 € a 113? Saranno stati i documentari e la stampa moralista?»",
@@ -897,137 +1116,6 @@ window.KIROSHI_DB = [
     "issue": 3,
     "data_verifica": "2026-08-02",
     "id": "0004"
-  },
-  {
-    "titolo": "Sway - Audima Labs",
-    "oggetto": "Sway, controller MIDI a gesti di Audima Labs (Batch 4, pre-ordine)",
-    "domanda": "È hardware vero o fuffa renderizzata? Ci si può fidare prima di spendere 600+$?",
-    "modalita": "scava",
-    "punteggio": 85,
-    "etichetta": "affidabile",
-    "verdetto": "Sway è un prodotto reale, non un render. Dietro c'è un'azienda australiana con fondatori identificabili, passata da Shark Tank Australia, con una campagna Indiegogo di successo e due lotti già consegnati in oltre 35 paesi. Non è una truffa. Il rischio residuo non è la frode ma il pre-ordine: paghi ora per una consegna prevista a fine 2026, e lo strumento è di nicchia e polarizzante. La domanda 'mi arriverà ed è reale?' ha risposta sì; la domanda 'vale 615$ per me?' dipende dai tuoi gusti.",
-    "green_flags": [
-      "Fondatori reali e identificabili: Jeremy Buckley e Isaac Jack (Australia)",
-      "Passati da Shark Tank Australia: deal da 50.000$ per il 15% (confermato dalla pagina ufficiale Shark Tank AU)",
-      "Indiegogo 2024: 256 finanziatori reali, 220.958$ raccolti (900% del goal)",
-      "Batch 1 consegnato giu 2025 e Batch 2 dic 2025, in 35+ paesi",
-      "Recensioni indipendenti (AltWire, Mixmag Asia) e video YouTube di terzi",
-      "Unità reali fotografate da utenti sui forum di appassionati (Elektronauts)",
-      "Aggiornamenti di produzione regolari sulla campagna Indiegogo"
-    ],
-    "red_flags": [
-      "È un pre-ordine: paghi ora, consegna stimata nov-dic 2026 (rischio slittamento)",
-      "Team piccolo, produzione a lotti: capacità limitata",
-      "Strumento di nicchia e polarizzante, ergonomia del controllo a gesti discussa dai forum",
-      "Molte recensioni 5★ ospitate sul sito del venditore: pesano meno di quelle indipendenti"
-    ],
-    "fonti": [
-      {
-        "titolo": "Indiegogo - campagna Sway",
-        "url": "https://www.indiegogo.com/en/projects/audimalabs/sway-the-world-s-most-expressive-midi-controller",
-        "tipo": "ufficiale",
-        "sostiene": "vero",
-        "autorevolezza": 4
-      },
-      {
-        "titolo": "Shark Tank AU (pagina Facebook ufficiale)",
-        "url": "https://www.facebook.com/sharktankau/posts/1378105513464163/",
-        "tipo": "ufficiale",
-        "sostiene": "vero",
-        "autorevolezza": 5
-      },
-      {
-        "titolo": "Elektronauts - forum, foto utente",
-        "url": "https://www.elektronauts.com/t/audima-labs-sway-midi-controller/242226",
-        "tipo": "forum",
-        "sostiene": "vero",
-        "autorevolezza": 4
-      },
-      {
-        "titolo": "Poly Expression - forum",
-        "url": "https://community.polyexpression.com/t/audima-labs-sway/2050",
-        "tipo": "forum",
-        "sostiene": "vero",
-        "autorevolezza": 3
-      },
-      {
-        "titolo": "AltWire - recensione",
-        "url": "https://altwire.net/audima-labs-the-sway-review/",
-        "tipo": "stampa",
-        "sostiene": "vero",
-        "autorevolezza": 3
-      },
-      {
-        "titolo": "Mixmag Asia",
-        "url": "https://mixmag.asia/read/audima-labs-midi-instrument-sway-turns-movement-into-music-tech",
-        "tipo": "stampa",
-        "sostiene": "vero",
-        "autorevolezza": 4
-      },
-      {
-        "titolo": "The Awesomer",
-        "url": "https://theawesomer.com/sway-gesture-midi-music-controller/751174/",
-        "tipo": "stampa",
-        "sostiene": "vero",
-        "autorevolezza": 2
-      },
-      {
-        "titolo": "Trustpilot - audima.com.au",
-        "url": "https://www.trustpilot.com/review/audima.com.au",
-        "tipo": "altro",
-        "sostiene": "vero",
-        "autorevolezza": 3
-      },
-      {
-        "titolo": "Sito ufficiale Audima Labs",
-        "url": "https://audima.com.au/",
-        "tipo": "venditore",
-        "sostiene": "neutro",
-        "autorevolezza": 2
-      }
-    ],
-    "timeline": [
-      {
-        "data": "2023-03",
-        "evento": "Fondazione di Audima Labs (Australia)"
-      },
-      {
-        "data": "2024-07",
-        "evento": "Registrazione puntata Shark Tank Australia"
-      },
-      {
-        "data": "2024-10",
-        "evento": "Lancio campagna Indiegogo"
-      },
-      {
-        "data": "2024-11",
-        "evento": "Campagna chiusa: 256 backer, 220.958$ (+900%). Puntata Shark Tank in onda"
-      },
-      {
-        "data": "2025-06",
-        "evento": "Consegna Batch 1"
-      },
-      {
-        "data": "2025-12",
-        "evento": "Consegna Batch 2"
-      },
-      {
-        "data": "2026-06",
-        "evento": "Consegna Batch 3 (prevista giu/lug 2026)"
-      },
-      {
-        "data": "2026-08",
-        "evento": "Apertura pre-ordini Batch 4"
-      },
-      {
-        "data": "2026-11",
-        "evento": "Consegna Batch 4 stimata (nov-dic 2026)"
-      }
-    ],
-    "nota_sicurezza": "Nessun segnale di malware o phishing. Dominio ufficiale audima.com.au coerente; nessun link sospetto nel materiale analizzato.",
-    "issue": 1,
-    "data_verifica": "2026-07-09",
-    "id": "0001"
   },
   {
     "titolo": "Contenuti sensuali = i più visti sui social?",
