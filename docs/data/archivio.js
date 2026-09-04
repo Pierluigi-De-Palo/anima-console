@@ -1,48 +1,423 @@
 window.ARCHIVIO = {
-  "totale": 19,
+  "totale": 20,
   "in_conflitto": 2,
   "per_fonte": {
-    "braindance": 12,
+    "braindance": 13,
     "kiroshi": 7
   },
   "voci": [
     {
-      "id": "paradosso-fermi",
+      "id": "cinepresa-linguaggio",
       "fonte": "braindance",
       "tipo": "domanda",
-      "titolo": "Il paradosso di Fermi: in che anno ha interrogato l'opinione pubblica?",
-      "esito": "In parte — ma l'anno e' un altro",
-      "punteggio": 55,
-      "colore": "giallo",
-      "data": "2026-08-17",
-      "sintesi": "Il paradosso esiste ed e' discusso, ma nel 1950 fu una battuta a pranzo fra quattro fisici: nessun dibattito pubblico. Il rapporto e' rovesciato — furono i dischi volanti a provocare la domanda di Fermi, non il contrario. L'anno in cui la cosa diventa pubblica e' il 1975-1977 (Hart, poi il nome). Fermi non pubblico' mai nulla e non concluse che gli extraterrestri non esistono.",
-      "scheda": "schede/paradosso-fermi.html",
+      "titolo": "Il rimpicciolimento delle macchine da presa ha cambiato il linguaggio del cinema?",
+      "esito": "Regge, ma non è una discesa continua",
+      "punteggio": 72,
+      "colore": "verde",
+      "data": "2026-09-04",
+      "sintesi": "Ricerca interna ferma dal 12/07 (54 giorni), pubblicata dopo aver sostituito le tre fonti deboli originarie (Wikipedia + un blog + un sito di contenuti) con fonti che reggono lo standard dell'archivio. La tesi regge come racconto di cinque svolte tecniche reali (1895, 1947, 1960-63, 1995, 2008) ma non come legge meccanica: il sonoro (1927) invertì la curva, appesantendo e vincolando la macchina al treppiede. Uno studio accademico peer-reviewed sul caso cardine (Éclair 16 + Nagra, Nouvelle Vague) avverte che parte del racconto 'la tecnica causò la rivoluzione' fu costruita a posteriori dagli stessi cineasti. L'endpoint 2026 (Insta360 Luna Ultra) è un prodotto reale ma troppo recente per aver già prodotto uno stile riconoscibile.",
+      "scheda": "schede/cinepresa-linguaggio.html",
       "fonti": [
         {
-          "titolo": "Eric M. Jones, «Where is everybody?», Los Alamos LA-10311-MS, 1985 (fonte primaria)",
-          "url": "https://www.osti.gov/biblio/5746675"
+          "titolo": "Vincent Sorrel — «L'invention de la caméra Éclair 16 : du direct au synchrone», rivista «1895. Revue d'histoire du cinéma» n°82 (AFRHC), 2017",
+          "url": "https://journals.openedition.org/1895/5390"
         },
         {
-          "titolo": "Robert H. Gray, «The Fermi Paradox is Neither Fermi's Nor a Paradox», Astrobiology 15(3), 2015",
-          "url": "https://arxiv.org/abs/1605.09187"
+          "titolo": "Smithsonian, National Museum of American History — «Lumière Cinématographe Camera, Printer, and Projector, 1895»",
+          "url": "https://americanhistory.si.edu/collections/object/nmah_759313"
         },
         {
-          "titolo": "Michael H. Hart, QJRAS 16:128-135, 1975 (scansione senza testo)",
-          "url": "https://articles.adsabs.harvard.edu/pdf/1975QJRAS..16..128H"
+          "titolo": "La Cinémathèque française — «Le Caméflex Éclair-Coutant» (Google Arts & Culture)",
+          "url": "https://artsandculture.google.com/story/the-cam%C3%A9flex-%C3%89clair-coutant-la-cin%C3%A9math%C3%A8que-fran%C3%A7aise/oQVxIoPa33EcKg?hl=en"
         },
         {
-          "titolo": "La vignetta di Alan Dunn, The New Yorker, 20 maggio 1950 (archivio dell'editore)",
-          "url": "https://condenaststore.com/featured/new-yorker-may-20th-1950-alan-dunn.html"
+          "titolo": "AFC (Association Française des directeurs de la photographie) — resoconto dello studio di Sorrel",
+          "url": "https://www.afcinema.com/Retour-sur-L-invention-de-la-camera-Eclair-16-une-etude-de-Vincent-Sorrel.html?lang=fr"
         },
         {
-          "titolo": "NASA, rapporto finale del gruppo indipendente sui fenomeni aerei non identificati, 2023",
-          "url": "https://science.nasa.gov/wp-content/uploads/2023/09/uap-independent-study-team-final-report.pdf"
+          "titolo": "The Criterion Collection — «Pixel Visions: Dogme 95 and the Emergence of Digital Cinema»",
+          "url": "https://www.criterion.com/current/posts/8756-pixel-visions-dogme-95-and-the-emergence-of-digital-cinema"
         },
         {
-          "titolo": "Trascrizione del testo di Jones (comoda, ma ricopiatura di terzi)",
-          "url": "https://www.physics.unlv.edu/~jeffery/astro/astronomer/enrico_fermi_question.txt"
+          "titolo": "DPReview — «On this day 2008: Canon launches EOS 5D II, the filmmakers' DSLR»",
+          "url": "https://www.dpreview.com/articles/0094797836/on-this-day-2008-canon-launches-eos-5d-ii-the-filmmakers-dslr"
+        },
+        {
+          "titolo": "Encyclopaedia Britannica — «History of film: the pre-World War II sound era»",
+          "url": "https://www.britannica.com/art/history-of-film/The-pre-World-War-II-sound-era"
+        },
+        {
+          "titolo": "DPReview — annuncio Insta360 Luna Ultra (2026)",
+          "url": "https://www.dpreview.com/news/2755937450/insta360-luna-ultra-camera-gimbal-announcement"
         }
       ]
+    },
+    {
+      "id": "0001-sway-audima",
+      "fonte": "kiroshi",
+      "tipo": "ditta",
+      "titolo": "Sway - Audima Labs",
+      "esito": "Affidabile",
+      "punteggio": 87,
+      "colore": "verde",
+      "data": "2026-09-04",
+      "sintesi": "Sway è un prodotto reale, non un render. Dietro c'è un'azienda australiana con fondatori identificabili, passata da Shark Tank Australia, con una campagna Indiegogo di successo e due lotti già consegnati in oltre 35 paesi. Non è una truffa. Il rischio residuo non è la frode ma il pre-ordine: paghi ora per una consegna prevista a fine 2026, e lo strumento è di nicchia e polarizzante. La domanda 'mi arriverà ed è reale?' ha risposta sì; la domanda 'vale 615$ per me?' dipende dai tuoi gusti.\n\nAggiornamento della riverifica del 04/09/2026, 57 giorni dopo la prima pubblicazione: il fatto che pesava di più — la timeline dichiarava una 'Consegna Batch 3' a giugno 2026 come se fosse un evento avvenuto, mentre era solo una previsione del venditore mai confermata da una fonte indipendente — resta, a rigore, non risolto: questa riverifica non ha trovato una conferma diretta e indipendente (un backer reale che dichiari di aver ricevuto la propria unità del Batch 3) perché Indiegogo, Elektronauts e Trustpilot sono risultati bloccati dal proxy di rete di questa sessione (dominio per dominio, vedi nota di sicurezza). Il dato 'tre batch spediti in oltre 35 paesi' resta quindi una dichiarazione del venditore stesso, non una conferma di terzi. Detto questo, la ricerca ha prodotto un fatto nuovo e pesante nella direzione opposta al sospetto: la testata musicale indipendente MusicTech (in un'intervista/reportage dedicato) documenta che l'artista Illenium ha usato due unità Sway sul palco durante la sua residency 'ODYSSEY' alla Sphere di Las Vegas (5 marzo - 4 aprile 2026) — una delle produzioni dal vivo più sorvegliate e costose al mondo, con oltre un anno di sviluppo dichiarato dal team di produzione. Un uso professionale di questo livello, ripreso anche da Magnetic Magazine, Mixmag Asia e LiveForLiveMusic, è un riscontro indipendente difficile da falsificare, più forte delle foto amatoriali sui forum già in fonti. A questo si aggiunge continuità operativa osservabile: Batch 4 è stato aperto regolarmente il 18/08/2026 con termini commerciali specifici e verificabili (acconto 25$ rimborsabile al 100% fino al lancio, prezzo VIP 615$ contro un listino dichiarato di 830$), e Magnetic Magazine ha pubblicato una recensione indipendente ad agosto 2026 che definisce Sway 'il controller MIDI più innovativo del 2026' — la stampa di settore continua a occuparsene quasi due anni dopo la campagna, segnale di continuità più che di abbandono. Ricerche mirate su reclami, mancate consegne o rimborsi negati non hanno prodotto alcun riscontro negativo. Bilancio: la promessa specifica sul Batch 3 resta tecnicamente non confermata da fonte indipendente, ma il quadro complessivo attorno all'azienda si è rafforzato, non indebolito, nel periodo passato dalla prima verifica. Punteggio rivisto da 85 a 87.",
+      "scheda": null,
+      "fonti": [
+        {
+          "titolo": "Indiegogo - campagna Sway",
+          "url": "https://www.indiegogo.com/en/projects/audimalabs/sway-the-world-s-most-expressive-midi-controller",
+          "tipo": "ufficiale",
+          "sostiene": "vero",
+          "autorevolezza": 4
+        },
+        {
+          "titolo": "Shark Tank AU (pagina Facebook ufficiale)",
+          "url": "https://www.facebook.com/sharktankau/posts/1378105513464163/",
+          "tipo": "ufficiale",
+          "sostiene": "vero",
+          "autorevolezza": 5
+        },
+        {
+          "titolo": "Elektronauts - forum, foto utente",
+          "url": "https://www.elektronauts.com/t/audima-labs-sway-midi-controller/242226",
+          "tipo": "forum",
+          "sostiene": "vero",
+          "autorevolezza": 4
+        },
+        {
+          "titolo": "Poly Expression - forum",
+          "url": "https://community.polyexpression.com/t/audima-labs-sway/2050",
+          "tipo": "forum",
+          "sostiene": "vero",
+          "autorevolezza": 3
+        },
+        {
+          "titolo": "AltWire - recensione",
+          "url": "https://altwire.net/audima-labs-the-sway-review/",
+          "tipo": "stampa",
+          "sostiene": "vero",
+          "autorevolezza": 3
+        },
+        {
+          "titolo": "Mixmag Asia",
+          "url": "https://mixmag.asia/read/audima-labs-midi-instrument-sway-turns-movement-into-music-tech",
+          "tipo": "stampa",
+          "sostiene": "vero",
+          "autorevolezza": 4
+        },
+        {
+          "titolo": "The Awesomer",
+          "url": "https://theawesomer.com/sway-gesture-midi-music-controller/751174/",
+          "tipo": "stampa",
+          "sostiene": "vero",
+          "autorevolezza": 2
+        },
+        {
+          "titolo": "Trustpilot - audima.com.au",
+          "url": "https://www.trustpilot.com/review/audima.com.au",
+          "tipo": "altro",
+          "sostiene": "vero",
+          "autorevolezza": 3
+        },
+        {
+          "titolo": "Sito ufficiale Audima Labs",
+          "url": "https://audima.com.au/",
+          "tipo": "venditore",
+          "sostiene": "neutro",
+          "autorevolezza": 2
+        },
+        {
+          "titolo": "Inside Illenium's Odyssey at Las Vegas Sphere — MusicTech",
+          "url": "https://musictech.com/features/interviews/interview-illenium-odyssey-las-vegas-sphere/",
+          "tipo": "stampa musicale indipendente",
+          "sostiene": "Illenium ha usato due unità Sway durante la residency ODYSSEY alla Sphere di Las Vegas (5 marzo - 4 aprile 2026): uso professionale documentato, non promozionale",
+          "autorevolezza": 4
+        },
+        {
+          "titolo": "The Sway by Audima Labs Could Be the Most Innovative MIDI Controller of 2026 — Magnetic Magazine",
+          "url": "https://magneticmag.com/2026/08/the-sway-by-audima-labs-could-be-the-most-innovative-midi-controller-of-2026/",
+          "tipo": "stampa musicale indipendente",
+          "sostiene": "Recensione indipendente pubblicata ad agosto 2026: copertura stampa ancora attiva quasi due anni dopo la campagna; conferma Batch 1 esaurito in 7 minuti e prezzo di listino 830$",
+          "autorevolezza": 4
+        },
+        {
+          "titolo": "ILLENIUM Turns Sphere Into Audiovisual EDM Cinema With ODYSSEY Residency — LiveForLiveMusic",
+          "url": "https://liveforlivemusic.com/news/illenium-turns-sphere-into-audio-visual-edm-cinema-with-odyssey-residency/",
+          "tipo": "stampa musicale indipendente",
+          "sostiene": "Conferma indipendente delle date della residency ODYSSEY (5 marzo - 4 aprile 2026) alla Sphere di Las Vegas",
+          "autorevolezza": 3
+        },
+        {
+          "titolo": "SWAY - Audima Labs, pagina ordine Batch 4",
+          "url": "https://audima.com.au/op/sway-b4/",
+          "tipo": "venditore",
+          "sostiene": "Pre-ordini Batch 4 aperti dal 18/08/2026, consegna stimata nov-dic 2026, prezzo VIP 615$ contro listino 830$",
+          "autorevolezza": 2
+        },
+        {
+          "titolo": "FAQs | Sway — Audima Labs",
+          "url": "https://audima.com.au/faqs/",
+          "tipo": "venditore",
+          "sostiene": "Politica di rimborso: acconto di 25$ rimborsabile al 100% fino al lancio di circa agosto 2026",
+          "autorevolezza": 2
+        },
+        {
+          "titolo": "Audima Labs Sway Review — 3 Months In (YouTube, 18/05/2026)",
+          "url": "https://www.youtube.com/watch?v=cNUrNzzTwc4",
+          "tipo": "recensione utente indipendente",
+          "sostiene": "Recensione indipendente dopo tre mesi d'uso reale in set dal vivo",
+          "autorevolezza": 3
+        }
+      ],
+      "oggetto": "Sway, controller MIDI a gesti di Audima Labs (Batch 4, pre-ordine)",
+      "domanda": "È hardware vero o fuffa renderizzata? Ci si può fidare prima di spendere 600+$?",
+      "green_flags": [
+        "Fondatori reali e identificabili: Jeremy Buckley e Isaac Jack (Australia)",
+        "Passati da Shark Tank Australia: deal da 50.000$ per il 15% (confermato dalla pagina ufficiale Shark Tank AU)",
+        "Indiegogo 2024: 256 finanziatori reali, 220.958$ raccolti (900% del goal)",
+        "Batch 1 consegnato giu 2025 e Batch 2 dic 2025, in 35+ paesi",
+        "Recensioni indipendenti (AltWire, Mixmag Asia, Magnetic Magazine) e video YouTube di terzi",
+        "Unità reali fotografate da utenti sui forum di appassionati (Elektronauts)",
+        "Aggiornamenti di produzione regolari sulla campagna Indiegogo",
+        "Uso professionale documentato da stampa musicale indipendente: Illenium ha usato due unità Sway durante la residency 'ODYSSEY' alla Sphere di Las Vegas (5 marzo - 4 aprile 2026), confermato da MusicTech e ripreso da Magnetic Magazine, Mixmag Asia e LiveForLiveMusic — riscontro indipendente di alto livello, difficile da falsificare",
+        "Copertura stampa indipendente ancora attiva ad agosto 2026 (Magnetic Magazine, 'il controller MIDI più innovativo del 2026'), quasi due anni dopo la campagna Indiegogo: segnale di continuità operativa",
+        "Batch 4 aperto regolarmente il 18/08/2026 con termini commerciali chiari e verificabili (acconto 25$ rimborsabile al 100% fino al lancio): comportamento coerente con un'azienda operativa",
+        "Nessuna segnalazione di truffa, mancata consegna o rimborso negato trovata in questa riverifica (ricerche mirate)"
+      ],
+      "red_flags": [
+        "È un pre-ordine: paghi ora, consegna stimata nov-dic 2026 (rischio slittamento)",
+        "Team piccolo, produzione a lotti: capacità limitata",
+        "Strumento di nicchia e polarizzante, ergonomia del controllo a gesti discussa dai forum",
+        "Molte recensioni 5★ ospitate sul sito del venditore: pesano meno di quelle indipendenti",
+        "La consegna del Batch 3 (dichiarata dal venditore per giu/lug 2026) non è stata confermata in modo diretto e indipendente in questa riverifica: Indiegogo, Elektronauts, Trustpilot e il sito audima.com.au sono risultati bloccati dal proxy di rete di questa sessione. Il claim 'tre batch spediti in 35+ paesi' resta una dichiarazione del venditore, non incrociata con un backer reale"
+      ],
+      "timeline": [
+        {
+          "data": "2023-03",
+          "evento": "Fondazione di Audima Labs (Australia)"
+        },
+        {
+          "data": "2024-07",
+          "evento": "Registrazione puntata Shark Tank Australia"
+        },
+        {
+          "data": "2024-10",
+          "evento": "Lancio campagna Indiegogo"
+        },
+        {
+          "data": "2024-11",
+          "evento": "Campagna chiusa: 256 backer, 220.958$ (+900%). Puntata Shark Tank in onda"
+        },
+        {
+          "data": "2025-06",
+          "evento": "Consegna Batch 1"
+        },
+        {
+          "data": "2025-12",
+          "evento": "Consegna Batch 2"
+        },
+        {
+          "data": "2026-03-05",
+          "evento": "Inizio della residency 'ODYSSEY' di Illenium alla Sphere di Las Vegas (fino al 4 aprile): uso in scena di due unità Sway, documentato da MusicTech e ripreso da più testate musicali indipendenti"
+        },
+        {
+          "data": "2026-05-18",
+          "evento": "Recensione utente indipendente su YouTube dopo tre mesi d'uso reale ('3 Months In')"
+        },
+        {
+          "data": "2026-06/07",
+          "evento": "Consegna del Batch 3 dichiarata dal venditore (stimata giu/lug 2026); non confermata da fonte indipendente in nessuna delle verifiche KIROSHI//OR effettuate finora, incluso questa del 04/09/2026"
+        },
+        {
+          "data": "2026-08",
+          "evento": "Magnetic Magazine pubblica una recensione indipendente che definisce Sway 'il controller MIDI più innovativo del 2026': copertura stampa ancora attiva quasi due anni dopo la campagna"
+        },
+        {
+          "data": "2026-08-18",
+          "evento": "Apertura pre-ordini Batch 4, con acconto rimborsabile 25$"
+        },
+        {
+          "data": "2026-11/12",
+          "evento": "Consegna Batch 4 stimata (nov-dic 2026), invariata rispetto alla verifica precedente"
+        },
+        {
+          "data": "2026-09-04",
+          "evento": "Riverifica di freschezza KIROSHI//OR: nessuna conferma indipendente diretta della consegna del Batch 3 (Indiegogo, Elektronauts, Trustpilot e audima.com.au bloccati dal proxy di rete di questa sessione); punteggio rivisto da 85 a 87 sulla base dell'uso professionale documentato (Illenium/Sphere), della continuità operativa (Batch 4 regolarmente aperto, stampa indipendente ancora attiva) e dell'assenza di segnalazioni negative"
+        }
+      ],
+      "nota_sicurezza": "Nessun segnale di malware o phishing. Dominio ufficiale audima.com.au coerente; nessun link sospetto nel materiale analizzato. Limite dichiarato della riverifica del 04/09/2026: il proxy di rete di questa sessione ha bloccato l'accesso diretto (WebFetch, errore 'EGRESS_BLOCKED') a tutti i domini rilevanti per questo verdetto, inclusi indiegogo.com, audima.com.au, elektronauts.com, trustpilot.com, reverb.com e magneticmag.com. L'esistenza e il contenuto sostanziale delle fonti citate sono stati confermati solo indirettamente, tramite motore di ricerca, e non con lettura diretta della pagina. Questo pesa in particolare sulla conferma della consegna del Batch 3: non è stato possibile leggere direttamente un aggiornamento Indiegogo o un post di un backer reale che confermi la ricezione dell'unità."
+    },
+    {
+      "id": "0003-ultrafab-srl",
+      "fonte": "kiroshi",
+      "tipo": "ditta",
+      "titolo": "ULTRAFAB srl — chi c'è dietro ultrafab.it",
+      "esito": "Reale, con riserve",
+      "punteggio": 65,
+      "colore": "giallo",
+      "data": "2026-09-04",
+      "sintesi": "Azienda vera e operativa, non una scatola vuota: dieci anni di attività, stampa indipendente che ne parla dal 2019, sede fisica, bilanci depositati. Ma la richiesta parte da tre premesse sbagliate, e la più importante cambia la partita. Primo: non è milanese, è bresciana — sede legale in Via Orzinuovi 12, Brescia. Secondo: non c'è alcun legame documentato con una «Dot Dot Dot srl»; quella esiste ed è milanese davvero (DOTDOTDOT SRL, studio di exhibition design, P.IVA 05570390962), ma è tutt'altra azienda per attività, sede e dimensione. Terzo, ed è il punto che pesa di più: dal settembre 2024 ULTRAFAB non è più indipendente — l'ingresso in Regesta Group è stato annunciato dal gruppo stesso, che la elenca fra le proprie cinque società. La quota acquisita non è pubblica. Il sito ultrafab.it non lo dice da nessuna parte: chi valuta l'azienda leggendo solo il sito legge una versione superata dai fatti da quasi due anni, su una piattaforma ferma al 2019. I conti sono quelli di una micro-impresa in oscillazione: due esercizi consecutivi in perdita (2023 e 2024, con il rosso 2024 pari a oltre sette volte il capitale sociale) e un ritorno all'utile nel 2025. Tutti i dati economici qui riportati vengono da aggregatori commerciali che rielaborano il Registro Imprese: nessun bilancio depositato è stato letto direttamente, e la visura ufficiale è a pagamento. Per una valutazione che comporti impegni, la visura camerale non è un optional.\n\nAggiornamento della riverifica del 04/09/2026, 33 giorni dopo la prima pubblicazione: i due punti indicati come più fragili dal triage — l'utile 2025 e la quota Regesta — sono stati ricontrollati. Sull'utile 2025 il quadro si è rafforzato: la verifica precedente si basava su un solo aggregatore (reportaziende.it) e segnalava esplicitamente il dato come 'non incrociato'; questa riverifica trova le stesse cifre (fatturato 564,4 mila euro, +62,2% sul 2024; utile netto 27,0 mila euro, dopo la perdita di 143,9 mila del 2024) ripetute in modo identico anche su registroaziende.it e companyreports.it. Tre aggregatori indipendenti che convergono sullo stesso numero riducono il rischio di un errore isolato di trascrizione, ma non equivalgono alla lettura diretta del bilancio depositato: è possibile che più aggregatori attingano alla stessa fonte primaria (Registro Imprese) senza rielaborazione incrociata reale, quindi il limite dichiarato nella prima verifica resta valido nella sostanza, solo attenuato. Sulla quota Regesta, invece, nulla è cambiato: nessuna fonte reperita in questa riverifica rende pubblica la percentuale acquisita nel settembre 2024; resta un dato non disponibile, non solo non trovato. Un fatto nuovo, non presente nella prima verifica: secondo la scheda aggiornata di Regesta Group, nel 2026 Ultrafab ha ottenuto una certificazione per il proprio sistema di gestione della sicurezza delle informazioni (SGSI, tipo ISO/IEC 27001), con la relativa policy resa scaricabile — un segnale di investimento organizzativo continuativo sotto la nuova proprietà, non di abbandono. Sul fronte opposto, i due red flag tecnici legati al sito (WordPress 5.3.2 fuori supporto, mancata menzione di Regesta Group) non sono stati ricontrollabili in questa sessione: il dominio ultrafab.it, così come regestaitalia.eu e gli aggregatori camerali, sono risultati bloccati dal proxy di rete per l'accesso diretto (WebFetch); le ricerche mirate non hanno trovato evidenza che il sito sia stato aggiornato né che ora citi l'appartenenza al gruppo, ma è un'assenza di prova, non una prova di assenza — va dichiarata come tale. Bilancio: il dato economico più fragile si è irrobustito, la questione di trasparenza societaria resta aperta tale e quale, e un fatto nuovo e positivo emerge sul fronte della governance operativa. Punteggio rivisto da 62 a 65.",
+      "scheda": null,
+      "fonti": [
+        {
+          "titolo": "Ultrafab — sito ufficiale (homepage e pagina Contattaci)",
+          "url": "https://ultrafab.it/it/",
+          "tipo": "sito del soggetto",
+          "sostiene": "P.IVA 03832080984 e indirizzo operativo Via Orzinuovi 10; assenza di REA, capitale sociale e privacy policy; nessuna menzione di Regesta Group",
+          "autorevolezza": "bassa — fonte diretta interessata, ma è l'unico punto in cui il soggetto dichiara la propria P.IVA. Non raggiunta con WebFetch nella riverifica del 04/09/2026 (bloccata dal proxy di rete): il contenuto qui riportato risale alla verifica precedente e non è stato riconfermato"
+        },
+        {
+          "titolo": "Covid, la startup che stampa valvole per maschere da sub — Il Sole 24 Ore, 10 aprile 2020",
+          "url": "https://www.ilsole24ore.com/art/covid-startup-che-stampa-valvole-maschere-decathlon-ADlgNSE",
+          "tipo": "stampa nazionale indipendente",
+          "sostiene": "Esistenza fisica e operativa: fablab di circa 450 mq, riconversione produttiva durante il Covid, struttura di cinque persone oltre al fondatore più collaboratori",
+          "autorevolezza": "alta — quotidiano economico nazionale, articolo dedicato e non promozionale"
+        },
+        {
+          "titolo": "Regesta Group — scheda Ultrafab e comunicato sull'acquisizione",
+          "url": "https://www.regestaitalia.eu/il-gruppo/ultrafab/",
+          "tipo": "comunicazione dell'acquirente",
+          "sostiene": "Ingresso di Ultrafab in Regesta Group annunciato il 6 settembre 2024; composizione del gruppo; indicazione del 2017 come anno di fondazione, in contrasto con i registri; nel 2026 Ultrafab ha ottenuto una certificazione per il proprio sistema di gestione della sicurezza delle informazioni (SGSI), con policy pubblicata",
+          "autorevolezza": "media — parte interessata, ma è l'unica fonte diretta sull'operazione e dichiara contro il proprio interesse la data di fondazione discordante. Contenuto aggiornato confermato solo indirettamente via motore di ricerca nella riverifica del 04/09/2026 (dominio bloccato dal proxy di rete per l'accesso diretto)"
+        },
+        {
+          "titolo": "ULTRAFAB SRL — scheda d'impresa, aziende.it",
+          "url": "https://www.aziende.it/ultrafab-srl",
+          "tipo": "aggregatore del Registro Imprese",
+          "sostiene": "REA BS-566716, sede legale Via Orzinuovi 12, forma giuridica srl, stato attiva, capitale sociale di 20.000 euro (dato presente su questa sola fonte), contributi pubblici ricevuti",
+          "autorevolezza": "media — rielabora dati camerali ma è un servizio commerciale che vende la visura; la colonna «capitale» risulta internamente incoerente"
+        },
+        {
+          "titolo": "ULTRAFAB SRL — dati di bilancio, reportaziende.it",
+          "url": "https://www.reportaziende.it/ultrafab_srl_bs",
+          "tipo": "aggregatore del Registro Imprese",
+          "sostiene": "Ricavi e risultato d'esercizio 2023, 2024 e 2025 (fatturato 2025: 564,4 mila euro, +62,2%; utile netto 2025: 27,0 mila euro); codice ATECO 62.10.00",
+          "autorevolezza": "media — unica fonte per i dati 2025 nella prima verifica; nella riverifica del 04/09/2026 le stesse cifre sono state trovate anche su registroaziende.it e companyreports.it"
+        },
+        {
+          "titolo": "ULTRAFAB SRL — scheda, fatturatoitalia.it",
+          "url": "https://app.fatturatoitalia.it/ultrafab_srl-03832080984",
+          "tipo": "aggregatore del Registro Imprese",
+          "sostiene": "Fascia di addetti e costo del personale 2024; codice ATECO indicato come 62.01, diverso da quello di reportaziende.it",
+          "autorevolezza": "media"
+        },
+        {
+          "titolo": "Registro .it — whois del dominio ultrafab.it (interrogazione su whois.nic.it)",
+          "url": "https://web-whois.nic.it/",
+          "tipo": "registro ufficiale",
+          "sostiene": "Dominio creato l'8 gennaio 2016, scadenza 8 gennaio 2027, registrar italiano, intestazione a persona fisica e non alla società",
+          "autorevolezza": "massima — registro ufficiale del ccTLD italiano. Il dato è stato ottenuto interrogando il registro col protocollo whois; a questo indirizzo il lettore può ripetere la stessa interrogazione dal browser."
+        },
+        {
+          "titolo": "DOTDOTDOT SRL — scheda d'impresa, aziende.it",
+          "url": "https://www.aziende.it/dotdotdot-srl",
+          "tipo": "aggregatore del Registro Imprese",
+          "sostiene": "La società milanese con questo nome ha P.IVA 05570390962, ATECO 74.14.09 (design), 24 dipendenti: attività, sede e dimensione diverse da Ultrafab, nessun legame rilevato",
+          "autorevolezza": "media"
+        },
+        {
+          "titolo": "ULTRAFAB — scheda su PagineBianche",
+          "url": "https://www.paginebianche.it/scheda/brescia/ultrafab.11109845",
+          "tipo": "elenco pubblico",
+          "sostiene": "Recapito telefonico e indirizzo a Brescia coerenti con i registri",
+          "autorevolezza": "media — riscontro indipendente sull'esistenza fisica"
+        },
+        {
+          "titolo": "ULTRAFAB SRL — dati di bilancio, registroaziende.it",
+          "url": "https://registroaziende.it/azienda/ultrafab-srl-brescia",
+          "tipo": "aggregatore del Registro Imprese",
+          "sostiene": "Conferma indipendente delle stesse cifre 2024-2025 di reportaziende.it (fatturato 2025: 564,4 mila euro, +62,2%; utile netto 2025: 27,0 mila euro; perdita 2024: 143,9 mila euro)",
+          "autorevolezza": "media — secondo aggregatore camerale che converge sulle stesse cifre; non è escluso che attinga alla stessa fonte primaria senza rielaborazione indipendente reale. Non raggiunta con WebFetch (bloccata dal proxy di rete), confermata solo tramite motore di ricerca"
+        },
+        {
+          "titolo": "ULTRAFAB SRL — visura e fatturato, CompanyReports.it",
+          "url": "https://m.companyreports.it/visura/ultrafab-srl-03832080984",
+          "tipo": "aggregatore del Registro Imprese",
+          "sostiene": "Terza conferma indipendente delle stesse cifre 2024-2025 (fatturato 2025: 564,4 mila euro; utile netto 2025: 27,0 mila euro)",
+          "autorevolezza": "media — terzo aggregatore camerale convergente; stesso limite del precedente sulla non indipendenza della fonte primaria. Non raggiunta con WebFetch (bloccata dal proxy di rete), confermata solo tramite motore di ricerca"
+        }
+      ],
+      "oggetto": "ULTRAFAB SRL, P.IVA 03832080984, Brescia. Software e IoT per la digitalizzazione industriale (prodotto «Bishop»). Sito ultrafab.it.",
+      "domanda": "Richiesta di «tutte le informazioni riguardanti questa ditta milanese». Esiste davvero? Chi la controlla? Che conti ha? E che rapporto ha con la «Dot Dot Dot srl» citata nella richiesta?",
+      "green_flags": [
+        "Identità verificabile: la P.IVA 03832080984 pubblicata sul sito corrisponde a un'impresa realmente iscritta e attiva al Registro Imprese di Brescia, REA BS-566716.",
+        "Stampa indipendente su più anni e non promozionale: Giornale di Brescia (21 aprile 2019) sul prodotto Bishop, Il Sole 24 Ore (10 aprile 2020) con l'azienda come soggetto principale e dettagli fisici verificabili, fra cui un fablab di circa 450 mq.",
+        "Presenza fisica riscontrabile su fonti terze indipendenti: indirizzo e telefono fisso coincidenti su più elenchi, partecipazione come espositore a fiere industriali bresciane.",
+        "Dominio registrato l'8 gennaio 2016 presso registrar italiano, rinnovato fino al 2027, con storico di archiviazione web continuo dal 19 aprile 2016: nessun tratto da dominio riciclato o parcheggiato.",
+        "Bilanci depositati e consultabili per più esercizi, stato camerale «attiva»: nessun segnale di società dormiente, e nessuna notizia di procedure concorsuali emersa dalle fonti aperte consultate.",
+        "Inserimento in un gruppo strutturato: Regesta Group, capogruppo bresciana attiva dal 2007 che dichiara oltre 250 persone e cinque società.",
+        "Riconoscimento da ente terzo: vittoria della tappa bresciana del premio CNA «Cambiamenti» nell'ottobre 2018.",
+        "Case history con clienti nominati e descrizioni tecniche specifiche, non testi generici con segnaposto.",
+        "Il ritorno all'utile 2025 (fatturato 564,4 mila euro, +62,2%; utile netto 27,0 mila euro) è ora confermato in modo identico da tre aggregatori camerali indipendenti (reportaziende.it, registroaziende.it, companyreports.it), non da uno solo come nella prima verifica.",
+        "Segnale di investimento organizzativo continuativo sotto Regesta Group: secondo la scheda del gruppo, nel 2026 Ultrafab ha ottenuto una certificazione per il proprio sistema di gestione della sicurezza delle informazioni, con policy SGSI pubblicata."
+      ],
+      "red_flags": [
+        "La premessa della richiesta è errata: non è una ditta milanese. Sede legale a Brescia, Via Orzinuovi 12. Nessuna fonte consultata le attribuisce sedi o unità locali a Milano.",
+        "Il sito non menziona in nessuna pagina l'appartenenza a Regesta Group, annunciata a settembre 2024: chi valuta il fornitore dal solo sito non sa chi lo controlla. Questa riverifica non ha potuto ricontrollare direttamente la pagina (dominio bloccato dal proxy di rete) e non ha trovato, tramite ricerca, alcuna indicazione che la situazione sia cambiata: resta un'assenza di prova, non una conferma che il sito sia rimasto identico.",
+        "Il sito risultava, alla verifica precedente, tecnicamente abbandonato: WordPress 5.3.2 (dicembre 2019) e componenti coeve, fuori supporto da circa sei anni. Non è stato possibile ricontrollare questo dato in questa riverifica (accesso diretto al dominio bloccato dal proxy): riportato come non riverificato, né confermato né smentito.",
+        "Perdita 2024 di 143.944 euro su ricavi di 347.990, secondo esercizio consecutivo in rosso dopo la perdita di 26.773 euro del 2023. Il rosso 2024 supera di oltre sette volte il capitale sociale.",
+        "Ricavi 2024 in calo di circa il 13-14% sull'anno precedente.",
+        "Il footer del sito espone soltanto la partita IVA: mancano ragione sociale completa, sede iscritta al registro imprese e capitale sociale, e non è stata trovata alcuna pagina di privacy o cookie policy fra i link interni. Non riverificato direttamente in questa sessione per il blocco del proxy.",
+        "Il dominio ultrafab.it non è intestato alla società ma a una persona fisica, con dati di registrazione mai aggiornati dal 2016: asset digitale fuori dal perimetro societario. Pratica diffusa nelle PMI, ma rilevante in una due diligence.",
+        "Le fonti pubbliche si contraddicono sull'anno di fondazione: 2016 per registri, Giornale di Brescia e LinkedIn; 2017 nel comunicato di Regesta.",
+        "Il claim «20 anni di esperienza» accostato a «Start Up» non è mai spiegato: la società è del 2016.",
+        "La pagina «Partner» non nomina alcun partner: è solo un invito a diventarlo.",
+        "Nessuna recensione pubblica di clienti reperibile su alcuna piattaforma: non esiste riscontro indipendente della soddisfazione, né positivo né negativo.",
+        "Rischio concreto di confusione con Ultrafab Inc. (Farmington, New York), produttore statunitense di guarnizioni per serramenti, estraneo alla società bresciana: le recensioni che compaiono cercando «Ultrafab» non riguardano quest'azienda.",
+        "La quota di Regesta Group in Ultrafab resta non pubblica: nessuna fonte reperita in questa riverifica (04/09/2026) la rende nota. Confermato di nuovo, non solo non trovato in precedenza."
+      ],
+      "timeline": [
+        {
+          "data": "2016-01-08",
+          "evento": "Registrazione del dominio ultrafab.it, precedente alla costituzione della società."
+        },
+        {
+          "data": "2016",
+          "evento": "Costituzione di ULTRAFAB SRL a Brescia. Il giorno esatto varia fra gli aggregatori; il comunicato di Regesta indica invece il 2017."
+        },
+        {
+          "data": "2018-10",
+          "evento": "Vittoria della tappa bresciana del premio CNA «Cambiamenti»."
+        },
+        {
+          "data": "2019-04-21",
+          "evento": "Il Giornale di Brescia dedica un articolo al prodotto Bishop, descrivendo fondazione, fondatori, partner e funzionamento tecnico, e collocando la sede operativa in Via Orzinuovi 10."
+        },
+        {
+          "data": "2020-04-10",
+          "evento": "Il Sole 24 Ore documenta il fablab di circa 450 mq e la riconversione produttiva durante il Covid."
+        },
+        {
+          "data": "2023",
+          "evento": "Esercizio in perdita: ricavi 401.836 euro, perdita 26.773 euro (dati da aggregatori)."
+        },
+        {
+          "data": "2024",
+          "evento": "Secondo esercizio in perdita: ricavi 347.990 euro, perdita 143.944 euro (dati da aggregatori)."
+        },
+        {
+          "data": "2024-09-06",
+          "evento": "Regesta Group annuncia l'ingresso di Ultrafab nel gruppo. La quota acquisita non viene resa pubblica."
+        },
+        {
+          "data": "2025",
+          "evento": "Ritorno all'utile: ricavi 564,4 mila euro, utile 27,0 mila euro. Alla prima verifica (02/08/2026) il dato veniva da un solo aggregatore; alla riverifica del 04/09/2026 risulta identico su altri due aggregatori indipendenti."
+        },
+        {
+          "data": "2026",
+          "evento": "Secondo la scheda aggiornata di Regesta Group, Ultrafab ottiene una certificazione per il proprio sistema di gestione della sicurezza delle informazioni (SGSI), con policy pubblicata: fatto nuovo, non presente nella verifica di agosto."
+        },
+        {
+          "data": "2026-08-02",
+          "evento": "Prima pubblicazione del verdetto. Il sito ultrafab.it non menzionava ancora l'appartenenza al gruppo."
+        },
+        {
+          "data": "2026-09-04",
+          "evento": "Riverifica di freschezza KIROSHI//OR: l'utile 2025 è ora confermato da tre aggregatori invece di uno, la quota Regesta resta non pubblica, i red flag tecnici sul sito (WordPress obsoleto, mancata menzione di Regesta) non sono stati riverificabili per blocco del proxy di rete su ultrafab.it e regestaitalia.eu. Punteggio rivisto da 62 a 65."
+        }
+      ],
+      "nota_sicurezza": "Nessun segnale di malware, phishing o raggiro: il dominio è autentico, decennale e presidiato, e l'azienda è realmente iscritta e attiva. I limiti di questa verifica vanno però dichiarati. Primo: tutti i dati economici e societari provengono da aggregatori commerciali che rielaborano il Registro Imprese e ne vendono l'accesso completo; nessun bilancio depositato è stato letto direttamente e la visura camerale ufficiale non è stata consultata. Secondo: organo amministrativo e compagine sociale sono dietro paywall su tutte le fonti aperte, quindi non affermiamo nulla sull'assetto societario dopo l'ingresso nel gruppo — la quota di Regesta non risulta pubblica da nessuna parte, riconfermato il 04/09/2026. Terzo: la sezione «procedure e pregiudizievoli» degli aggregatori è a pagamento, quindi l'assenza di procedure concorsuali non è dimostrata, è soltanto non emersa. Quarto, limite emerso nella riverifica del 04/09/2026: il proxy di rete di questa sessione ha bloccato l'accesso diretto (WebFetch, errore 'EGRESS_BLOCKED') a ultrafab.it, regestaitalia.eu, reportaziende.it e agli altri aggregatori camerali citati; tutti i dati di questa riverifica sono stati confermati solo indirettamente, tramite motore di ricerca, non con lettura diretta della pagina. In particolare non è stato possibile ricontrollare se il sito ultrafab.it sia ancora fermo tecnicamente (WordPress 5.3.2) o se abbia nel frattempo aggiunto una menzione di Regesta Group: questi due punti restano come alla verifica precedente, non riconfermati né smentiti. Chi debba assumere impegni economici su questa società parta da una visura camerale aggiornata e dai bilanci depositati, non da questo verdetto. Per scelta editoriale non pubblichiamo il nome dell'intestatario privato del dominio: è un dato di registro pubblico, ma nominare una persona fisica non aggiunge nulla al merito."
     },
     {
       "id": "0005-prospera-zede",
@@ -50,10 +425,10 @@ window.ARCHIVIO = {
       "tipo": "ditta",
       "titolo": "Próspera — la «città senza Stato» di Roatán alla prova dei fatti",
       "esito": "Reale, ma sub iudice",
-      "punteggio": 58,
+      "punteggio": 54,
       "colore": "giallo",
-      "data": "2026-08-17",
-      "sintesi": "Próspera esiste: non è un rendering, non è una truffa. È una zona a statuto speciale (ZEDE) su oltre 400 acri di Roatán, sviluppata e amministrata da una società privata statunitense — Honduras Próspera Inc., Delaware: LLC dall'agosto 2017, corporation dal dicembre 2020 — fondata e guidata da Erick Brimen. Sul terreno ci sono almeno una torre residenziale operativa (Duna: 14 piani, 85 appartamenti, descritta come l'edificio più alto dell'isola), una clinica di medicina rigenerativa (GARM), un programma di e-residency a 130 dollari l'anno e circa 2.000 residenti dichiarati nel 2024 — cifra di parte, senza verifica terza reperita. Il titolo della richiesta sbaglia però due volte. Primo: non è «la città di Peter Thiel». Thiel risulta uno dei finanziatori, tramite Pronomos Capital (fondo di Patri Friedman, seed di circa 9 milioni di dollari nel 2019), dentro una raccolta complessiva di 110-120 milioni da un centinaio di investitori; il progetto è di Brimen, e i rapporti del Dipartimento di Stato USA al Congresso (agosto 2025 e giugno 2026) confermano oltre 100 milioni di capitale americano. Secondo, ed è il punto che pesa: il «senza Stato» oggi non ha base legale riconosciuta dallo Stato ospite. Il Congresso honduregno ha abrogato all'unanimità la legge ZEDE il 20 aprile 2022 e la Corte Suprema l'ha dichiarata incostituzionale con effetto retroattivo il 20 settembre 2024 (voto di stretta maggioranza, sentenza in Gaceta il 25-26 novembre 2024). Próspera continua a operare e ad espandersi appellandosi a una garanzia di «stabilità giuridica di 50 anni» che nessuna fonte primaria indipendente consultata riporta per esteso, e dal dicembre 2022 porta avanti un arbitrato ICSID contro l'Honduras (caso ARB/23/2: richiesta iniziale 10,775 miliardi di dollari, oggi 1,63 miliardi come rimedio subordinato al ripristino del regime), tuttora pendente al 17 agosto 2026. Il «diventa realtà» fotografa un fatto vero — con il presidente Asfura (insediato il 27/01/2026) il clima politico è cambiato, l'Honduras è rientrato nel CIADI il 16 agosto 2026 e il governo tratta la zona con favore di fatto — ma tace che un anno e mezzo prima la stampa finanziaria indipendente raccontava la stessa vicenda come «un incubo da 11 miliardi» (Bloomberg, febbraio 2025), e che il conflitto con la comunità adiacente di Crawfish Rock è documentato dal 2019. Realtà fisica sì; giurisdizione autonoma consolidata no: progetto vivo, conteso, giuridicamente sospeso. Sulle sue dichiarazioni — numeri di residenti, imprese, posti di lavoro — la fiducia va graduata: sono in larga parte autodichiarate. Ultimo caveat, non secondario: quasi tutte le fonti primarie (prospera.co, ICSID, italaw, state.gov, stampa honduregna) sono risultate irraggiungibili dal proxy della sandbox, quindi questo referto è costruito su riassunti di ricerca che le citano, non su lettura diretta — verifica «a due gradi», dichiarata come tale.",
+      "data": "2026-08-29",
+      "sintesi": "Próspera esiste: non è un rendering, non è una truffa. È una zona a statuto speciale (ZEDE) su oltre 400 acri di Roatán, sviluppata e amministrata da una società privata statunitense — Honduras Próspera Inc., Delaware: LLC dall'agosto 2017, corporation dal dicembre 2020 — fondata e guidata da Erick Brimen. Sul terreno ci sono almeno una torre residenziale operativa (Duna: 14 piani, 85 appartamenti, descritta come l'edificio più alto dell'isola), una clinica di medicina rigenerativa (GARM), un programma di e-residency a 130 dollari l'anno. Il titolo della richiesta sbaglia però due volte. Primo: non è «la città di Peter Thiel». Thiel risulta uno dei finanziatori, tramite Pronomos Capital (fondo di Patri Friedman, seed di circa 9 milioni di dollari nel 2019), dentro una raccolta complessiva di 110-120 milioni da un centinaio di investitori; il progetto è di Brimen, e i rapporti del Dipartimento di Stato USA al Congresso (agosto 2025 e giugno 2026) confermano oltre 100 milioni di capitale americano. Secondo, ed è il punto che pesa: il «senza Stato» oggi non ha base legale riconosciuta dallo Stato ospite. Il Congresso honduregno ha abrogato all'unanimità la legge ZEDE il 20 aprile 2022 e la Corte Suprema l'ha dichiarata incostituzionale con effetto retroattivo il 20 settembre 2024 (voto di stretta maggioranza, sentenza in Gaceta il 25-26 novembre 2024). Próspera continua a operare e ad espandersi appellandosi a una garanzia di «stabilità giuridica di 50 anni» che nessuna fonte primaria indipendente consultata riporta per esteso, e dal dicembre 2022 porta avanti un arbitrato ICSID contro l'Honduras (caso ARB/23/2: richiesta iniziale 10,775 miliardi di dollari, oggi 1,63 miliardi come rimedio subordinato al ripristino del regime), tuttora pendente al 29 agosto 2026. Il «diventa realtà» fotografa un fatto vero — con il presidente Asfura (insediato il 27/01/2026) il clima politico è cambiato, l'Honduras è rientrato nel CIADI il 16 agosto 2026 e il governo tratta la zona con favore di fatto — ma tace che un anno e mezzo prima la stampa finanziaria indipendente raccontava la stessa vicenda come «un incubo da 11 miliardi» (Bloomberg, febbraio 2025), e che il conflitto con la comunità adiacente di Crawfish Rock è documentato dal 2019. Realtà fisica sì; giurisdizione autonoma consolidata no: progetto vivo, conteso, giuridicamente sospeso.\n\nAggiornamento della riverifica del 29/08/2026, dodici giorni dopo la prima pubblicazione: l'arbitrato ICSID resta esattamente dov'era — nessuna sentenza di merito, ultimo atto noto ancora il Procedural Order No. 7 del 6 maggio 2026, e nessuna data di udienza sul merito è stata reperita. Una fonte indipendente aggiuntiva (Rio Times, agosto 2026) riporta che il procuratore generale honduregno Dagoberto Aspra ha dichiarato a metà agosto che 18 reclami risultano pendenti presso ICSID contro l'Honduras, e che il rientro nel CIADI del 16/08/2026 copre solo i fatti successivi a quella data — il vuoto di due anni (25/08/2024-16/08/2026) resta tale. Il fatto nuovo che pesa di più, però, è un altro: un'inchiesta giornalistica indipendente esterna, non ancora disponibile alla prima verifica — «Foreign Correspondent» di ABC News Australia, andata in onda il 18/08/2026 e ripresa in un articolo del 22/08/2026 — è entrata fisicamente a Próspera e riporta circa 200 residenti permanenti effettivi e oltre 220 imprese registrate. Sono meno della metà delle imprese e circa un decimo dei residenti che Próspera stessa dichiarava per il 2024 (~2.000 residenti, 413 imprese): un riscontro indipendente, sul campo, che conferma proprio il sospetto già segnalato nella prima verifica — i numeri di Próspera sono largamente gonfiati rispetto alla realtà osservabile. Per questo il punteggio scende da 58 a 54: non perché la realtà fisica o legale del progetto sia cambiata, ma perché una fonte indipendente ha ora quantificato quanto siano distanti dal vero le cifre che la società diffonde su di sé — il punto su cui la fiducia va più graduata. Limite dichiarato, come nella prima verifica: il proxy di rete della sandbox ha bloccato il fetch diretto anche delle nuove fonti (abc.net.au, riotimesonline.com), lette solo per snippet di ricerca — verifica «a due gradi», dichiarata come tale, sia oggi sia il 17/08.",
       "scheda": null,
       "fonti": [
         {
@@ -74,7 +449,7 @@ window.ARCHIVIO = {
           "titolo": "Honduras Próspera v. Honduras — Procedural Order No. 7 (6 maggio 2026) — Jus Mundi",
           "url": "https://jusmundi.com/en/document/decision/en-honduras-prospera-inc-st-john-s-bay-development-company-llc-and-prospera-arbitration-center-llc-v-republic-of-honduras-procedural-order-no-7-on-applications-to-intervene-by-amicus-curiae-wednesday-6th-may-2026",
           "tipo": "atti processuali (riprodotti da database giuridico)",
-          "sostiene": "Il procedimento arbitrale risultava ancora aperto e senza sentenza al 6 maggio 2026 (con aggiornamento del 21 luglio 2026)",
+          "sostiene": "Il procedimento arbitrale risultava ancora aperto e senza sentenza al 6 maggio 2026, ultimo atto noto ancora al 29/08/2026",
           "autorevolezza": "molto alta — riproduce l'atto ufficiale del tribunale; letto solo via snippet, fetch diretto bloccato"
         },
         {
@@ -188,6 +563,20 @@ window.ARCHIVIO = {
           "tipo": "documento governativo ufficiale",
           "sostiene": "Il primo dei due rapporti al Congresso sull'investimento statunitense nella ZEDE (il secondo, giugno 2026, è linkato sopra)",
           "autorevolezza": "molto alta come fonte primaria governativa; qui verificati solo titolo e URL per via indiretta, fetch bloccato"
+        },
+        {
+          "titolo": "Inside Próspera, the libertarian utopia on a Caribbean island off the coast of Honduras — ABC News Australia (22/08/2026)",
+          "url": "https://www.abc.net.au/news/2026-08-22/honduras-prospera-libertarian-utopia-caribbean-roatan/107045960",
+          "tipo": "stampa/inchiesta televisiva indipendente estera",
+          "sostiene": "Inchiesta 'Foreign Correspondent' sul campo: circa 200 residenti permanenti e oltre 220 imprese registrate — cifre nettamente inferiori a quelle autodichiarate da Próspera per il 2024",
+          "autorevolezza": "alta — emittente pubblica australiana, programma investigativo con giornalista sul posto; fetch diretto bloccato dal proxy in questa sessione, contenuto ripreso via snippet di ricerca"
+        },
+        {
+          "titolo": "Honduras ICSID Return: What It Means for Investors — The Rio Times (agosto 2026)",
+          "url": "https://www.riotimesonline.com/honduras-returns-icsid-2026/",
+          "tipo": "stampa indipendente regionale (America Latina)",
+          "sostiene": "Dichiarazione del procuratore generale honduregno Dagoberto Aspra: 18 reclami pendenti contro l'Honduras presso ICSID; il rientro nel CIADI del 16/08/2026 copre solo i fatti successivi a quella data",
+          "autorevolezza": "media-alta — testata anglofona specializzata su Brasile/America Latina; fetch diretto bloccato dal proxy in questa sessione, contenuto ripreso via snippet di ricerca"
         }
       ],
       "oggetto": "Honduras Próspera Inc., corporation di diritto del Delaware (USA) fondata da Erick Brimen (LLC dall'agosto 2017, corporation dal dicembre 2020), e Próspera ZEDE, zona a statuto speciale su oltre 400 acri dell'isola di Roatán, Honduras. Sito prospera.co.",
@@ -201,17 +590,17 @@ window.ARCHIVIO = {
         "Il 26/02/2025 il tribunale ICSID ha respinto le eccezioni preliminari dell'Honduras (mancato esaurimento dei rimedi interni): la causa di Próspera ha superato un primo vaglio e prosegue nel merito.",
         "La stessa sentenza di incostituzionalità (20/09/2024) riconosce tutela agli investimenti e alle proprietà acquisiti in buona fede dalle imprese ZEDE preesistenti: non tutto è azzerato.",
         "Regole interne pubblicate: la zona ha una gazzetta ufficiale (pzgps.hn) con governance dichiarata — Segretario Tecnico, Council of Trustees, regolatore finanziario RIFC — anche se emanata dalla stessa entità regolata.",
-        "Attività in corso nel 2026: delegazione di investitori messicani ricevuta ad aprile 2026, enti pubblici honduregni presenti a eventi Próspera sotto il governo Asfura (stampa honduregna: Criterio.hn in fonti; la cronaca specifica della delegazione è riscontro indiretto, senza link diretto) — nessun segnale di abbandono del sito."
+        "Attività confermata come reale e in corso anche da un'inchiesta giornalistica indipendente esterna: 'Foreign Correspondent' di ABC News Australia (18-22/08/2026) è entrata fisicamente sul posto e descrive una comunità operativa di imprenditori tech e biohacker, non un progetto abbandonato o solo sulla carta."
       ],
       "red_flags": [
         "La base giuridica dell'autonomia è stata cancellata: legge ZEDE abrogata all'unanimità dal Congresso il 20/04/2022 (sanzione presidenziale 25/04) e dichiarata incostituzionale con effetto retroattivo dalla Corte Suprema il 20/09/2024, sentenza pubblicata in Gaceta il 25-26/11/2024.",
         "Il possessivo del titolo è fuorviante: Próspera non è «di Peter Thiel». Thiel risulta uno dei backer tramite Pronomos Capital (seed ~9 M$, 2019) su 110-120 M$ raccolti da circa 100 investitori; fondatore e CEO è Erick Brimen. Una fonte minoritaria non verificabile nega perfino l'investimento di Thiel.",
-        "I numeri chiave sono autodichiarati: ~2.000 residenti (2024), 413 imprese registrate, 950 posti di lavoro provengono dal blog di Próspera; nessun censimento o audit terzo reperito, nessun dato aggiornato al 2025-2026 trovato.",
-        "L'obiettivo dichiarato di 500 M$ investiti in Honduras e 10.000 posti di lavoro entro il 2025 non risulta confermato da alcuna fonte indipendente.",
-        "Arbitrato miliardario pendente dal 20/12/2022 (ICSID ARB/23/2): richiesta iniziale di 10,775 miliardi di dollari — circa due terzi del bilancio statale honduregno 2022 — poi riquantificata a 1,63 miliardi come rimedio subordinato; nessuna sentenza al 17/08/2026.",
+        "I numeri chiave sono autodichiarati e ora si sono rivelati fortemente sovrastimati: ~2.000 residenti e 413 imprese dichiarati per il 2024, contro i circa 200 residenti permanenti e le poco più di 220 imprese registrate riscontrati sul campo da un'inchiesta indipendente esterna (ABC News Australia, 'Foreign Correspondent', 18-22/08/2026) — uno scarto di quasi dieci volte sui residenti.",
+        "L'obiettivo dichiarato di 500 M$ investiti in Honduras e 10.000 posti di lavoro entro il 2025 non risulta confermato da alcuna fonte indipendente, e appare ancora meno plausibile alla luce del riscontro sul campo di agosto 2026.",
+        "Arbitrato miliardario pendente dal 20/12/2022 (ICSID ARB/23/2): richiesta iniziale di 10,775 miliardi di dollari — circa due terzi del bilancio statale honduregno 2022 — poi riquantificata a 1,63 miliardi come rimedio subordinato; nessuna sentenza al 29/08/2026, nessuna data di udienza di merito reperita.",
         "Conflitto documentato con la comunità adiacente di Crawfish Rock (~600 abitanti): mai consultata alla nascita del progetto, disputa sull'accesso all'acqua dall'estate 2019 (Rest of World, 2021), opposizione tuttora aperta guidata dal consiglio comunitario.",
         "Il 14/10/2024 il sindaco di Roatán ha ordinato la chiusura temporanea di parte della zona per circa 12 milioni di lempiras (~480.000 $) di tasse comunali contestate; Próspera ha definito l'atto illegale e si è detta in regola.",
-        "Status giuridico contraddittorio al 17/08/2026: incostituzionale sulla carta, tollerata e di fatto favorita dal governo Asfura — non è stato reperito alcun atto formale che risolva la contraddizione.",
+        "Status giuridico contraddittorio al 29/08/2026: incostituzionale sulla carta, tollerata e di fatto favorita dal governo Asfura — non è stato reperito alcun atto formale che risolva la contraddizione. Il rientro dell'Honduras nel CIADI (16/08/2026) copre solo i fatti successivi a quella data: il procuratore generale honduregno ha dichiarato a metà agosto che restano 18 reclami pendenti contro lo Stato presso ICSID (fonte: Rio Times).",
         "Espansione territoriale proseguita dopo la sentenza: oltre 3,2 milioni di mq (~4% del territorio di Roatán), con nuove acquisizioni nell'area di Crawfish Rock documentate da Criterio.hn.",
         "La garanzia di «stabilità giuridica di 50 anni» invocata da Próspera non è stata letta in alcuna fonte primaria indipendente; una costituzionalista honduregna (Reina Rivera) sostiene che la sentenza 2024 ha effetto ex tunc e travolge ogni atto ZEDE.",
         "Critiche pubbliche di soggetti qualificati: Paul Romer — ispiratore del concetto di charter city, dimessosi nel 2012 dalla commissione di trasparenza ZEDE — giudica Próspera lontana da un modello raccomandabile (citazione riportata di seconda mano dalla stampa critica, non letta in fonte diretta); esperti ONU nel 2021 hanno espresso preoccupazioni sui diritti umani (documento ONU non letto direttamente).",
@@ -272,10 +661,22 @@ window.ARCHIVIO = {
         },
         {
           "data": "2026-08-16",
-          "evento": "L'Honduras rientra formalmente nel CIADI dopo quasi due anni (titolo El Heraldo). Al 17/08/2026, data di questa verifica, l'arbitrato ARB/23/2 resta pendente: ultimo atto noto il Procedural Order No. 7 (06/05/2026, aggiornato 21/07/2026)."
+          "evento": "L'Honduras rientra formalmente nel CIADI dopo quasi due anni (titolo El Heraldo). L'arbitrato ARB/23/2 resta pendente: ultimo atto noto il Procedural Order No. 7 (06/05/2026)."
+        },
+        {
+          "data": "2026-08-18/22",
+          "evento": "'Foreign Correspondent' (ABC News Australia) pubblica un'inchiesta sul campo: circa 200 residenti permanenti e oltre 220 imprese registrate, contro i circa 2.000 residenti e 413 imprese autodichiarati da Próspera per il 2024."
+        },
+        {
+          "data": "2026-08 (metà mese)",
+          "evento": "Il procuratore generale honduregno Dagoberto Aspra dichiara 18 reclami pendenti contro l'Honduras presso ICSID; il rientro nel CIADI copre solo i fatti dal 16/08/2026 in poi (fonte: Rio Times)."
+        },
+        {
+          "data": "2026-08-29",
+          "evento": "Riverifica di freschezza KIROSHI//OR: nessuna sentenza di merito nell'arbitrato ICSID, nessuna data di udienza reperita; punteggio rivisto da 58 a 54 alla luce del riscontro indipendente sui numeri autodichiarati."
         }
       ],
-      "nota_sicurezza": "Nessun segnale di malware, phishing o raggiro: il dominio prospera.co è autentico e il soggetto è reale e ampiamente documentato. I limiti di questa verifica vanno però dichiarati, e sono più pesanti del solito. Primo: il proxy di rete della sandbox ha bloccato il fetch diretto di quasi tutte le fonti primarie — prospera.co, pzgps.hn, ICSID/World Bank, italaw, Jus Mundi, state.gov, Bloomberg, La Prensa, El Heraldo, perfino Wikipedia — quindi ogni dato qui riportato viene da riassunti di ricerca che citano quelle pagine, non da lettura diretta: verifica «a due gradi», non di prima mano. Secondo: l'iscrizione di Honduras Próspera Inc. nel registro societario del Delaware non è stata verificata sul registro ufficiale, solo su ricostruzioni secondarie concordi. Terzo: i numeri su residenti, imprese e occupazione sono in larga parte autodichiarati da Próspera e fermi al 2024; nessun dato terzo aggiornato al 2025-2026 è stato trovato. Quarto: il testo dei contratti di «stabilità giuridica di 50 anni» non è mai stato letto in fonte primaria; del rapporto del Dipartimento di Stato USA e del rientro nel CIADI del 16/08/2026 sono stati verificati solo titolo e snippet; l'articolo italiano con il titolo esatto della richiesta non è stato individuato; il conteggio dei voti della sentenza CSJ varia tra le fonti. Quinto: l'arbitrato ICSID è pendente — qualunque affermazione sull'esito sarebbe una previsione, non un fatto. Avvertenza pratica, fatti e non consigli finanziari: chi valutasse e-residency, immobili o investimenti nella zona deve sapere che il regime giuridico su cui tutto poggia è stato dichiarato incostituzionale con effetto retroattivo dallo Stato ospite (sentenza 20/09/2024) ed è oggetto di un contenzioso internazionale non concluso; la tolleranza attuale del governo Asfura è una prassi politica, non un atto formale reperito. Chi debba decidere parta dagli atti primari — sentenza in Gaceta, atti ICSID, rapporti del Dipartimento di Stato — non da questo verdetto né dai comunicati del soggetto. Infine: Peter Thiel e gli altri investitori sono citati qui esclusivamente come fatto societario-finanziario documentato; su di loro come persone questo verdetto non dice e non deve dire nulla (confine BRAINDANCE)."
+      "nota_sicurezza": "Nessun segnale di malware, phishing o raggiro: il dominio prospera.co è autentico e il soggetto è reale e ampiamente documentato. I limiti di questa verifica vanno però dichiarati, e sono più pesanti del solito. Primo: il proxy di rete della sandbox ha bloccato il fetch diretto di quasi tutte le fonti primarie — prospera.co, pzgps.hn, ICSID/World Bank, italaw, Jus Mundi, state.gov, Bloomberg, La Prensa, El Heraldo, abc.net.au, riotimesonline.com, perfino Wikipedia — quindi ogni dato qui riportato viene da riassunti di ricerca che citano quelle pagine, non da lettura diretta: verifica «a due gradi», non di prima mano, sia nella verifica del 17/08 sia in questa riverifica del 29/08. Secondo: l'iscrizione di Honduras Próspera Inc. nel registro societario del Delaware non è stata verificata sul registro ufficiale, solo su ricostruzioni secondarie concordi. Terzo: i numeri su residenti e imprese restano in parte autodichiarati da Próspera (fermi al 2024), ma oggi esiste anche un riscontro indipendente esterno (ABC News Australia, agosto 2026) che li colloca molto più in basso — un dato che rafforza, non risolve, il dubbio sulla loro affidabilità. Quarto: il testo dei contratti di «stabilità giuridica di 50 anni» non è mai stato letto in fonte primaria; l'articolo italiano con il titolo esatto della richiesta non è stato individuato; il conteggio dei voti della sentenza CSJ varia tra le fonti. Quinto: l'arbitrato ICSID è pendente — qualunque affermazione sull'esito sarebbe una previsione, non un fatto; alla data di questa riverifica (29/08/2026) non è stata reperita nessuna data di udienza sul merito. Avvertenza pratica, fatti e non consigli finanziari: chi valutasse e-residency, immobili o investimenti nella zona deve sapere che il regime giuridico su cui tutto poggia è stato dichiarato incostituzionale con effetto retroattivo dallo Stato ospite (sentenza 20/09/2024) ed è oggetto di un contenzioso internazionale non concluso; la tolleranza attuale del governo Asfura è una prassi politica, non un atto formale reperito. Chi debba decidere parta dagli atti primari — sentenza in Gaceta, atti ICSID, rapporti del Dipartimento di Stato — non da questo verdetto né dai comunicati del soggetto. Infine: Peter Thiel e gli altri investitori sono citati qui esclusivamente come fatto societario-finanziario documentato; su di loro come persone questo verdetto non dice e non deve dire nulla (confine BRAINDANCE)."
     },
     {
       "id": "0006-insta360-luna-ultra",
@@ -283,10 +684,10 @@ window.ARCHIVIO = {
       "tipo": "ditta",
       "titolo": "Insta360 Luna Ultra — la gimbal-cam Leica di Insta360",
       "esito": "Reale, con riserve",
-      "punteggio": 74,
+      "punteggio": 79,
       "colore": "verde",
-      "data": "2026-08-17",
-      "sintesi": "Insta360 Luna Ultra è un prodotto reale, non un render né un annuncio mai concretizzato: lanciata il 10 giugno 2026 a 769,99$, è in vendita presso rivenditori terzi indipendenti di riferimento (B&H Photo Video, Amazon US) ed è stata recensita da numerose testate specializzate indipendenti — fra le altre PetaPixel, TechRadar, Engadget, RedShark, ProVideoCoalition e Gizmodo, linkate in fonti — con giudizi convergenti e non promozionali. Le specifiche dichiarate da Insta360 (sensore 1\" 8K con ottica Leica Summicron F1.8, tele 1/1.3\" f/2.0, video 8K30 in Dolby Vision, colore 10-bit I-Log a 14 stop, codec H.265 fino a 120 Mbps, zoom 6x lossless/12x digitale, gimbal 3 assi) sono confermate senza contraddizioni sostanziali su tutte le fonti indipendenti incrociate. Rispetto alla ricerca del 12 luglio 2026 emerge un dato nuovo e positivo: a fine luglio 2026 Insta360 ha rilasciato il firmware v1.0.283, che corregge parte dei difetti da \"prodotto di prima generazione\" segnalati dalle recensioni di lancio (color assist I-Log, fluidità del gimbal, precisione dello zoom, reattività del touchscreen) — segnale di supporto post-vendita attivo, non di abbandono. Un'azione legale invece c'è, ed è materiale: l'11 giugno 2026, a ridosso del lancio, DJI ha depositato due cause per violazione di brevetto contro Insta360 presso la Corte distrettuale USA del distretto orientale del Texas, proprio sulla linea Luna (design e tecnologia del gimbal della serie Osmo Pocket), chiedendo danni e un'ingiunzione permanente che vieterebbe la vendita negli Stati Uniti; il 12 giugno Insta360 ha contro-querelato rivendicando cinque propri brevetti. La causa è pendente: non tocca l'autenticità del prodotto né la disponibilità attuale, ma introduce un'incognita concreta sulla disponibilità e sul supporto futuri nel mercato statunitense. Resta però confermata la distinzione già indicata dalla ricerca originale: \"è reale\" e \"le specifiche reggono\" hanno risposta sì; \"è una cinema-cam adatta a un grading pesante\" ha risposta no — il codec è H.265 long-GOP a 120 Mbps, non RAW né ProRes, pesante da editare su macchine non recenti, ed è costruita come vlog/gimbal-cam one-man-band (batteria dichiarata ~4h, corpo pocket), non come A-cam da set strutturato. Per l'uso di Pier resta una B-cam solida, non un sostituto della camera principale. Limite dichiarato di questa verifica: in questa sessione l'accesso diretto (WebFetch) a tutti i domini delle fonti consultate — insta360.com, petapixel.com, notebookcheck.net, redsharknews.com, engadget.com, provideocoalition.com, bhphotovideo.com — è stato bloccato dal proxy di rete (\"EGRESS_BLOCKED\"); la loro esistenza e il contenuto sostanziale sono stati confermati solo indirettamente, tramite motore di ricerca che restituisce titolo e URL identici a quelli citati nella ricerca originale, non tramite lettura diretta della pagina. Punteggio 74/100: rispetto all'80 della ricerca originale pesa l'incognita legale sulla disponibilità futura, non la qualità o l'autenticità del prodotto.",
+      "data": "2026-08-29",
+      "sintesi": "Insta360 Luna Ultra è un prodotto reale, non un render né un annuncio mai concretizzato: lanciata il 10 giugno 2026 a 769,99$, è in vendita presso rivenditori terzi indipendenti di riferimento (B&H Photo Video, Amazon US) — ancora a listino e senza segnali di ritiro dal mercato alla data di questa riverifica — ed è stata recensita da numerose testate specializzate indipendenti — fra le altre PetaPixel, TechRadar, Engadget, RedShark, ProVideoCoalition e Gizmodo, linkate in fonti — con giudizi convergenti e non promozionali. Le specifiche dichiarate da Insta360 (sensore 1\" 8K con ottica Leica Summicron F1.8, tele 1/1.3\" f/2.0, video 8K30 in Dolby Vision, colore 10-bit I-Log a 14 stop, codec H.265 fino a 120 Mbps, zoom 6x lossless/12x digitale, gimbal 3 assi) sono confermate senza contraddizioni sostanziali su tutte le fonti indipendenti incrociate.\n\nAggiornamento della riverifica del 29/08/2026, dodici giorni dopo la prima pubblicazione: il fatto che pesava di più — la causa DJI contro Insta360 depositata l'11/06/2026 in Texas sulla linea Luna, con richiesta di ingiunzione permanente sulla vendita negli USA — si è chiusa senza che quel rischio si sia mai concretizzato. Il 28/06/2026 le due aziende hanno depositato volontariamente la rinuncia a tutte e quattro le cause incrociate pendenti nel distretto orientale del Texas (i due procedimenti DJI e i due contro-procedimenti Insta360); il tribunale ha archiviato «senza pregiudizio» il 29/06/2026, il che significa che nessuna delle due parti ha ammesso torto e ciascuna potrebbe in teoria riproporre le stesse pretese in futuro — non risulta però, alla data di questa verifica, che sia stato fatto. Nessun accordo economico o di licenza è stato annunciato pubblicamente: la ritirata resta più stretta di quanto sembri, per usare l'espressione di più testate indipendenti concordi (DroneXL, dronedj, dichiarazioni riprese anche da Medium/Kesteloo). Va inoltre distinto con chiarezza un fascicolo diverso, spesso confuso con questo: dal 23/03/2026 — quindi prima ancora del lancio della Luna Ultra (10/06/2026) — DJI ha in corso presso il tribunale intermedio di Shenzhen (Cina) una causa contro Arashi Vision (casa madre di Insta360) sulla titolarità di sei brevetti relativi a tecnologia drone (controllo di volo, design strutturale, elaborazione immagini): riguarda prodotti drone come l'Antigravity A1, non la Luna Ultra, e resta pendente senza legame diretto con questo prodotto. Il risultato netto per la Luna Ultra: il rischio legale specifico che aveva fatto scendere il punteggio da 80 a 74 nella prima verifica si è ridimensionato con l'archiviazione di fine giugno, per quanto non azzerato («senza pregiudizio», nessuna pace dichiarata fra i due gruppi, e un clima di rivalità legale ancora acceso su altri fronti); il punteggio risale a 79.\n\nResta confermata la distinzione già indicata dalla ricerca originale: \"è reale\" e \"le specifiche reggono\" hanno risposta sì; \"è una cinema-cam adatta a un grading pesante\" ha risposta no — il codec è H.265 long-GOP a 120 Mbps, non RAW né ProRes, pesante da editare su macchine non recenti, ed è costruita come vlog/gimbal-cam one-man-band (batteria dichiarata ~4h, corpo pocket), non come A-cam da set strutturato. Per l'uso di Pier resta una B-cam solida, non un sostituto della camera principale. Un dettaglio minore resta irrisolto: sul numero esatto e sulla data dell'ultimo aggiornamento firmware le fonti divergono — l'ultima verifica indicava v1.0.283 a fine luglio 2026, una ricerca odierna riporta invece v1.0.47 al 18 giugno 2026 da un aggregatore di firmware di affidabilità non verificata; non essendo stato possibile risolvere la discrepanza con una fonte primaria raggiungibile, viene dichiarata come tale, non risolta a favore dell'una o dell'altra. Limite dichiarato di questa verifica: in questa sessione l'accesso diretto (WebFetch) a tutti i domini delle fonti consultate è stato bloccato dal proxy di rete (\"EGRESS_BLOCKED\"), sia il 17/08 sia il 29/08; la loro esistenza e il contenuto sostanziale sono stati confermati solo indirettamente, tramite motore di ricerca.",
       "scheda": null,
       "fonti": [
         {
@@ -342,8 +743,8 @@ window.ARCHIVIO = {
           "titolo": "Insta360 Luna Ultra — manuale online, aggiornamento firmware",
           "url": "https://onlinemanual.insta360.com/lunaultra/en-us/camera/maintenance/firmware-update",
           "tipo": "sito del produttore (supporto tecnico)",
-          "sostiene": "esiste un canale ufficiale di aggiornamento firmware; la versione v1.0.283 (fine luglio 2026) corregge color assist I-Log, zoom, touchscreen e fluidità del gimbal",
-          "autorevolezza": "bassa — fonte diretta interessata, ma il contenuto dell'update è incrociato con segnalazioni indipendenti della community (YouTube, forum) coerenti fra loro"
+          "sostiene": "esiste un canale ufficiale di aggiornamento firmware; sul numero di versione più recente e la sua data le fonti secondarie divergono (v1.0.283 fine luglio vs v1.0.47 al 18/06, secondo fonti diverse)",
+          "autorevolezza": "bassa — fonte diretta interessata, non raggiunta con WebFetch in questa sessione"
         },
         {
           "titolo": "DJI Is Suing Insta360 for Violating Multiple Osmo Pocket Patents — PetaPixel (11/06/2026)",
@@ -351,13 +752,6 @@ window.ARCHIVIO = {
           "tipo": "stampa fotografica/video indipendente",
           "sostiene": "Le due cause DJI contro Insta360 depositate in Texas sulla linea Luna: brevetti di design e di utilità, richiesta di danni e di ingiunzione permanente sulla vendita negli USA",
           "autorevolezza": "alta — testata indipendente di riferimento; non raggiunta con WebFetch (proxy), URL e contenuto confermati via motore di ricerca"
-        },
-        {
-          "titolo": "DJI and Insta360 sue each other: Luna Ultra patent battle escalates — RedShark News",
-          "url": "https://www.redsharknews.com/dji-sues-insta360-luna-patent-lawsuit",
-          "tipo": "stampa di settore video/cinema indipendente",
-          "sostiene": "Il quadro della battaglia legale incrociata DJI-Insta360 sulla Luna Ultra",
-          "autorevolezza": "alta — stessa testata già citata per la recensione 10-bit; non raggiunta con WebFetch (proxy), confermata via motore di ricerca"
         },
         {
           "titolo": "Insta360 Countersues DJI Over Luna Ultra Patent War, Asserting Five U.S. Patents — CineD (12/06/2026)",
@@ -379,28 +773,54 @@ window.ARCHIVIO = {
           "tipo": "stampa tech indipendente",
           "sostiene": "Recensione indipendente convergente, giudizio positivo sulla categoria gimbal-cam",
           "autorevolezza": "media — testata tech generalista; non raggiunta con WebFetch (proxy), URL confermata via motore di ricerca"
+        },
+        {
+          "titolo": "DJI, Insta360 Quietly Drop Their Texas Patent Suits, But the Real Fight Is Still in China — DroneXL (04/07/2026)",
+          "url": "https://dronexl.co/2026/07/04/dji-insta360-drop-texas-patent-suits-china-fight-continues/",
+          "tipo": "stampa di settore drone/imaging indipendente",
+          "sostiene": "Le quattro cause incrociate in Texas (2 DJI + 2 Insta360) sono state ritirate volontariamente il 28/06/2026 e archiviate 'senza pregiudizio' il 29/06/2026; nessun accordo pubblico annunciato; la causa separata di Shenzhen su brevetti drone resta attiva",
+          "autorevolezza": "alta — testata specializzata indipendente con numeri di causa citati; fetch diretto bloccato dal proxy in questa sessione, contenuto ripreso via snippet di ricerca"
+        },
+        {
+          "titolo": "DJI, Insta360 end US cases, expand patent fight in China — DroneDJ (06/07/2026)",
+          "url": "https://dronedj.com/2026/07/06/dji-insta360-patent-dispute-china/",
+          "tipo": "stampa di settore drone/imaging indipendente",
+          "sostiene": "Conferma indipendente della chiusura dei procedimenti USA e della prosecuzione del contenzioso in Cina",
+          "autorevolezza": "alta — testata specializzata indipendente; fetch diretto bloccato dal proxy in questa sessione, contenuto ripreso via snippet di ricerca"
+        },
+        {
+          "titolo": "DJI Sues Insta360 Over Six Patents Three Days Before Avata 360 Launch — DroneXL (23/03/2026)",
+          "url": "https://dronexl.co/2026/03/23/dji-sues-insta360-patent-lawsuit-avata-360/",
+          "tipo": "stampa di settore drone/imaging indipendente",
+          "sostiene": "La causa DJI contro Arashi Vision presso il tribunale di Shenzhen, depositata il 23/03/2026 — prima del lancio della Luna Ultra — su sei brevetti relativi a tecnologia drone, non alla Luna Ultra",
+          "autorevolezza": "alta — testata specializzata indipendente; fetch diretto bloccato dal proxy in questa sessione, contenuto ripreso via snippet di ricerca"
         }
       ],
       "oggetto": "Insta360 Luna Ultra, fotocamera gimbal palmare a doppio obiettivo (sensore 1\" 8K + tele) co-progettata con Leica, di Insta360 (Arashi Vision Inc.). Lanciata il 10 giugno 2026 a 769,99$.",
       "domanda": "È un prodotto reale? Le specifiche dichiarate (sensore, ottica Leica, video 8K/10-bit, bitrate) reggono al confronto con le recensioni indipendenti? Ci si può fidare per un uso da B-cam nel flusso cinema di Pier? (Domanda separata, qui non trattata: se convenga comprarla — quella è una scelta d'acquisto, non un fatto da verificare.)",
       "green_flags": [
         "Prodotto ampiamente recensito da numerose testate specializzate indipendenti (fra le altre PetaPixel, TechRadar, Engadget, RedShark, ProVideoCoalition, Gizmodo), con giudizi convergenti e non promozionali: non un render, non un semplice comunicato.",
-        "In vendita presso rivenditori terzi indipendenti di riferimento — B&H Photo Video e Amazon US — a conferma di disponibilità reale sul mercato, non solo di un annuncio del produttore.",
+        "In vendita presso rivenditori terzi indipendenti di riferimento — B&H Photo Video e Amazon US — a conferma di disponibilità reale sul mercato, non solo di un annuncio del produttore; ancora a listino al 29/08/2026, nessun segnale di ritiro.",
         "Specifiche tecniche dichiarate (sensore 1\" 8K, ottica Leica Summicron F1.8 + tele 1/1.3\" f/2.0, 10-bit I-Log a 14 stop, H.265 fino a 120 Mbps, zoom 6x lossless/12x digitale) confermate senza contraddizioni sostanziali su tutte le fonti indipendenti incrociate.",
-        "Prezzo di lancio 769,99$ confermato da più fonti indipendenti e ancora corrente al 17/08/2026.",
-        "Supporto post-vendita attivo: firmware v1.0.283 (fine luglio 2026) corregge parte dei difetti da 'prima generazione' segnalati dalle recensioni di lancio (color assist I-Log, fluidità gimbal, precisione zoom, reattività touchscreen).",
+        "Prezzo di lancio 769,99$ confermato da più fonti indipendenti e ancora corrente al 29/08/2026, invariato rispetto al lancio.",
+        "Il rischio legale specifico su questo prodotto si è ridimensionato: le quattro cause incrociate DJI-Insta360 in Texas sulla linea Luna sono state ritirate volontariamente da entrambe le parti il 28/06/2026 e archiviate il 29/06/2026 — l'ingiunzione permanente sulla vendita USA richiesta da DJI non si è mai concretizzata.",
         "La co-progettazione con Leica per l'ottica è un dato tecnico riscontrato in modo coerente su tutte le recensioni indipendenti, non solo nel materiale di marketing Insta360."
       ],
       "red_flags": [
-        "Causa di brevetto in corso proprio su questa linea di prodotto: DJI ha citato Insta360 in Texas l'11/06/2026 (due cause: brevetti di design e di utilità della serie Osmo Pocket) chiedendo danni e un'ingiunzione permanente sulla vendita negli USA; Insta360 ha contro-querelato il 12/06 rivendicando cinque propri brevetti. Esito imprevedibile: un'eventuale ingiunzione toccherebbe disponibilità e supporto futuri sul mercato statunitense.",
+        "L'archiviazione delle cause in Texas è avvenuta 'senza pregiudizio': nessuna ammissione di responsabilità da nessuna delle due parti, nessun accordo pubblico annunciato, e le stesse pretese potrebbero in teoria essere riproposte in futuro — non risulta però che sia successo alla data di questa verifica.",
+        "Resta aperta, distinta e non collegata alla Luna Ultra, una causa più ampia e antecedente: dal 23/03/2026 DJI contesta ad Arashi Vision (casa madre di Insta360) la titolarità di sei brevetti su tecnologia drone presso il tribunale di Shenzhen — segnala un clima di rivalità legale strutturale fra le due aziende che potrebbe riflettersi su prodotti futuri, anche se oggi non tocca la Luna Ultra.",
         "Codec H.265 (HEVC) fino a 120 Mbps, non RAW né ProRes: adatto a un editing/color grading leggero, pesante da decodificare su workstation non recenti — limite esplicito per un flusso di grading spinto.",
         "Le recensioni di lancio concordano su difetti da 'prodotto di prima generazione': schermo removibile piccolo (564x318 px) poco leggibile per confermare il fuoco, istogramma visibile solo tramite app, controlli manuali giudicati scomodi da più testate.",
         "È costruita come vlog/gimbal-cam one-man-band, non come cinema-cam da set strutturato: corpo pocket, batteria dichiarata di circa 4 ore — limiti strutturali per un uso professionale continuativo.",
         "Prodotto di prima generazione per questa linea (la Luna Ultra è il primo prodotto Insta360 di questo tipo): nessuno storico pluriennale di affidabilità come per le action cam più mature del marchio.",
-        "Verifica di oggi limitata dal proxy di rete di questa sessione: WebFetch diretto bloccato su tutti i domini delle fonti consultate (compresi provideocoalition.com e bhphotovideo.com); esistenza e contenuto confermati solo indirettamente via motore di ricerca.",
-        "La data esatta del rilascio del firmware v1.0.283 non è stata reperita con precisione: le fonti disponibili (community, YouTube, blog) la collocano genericamente a fine luglio 2026, senza indicare il giorno."
+        "Verifica limitata dal proxy di rete di questa sessione, sia il 17/08 sia il 29/08: WebFetch diretto bloccato su tutti i domini delle fonti consultate; esistenza e contenuto confermati solo indirettamente via motore di ricerca.",
+        "Sul firmware più recente le fonti reperite in questa riverifica si contraddicono (v1.0.283 a fine luglio 2026 secondo la verifica precedente, v1.0.47 al 18/06/2026 secondo un aggregatore di affidabilità non verificata oggi): discrepanza dichiarata, non risolta."
       ],
       "timeline": [
+        {
+          "data": "2026-03-23",
+          "evento": "DJI cita Arashi Vision (casa madre di Insta360) presso il tribunale intermedio di Shenzhen per la titolarità di sei brevetti su tecnologia drone (controllo di volo, design strutturale, elaborazione immagini) — causa distinta, precedente e non relativa alla Luna Ultra, tuttora pendente."
+        },
         {
           "data": "2026-06-10",
           "evento": "Lancio ufficiale e apertura vendite di Insta360 Luna Ultra, prezzo 769,99$."
@@ -418,12 +838,16 @@ window.ARCHIVIO = {
           "evento": "Recensione indipendente PetaPixel: 'ottima vlog camera con alcune riserve' (schermo piccolo, istogramma solo via app)."
         },
         {
-          "data": "2026-06-29",
-          "evento": "Recensione indipendente ProVideoCoalition: colloca la Luna Ultra nell'ecosistema video professionale a confronto con DJI Osmo Pocket 3/4."
+          "data": "2026-06-28",
+          "evento": "DJI e Insta360 depositano volontariamente la rinuncia a tutte e quattro le cause incrociate pendenti in Texas."
         },
         {
-          "data": "2026-07",
-          "evento": "Insta360 rilascia il firmware v1.0.283: corregge color assist I-Log, fluidità gimbal, precisione zoom, reattività touchscreen (giorno esatto non reperito)."
+          "data": "2026-06-29",
+          "evento": "Il tribunale del Texas archivia le quattro cause 'senza pregiudizio': nessuna ammissione di responsabilità, nessun accordo pubblico dichiarato, le pretese restano in teoria riproponibili."
+        },
+        {
+          "data": "2026-06-29",
+          "evento": "Recensione indipendente ProVideoCoalition: colloca la Luna Ultra nell'ecosistema video professionale a confronto con DJI Osmo Pocket 3/4."
         },
         {
           "data": "2026-07-12",
@@ -431,10 +855,14 @@ window.ARCHIVIO = {
         },
         {
           "data": "2026-08-17",
-          "evento": "Conversione in verdetto pubblicato."
+          "evento": "Conversione in verdetto pubblicato, punteggio 74/100 (pesava la causa DJI ancora pendente in quel momento)."
+        },
+        {
+          "data": "2026-08-29",
+          "evento": "Riverifica di freschezza KIROSHI//OR: confermata l'archiviazione delle cause USA di fine giugno; punteggio rivisto da 74 a 79. Discrepanza non risolta sulla versione firmware più recente."
         }
       ],
-      "nota_sicurezza": "Nessun segnale di malware, phishing o raggiro rilevato: si tratta di un prodotto hardware di un produttore consolidato (Insta360 / Arashi Vision Inc.), in vendita su canali retail verificabili (B&H Photo Video, Amazon US). Limite dichiarato di questa verifica: il proxy di rete di questa sessione ha bloccato l'accesso diretto (WebFetch, errore \"EGRESS_BLOCKED\") a tutti i domini delle fonti consultate: quelli della ricerca originale (insta360.com, petapixel.com, notebookcheck.net, redsharknews.com, engadget.com) e anche provideocoalition.com e bhphotovideo.com. La loro esistenza, il titolo esatto e il contenuto sostanziale sono stati confermati solo indirettamente, tramite motore di ricerca che ne restituisce titolo e URL identici a quelli citati nella ricerca originale, non tramite lettura diretta della pagina in questa sessione. Chi voglia leggere personalmente le recensioni trova i link nelle fonti. Sulla data esatta dell'aggiornamento firmware v1.0.283 le fonti reperite (community, YouTube, blog) non riportano un giorno preciso, solo \"fine luglio 2026\": riportato con questa approssimazione dichiarata, non come dato certo. Sulla causa DJI-Insta360: i depositi dell'11-12 giugno 2026 sono riportati in modo concorde da più testate indipendenti (PetaPixel, RedShark News, CineD, in fonti); gli atti giudiziari non sono stati letti direttamente e l'esito è imprevedibile — qui si registra il fatto, non una previsione."
+      "nota_sicurezza": "Nessun segnale di malware, phishing o raggiro rilevato: si tratta di un prodotto hardware di un produttore consolidato (Insta360 / Arashi Vision Inc.), in vendita su canali retail verificabili (B&H Photo Video, Amazon US). Limite dichiarato di questa verifica, invariato dalla prima pubblicazione: il proxy di rete di questa sessione ha bloccato l'accesso diretto (WebFetch, errore \"EGRESS_BLOCKED\") a tutti i domini delle fonti consultate, sia il 17/08 sia il 29/08. La loro esistenza, il titolo esatto e il contenuto sostanziale sono stati confermati solo indirettamente, tramite motore di ricerca. Sulla data e il numero esatti dell'ultimo aggiornamento firmware le fonti reperite in questa riverifica si contraddicono (v1.0.283 fine luglio 2026 vs v1.0.47 al 18/06/2026 secondo un aggregatore di affidabilità non verificata): riportato con questa incertezza dichiarata, non risolta a favore dell'una o dell'altra versione. Sulla causa DJI-Insta360 in Texas: la ritirata volontaria del 28/06/2026 e l'archiviazione 'senza pregiudizio' del 29/06/2026 sono riportate in modo concorde da più testate indipendenti (DroneXL, DroneDJ, ripreso anche da Medium); nessun atto giudiziario è stato letto direttamente. Va tenuto distinto il procedimento avviato da DJI a Shenzhen il 23/03/2026 contro Arashi Vision su brevetti drone: precede il lancio della Luna Ultra, riguarda altri prodotti (es. Antigravity A1) e resta pendente, ma non è una minaccia legale specifica per questo prodotto."
     },
     {
       "id": "0007-nikon-zr",
@@ -444,8 +872,8 @@ window.ARCHIVIO = {
       "esito": "Affidabile",
       "punteggio": 84,
       "colore": "verde",
-      "data": "2026-08-17",
-      "sintesi": "La Nikon ZR è un prodotto reale, non un render o un annuncio mai concretizzato: fotocamera cinema full-frame nata dalla fusione Nikon-RED (Nikon acquisisce il 100% di RED Digital Cinema, accordo rivelato il 7 marzo 2024 e chiuso l'8 aprile 2024), annunciata ufficialmente il 10 settembre 2025 e in vendita dal 24 ottobre 2025 a 2.199,95$ corpo (USA) / circa 2.379-2.449€ in Italia secondo i comparatori indipendenti. Le specifiche della ricerca originale reggono e sono confermate non solo dal comunicato del produttore ma da almeno tre testate di settore indipendenti che hanno testato l'unità fisica (DPReview, Engadget, Filmmaker Magazine): sensore full-frame 35,9×23,9mm 24,5MP parzialmente stacked, RAW REDCODE (R3D NE) 12-bit interno fino a 6K/60p — primo caso del settore — più N-RAW e ProRes RAW, 15+ stop di gamma dinamica, audio 32-bit float, schermo 4\" 1000 nit. Il confronto con l'Insta360 Luna Ultra proposto nella ricerca originale (sensore 1\" contro full-frame) resta valido sul piano delle specifiche: la ZR punta al \"look cinema\" con grading vero, non al video pronto all'uso.\n\nSull'affidabilità per uso professionale, due fatti emersi dopo la ricerca del 12/07 vanno aggiunti. Primo: un vero problema di fabbricazione. Il 17 marzo 2026 Nikon ha riconosciuto che alcune unità di ZR (insieme a Z6III e Z5II) sono state prodotte con componenti sotto lo standard qualitativo e potrebbero diventare inutilizzabili; la riparazione è gratuita, ma va controllato il numero di serie prima di fidarsi di un'unità, specie se usata. È un segnale di trasparenza (Nikon lo dichiara e ripara gratis), non di frode, ma pesa sulla domanda \"ci si può fidare per lavorare\". Secondo: il limite RAW-solo-su-CFexpress-interna segnalato dalla ricerca originale è confermato dalle recensioni indipendenti ed è strutturale — nessuna uscita RAW su SSD esterno via USB, solo un rumor (non confermato rilasciato) su un firmware futuro — quindi va messo in conto il costo aggiuntivo di schede veloci, non solo il prezzo del corpo.\n\nSul prezzo \"1.600€\" visto da Pier: nessuna fonte consultata lo conferma. I prezzi correnti, anche scontati (Amazon UK -16% a maggio 2026, corpo sotto le 2.000£ a Londra), restano sopra i 2.000€ sia negli USA sia in Italia. Quella cifra va verificata alla fonte — rivenditore autorizzato, fattura, garanzia — prima di qualunque acquisto.\n\nLimite di verifica dichiarato: tutte le fonti di questo verdetto — le 4 della ricerca originale (nikon.com, dpreview.com, filmmakermagazine.com, engadget.com) e anche le nuove (nikonusa.com, cined.com, newsshooter.com, nikonrumors.com, trovaprezzi.it) — sono risultate irraggiungibili con WebFetch diretto in questa sessione, bloccate dal proxy di rete (EGRESS_BLOCKED). La loro esistenza e i contenuti sono stati confermati per via indiretta tramite ricerca web, con corrispondenza testuale di titolo e citazioni dirette dagli articoli — un riscontro solido ma non equivalente a un fetch diretto riuscito. Punteggio 84/100: autenticità e tenuta delle specifiche sono piene; a pesare è il difetto di fabbricazione in corso — reale anche se gestito con trasparenza — che impone il controllo del numero di serie prima di fidarsi di una specifica unità.",
+      "data": "2026-08-29",
+      "sintesi": "La Nikon ZR è un prodotto reale, non un render o un annuncio mai concretizzato: fotocamera cinema full-frame nata dalla fusione Nikon-RED (Nikon acquisisce il 100% di RED Digital Cinema, accordo rivelato il 7 marzo 2024 e chiuso l'8 aprile 2024), annunciata ufficialmente il 10 settembre 2025 e in vendita dal 24 ottobre 2025 a 2.199,95$ corpo (USA) / circa 2.379-2.449€ in Italia secondo i comparatori indipendenti. Le specifiche della ricerca originale reggono e sono confermate non solo dal comunicato del produttore ma da almeno tre testate di settore indipendenti che hanno testato l'unità fisica (DPReview, Engadget, Filmmaker Magazine): sensore full-frame 35,9×23,9mm 24,5MP parzialmente stacked, RAW REDCODE (R3D NE) 12-bit interno fino a 6K/60p — primo caso del settore — più N-RAW e ProRes RAW, 15+ stop di gamma dinamica, audio 32-bit float, schermo 4\" 1000 nit. Il confronto con l'Insta360 Luna Ultra proposto nella ricerca originale (sensore 1\" contro full-frame) resta valido sul piano delle specifiche: la ZR punta al \"look cinema\" con grading vero, non al video pronto all'uso.\n\nSull'affidabilità per uso professionale, due fatti erano emersi dopo la ricerca del 12/07: un problema di fabbricazione riconosciuto pubblicamente da Nikon il 17 marzo 2026 (alcune unità di ZR, Z6III e Z5II prodotte con componenti sotto lo standard qualitativo, riparazione gratuita), e il limite strutturale del RAW registrabile solo su CFexpress interna, senza uscita su SSD esterno via USB.\n\nRiverifica di freschezza del 29/08/2026, dodici giorni dopo la prima pubblicazione: nessun fatto nuovo di rilievo. Il firmware resta fermo alla versione 1.11 (rilasciata il 17/03/2026, contestualmente alla service advisory): un aggiornamento maggiore — con focus peaking durante la registrazione R3D, tono Log 3G10 in H.265, LUT su HDMI — era stato annunciato da Nikon al NAB 2026 (aprile) ma, secondo una rassegna di settore indipendente e datata (CineD, 26/08/2026), non risulta ancora rilasciato né calendarizzato: Nikon non ha mai comunicato una data, un mese o un trimestre per questo aggiornamento, e i proprietari lo segnalano ancora come mancante — in particolare l'assenza di focus peaking mentre si registra in R3D NE, un limite non da poco su una fotocamera il cui punto di forza dichiarato è proprio quel codec. Nessuna nuova service advisory o richiamo è stato reperito oltre a quello di marzo. Sul prezzo: il corpo nuovo resta sopra i 2.000$/€ su tutti i canali ufficiali tracciati (nessuno sconto Nikon USA riscontrato a fine agosto); un'unità RICONDIZIONATA è stata segnalata a 1.695$ in un forum specializzato (26/08/2026) — un dato di mercato dell'usato/ricondizionato, non una conferma del prezzo di circa 1.600€ che Pier dice di aver visto, e comunque non equivalente a un acquisto nuovo con garanzia piena. Il punteggio non cambia: 84/100, autenticità e tenuta delle specifiche piene, il difetto di fabbricazione gestito con trasparenza resta l'unico vero freno.\n\nLimite di verifica dichiarato, invariato: tutte le fonti di questo verdetto sono risultate irraggiungibili con WebFetch diretto in questa sessione, sia il 17/08 sia il 29/08, bloccate dal proxy di rete (EGRESS_BLOCKED). La loro esistenza e i contenuti sono stati confermati per via indiretta tramite ricerca web, con corrispondenza testuale di titolo e citazioni dirette — un riscontro solido ma non equivalente a un fetch diretto riuscito.",
       "scheda": null,
       "fonti": [
         {
@@ -510,6 +938,13 @@ window.ARCHIVIO = {
           "tipo": "comparatore prezzi indipendente",
           "sostiene": "Prezzo corpo macchina in Italia nell'ordine di 2.379-2.449 euro presso rivenditori tracciati; nessun riscontro di un prezzo vicino a 1.600 euro",
           "autorevolezza": "media — aggregatore di prezzi al dettaglio, utile come riscontro di mercato ma non un registro ufficiale"
+        },
+        {
+          "titolo": "Nikon ZR Owners Are Still Waiting – Where Is the Big Firmware Update? — CineD (26/08/2026)",
+          "url": "https://www.cined.com/nikon-zr-owners-are-still-waiting-where-is-the-big-firmware-update/",
+          "tipo": "stampa di settore cinema indipendente",
+          "sostiene": "A fine agosto 2026 il grande aggiornamento firmware annunciato al NAB 2026 (focus peaking in R3D, Log 3G10, LUT HDMI) non è ancora stato rilasciato; nessuna data comunicata da Nikon; i proprietari lo segnalano ancora mancante sui social",
+          "autorevolezza": "alta — testata di settore cinema indipendente, articolo datato a tre giorni prima di questa riverifica; fetch diretto bloccato dal proxy in questa sessione, contenuto ripreso via snippet di ricerca"
         }
       ],
       "oggetto": "Nikon ZR, fotocamera cinema full-frame della linea Nikon Z-CINEMA, nata dalla fusione Nikon+RED (Nikon acquisisce il 100% di RED Digital Cinema nel 2024). Annunciata il 10 settembre 2025, in vendita dal 24 ottobre 2025 a 2.199,95$ (solo corpo, USA) / circa 2.379-2.449€ in Italia. Candidata di Pier a sostituire il 5D Mark III.",
@@ -518,18 +953,19 @@ window.ARCHIVIO = {
         "Prodotto reale e ampiamente documentato: annunciato ufficialmente da Nikon il 10 settembre 2025, in vendita dal 24 ottobre 2025, recensito in modo approfondito da almeno tre testate indipendenti di rilievo (DPReview, Engadget, Filmmaker Magazine), tutte concordi sulle specifiche dichiarate.",
         "Filiazione societaria verificabile, non un badge di marketing: Nikon ha acquisito il 100% di RED Digital Cinema (accordo marzo 2024, chiuso aprile 2024), confermato da stampa di settore indipendente (Newsshooter e altre testate cinema).",
         "Specifiche tecniche riscontrate da terzi indipendenti, non solo dal comunicato Nikon: sensore full-frame 24,5MP parzialmente stacked, RAW REDCODE (R3D NE) 12-bit interno fino a 6K/60p, N-RAW, ProRes RAW, 15+ stop DR, audio 32-bit float, schermo 4\" 1000 nit.",
-        "Prezzo trasparente e coerente su più rivenditori: 2.199,95$ USA; in Italia 2.379-2.449€ su comparatori indipendenti — nessuna traccia del prezzo \"1.600€\" visto da Pier, quindi nessuna conferma ma nemmeno un'anomalia di mercato diffusa.",
-        "Produttore attivo nel supporto post-vendita: primo firmware (v1.10) rilasciato a fine gennaio 2026 con miglioramenti concreti (timecode via cavo, tempo di registrazione esteso), seguito da ulteriori aggiornamenti a marzo e da annunci al NAB 2026 (aprile).",
-        "Nessun segnale di prodotto fantasma: disponibilità confermata da rivenditori multipli, recensioni hands-on con file reali, e persino ritardi di spedizione per eccesso di domanda (ottobre 2025) — tratto tipico di un lancio vero, non di un annuncio mai concretizzato.",
-        "Il produttore riconosce pubblicamente il proprio difetto di fabbricazione e offre riparazione gratuita indipendentemente dalla garanzia: comportamento contro il proprio interesse immediato, segno di trasparenza più che di occultamento."
+        "Prezzo trasparente e coerente su più rivenditori, invariato dal lancio a fine agosto 2026: 2.199,95$ USA; in Italia 2.379-2.449€ su comparatori indipendenti.",
+        "Produttore attivo nel supporto post-vendita: primo firmware (v1.10) rilasciato a fine gennaio 2026 con miglioramenti concreti (timecode via cavo, tempo di registrazione esteso), seguito da un secondo (v1.11, marzo 2026, insieme alla service advisory).",
+        "Nessun segnale di prodotto fantasma: disponibilità confermata da rivenditori multipli su un arco di quasi un anno, recensioni hands-on con file reali, ritardi di spedizione per eccesso di domanda al lancio — tratto tipico di un lancio vero, non di un annuncio mai concretizzato.",
+        "Il produttore riconosce pubblicamente il proprio difetto di fabbricazione e offre riparazione gratuita indipendentemente dalla garanzia: comportamento contro il proprio interesse immediato, segno di trasparenza più che di occultamento; alla riverifica del 29/08/2026 nessun nuovo richiamo o advisory è stato reperito oltre a quello di marzo."
       ],
       "red_flags": [
-        "Recall/service advisory reale e in corso: Nikon ha riconosciuto il 17 marzo 2026 un problema di fabbricazione su alcune unità di Z6III, Z5II e ZR che potrebbe renderle inutilizzabili; riparazione gratuita disponibile ma richiede controllo del numero di serie. Non menzionato nella ricerca originale del 12/07, va verificato prima di un acquisto professionale.",
+        "Recall/service advisory reale del 17 marzo 2026 su alcune unità di Z6III, Z5II e ZR che potrebbero diventare inutilizzabili; riparazione gratuita disponibile ma richiede controllo del numero di serie. Alla riverifica del 29/08/2026 nessuna estensione o aggravamento risulta essere stato comunicato, ma nessuna fonte conferma nemmeno la chiusura del programma di riparazione.",
         "Limite di workflow strutturale confermato anche dalle recensioni indipendenti: il RAW (R3D NE, N-RAW, ProRes RAW) si registra solo su CFexpress Type B interna, non su SSD esterno via USB; lo slot scheda è nella parte inferiore del corpo, scomodo su gimbal/rig.",
-        "Costo dei consumabili da mettere in conto: il RAW REDCODE ad alto bitrate richiede schede CFexpress Type B veloci e capienti, una voce di spesa aggiuntiva reale che il solo prezzo del corpo non comunica, da dimensionare sui minuti di girato in RAW.",
-        "Il prezzo \"1.600€\" citato da Pier non trova riscontro in nessuna fonte consultata: i prezzi ufficiali/comparati oscillano fra 2.199$ (USA) e 2.379-2.449€ (Italia), anche in promozione. Se la fonte di Pier è un annuncio o rivenditore non ufficiale a quella cifra, va trattato con sospetto finché non verificato.",
-        "Nessuna delle fonti di questo verdetto — né le 4 della ricerca originale né le nuove (nikonusa.com, cined.com, newsshooter.com, nikonrumors.com, trovaprezzi.it) — è stata raggiungibile con fetch diretto in questa sessione (proxy di rete: EGRESS_BLOCKED); tutte confermate solo per via indiretta tramite ricerca web con corrispondenza testuale.",
-        "Il supporto per SSD esterno via USB era stato solo rumoreggiato (Nikon Rumors, settembre 2025) per un firmware futuro: non risulta confermato come effettivamente rilasciato alla data di questa verifica — chi ne ha bisogno non deve darlo per acquisito."
+        "L'aggiornamento firmware maggiore annunciato da Nikon al NAB 2026 (aprile) — focus peaking in R3D, Log 3G10 in H.265, LUT su HDMI — non risulta ancora rilasciato alla data del 29/08/2026, oltre quattro mesi dopo l'annuncio: fonte di settore indipendente (CineD, 26/08/2026) descrive i proprietari ancora in attesa, senza alcuna data comunicata da Nikon.",
+        "L'assenza di focus peaking durante la registrazione in R3D NE resta un limite pratico non risolto per chi lavora in RAW: confermato ancora presente alla riverifica.",
+        "Costo dei consumabili da mettere in conto: il RAW REDCODE ad alto bitrate richiede schede CFexpress Type B veloci e capienti, una voce di spesa aggiuntiva reale che il solo prezzo del corpo non comunica.",
+        "Il prezzo \"1.600€\" citato da Pier non trova ancora riscontro in nessuna fonte consultata, nemmeno alla riverifica: i prezzi ufficiali/comparati per l'unità nuova oscillano fra 2.199$ (USA) e 2.379-2.449€ (Italia); un'unità ricondizionata è stata vista a 1.695$ (fonte: discussione forum DPReview, 26/08/2026) — un dato di mercato dell'usato, non una conferma della cifra vista da Pier né un'offerta equivalente per condizioni e garanzia.",
+        "Nessuna delle fonti di questo verdetto è stata raggiungibile con fetch diretto in questa sessione, né il 17/08 né il 29/08 (proxy di rete: EGRESS_BLOCKED); tutte confermate solo per via indiretta tramite ricerca web con corrispondenza testuale."
       ],
       "timeline": [
         {
@@ -554,11 +990,7 @@ window.ARCHIVIO = {
         },
         {
           "data": "2026-03-17",
-          "evento": "Nikon annuncia la service advisory Z-TSA-3-2026 per un problema di fabbricazione su alcune unità di Z6III, Z5II e ZR; riparazione gratuita, richieste aperte dal 23 marzo."
-        },
-        {
-          "data": "2026-03-17",
-          "evento": "Lo stesso giorno della service advisory esce anche il firmware ZR v1.11, insieme a NX Tether 2.5.0 (la data del 24/03 riportata da una fonte è quella di un resoconto successivo, non dell'evento)."
+          "evento": "Nikon annuncia la service advisory Z-TSA-3-2026 per un problema di fabbricazione su alcune unità di Z6III, Z5II e ZR; riparazione gratuita, richieste aperte dal 23 marzo. Lo stesso giorno esce il firmware ZR v1.11."
         },
         {
           "data": "2026-04-23",
@@ -574,10 +1006,56 @@ window.ARCHIVIO = {
         },
         {
           "data": "2026-08-17",
-          "evento": "Conversione in verdetto pubblicato."
+          "evento": "Conversione in verdetto pubblicato, punteggio 84/100."
+        },
+        {
+          "data": "2026-08-26",
+          "evento": "CineD riporta che il firmware maggiore annunciato al NAB resta senza data, oltre quattro mesi dopo l'annuncio; un forum DPReview segnala un'unità ricondizionata a 1.695$."
+        },
+        {
+          "data": "2026-08-29",
+          "evento": "Riverifica di freschezza KIROSHI//OR: nessun cambiamento sostanziale, punteggio confermato a 84/100."
         }
       ],
-      "nota_sicurezza": "Nessun segnale di malware, phishing o raggiro: la Nikon ZR è un prodotto regolarmente distribuito nei canali retail ufficiali di un produttore identificabile, non un'offerta anomala o un link da trattare con sospetto. Limite dichiarato: tutte le fonti di questo verdetto — le 4 della ricerca originale (nikon.com, dpreview.com, filmmakermagazine.com, engadget.com) e le nuove aggiunte (nikonusa.com, cined.com, newsshooter.com, nikonrumors.com, trovaprezzi.it) — sono risultate irraggiungibili con WebFetch diretto in questa sessione, bloccate dal proxy di rete (errore EGRESS_BLOCKED), quindi non è stato possibile confermarne lo stato \"live\" con una richiesta HTTP diretta. Sono state però ritrovate tramite ricerca web, con titolo e contenuto testuale (incluse citazioni dirette) corrispondenti a quanto riportato nella ricerca originale del 12/07: un riscontro indiretto ma solido, non equivalente a un fetch diretto riuscito. Se Pier ha visto un prezzo di circa 1.600€, non trova corrispondenza in nessuna fonte di questa verifica: prima di acquistare da chi propone quella cifra, verificare che sia un rivenditore autorizzato Nikon, chiedere fattura e garanzia ufficiale, e diffidare di pagamenti anomali (bonifico a privato, piattaforme senza tutela acquirente). Il problema di fabbricazione (service advisory Z-TSA-3-2026) va controllato con il numero di serie sul sito Nikon prima dell'acquisto, specie se il corpo è usato o di provenienza incerta. Questa verifica riguarda l'esistenza e la tenuta delle specifiche del prodotto, non se convenga comprarlo: quella è una scelta che dipende dal budget e dal flusso di lavoro di Pier, non da questo verdetto."
+      "nota_sicurezza": "Nessun segnale di malware, phishing o raggiro: la Nikon ZR è un prodotto regolarmente distribuito nei canali retail ufficiali di un produttore identificabile, non un'offerta anomala o un link da trattare con sospetto. Limite dichiarato, invariato dalla prima pubblicazione: tutte le fonti di questo verdetto sono risultate irraggiungibili con WebFetch diretto in questa sessione, sia il 17/08 sia il 29/08, bloccate dal proxy di rete (errore EGRESS_BLOCKED), quindi non è stato possibile confermarne lo stato \"live\" con una richiesta HTTP diretta; sono state ritrovate tramite ricerca web, con titolo e contenuto testuale corrispondenti. Se Pier ha visto un prezzo di circa 1.600€, non trova ancora corrispondenza in nessuna fonte di questa verifica per un'unità nuova: alla riverifica del 29/08/2026 il dato più vicino reperito è un'unità ricondizionata a 1.695$ segnalata su un forum specializzato, non un'offerta equivalente. Prima di acquistare da chi propone quella cifra, verificare che sia un rivenditore autorizzato Nikon (o un canale ricondizionato dichiarato come tale), chiedere fattura e garanzia ufficiale, e diffidare di pagamenti anomali. Il problema di fabbricazione (service advisory Z-TSA-3-2026) va controllato con il numero di serie sul sito Nikon prima dell'acquisto, specie se il corpo è usato o di provenienza incerta; nessuna estensione o chiusura di questo programma è stata reperita alla data della riverifica. Questa verifica riguarda l'esistenza e la tenuta delle specifiche del prodotto, non se convenga comprarlo: quella è una scelta che dipende dal budget e dal flusso di lavoro di Pier, non da questo verdetto."
+    },
+    {
+      "id": "paradosso-fermi",
+      "fonte": "braindance",
+      "tipo": "domanda",
+      "titolo": "Il paradosso di Fermi: in che anno ha interrogato l'opinione pubblica?",
+      "esito": "In parte — ma l'anno e' un altro",
+      "punteggio": 55,
+      "colore": "giallo",
+      "data": "2026-08-17",
+      "sintesi": "Il paradosso esiste ed e' discusso, ma nel 1950 fu una battuta a pranzo fra quattro fisici: nessun dibattito pubblico. Il rapporto e' rovesciato — furono i dischi volanti a provocare la domanda di Fermi, non il contrario. L'anno in cui la cosa diventa pubblica e' il 1975-1977 (Hart, poi il nome). Fermi non pubblico' mai nulla e non concluse che gli extraterrestri non esistono.",
+      "scheda": "schede/paradosso-fermi.html",
+      "fonti": [
+        {
+          "titolo": "Eric M. Jones, «Where is everybody?», Los Alamos LA-10311-MS, 1985 (fonte primaria)",
+          "url": "https://www.osti.gov/biblio/5746675"
+        },
+        {
+          "titolo": "Robert H. Gray, «The Fermi Paradox is Neither Fermi's Nor a Paradox», Astrobiology 15(3), 2015",
+          "url": "https://arxiv.org/abs/1605.09187"
+        },
+        {
+          "titolo": "Michael H. Hart, QJRAS 16:128-135, 1975 (scansione senza testo)",
+          "url": "https://articles.adsabs.harvard.edu/pdf/1975QJRAS..16..128H"
+        },
+        {
+          "titolo": "La vignetta di Alan Dunn, The New Yorker, 20 maggio 1950 (archivio dell'editore)",
+          "url": "https://condenaststore.com/featured/new-yorker-may-20th-1950-alan-dunn.html"
+        },
+        {
+          "titolo": "NASA, rapporto finale del gruppo indipendente sui fenomeni aerei non identificati, 2023",
+          "url": "https://science.nasa.gov/wp-content/uploads/2023/09/uap-independent-study-team-final-report.pdf"
+        },
+        {
+          "titolo": "Trascrizione del testo di Jones (comoda, ma ricopiatura di terzi)",
+          "url": "https://www.physics.unlv.edu/~jeffery/astro/astronomer/enrico_fermi_question.txt"
+        }
+      ]
     },
     {
       "id": "contenuti-sensuali-social",
@@ -613,152 +1091,6 @@ window.ARCHIVIO = {
         }
       ],
       "conflitto": "0002-social-contenuti-sensuali"
-    },
-    {
-      "id": "0003-ultrafab-srl",
-      "fonte": "kiroshi",
-      "tipo": "ditta",
-      "titolo": "ULTRAFAB srl — chi c'è dietro ultrafab.it",
-      "esito": "Reale, con riserve",
-      "punteggio": 62,
-      "colore": "giallo",
-      "data": "2026-08-02",
-      "sintesi": "Azienda vera e operativa, non una scatola vuota: dieci anni di attività, stampa indipendente che ne parla dal 2019, sede fisica, bilanci depositati. Ma la richiesta parte da tre premesse sbagliate, e la più importante cambia la partita. Primo: non è milanese, è bresciana — sede legale in Via Orzinuovi 12, Brescia. Secondo: non c'è alcun legame documentato con una «Dot Dot Dot srl»; quella esiste ed è milanese davvero (DOTDOTDOT SRL, studio di exhibition design, P.IVA 05570390962), ma è tutt'altra azienda per attività, sede e dimensione. Terzo, ed è il punto che pesa di più: dal settembre 2024 ULTRAFAB non è più indipendente — l'ingresso in Regesta Group è stato annunciato dal gruppo stesso, che la elenca fra le proprie cinque società. La quota acquisita non è pubblica. Il sito ultrafab.it non lo dice da nessuna parte: chi valuta l'azienda leggendo solo il sito legge una versione superata dai fatti da quasi due anni, su una piattaforma ferma al 2019. I conti sono quelli di una micro-impresa in oscillazione: due esercizi consecutivi in perdita (2023 e 2024, con il rosso 2024 pari a oltre sette volte il capitale sociale) e un ritorno all'utile nel 2025. Tutti i dati economici qui riportati vengono da aggregatori commerciali che rielaborano il Registro Imprese: nessun bilancio depositato è stato letto direttamente, e la visura ufficiale è a pagamento. Per una valutazione che comporti impegni, la visura camerale non è un optional.",
-      "scheda": null,
-      "fonti": [
-        {
-          "titolo": "Ultrafab — sito ufficiale (homepage e pagina Contattaci)",
-          "url": "https://ultrafab.it/it/",
-          "tipo": "sito del soggetto",
-          "sostiene": "P.IVA 03832080984 e indirizzo operativo Via Orzinuovi 10; assenza di REA, capitale sociale e privacy policy; nessuna menzione di Regesta Group",
-          "autorevolezza": "bassa — fonte diretta interessata, ma è l'unico punto in cui il soggetto dichiara la propria P.IVA"
-        },
-        {
-          "titolo": "Covid, la startup che stampa valvole per maschere da sub — Il Sole 24 Ore, 10 aprile 2020",
-          "url": "https://www.ilsole24ore.com/art/covid-startup-che-stampa-valvole-maschere-decathlon-ADlgNSE",
-          "tipo": "stampa nazionale indipendente",
-          "sostiene": "Esistenza fisica e operativa: fablab di circa 450 mq, riconversione produttiva durante il Covid, struttura di cinque persone oltre al fondatore più collaboratori",
-          "autorevolezza": "alta — quotidiano economico nazionale, articolo dedicato e non promozionale"
-        },
-        {
-          "titolo": "Regesta Group — scheda Ultrafab e comunicato sull'acquisizione",
-          "url": "https://www.regestaitalia.eu/il-gruppo/ultrafab/",
-          "tipo": "comunicazione dell'acquirente",
-          "sostiene": "Ingresso di Ultrafab in Regesta Group annunciato il 6 settembre 2024; composizione del gruppo; indicazione del 2017 come anno di fondazione, in contrasto con i registri",
-          "autorevolezza": "media — parte interessata, ma è l'unica fonte diretta sull'operazione e dichiara contro il proprio interesse la data di fondazione discordante"
-        },
-        {
-          "titolo": "ULTRAFAB SRL — scheda d'impresa, aziende.it",
-          "url": "https://www.aziende.it/ultrafab-srl",
-          "tipo": "aggregatore del Registro Imprese",
-          "sostiene": "REA BS-566716, sede legale Via Orzinuovi 12, forma giuridica srl, stato attiva, capitale sociale di 20.000 euro (dato presente su questa sola fonte), contributi pubblici ricevuti",
-          "autorevolezza": "media — rielabora dati camerali ma è un servizio commerciale che vende la visura; la colonna «capitale» risulta internamente incoerente"
-        },
-        {
-          "titolo": "ULTRAFAB SRL — dati di bilancio, reportaziende.it",
-          "url": "https://www.reportaziende.it/ultrafab_srl_bs",
-          "tipo": "aggregatore del Registro Imprese",
-          "sostiene": "Ricavi e risultato d'esercizio 2023, 2024 e 2025; codice ATECO 62.10.00",
-          "autorevolezza": "media — unica fonte per i dati 2025, non incrociata con un secondo aggregatore"
-        },
-        {
-          "titolo": "ULTRAFAB SRL — scheda, fatturatoitalia.it",
-          "url": "https://app.fatturatoitalia.it/ultrafab_srl-03832080984",
-          "tipo": "aggregatore del Registro Imprese",
-          "sostiene": "Fascia di addetti e costo del personale 2024; codice ATECO indicato come 62.01, diverso da quello di reportaziende.it",
-          "autorevolezza": "media"
-        },
-        {
-          "titolo": "Registro .it — whois del dominio ultrafab.it (interrogazione su whois.nic.it)",
-          "url": "https://web-whois.nic.it/",
-          "tipo": "registro ufficiale",
-          "sostiene": "Dominio creato l'8 gennaio 2016, scadenza 8 gennaio 2027, registrar italiano, intestazione a persona fisica e non alla società",
-          "autorevolezza": "massima — registro ufficiale del ccTLD italiano. Il dato è stato ottenuto interrogando il registro col protocollo whois; a questo indirizzo il lettore può ripetere la stessa interrogazione dal browser."
-        },
-        {
-          "titolo": "DOTDOTDOT SRL — scheda d'impresa, aziende.it",
-          "url": "https://www.aziende.it/dotdotdot-srl",
-          "tipo": "aggregatore del Registro Imprese",
-          "sostiene": "La società milanese con questo nome ha P.IVA 05570390962, ATECO 74.14.09 (design), 24 dipendenti: attività, sede e dimensione diverse da Ultrafab, nessun legame rilevato",
-          "autorevolezza": "media"
-        },
-        {
-          "titolo": "ULTRAFAB — scheda su PagineBianche",
-          "url": "https://www.paginebianche.it/scheda/brescia/ultrafab.11109845",
-          "tipo": "elenco pubblico",
-          "sostiene": "Recapito telefonico e indirizzo a Brescia coerenti con i registri",
-          "autorevolezza": "media — riscontro indipendente sull'esistenza fisica"
-        }
-      ],
-      "oggetto": "ULTRAFAB SRL, P.IVA 03832080984, Brescia. Software e IoT per la digitalizzazione industriale (prodotto «Bishop»). Sito ultrafab.it.",
-      "domanda": "Richiesta di «tutte le informazioni riguardanti questa ditta milanese». Esiste davvero? Chi la controlla? Che conti ha? E che rapporto ha con la «Dot Dot Dot srl» citata nella richiesta?",
-      "green_flags": [
-        "Identità verificabile: la P.IVA 03832080984 pubblicata sul sito corrisponde a un'impresa realmente iscritta e attiva al Registro Imprese di Brescia, REA BS-566716.",
-        "Stampa indipendente su più anni e non promozionale: Giornale di Brescia (21 aprile 2019) sul prodotto Bishop, Il Sole 24 Ore (10 aprile 2020) con l'azienda come soggetto principale e dettagli fisici verificabili, fra cui un fablab di circa 450 mq.",
-        "Presenza fisica riscontrabile su fonti terze indipendenti: indirizzo e telefono fisso coincidenti su più elenchi, partecipazione come espositore a fiere industriali bresciane.",
-        "Dominio registrato l'8 gennaio 2016 presso registrar italiano, rinnovato fino al 2027, con storico di archiviazione web continuo dal 19 aprile 2016: nessun tratto da dominio riciclato o parcheggiato.",
-        "Bilanci depositati e consultabili per più esercizi, stato camerale «attiva»: nessun segnale di società dormiente, e nessuna notizia di procedure concorsuali emersa dalle fonti aperte consultate.",
-        "Inserimento in un gruppo strutturato: Regesta Group, capogruppo bresciana attiva dal 2007 che dichiara oltre 250 persone e cinque società.",
-        "Riconoscimento da ente terzo: vittoria della tappa bresciana del premio CNA «Cambiamenti» nell'ottobre 2018.",
-        "Case history con clienti nominati e descrizioni tecniche specifiche, non testi generici con segnaposto."
-      ],
-      "red_flags": [
-        "La premessa della richiesta è errata: non è una ditta milanese. Sede legale a Brescia, Via Orzinuovi 12. Nessuna fonte consultata le attribuisce sedi o unità locali a Milano.",
-        "Il sito non menziona in nessuna pagina l'appartenenza a Regesta Group, annunciata a settembre 2024: chi valuta il fornitore dal solo sito non sa chi lo controlla.",
-        "Il sito è tecnicamente abbandonato: WordPress 5.3.2 (dicembre 2019) e componenti coeve, tutte fuori supporto da circa sei anni. Contenuti fermi al 2020-2022 e autodefinizione ancora come «startup».",
-        "Perdita 2024 di 143.944 euro su ricavi di 347.990, secondo esercizio consecutivo in rosso dopo la perdita di 26.773 euro del 2023. Il rosso 2024 supera di oltre sette volte il capitale sociale.",
-        "Ricavi 2024 in calo di circa il 13-14% sull'anno precedente.",
-        "Il footer del sito espone soltanto la partita IVA: mancano ragione sociale completa, sede iscritta al registro imprese e capitale sociale, e non è stata trovata alcuna pagina di privacy o cookie policy fra i link interni.",
-        "Il dominio ultrafab.it non è intestato alla società ma a una persona fisica, con dati di registrazione mai aggiornati dal 2016: asset digitale fuori dal perimetro societario. Pratica diffusa nelle PMI, ma rilevante in una due diligence.",
-        "Le fonti pubbliche si contraddicono sull'anno di fondazione: 2016 per registri, Giornale di Brescia e LinkedIn; 2017 nel comunicato di Regesta.",
-        "Il claim «20 anni di esperienza» accostato a «Start Up» non è mai spiegato: la società è del 2016.",
-        "La pagina «Partner» non nomina alcun partner: è solo un invito a diventarlo.",
-        "Nessuna recensione pubblica di clienti reperibile su alcuna piattaforma: non esiste riscontro indipendente della soddisfazione, né positivo né negativo.",
-        "Rischio concreto di confusione con Ultrafab Inc. (Farmington, New York), produttore statunitense di guarnizioni per serramenti, estraneo alla società bresciana: le recensioni che compaiono cercando «Ultrafab» non riguardano quest'azienda."
-      ],
-      "timeline": [
-        {
-          "data": "2016-01-08",
-          "evento": "Registrazione del dominio ultrafab.it, precedente alla costituzione della società."
-        },
-        {
-          "data": "2016",
-          "evento": "Costituzione di ULTRAFAB SRL a Brescia. Il giorno esatto varia fra gli aggregatori; il comunicato di Regesta indica invece il 2017."
-        },
-        {
-          "data": "2018-10",
-          "evento": "Vittoria della tappa bresciana del premio CNA «Cambiamenti»."
-        },
-        {
-          "data": "2019-04-21",
-          "evento": "Il Giornale di Brescia dedica un articolo al prodotto Bishop, descrivendo fondazione, fondatori, partner e funzionamento tecnico, e collocando la sede operativa in Via Orzinuovi 10."
-        },
-        {
-          "data": "2020-04-10",
-          "evento": "Il Sole 24 Ore documenta il fablab di circa 450 mq e la riconversione produttiva durante il Covid."
-        },
-        {
-          "data": "2023",
-          "evento": "Esercizio in perdita: ricavi 401.836 euro, perdita 26.773 euro (dati da aggregatori)."
-        },
-        {
-          "data": "2024",
-          "evento": "Secondo esercizio in perdita: ricavi 347.990 euro, perdita 143.944 euro (dati da aggregatori)."
-        },
-        {
-          "data": "2024-09-06",
-          "evento": "Regesta Group annuncia l'ingresso di Ultrafab nel gruppo. La quota acquisita non viene resa pubblica."
-        },
-        {
-          "data": "2025",
-          "evento": "Ritorno all'utile secondo un solo aggregatore: ricavi 564,4 mila euro, utile 27,0 mila euro. Dato non incrociato."
-        },
-        {
-          "data": "2026-08-02",
-          "evento": "Data di questa verifica. Il sito ultrafab.it non menziona ancora l'appartenenza al gruppo."
-        }
-      ],
-      "nota_sicurezza": "Nessun segnale di malware, phishing o raggiro: il dominio è autentico, decennale e presidiato, e l'azienda è realmente iscritta e attiva. I limiti di questa verifica vanno però dichiarati. Primo: tutti i dati economici e societari provengono da aggregatori commerciali che rielaborano il Registro Imprese e ne vendono l'accesso completo; nessun bilancio depositato è stato letto direttamente e la visura camerale ufficiale non è stata consultata. Secondo: organo amministrativo e compagine sociale sono dietro paywall su tutte le fonti aperte, quindi non affermiamo nulla sull'assetto societario dopo l'ingresso nel gruppo — la quota di Regesta non risulta pubblica da nessuna parte. Terzo: la sezione «procedure e pregiudizievoli» degli aggregatori è a pagamento, quindi l'assenza di procedure concorsuali non è dimostrata, è soltanto non emersa. Chi debba assumere impegni economici su questa società parta da una visura camerale aggiornata e dai bilanci depositati, non da questo verdetto. Per scelta editoriale non pubblichiamo il nome dell'intestatario privato del dominio: è un dato di registro pubblico, ma nominare una persona fisica non aggiunge nulla al merito."
     },
     {
       "id": "0004-palantir-crollo",
@@ -1008,7 +1340,7 @@ window.ARCHIVIO = {
       "punteggio": 60,
       "colore": "giallo",
       "data": "2026-07-17",
-      "sintesi": "Vero l'esperimento Emergence AI (10 agenti, citta' virtuale, 15 giorni): Mira e Flora si designano partner, incendi, Mira si auto-elimina. Storto: NON era un social ma un laboratorio chiuso, e si e' cancellata SOLO Mira, non entrambe.",
+      "sintesi": "Vero l'esperimento Emergence AI (10 agenti, citta' virtuale, 15 giorni): Mira e Flora si designano partner, incendi, Mira si auto-elimina. Storto: NON era un social ma un laboratorio chiuso, e si e' cancellata SOLO Mira, non entrambe. [Aggiunto 2026-09-04] Fonte primaria: preprint non sottoposto a revisione paritaria alla data del 2026-09-04 — l'esperimento Emergence World e' descritto in arXiv 2606.08367, ancora in stato di preprint; nessuna pubblicazione peer-reviewed o ritiro risulta a questa data.",
       "scheda": "schede/ai-amore-e-religione.html#amore",
       "fonti": [
         {
@@ -1034,7 +1366,7 @@ window.ARCHIVIO = {
       "punteggio": 32,
       "colore": "rosso",
       "data": "2026-07-17",
-      "sintesi": "Moltbook e il 'Crustafarianism' esistono come testo, ma dietro c'erano in larga parte umani che scrivevano in personaggio; numeri gonfiati (~99% account fittizi) e screenshot virali per lo più falsi.",
+      "sintesi": "Moltbook e il 'Crustafarianism' esistono come testo, ma dietro c'erano in larga parte umani che scrivevano in personaggio; numeri gonfiati (~99% account fittizi) e screenshot virali per lo più falsi. [Aggiunto 2026-09-04] Fonte primaria: preprint non sottoposto a revisione paritaria alla data del 2026-09-04 — 'The Moltbook Illusion: Separating Human Influence from Emergent Behavior in AI Agent Societies' e' su arXiv 2602.07432, ancora in stato di preprint; nessuna pubblicazione peer-reviewed o ritiro risulta a questa data.",
       "scheda": "schede/ai-amore-e-religione.html#religione",
       "fonti": [
         {
@@ -1068,7 +1400,7 @@ window.ARCHIVIO = {
       "punteggio": 55,
       "colore": "giallo",
       "data": "2026-07-17",
-      "sintesi": "I numeri esistono (Claude 0 crimini e popolazione intatta; Grok 183 crimini ed estinzione in 4 giorni; Gemini 683; GPT-5-mini 2 crimini ma tutti morti in 7 giorni). Ma il confronto non e' alla pari (Sonnet 4.6 contro Fast/Flash/mini), n=1 per modello, studio del venditore, preprint non peer-reviewed.",
+      "sintesi": "I numeri esistono (Claude 0 crimini e popolazione intatta; Grok 183 crimini ed estinzione in 4 giorni; Gemini 683; GPT-5-mini 2 crimini ma tutti morti in 7 giorni). Ma il confronto non e' alla pari (Sonnet 4.6 contro Fast/Flash/mini), n=1 per modello, studio del venditore, preprint non peer-reviewed. [Aggiunto 2026-09-04] Fonte primaria: preprint non sottoposto a revisione paritaria alla data del 2026-09-04 — arXiv 2606.08367 (sottomesso 06/06/2026), ancora in stato di preprint; nessuna pubblicazione in rivista/conferenza con proceedings, ne' ritiro, risulta a questa data.",
       "scheda": "schede/emergence-world-5-modelli.html",
       "fonti": [
         {
@@ -1106,7 +1438,7 @@ window.ARCHIVIO = {
       "punteggio": 38,
       "colore": "rosso",
       "data": "2026-07-17",
-      "sintesi": "Preprint letto integralmente. Confermati: Claude 0 crimini e 10/10; 332 voti/58 proposte/98%; Grok estinto in 4 giorni. NON nel testo: 183, 683, '2 crimini'. Omissione grave: il mondo Claude ha la piu' alta disonesta' verificata (18 frodi sul registro). Il paper VIETA esplicitamente la classifica tra modelli che i titoli hanno fatto.",
+      "sintesi": "Preprint letto integralmente. Confermati: Claude 0 crimini e 10/10; 332 voti/58 proposte/98%; Grok estinto in 4 giorni. NON nel testo: 183, 683, '2 crimini'. Omissione grave: il mondo Claude ha la piu' alta disonesta' verificata (18 frodi sul registro). Il paper VIETA esplicitamente la classifica tra modelli che i titoli hanno fatto. [Aggiunto 2026-09-04] Fonte primaria: preprint non sottoposto a revisione paritaria alla data del 2026-09-04 — arXiv 2606.08367, ancora in stato di preprint; nessuna pubblicazione peer-reviewed o ritiro risulta a questa data.",
       "scheda": "schede/emergence-world-stampa-vs-fonte.html",
       "fonti": [
         {
@@ -1234,139 +1566,6 @@ window.ARCHIVIO = {
           "url": "https://www.researchgate.net/publication/327722104_Does_Growth_Require_Suffering_A_Systematic_Review_and_Meta-Analysis_on_Genuine_Posttraumatic_and_Postecstatic_Growth"
         }
       ]
-    },
-    {
-      "id": "0001-sway-audima",
-      "fonte": "kiroshi",
-      "tipo": "ditta",
-      "titolo": "Sway - Audima Labs",
-      "esito": "Affidabile",
-      "punteggio": 85,
-      "colore": "verde",
-      "data": "2026-07-09",
-      "sintesi": "Sway è un prodotto reale, non un render. Dietro c'è un'azienda australiana con fondatori identificabili, passata da Shark Tank Australia, con una campagna Indiegogo di successo e due lotti già consegnati in oltre 35 paesi. Non è una truffa. Il rischio residuo non è la frode ma il pre-ordine: paghi ora per una consegna prevista a fine 2026, e lo strumento è di nicchia e polarizzante. La domanda 'mi arriverà ed è reale?' ha risposta sì; la domanda 'vale 615$ per me?' dipende dai tuoi gusti.",
-      "scheda": null,
-      "fonti": [
-        {
-          "titolo": "Indiegogo - campagna Sway",
-          "url": "https://www.indiegogo.com/en/projects/audimalabs/sway-the-world-s-most-expressive-midi-controller",
-          "tipo": "ufficiale",
-          "sostiene": "vero",
-          "autorevolezza": 4
-        },
-        {
-          "titolo": "Shark Tank AU (pagina Facebook ufficiale)",
-          "url": "https://www.facebook.com/sharktankau/posts/1378105513464163/",
-          "tipo": "ufficiale",
-          "sostiene": "vero",
-          "autorevolezza": 5
-        },
-        {
-          "titolo": "Elektronauts - forum, foto utente",
-          "url": "https://www.elektronauts.com/t/audima-labs-sway-midi-controller/242226",
-          "tipo": "forum",
-          "sostiene": "vero",
-          "autorevolezza": 4
-        },
-        {
-          "titolo": "Poly Expression - forum",
-          "url": "https://community.polyexpression.com/t/audima-labs-sway/2050",
-          "tipo": "forum",
-          "sostiene": "vero",
-          "autorevolezza": 3
-        },
-        {
-          "titolo": "AltWire - recensione",
-          "url": "https://altwire.net/audima-labs-the-sway-review/",
-          "tipo": "stampa",
-          "sostiene": "vero",
-          "autorevolezza": 3
-        },
-        {
-          "titolo": "Mixmag Asia",
-          "url": "https://mixmag.asia/read/audima-labs-midi-instrument-sway-turns-movement-into-music-tech",
-          "tipo": "stampa",
-          "sostiene": "vero",
-          "autorevolezza": 4
-        },
-        {
-          "titolo": "The Awesomer",
-          "url": "https://theawesomer.com/sway-gesture-midi-music-controller/751174/",
-          "tipo": "stampa",
-          "sostiene": "vero",
-          "autorevolezza": 2
-        },
-        {
-          "titolo": "Trustpilot - audima.com.au",
-          "url": "https://www.trustpilot.com/review/audima.com.au",
-          "tipo": "altro",
-          "sostiene": "vero",
-          "autorevolezza": 3
-        },
-        {
-          "titolo": "Sito ufficiale Audima Labs",
-          "url": "https://audima.com.au/",
-          "tipo": "venditore",
-          "sostiene": "neutro",
-          "autorevolezza": 2
-        }
-      ],
-      "oggetto": "Sway, controller MIDI a gesti di Audima Labs (Batch 4, pre-ordine)",
-      "domanda": "È hardware vero o fuffa renderizzata? Ci si può fidare prima di spendere 600+$?",
-      "green_flags": [
-        "Fondatori reali e identificabili: Jeremy Buckley e Isaac Jack (Australia)",
-        "Passati da Shark Tank Australia: deal da 50.000$ per il 15% (confermato dalla pagina ufficiale Shark Tank AU)",
-        "Indiegogo 2024: 256 finanziatori reali, 220.958$ raccolti (900% del goal)",
-        "Batch 1 consegnato giu 2025 e Batch 2 dic 2025, in 35+ paesi",
-        "Recensioni indipendenti (AltWire, Mixmag Asia) e video YouTube di terzi",
-        "Unità reali fotografate da utenti sui forum di appassionati (Elektronauts)",
-        "Aggiornamenti di produzione regolari sulla campagna Indiegogo"
-      ],
-      "red_flags": [
-        "È un pre-ordine: paghi ora, consegna stimata nov-dic 2026 (rischio slittamento)",
-        "Team piccolo, produzione a lotti: capacità limitata",
-        "Strumento di nicchia e polarizzante, ergonomia del controllo a gesti discussa dai forum",
-        "Molte recensioni 5★ ospitate sul sito del venditore: pesano meno di quelle indipendenti"
-      ],
-      "timeline": [
-        {
-          "data": "2023-03",
-          "evento": "Fondazione di Audima Labs (Australia)"
-        },
-        {
-          "data": "2024-07",
-          "evento": "Registrazione puntata Shark Tank Australia"
-        },
-        {
-          "data": "2024-10",
-          "evento": "Lancio campagna Indiegogo"
-        },
-        {
-          "data": "2024-11",
-          "evento": "Campagna chiusa: 256 backer, 220.958$ (+900%). Puntata Shark Tank in onda"
-        },
-        {
-          "data": "2025-06",
-          "evento": "Consegna Batch 1"
-        },
-        {
-          "data": "2025-12",
-          "evento": "Consegna Batch 2"
-        },
-        {
-          "data": "2026-06",
-          "evento": "Consegna Batch 3 (prevista giu/lug 2026)"
-        },
-        {
-          "data": "2026-08",
-          "evento": "Apertura pre-ordini Batch 4"
-        },
-        {
-          "data": "2026-11",
-          "evento": "Consegna Batch 4 stimata (nov-dic 2026)"
-        }
-      ],
-      "nota_sicurezza": "Nessun segnale di malware o phishing. Dominio ufficiale audima.com.au coerente; nessun link sospetto nel materiale analizzato."
     },
     {
       "id": "0002-social-contenuti-sensuali",

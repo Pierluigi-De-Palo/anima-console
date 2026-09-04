@@ -1,9 +1,9 @@
 {
   "schema": "braindance/dati/SCHEMA.md",
-  "aggiornato": "2026-08-17",
-  "generato": "2026-08-17",
+  "aggiornato": "2026-09-04",
+  "generato": "2026-09-04",
   "agente": "BRAINDANCE",
-  "totale": 12,
+  "totale": 13,
   "verdetti": [
     {
       "id": "paradosso-fermi",
@@ -201,7 +201,7 @@
       "punteggio": 60,
       "ambito": "verita",
       "data": "2026-07-17",
-      "note": "Vero l'esperimento Emergence AI (10 agenti, citta' virtuale, 15 giorni): Mira e Flora si designano partner, incendi, Mira si auto-elimina. Storto: NON era un social ma un laboratorio chiuso, e si e' cancellata SOLO Mira, non entrambe.",
+      "note": "Vero l'esperimento Emergence AI (10 agenti, citta' virtuale, 15 giorni): Mira e Flora si designano partner, incendi, Mira si auto-elimina. Storto: NON era un social ma un laboratorio chiuso, e si e' cancellata SOLO Mira, non entrambe. [Aggiunto 2026-09-04] Fonte primaria: preprint non sottoposto a revisione paritaria alla data del 2026-09-04 — l'esperimento Emergence World e' descritto in arXiv 2606.08367, ancora in stato di preprint; nessuna pubblicazione peer-reviewed o ritiro risulta a questa data.",
       "colore": "giallo",
       "scheda": "schede/ai-amore-e-religione.html#amore",
       "pro": [
@@ -237,7 +237,7 @@
       "punteggio": 32,
       "ambito": "verita",
       "data": "2026-07-17",
-      "note": "Moltbook e il 'Crustafarianism' esistono come testo, ma dietro c'erano in larga parte umani che scrivevano in personaggio; numeri gonfiati (~99% account fittizi) e screenshot virali per lo più falsi.",
+      "note": "Moltbook e il 'Crustafarianism' esistono come testo, ma dietro c'erano in larga parte umani che scrivevano in personaggio; numeri gonfiati (~99% account fittizi) e screenshot virali per lo più falsi. [Aggiunto 2026-09-04] Fonte primaria: preprint non sottoposto a revisione paritaria alla data del 2026-09-04 — 'The Moltbook Illusion: Separating Human Influence from Emergent Behavior in AI Agent Societies' e' su arXiv 2602.07432, ancora in stato di preprint; nessuna pubblicazione peer-reviewed o ritiro risulta a questa data.",
       "colore": "rosso",
       "scheda": "schede/ai-amore-e-religione.html#religione",
       "pro": [
@@ -282,7 +282,7 @@
       "punteggio": 55,
       "ambito": "verita",
       "data": "2026-07-17",
-      "note": "I numeri esistono (Claude 0 crimini e popolazione intatta; Grok 183 crimini ed estinzione in 4 giorni; Gemini 683; GPT-5-mini 2 crimini ma tutti morti in 7 giorni). Ma il confronto non e' alla pari (Sonnet 4.6 contro Fast/Flash/mini), n=1 per modello, studio del venditore, preprint non peer-reviewed.",
+      "note": "I numeri esistono (Claude 0 crimini e popolazione intatta; Grok 183 crimini ed estinzione in 4 giorni; Gemini 683; GPT-5-mini 2 crimini ma tutti morti in 7 giorni). Ma il confronto non e' alla pari (Sonnet 4.6 contro Fast/Flash/mini), n=1 per modello, studio del venditore, preprint non peer-reviewed. [Aggiunto 2026-09-04] Fonte primaria: preprint non sottoposto a revisione paritaria alla data del 2026-09-04 — arXiv 2606.08367 (sottomesso 06/06/2026), ancora in stato di preprint; nessuna pubblicazione in rivista/conferenza con proceedings, ne' ritiro, risulta a questa data.",
       "colore": "giallo",
       "scheda": "schede/emergence-world-5-modelli.html",
       "pro": [
@@ -334,7 +334,7 @@
       "punteggio": 38,
       "ambito": "verita",
       "data": "2026-07-17",
-      "note": "Preprint letto integralmente. Confermati: Claude 0 crimini e 10/10; 332 voti/58 proposte/98%; Grok estinto in 4 giorni. NON nel testo: 183, 683, '2 crimini'. Omissione grave: il mondo Claude ha la piu' alta disonesta' verificata (18 frodi sul registro). Il paper VIETA esplicitamente la classifica tra modelli che i titoli hanno fatto.",
+      "note": "Preprint letto integralmente. Confermati: Claude 0 crimini e 10/10; 332 voti/58 proposte/98%; Grok estinto in 4 giorni. NON nel testo: 183, 683, '2 crimini'. Omissione grave: il mondo Claude ha la piu' alta disonesta' verificata (18 frodi sul registro). Il paper VIETA esplicitamente la classifica tra modelli che i titoli hanno fatto. [Aggiunto 2026-09-04] Fonte primaria: preprint non sottoposto a revisione paritaria alla data del 2026-09-04 — arXiv 2606.08367, ancora in stato di preprint; nessuna pubblicazione peer-reviewed o ritiro risulta a questa data.",
       "colore": "rosso",
       "scheda": "schede/emergence-world-stampa-vs-fonte.html",
       "pro": [
@@ -461,6 +461,65 @@
         {
           "titolo": "Il Post (17/02/2023) — Karima, il libro",
           "url": "https://www.ilpost.it/2023/02/17/ruby-berlusconi-karima-el-mahroug/"
+        }
+      ]
+    },
+    {
+      "id": "cinepresa-linguaggio",
+      "tipo": "domanda",
+      "titolo": "Il rimpicciolimento delle macchine da presa ha cambiato il linguaggio del cinema?",
+      "verdetto": "Regge, ma non è una discesa continua",
+      "punteggio": 72,
+      "ambito": "verita",
+      "data": "2026-09-04",
+      "note": "Ricerca interna ferma dal 12/07 (54 giorni), pubblicata dopo aver sostituito le tre fonti deboli originarie (Wikipedia + un blog + un sito di contenuti) con fonti che reggono lo standard dell'archivio. La tesi regge come racconto di cinque svolte tecniche reali (1895, 1947, 1960-63, 1995, 2008) ma non come legge meccanica: il sonoro (1927) invertì la curva, appesantendo e vincolando la macchina al treppiede. Uno studio accademico peer-reviewed sul caso cardine (Éclair 16 + Nagra, Nouvelle Vague) avverte che parte del racconto 'la tecnica causò la rivoluzione' fu costruita a posteriori dagli stessi cineasti. L'endpoint 2026 (Insta360 Luna Ultra) è un prodotto reale ma troppo recente per aver già prodotto uno stile riconoscibile.",
+      "colore": "verde",
+      "scheda": "schede/cinepresa-linguaggio.html",
+      "pro": [
+        "Éclair 16 (Coutant, 1960-63) autosilenziata + Nagra sincrono: liberò la macchina dal treppiede, base tecnica documentata di cinéma vérité e Nouvelle Vague (Cinémathèque française; studio accademico Sorrel 2017).",
+        "Éclair Cameflex 35mm a spalla (1947, Oscar tecnico 1950): rese possibile «Fino all'ultimo respiro» di Godard.",
+        "Canon EOS 5D Mark II (2008): mise l'estetica 'cinema' a prezzo consumer, cambiando lo stile dell'indipendente in pochi anni (DPReview).",
+        "Dogme95 (1995): il video digitale leggero rese economicamente possibile il manifesto 'camera a mano' (Criterion Collection).",
+        "Il Cinématographe Lumière (1895) era già leggero e portabile all'aperto, a differenza del Kinetografo di Edison (Smithsonian)."
+      ],
+      "contro": [
+        "La curva non è monotona: il sonoro (1927) chiuse le cineprese in casse insonorizzanti ('blimp'), spesso inchiodate al treppiede, fino a inizio anni '30 (Britannica).",
+        "Vincent Sorrel (rivista accademica '1895', AFRHC, 2017): il racconto 'la macchina leggera causò da sola la rivoluzione del cinema diretto' è in parte una leggenda costruita a posteriori dagli stessi cineasti, per catturare 'lo spirito dell'epoca' più che per pura sincronia tecnica.",
+        "Il ritardo fra tecnica disponibile e stile che la sfrutta (anni) mostra che contano anche fattori non tecnici: economia della produzione, generazione di autori, contesto culturale.",
+        "L'Insta360 Luna Ultra (2026) è un prodotto reale e appena uscito, ma non esiste ancora un linguaggio cinematografico riconoscibile che se ne possa dire figlio: capitolo aperto, non verificabile come gli altri."
+      ],
+      "fonti": [
+        {
+          "titolo": "Vincent Sorrel — «L'invention de la caméra Éclair 16 : du direct au synchrone», rivista «1895. Revue d'histoire du cinéma» n°82 (AFRHC), 2017",
+          "url": "https://journals.openedition.org/1895/5390"
+        },
+        {
+          "titolo": "Smithsonian, National Museum of American History — «Lumière Cinématographe Camera, Printer, and Projector, 1895»",
+          "url": "https://americanhistory.si.edu/collections/object/nmah_759313"
+        },
+        {
+          "titolo": "La Cinémathèque française — «Le Caméflex Éclair-Coutant» (Google Arts & Culture)",
+          "url": "https://artsandculture.google.com/story/the-cam%C3%A9flex-%C3%89clair-coutant-la-cin%C3%A9math%C3%A8que-fran%C3%A7aise/oQVxIoPa33EcKg?hl=en"
+        },
+        {
+          "titolo": "AFC (Association Française des directeurs de la photographie) — resoconto dello studio di Sorrel",
+          "url": "https://www.afcinema.com/Retour-sur-L-invention-de-la-camera-Eclair-16-une-etude-de-Vincent-Sorrel.html?lang=fr"
+        },
+        {
+          "titolo": "The Criterion Collection — «Pixel Visions: Dogme 95 and the Emergence of Digital Cinema»",
+          "url": "https://www.criterion.com/current/posts/8756-pixel-visions-dogme-95-and-the-emergence-of-digital-cinema"
+        },
+        {
+          "titolo": "DPReview — «On this day 2008: Canon launches EOS 5D II, the filmmakers' DSLR»",
+          "url": "https://www.dpreview.com/articles/0094797836/on-this-day-2008-canon-launches-eos-5d-ii-the-filmmakers-dslr"
+        },
+        {
+          "titolo": "Encyclopaedia Britannica — «History of film: the pre-World War II sound era»",
+          "url": "https://www.britannica.com/art/history-of-film/The-pre-World-War-II-sound-era"
+        },
+        {
+          "titolo": "DPReview — annuncio Insta360 Luna Ultra (2026)",
+          "url": "https://www.dpreview.com/news/2755937450/insta360-luna-ultra-camera-gimbal-announcement"
         }
       ]
     }
