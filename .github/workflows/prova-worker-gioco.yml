@@ -1,0 +1,118 @@
+# COSA FA — risponde a una domanda sola: «il Worker del gioco risponde
+#   sull'indirizzo che i file dichiarano, ed e' il nostro?». Si lancia a mano
+#   dal bottone "Run workflow", non parte mai da sola.
+# PERCHE ESISTE — il 04/09 due scritte di casa si contraddicevano: le schede di
+#   stato interne dicono «Worker acceso dal 10/08 su api.cyberboomer.io», mentre
+#   animagame-site/assets/config.js dice `BACKEND_URL: null` = spento. Nessuno
+#   aveva misurato dal 10/08: venticinque giorni di parola contro parola. PROVINO
+#   ha provato a misurare e NON CI E' RIUSCITO — l'egress della sessione agente
+#   blocca ogni host nostro con 403 al CONNECT, compreso il bersaglio di controllo.
+#   Questo workflow esiste perche' il runner di GitHub ha la rete che l'agente non ha:
+#   e' il posto da cui la misura si puo' fare davvero.
+# FIN DOVE ARRIVA — dice se l'indirizzo risponde e se chi risponde e' il nostro
+#   Worker (guarda il CORPO, non il codice HTTP: su Cloudflare un indirizzo mai
+#   esistito risponde 200 con la home — lezione di SUONO/SQUELCH, 10/08).
+#   NON dice se le rotte protette funzionano: per quelle serve una carta, e una
+#   carta non entra in un log. NON manda nessun POST: /verifiche/{id}/cerchio
+#   assegnerebbe punti veri se esistesse, e un collaudo non scrive in produzione.
+# COSTO — zero token e zero denaro. Solo HEAD e GET su host nostri, nessuna
+#   chiave, nessun secret, nessuna chiamata a un'API a pagamento.
+# SICUREZZA — non usa segreti, quindi non puo' stamparne. Non manda mai un
+#   codice carta ne' un `authorization`: le rotte protette si guardano da fuori.
+# USO — Actions -> "Prova del Worker del gioco" -> Run workflow. Nessun parametro.
+# — creato da PROVINO, 2026-09-04
+
+name: Prova del Worker del gioco
+
+on:
+  workflow_dispatch:
+
+jobs:
+  prova:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 0 · Bersaglio di CONTROLLO — la rete del runner funziona?
+        # Prima di dichiarare morto qualcosa, si prova un bersaglio che sappiamo
+        # vivo. Se muore anche questo, il guasto e' del runner e tutto il resto
+        # del referto va buttato: un 000 dice qualcosa sulla nostra rete, niente
+        # sul servizio. Questo passo e' il motivo per cui il referto e' credibile.
+        run: |
+          set -u
+          echo "== radio-anima.pages.dev (noto vivo) =="
+          COD=$(curl -sS -o /tmp/ctl.txt -w '%{http_code}' --max-time 25 \
+                https://radio-anima.pages.dev/ || echo 000)
+          echo "codice: $COD"
+          if [ "$COD" = "000" ]; then
+            echo "✗ NON RAGGIUNGO NEMMENO IL BERSAGLIO DI CONTROLLO."
+            echo "  Il guasto e' della rete del runner, non del Worker."
+            echo "  Nessuna conclusione sul Worker e' lecita da questo run."
+            exit 1
+          fi
+          echo "✓ la rete del runner funziona: si puo' misurare."
+
+      - name: 1 · LA DOMANDA — api.cyberboomer.io risponde, ed e' il nostro Worker?
+        # HEAD prima di GET: la prova piu' economica che decide.
+        # Poi GET, perche' il codice HTTP da solo non basta — si legge il CORPO.
+        # Il nostro Worker, e solo lui, risponde a `/` con {"servizio":"punti"}.
+        run: |
+          set -u
+          BASE=https://api.cyberboomer.io
+
+          echo "== HEAD $BASE/ =="
+          curl -sS -I --max-time 25 -o /dev/null \
+            -w 'codice=%{http_code} tempo=%{time_total}s\n' "$BASE/" || echo "HEAD fallito"
+
+          echo
+          echo "== GET $BASE/ (il corpo e' la prova) =="
+          COD=$(curl -sS -o /tmp/radice.txt -w '%{http_code}' --max-time 25 "$BASE/" || echo 000)
+          echo "codice: $COD"
+          echo "corpo (primi 300 caratteri):"
+          head -c 300 /tmp/radice.txt || true
+          echo
+          echo "---"
+          if [ "$COD" = "000" ]; then
+            echo "ESITO: NON RISPONDE — ma il controllo al passo 0 era verde,"
+            echo "quindi stavolta e' davvero il Worker (o il DNS), non noi."
+            exit 1
+          fi
+          if grep -q '"servizio":"punti"' /tmp/radice.txt; then
+            echo "ESITO: ACCESO, ed e' IL NOSTRO Worker (corpo riconosciuto)."
+          else
+            echo "ESITO: qualcosa risponde $COD, MA NON E' il Worker dei punti."
+            echo "Il corpo non contiene {\"servizio\":\"punti\"}. Su Cloudflare"
+            echo "un 200 puo' essere una pagina qualsiasi: il codice non prova niente."
+            exit 1
+          fi
+
+      - name: 2 · Le quattro rotte /verifiche del contratto — esistono online?
+        # ⚠️ LA TRAPPOLA, ed e' il motivo per cui questo passo ha un controllo dentro.
+        # Nel sorgente del Worker (repo interno, non citato qui) il cancello
+        # `if (!io) return errore(401, 'sessione_assente')` sta PRIMA del 404
+        # finale. Quindi, senza carta, QUALUNQUE indirizzo inesistente risponde
+        # 401 — non solo quelli veri. Un 401 qui NON prova che la rotta esista.
+        # Percio' misuriamo anche una rotta volutamente assurda: se le due
+        # risposte sono identiche, il 401 non porta informazione e va letto cosi'.
+        # Solo GET: nessun POST contro la produzione (vedi FIN DOVE ARRIVA).
+        run: |
+          set -u
+          BASE=https://api.cyberboomer.io
+
+          misura () {
+            printf '%-42s ' "$1"
+            COD=$(curl -sS -o /tmp/r.txt -w '%{http_code}' --max-time 25 "$BASE$1" || echo 000)
+            printf 'codice=%s corpo=%s\n' "$COD" "$(head -c 120 /tmp/r.txt | tr -d '\n')"
+          }
+
+          echo "== le rotte dichiarate in animagame-site/assets/config.js =="
+          misura /verifiche
+          misura /verifiche/PROVA-INESISTENTE
+          echo
+          echo "== rotte di CONTROLLO, che di sicuro non esistono =="
+          misura /questa-rotta-non-esiste-42
+          misura /schede/mia
+          echo
+          echo "---"
+          echo "COME SI LEGGE: se /verifiche e /questa-rotta-non-esiste-42 danno"
+          echo "la STESSA risposta, allora il 401 non dice nulla sull'esistenza"
+          echo "della rotta — dice solo che manca la carta. Per distinguere"
+          echo "davvero servirebbe una sessione valida, che in un log non entra."
