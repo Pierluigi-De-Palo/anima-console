@@ -350,8 +350,10 @@ STATO VERO AL 30/08 (verificato nei file):
 - Il lessico è già legge e l'hai scritto tu: si dice giocatori, schede, cerchi. Le parole del
   mondo social sono VIETATE dal Direttore. Il gioco è a invito, 10 posti in fase DEV.
 - `strumenti.html` dichiara quattro stanze e una tesi: «gli strumenti non sono demo: sono il
-  gioco». Ma due stanze su quattro dicono «lo strumento sta traslocando dalla console» —
-  cioè rimandano a cyberboomer.io, dove i giocatori non entreranno.
+  gioco». ~~Ma due stanze su quattro dicono «lo strumento sta traslocando dalla console»~~
+  → **superato** (commit `f77aced`, JUDY): nessuna stanza rimanda più a cyberboomer.io.
+  Al 04/09 le stanze sono: verifiche (attiva) · Meteo (segnata «in arrivo» mentre AURA è
+  online su systema77 — in correzione nel giro 1) · Radio (attiva) · Il falò (in arrivo).
 - Materiale già verificato e già scritto, oggi in forma di referto: 7 verdetti KIROSHI + 12
   BRAINDANCE = 19 pezzi. Più `fascicoli/FASCICOLO-trappole-digitali-2026-08-18.md`, materiale
   sorgente per rielaborazione divulgativa, mai usato.
