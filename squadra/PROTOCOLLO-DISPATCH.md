@@ -35,9 +35,12 @@ passi — in ogni sessione, locale o remota.
    Direttore, solo HTML; dati sensibili e percorsi interni mai in superfici
    pubbliche (guardia privacy).
 
-5. **CONSEGNA** — file in chat + patch per il repo (`git format-patch --stdout`,
-   si applica dal Mac con `git am`; le sessioni remote NON possono scrivere su
-   GitHub — verificato 17/08) + eventuale script `gh` per issue/etichette.
+5. **CONSEGNA** — commit e push sul branch di lavoro **anche dalla sessione remota**,
+   poi PR in bozza. (Misurato il 29/08: 18 commit spinti e PR #16 fusa. Fino al 04/09
+   qui c'era scritto «le sessioni remote NON possono scrivere su GitHub — verificato
+   17/08»: vero quel giorno, falso dal 29/08.) La patch (`git format-patch --stdout`,
+   applicata dal Mac con `git am`) resta il ripiego se l'autorizzazione cade.
+   Chi fonde cosa: tabella «CHI FONDE COSA» in `CLAUDE.md` (confine del 30/08).
    Firma composta sugli artefatti: `— creato da <CAPOSQUADRA> · su commessa del
    Direttore · dispatch D.R.A.G.O. · AAAA-MM-GG` (più la catena di direzione dove
    c'è, es. `su direzione JUDY`).

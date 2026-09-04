@@ -93,7 +93,8 @@ Quando lavori in **Claude Code** su questo repo (GitHub: `anima-console`), la mi
 - Verdetti = dati strutturati: `docs/data/*.json` + `docs/data/db.js` (`window.KIROSHI_DB`; ogni voce ha un campo `id` generato dal nome file → permalink `…/fake-checker/#NNNN`)
 - Sito **statico**, GitHub Pages da `docs/`, CNAME `cyberboomer.io`
 - **7 verdetti** pubblicati (0001 Sway · 0002 social · 0003 Ultrafab · 0004 Palantir · 0005 Prospera · 0006 Insta360 · 0007 Nikon ZR)
-- Swap root→hub **FATTO**: `docs/index.html` = hub Cyber Boomer (ambra Camera Oscura) · `docs/fake-checker/` = console verdetti + pannello richieste (cyan) · `docs/anima/` = hub A.N.I.M.A. · `docs/braindance/` = coda BRAINDANCE · `docs/schede/` = pagine interne
+- `docs/index.html` = **la PORTA** (dal 31/08, generata da `scripts/build_porta.py`, mai a mano): un campo per la frase di sblocco, dietro il banco di lavoro del Direttore cifrato in AES-GCM-256 — la chiave è `systema77.regia` nel Portachiavi (`squadra/chiavi.sh`) e non compare mai in un file del repo. Le altre pagine restano dov'erano: `docs/fake-checker/` = console verdetti + pannello richieste (cyan) · `docs/anima/` = hub A.N.I.M.A. · `docs/braindance/` = coda BRAINDANCE · `docs/schede/` = pagine interne · `docs/regia/` = plancia
+  > ⚠️ Fino al 04/09 questa riga diceva «`docs/index.html` = hub Cyber Boomer (ambra Camera Oscura)»: era vero il 17/08 ed è falso dal 31/08. Corretta nello stesso giro in cui è stata misurata.
 
 **Fasi, in ordine:**
 1. **Archivio pubblico** su `/fake-checker`: indice verdetti + pagina per verdetto + ricerca lato client. Statico, costo zero.
