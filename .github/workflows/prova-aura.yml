@@ -1,0 +1,172 @@
+# COSA FA — risponde a una domanda sola: «il Worker di AURA è vivo sul suo
+#   indirizzo, ed è il nostro? e le porte che dovevano restare chiuse lo sono?».
+#   Si lancia a mano dal bottone "Run workflow", non parte mai da sola.
+# PERCHE ESISTE — il collaudo locale (prova/giro-completo.sh) è verde perché
+#   parla con uno stub scritto da noi: prova la LOGICA, non il mondo. Se domani
+#   Open-Meteo cambia la forma della risposta, o la rotta su Cloudflare non
+#   scatta, quel giro resta verde e AURA è morta. Questo workflow gira sul
+#   runner di GitHub, che ha la rete che l'agente non ha (l'egress della
+#   sessione agente risponde 403 al CONNECT su ogni host nostro — misurato da
+#   PROVINO il 04/09), ed è l'unico posto da cui la misura si può fare.
+# FIN DOVE ARRIVA — guarda il CORPO, non il codice HTTP: su Cloudflare un
+#   indirizzo mai esistito risponde 200 con una pagina qualsiasi, e il codice da
+#   solo non prova niente (lezione di SUONO/SQUELCH, 10/08).
+#   ⚠️ NON manda NESSUN POST che possa scrivere: /aura/ingresso creerebbe un
+#   contatto vero in produzione, e un collaudo che scrive in produzione non è un
+#   collaudo. L'unico POST è su /aura/interno/lotto SENZA chiave, che si ferma
+#   al controllo prima di toccare qualunque cosa.
+#   NON prova la consegna dei messaggi: per quella serve un recapito vero, e un
+#   recapito vero in un log è esattamente ciò che non deve mai succedere.
+# COSTO — zero token e zero denaro: solo HEAD e GET su host nostri. Nessuna
+#   chiave, nessun secret, nessuna chiamata a un'API a pagamento.
+# SICUREZZA — non usa segreti, quindi non può stamparne.
+# USO — Actions → "Prova del Worker AURA" → Run workflow. Nessun parametro.
+# — creato da SQUELCH · su commessa del Direttore · dispatch D.R.A.G.O. · 2026-09-04
+
+name: Prova del Worker AURA
+
+on:
+  workflow_dispatch:
+
+jobs:
+  prova:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 0 · Bersaglio di CONTROLLO — la rete del runner funziona?
+        # Prima di dichiarare morto qualcosa si prova un bersaglio che sappiamo
+        # vivo. Se muore anche questo, il guasto è del runner e tutto il resto
+        # del referto va buttato. Questo passo è il motivo per cui il referto
+        # che segue è credibile.
+        run: |
+          set -u
+          COD=$(curl -sS -o /tmp/ctl.txt -w '%{http_code}' --max-time 25 \
+                https://radio-anima.pages.dev/ || echo 000)
+          echo "radio-anima.pages.dev (noto vivo): $COD"
+          if [ "$COD" = "000" ]; then
+            echo "✗ non raggiungo nemmeno il bersaglio di controllo."
+            echo "  Il guasto è della rete del runner. Nessuna conclusione su AURA è lecita."
+            exit 1
+          fi
+          echo "✓ la rete del runner funziona: si può misurare."
+
+      - name: 1 · LA DOMANDA — /aura/ risponde, ed è il nostro Worker?
+        run: |
+          set -u
+          B=https://api.cyberboomer.io/aura
+          echo "== GET $B/ (il corpo è la prova) =="
+          COD=$(curl -sS -o /tmp/r.txt -w '%{http_code}' --max-time 25 "$B/" || echo 000)
+          echo "codice: $COD"
+          echo "corpo:"; head -c 400 /tmp/r.txt; echo; echo "---"
+          if [ "$COD" = "000" ]; then
+            echo "ESITO: NON RISPONDE — e il controllo al passo 0 era verde,"
+            echo "quindi stavolta è davvero AURA (o il DNS), non noi."
+            exit 1
+          fi
+          if grep -q '"servizio":"aura"' /tmp/r.txt; then
+            echo "ESITO: ACCESO, ed è IL NOSTRO Worker."
+          else
+            echo "ESITO: qualcosa risponde $COD, MA NON È AURA."
+            echo "Su Cloudflare un 200 può essere una pagina qualsiasi: conta il corpo."
+            exit 1
+          fi
+
+      - name: 2 · Cosa dice la porta aperta (e cosa NON deve dire)
+        # /aura/ è l'unica rotta che una pagina pubblica interroga senza chiave.
+        # Deve dire tre booleani e un conteggio. Se un giorno ci finisse dentro
+        # un elenco, un recapito o un contatore fine, si vede qui.
+        run: |
+          set -u
+          curl -sS --max-time 25 https://api.cyberboomer.io/aura/ -o /tmp/r.txt
+          python3 - <<'PY'
+          import json
+          d = json.load(open('/tmp/r.txt'))
+          attese = {'servizio', 'contratto', 'canali', 'posti_liberi'}
+          print('chiavi:', sorted(d))
+          print('canali accesi:', [k for k, v in d.get('canali', {}).items() if v] or 'nessuno')
+          print('posti liberi:', d.get('posti_liberi'))
+          extra = set(d) - attese
+          if extra:
+              print('✗ la porta aperta dice cose che non doveva:', sorted(extra))
+              raise SystemExit(1)
+          print('✓ dice esattamente quello che deve, e niente altro.')
+          PY
+
+      - name: 3 · Le porte chiuse sono chiuse?
+        # È il collaudo che conta davvero. Un servizio che risponde è metà
+        # della notizia; l'altra metà è che non risponda a chi non deve.
+        run: |
+          set -u
+          B=https://api.cyberboomer.io/aura
+          male=0
+          chiusa () {
+            COD=$(curl -sS -o /tmp/c.txt -w '%{http_code}' --max-time 25 $2 "$B$1" || echo 000)
+            printf '%-24s codice=%s corpo=%s\n' "$1" "$COD" "$(head -c 90 /tmp/c.txt | tr -d '\n')"
+            if [ "$COD" != "401" ]; then echo "  ✗ doveva essere 401"; male=1; fi
+          }
+          echo "== senza chiave =="
+          chiusa /stato ""
+          chiusa /interno/lotto "-X POST -H content-type:application/json -d {}"
+          echo
+          echo "== con una chiave sbagliata =="
+          chiusa /stato "-H x-chiave-direttore:quasi-giusta"
+          chiusa /interno/lotto "-X POST -H x-chiave-interna:quasi-giusta -H content-type:application/json -d {}"
+          echo
+          echo "== il webhook di Telegram con un segreto inventato =="
+          COD=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 25 -X POST \
+                "$B/tg/segreto-inventato" -H 'content-type: application/json' -d '{}' || echo 000)
+          echo "/tg/segreto-inventato   codice=$COD"
+          [ "$COD" = "403" ] || { echo "  ✗ doveva essere 403"; male=1; }
+          exit $male
+
+      - name: 4 · La trappola del Worker del gioco esiste anche qui?
+        # ⚠️ Nel Worker dei punti il controllo di sessione sta PRIMA del 404
+        # finale: senza carta, QUALUNQUE indirizzo inesistente risponde 401, e
+        # dall'esterno non si distingue una rotta che c'è da una che non c'è.
+        # Qui non deve succedere: un indirizzo inventato deve dare 404.
+        run: |
+          set -u
+          B=https://api.cyberboomer.io/aura
+          COD=$(curl -sS -o /tmp/n.txt -w '%{http_code}' --max-time 25 "$B/questa-non-esiste-42" || echo 000)
+          echo "indirizzo inventato: codice=$COD corpo=$(head -c 120 /tmp/n.txt)"
+          if [ "$COD" = "404" ] && grep -q 'porta_inesistente' /tmp/n.txt; then
+            echo "✓ 404 onesto: le rotte vere si distinguono da quelle finte."
+          else
+            echo "✗ non è un 404. Se è 401, è tornata la trappola del Worker del gioco."
+            exit 1
+          fi
+
+      - name: 5 · I numeri arrivano davvero da Open-Meteo?
+        # È l'unico passo che tocca il mondo esterno attraverso di noi: se la
+        # forma della risposta di Open-Meteo cambiasse, `domani` verrebbe nullo
+        # e il collaudo locale non se ne accorgerebbe mai.
+        run: |
+          set -u
+          B=https://api.cyberboomer.io/aura
+          # ⚠️ Il controllo si scrive PRIMA in un file, poi si chiama nel giro.
+          # Scritto dentro il `for` come `python3 -c "…"` a più righe, il codice
+          # partiva dalla colonna 0 e YAML chiudeva il blocco lì: il file non si
+          # apriva nemmeno. Un controllo che non si carica non è un controllo.
+          cat > /tmp/leggi.py <<'PY'
+          import json, sys
+          d = json.load(open('/tmp/p.txt'))
+          n = d.get('domani') or {}
+          p = n.get('prob') or {}
+          r = n.get('raffica') or {}
+          print('presi=%s fonte=%s | pioggia %s-%s %% su %s modelli | raffica max %s kn'
+                % (d.get('presi'), d.get('fonte'), p.get('min'), p.get('max'),
+                   p.get('quanti'), r.get('max')))
+          if not n or p.get('quanti') is None:
+              print('X i numeri di domani sono vuoti: la forma della risposta e cambiata?')
+              sys.exit(1)
+          PY
+          for s in guaceto sistema77 fuoridivela trettu; do
+            COD=$(curl -sS -o /tmp/p.txt -w '%{http_code}' --max-time 30 "$B/previsione?spot=$s" || echo 000)
+            printf '%-14s codice=%s ' "$s" "$COD"
+            [ "$COD" = "200" ] || { echo "X non risponde"; exit 1; }
+            python3 /tmp/leggi.py || exit 1
+          done
+          echo
+          echo "== e uno spot che non esiste =="
+          COD=$(curl -sS -o /tmp/x.txt -w '%{http_code}' --max-time 25 "$B/previsione?spot=marte" || echo 000)
+          echo "codice=$COD corpo=$(head -c 120 /tmp/x.txt)"
+          [ "$COD" = "404" ] || exit 1
