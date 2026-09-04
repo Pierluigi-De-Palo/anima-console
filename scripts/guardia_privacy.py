@@ -7,9 +7,14 @@ azienda verificata compresa, poteva leggere le intenzioni del Direttore prima di
 qualsiasi trattativa. Le Issue sono state cancellate; questo script serve a non
 riscoprirlo la prossima volta a cose fatte.
 
-Guarda due superfici:
+Guarda tre superfici:
   - docs/        cio che GitHub Pages pubblica (e che il repo pubblico serve due volte)
   - le Issue     la coda di lavoro, pubblica anch'essa
+  - --anche X    file che stanno per diventare pubblici ma non vivono in docs/.
+                 Serve per il commento che l'automazione KIROSHI incolla nella
+                 issue: e' in .gitignore, quindi la scansione di docs/ non lo
+                 vede mai, ma finisce su una pagina che legge chiunque. Era
+                 esattamente la strada dell'incidente del 01/08.
 
 Due livelli, perche' non tutto e' uguale:
   BLOCCO      credenziali, recapiti, identificativi fiscali, percorsi interni.
@@ -20,11 +25,13 @@ Due livelli, perche' non tutto e' uguale:
 
     python3 scripts/guardia_privacy.py            # docs/ + Issue aperte
     python3 scripts/guardia_privacy.py --solo-docs # senza rete, buono come hook pre-push
+    python3 scripts/guardia_privacy.py --solo-docs --anche kiroshi_comment.md
 
 Come hook pre-push (opzionale):
     ln -s ../../scripts/guardia_privacy.py .git/hooks/pre-push
 
 — creato da SQUELCH, 2026-08-01
+— SQUELCH · giro 1 · dispatch D.R.A.G.O. · 2026-09-04 (superficie --anche)
 """
 import argparse
 import json
@@ -124,12 +131,44 @@ def leggi_issue():
         return []
 
 
+def leggi_altri(percorsi):
+    """File singoli gia' diretti al pubblico, ma fuori da docs/.
+
+    Un file che non riesco ad aprire NON e' un file pulito: torna fra i mancanti
+    e main() esce con 1. Il silenzio qui varrebbe un via libera, ed e' il modo in
+    cui una guardia diventa una scritta senza impianto sotto.
+    """
+    letti, mancanti = [], []
+    for p in percorsi:
+        try:
+            with open(p, encoding="utf-8") as fh:
+                letti.append((p, fh.read()))
+        except (UnicodeDecodeError, OSError) as e:
+            mancanti.append((p, type(e).__name__))
+    return letti, mancanti
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--solo-docs", action="store_true", help="non interrogare GitHub")
+    ap.add_argument("--anche", nargs="+", default=[], metavar="FILE",
+                    help="altri file diretti al pubblico (es. kiroshi_comment.md)")
+    # Gli estratti servono a chi ripara, ma sono il reperto stesso: stampati in
+    # CI su un repo pubblico finirebbero nel log, cioe' esattamente dove non
+    # devono stare. Il 30/08 mezza chiave e' finita in chiaro in un log cosi'.
+    # In locale restano accesi; in CI si spengono e la prova si rifa' sul Mac.
+    ap.add_argument("--senza-estratti", action="store_true",
+                    help="nomina file e reperto, non stampa il testo trovato (per la CI)")
     args = ap.parse_args()
 
-    superfici = leggi_docs() + ([] if args.solo_docs else leggi_issue())
+    extra, illeggibili = leggi_altri(args.anche)
+    if illeggibili:
+        for p, err in illeggibili:
+            print(f"  \u26d4 {p}: non riesco ad aprirlo ({err}).")
+        print("\n  Un file che non posso leggere non posso dichiararlo pulito.")
+        return 1
+
+    superfici = leggi_docs() + extra + ([] if args.solo_docs else leggi_issue())
 
     reperti = []
     for dove, testo in superfici:
@@ -140,16 +179,21 @@ def main():
 
     print(f"  Guardia privacy — {len(superfici)} superfici pubbliche controllate")
 
+    def referto(r):
+        print(f"     {r.dove}: {r.cosa}")
+        if args.senza_estratti:
+            print("       (estratto omesso: rilancia in locale per vederlo)")
+        else:
+            print(f"       …{r.estratto}…")
+
     if blocchi:
         print(f"\n  ⛔ BLOCCO — {len(blocchi)} cose che non devono stare in pubblico:")
         for r in blocchi:
-            print(f"     {r.dove}: {r.cosa}")
-            print(f"       …{r.estratto}…")
+            referto(r)
     if avvisi:
         print(f"\n  ⚠ ATTENZIONE — {len(avvisi)} da guardare con occhi umani:")
         for r in avvisi:
-            print(f"     {r.dove}: {r.cosa}")
-            print(f"       …{r.estratto}…")
+            referto(r)
     if not reperti:
         print("  ✓ nessun dato privato trovato")
 

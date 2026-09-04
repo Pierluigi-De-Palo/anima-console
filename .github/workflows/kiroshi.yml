@@ -1,50 +1,199 @@
+# COSA FA — quando arriva una richiesta di verifica (issue con l'etichetta
+#   `kiroshi-queue`), produce il verdetto, lo fa passare sotto la guardia privacy
+#   e lo consegna come PULL REQUEST IN BOZZA su un ramo suo. Non pubblica: propone.
+# PERCHÉ ESISTE — fino al 04/09 questo file faceva due cose che nessuno gli aveva
+#   chiesto, e le faceva in silenzio:
+#   1. `actions/checkout@v4` senza `ref:` più `git push` senza destinazione. Su un
+#      evento `issues` github.ref è il ramo predefinito: il runner si trovava SU
+#      main e il push finiva DRITTO SU main. Riprodotto in locale il 04/09 con la
+#      riga esatta di allora: `da9eb36..76d0813  main -> main`. La regola di casa
+#      dice «mai su main» e vincola ogni persona della squadra; l'unico che la
+#      violava era il bot, cioè l'unico che nessuno guardava lavorare.
+#   2. committava dentro `docs/` — la superficie che legge chiunque — senza mai
+#      eseguire `scripts/guardia_privacy.py`. La guardia esiste dal 01/08, è
+#      dottrina, ed era scollegata proprio dall'UNICA strada automatica verso il
+#      pubblico: presidiava le porte da cui non passava nessuno.
+# FIN DOVE ARRIVA — dice se il verdetto è pulito e mette la proposta in mano al
+#   Direttore. NON dice se il verdetto è giusto: che le fonti sostengano davvero
+#   la tesi, che il punteggio regga, che l'oggetto sia una ditta e non una persona
+#   (confine BRAINDANCE) resta lavoro di occhi umani. La guardia legge `docs/`
+#   INTERO: un BLOCCO già presente lì per altre ragioni ferma anche questo run —
+#   voluto (non si pubblica finché non è uscito di lì), ma va saputo, perché il
+#   guasto può non essere nel verdetto nuovo. Il livello ATTENZIONE non blocca.
+#   Il corpo della issue in ingresso non viene filtrato: quando il workflow parte
+#   è già pubblico da un pezzo, e bloccarlo qui non lo spubblicherebbe.
+# SICUREZZA — la guardia gira con `--senza-estratti`: nomina il file e il reperto,
+#   non ne ricopia il testo. I log di Actions su un repo pubblico sono pubblici, e
+#   il 30/08 mezza chiave API è finita in chiaro esattamente così. Nessun segreto
+#   viene stampato, i permessi del token sono i tre che servono e nient'altro.
+# — SQUELCH · giro 1 · dispatch D.R.A.G.O. · 2026-09-04
+
 name: KIROSHI fake checker
 
-# Si attiva quando apri (o riapri) una issue con l'etichetta "kiroshi-queue".
 on:
   issues:
     types: [opened, reopened, labeled]
 
+# I tre permessi che servono, nominati: spingere il ramo, aprire la PR,
+# commentare la issue. Il token non deve poter fare altro.
 permissions:
-  issues: write
   contents: write
+  issues: write
+  pull-requests: write
+
+# Due run sulla stessa richiesta si contenderebbero lo stesso ramo e la stessa PR.
+# Non si annulla quello in corso: potrebbe essere a metà di una chiamata pagata.
+concurrency:
+  group: kiroshi-verifica-${{ github.event.issue.number }}
+  cancel-in-progress: false
 
 jobs:
   verifica:
-    # Gira solo sulle issue etichettate "kiroshi-queue" — match esatto sull'array,
-    # non sottostringa sulla join: prima girava (e falliva) anche su etichette parenti.
-    if: contains(github.event.issue.labels.*.name, 'kiroshi-queue')
+    # Prima riga: match esatto sull'array delle etichette, non sottostringa sulla
+    # join — lezione del 17/08.
+    # Seconda riga: senza, QUALSIASI etichetta aggiunta dopo a una issue già in
+    # coda faceva ripartire una verifica intera, con la sua chiamata a pagamento.
+    # Su `labeled` deve essere `kiroshi-queue` l'etichetta appena messa.
+    if: >-
+      contains(github.event.issue.labels.*.name, 'kiroshi-queue') &&
+      (github.event.action != 'labeled' || github.event.label.name == 'kiroshi-queue')
     runs-on: ubuntu-latest
+    env:
+      NUMERO: ${{ github.event.issue.number }}
+      RAMO: kiroshi/verifica-${{ github.event.issue.number }}
+      BASE: ${{ github.event.repository.default_branch }}
     steps:
-      - uses: actions/checkout@v4
+      - name: 1 · Prendi il ramo base, dichiarandolo
+        uses: actions/checkout@v4
+        with:
+          # Esplicito di proposito. Il valore risolto è lo stesso di prima, ma
+          # prima nessuno che leggesse il file poteva sapere su cosa stesse
+          # lavorando il bot — ed era su main.
+          ref: ${{ github.event.repository.default_branch }}
+
+      - name: 2 · Il ramo del bot non deve già esistere
+        run: |
+          # Controllo PRIMA della chiamata a pagamento: se la strada è chiusa,
+          # è meglio scoprirlo mentre non è ancora costato niente.
+          if git ls-remote --exit-code --heads origin "$RAMO" >/dev/null 2>&1; then
+            echo "::error::Il ramo $RAMO esiste già: per la richiesta #$NUMERO c'è già una proposta aperta."
+            echo "Non la sovrascrivo: il Direttore potrebbe averla sotto gli occhi in questo momento."
+            echo "Se la vecchia proposta è da buttare: chiudi la PR, cancella il ramo, rimetti l'etichetta."
+            exit 1
+          fi
+          echo "✓ $RAMO è libero. Base: $BASE"
 
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
-      - name: Installa dipendenze
-        run: pip install anthropic
+      - name: 3 · Installa dipendenze
+        run: pip install --quiet anthropic
 
-      - name: Esegui KIROSHI
-        id: kiroshi
+      - name: 4 · Esegui KIROSHI
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
           ISSUE_TITLE: ${{ github.event.issue.title }}
           ISSUE_BODY: ${{ github.event.issue.body }}
           ISSUE_LABELS: ${{ join(github.event.issue.labels.*.name, ',') }}
+        # Titolo e corpo passano da variabili d'ambiente, mai interpolati nello
+        # shell: il testo lo scrive uno sconosciuto dal modulo web.
         run: python scripts/kiroshi_check.py
 
-      - name: Pubblica il verdetto nella issue
+      - name: 5 · GUARDIA PRIVACY — prima di toccare qualunque superficie pubblica
+        run: |
+          # Due superfici, non una:
+          #  · docs/               ci finisce il verdetto, e Pages lo serve a chiunque;
+          #  · kiroshi_comment.md  il commento che va nella issue, pubblica anch'essa.
+          #    È in .gitignore, quindi la scansione di docs/ non lo vedrà MAI — ed è
+          #    la strada esatta dell'incidente del 01/08, un'intenzione riservata
+          #    finita sotto gli occhi di tutti.
+          # --solo-docs: nessuna rete, nessun `gh`. Qui si guarda ciò che sta per
+          # uscire, non ciò che è già uscito.
+          if ! python3 scripts/guardia_privacy.py \
+                 --solo-docs --senza-estratti --anche kiroshi_comment.md; then
+            echo "::error::La guardia privacy ha trovato un BLOCCO. Non committo, non commento, non apro niente."
+            echo "Niente è uscito da questo runner: il verdetto muore qui insieme al job."
+            echo "Il referto qui sopra dice file e tipo di reperto. Per vedere il testo trovato,"
+            echo "rilancia sul Mac, dove il log non è pubblico:"
+            echo "  python3 scripts/guardia_privacy.py --solo-docs"
+            exit 1
+          fi
+
+      - name: 6 · Commit sul ramo del bot (mai su main)
+        run: |
+          git config user.name  "kiroshi-bot"
+          git config user.email "kiroshi-bot@users.noreply.github.com"
+          git switch -c "$RAMO"
+          git add docs/data/
+          if git diff --cached --quiet; then
+            echo "::error::KIROSHI è finito senza errori ma docs/data/ non è cambiato: non c'è nessun verdetto da proporre."
+            echo "Qui prima c'era « || echo 'niente da committare' », che ingoiava il caso"
+            echo "e spingeva lo stesso: un run verde che non aveva prodotto niente."
+            exit 1
+          fi
+          git commit -m "KIROSHI: verifica #$NUMERO"
+          # Destinazione esplicita. La riga di prima era « git push » e basta, e
+          # dal ramo predefinito quello vuol dire «scrivi su main».
+          git push origin "HEAD:refs/heads/$RAMO"
+          echo "✓ verdetto spinto su $RAMO. Su $BASE non è stato scritto niente."
+
+      - name: 7 · Apri la proposta in BOZZA
+        id: pr
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Il `sed` toglie i 10 spazi con cui il testo è indentato dentro questo
+          # YAML. Senza, ogni riga del corpo arriva rientrata e GitHub la rende
+          # come un blocco di codice: la PR resterebbe leggibile solo a chi la
+          # apre col sorgente sotto mano.
+          sed 's/^ \{10\}//' > "$RUNNER_TEMP/corpo-pr.md" <<TESTO
+          Verdetto prodotto in automatico per la richiesta #$NUMERO.
+
+          **È una proposta, non una pubblicazione.** Resta in bozza finché non la
+          fonde il Direttore: un verdetto pubblicato è la firma del Dipartimento
+          Verità, e quella firma non la mette un bot da solo.
+
+          Cosa ha già superato, prima di arrivare qui:
+
+          - guardia privacy su \`docs/\` e sul commento della issue: nessun BLOCCO;
+          - cancello editoriale di \`build_db.py\`: un verdetto senza fonti non entra in \`db.js\`.
+
+          Cosa non ha controllato nessuna macchina, e tocca a chi legge:
+
+          - se le fonti sostengono davvero quello che il verdetto afferma;
+          - se il punteggio regge, e se l'incertezza è dichiarata;
+          - se l'oggetto è una ditta o un prodotto (KIROSHI) e non una persona (confine BRAINDANCE).
+
+          — aperta dall'automazione, ramo \`$RAMO\`
+          TESTO
+          URL=$(gh pr create --draft --base "$BASE" --head "$RAMO" \
+                  --title "KIROSHI — verdetto proposto per la richiesta #$NUMERO" \
+                  --body-file "$RUNNER_TEMP/corpo-pr.md")
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
+          echo "✓ proposta in bozza: $URL"
+
+      - name: 8 · Di' nella issue che è una proposta, e ricontrolla
+        env:
+          PR: ${{ steps.pr.outputs.url }}
+        run: |
+          # Il commento che scrive kiroshi_check.py si legge come un verdetto già
+          # emesso. Non lo è: fino al merge è una proposta. Una scritta che dice
+          # una cosa mentre l'impianto ne fa un'altra è il guasto, non il refuso.
+          {
+            echo ""
+            echo "---"
+            echo "**Stato: proposta, non ancora pubblicata.** Il verdetto vive in una pull"
+            echo "request in bozza ($PR) e diventa pubblico solo se il Direttore la fonde."
+          } >> kiroshi_comment.md
+          # Il commento è cambiato DOPO il passo 5: quello che si pubblica non deve
+          # mai essere una versione che la guardia non ha visto.
+          python3 scripts/guardia_privacy.py \
+            --solo-docs --senza-estratti --anche kiroshi_comment.md
+
+      - name: 9 · Pubblica il commento nella issue
         uses: peter-evans/create-or-update-comment@v4
         with:
           issue-number: ${{ github.event.issue.number }}
           body-path: kiroshi_comment.md
-
-      - name: Salva il verdetto nel repo (per la dashboard)
-        run: |
-          git config user.name "kiroshi-bot"
-          git config user.email "kiroshi-bot@users.noreply.github.com"
-          git add docs/data/
-          git commit -m "KIROSHI: verifica #${{ github.event.issue.number }}" || echo "niente da committare"
-          git push
