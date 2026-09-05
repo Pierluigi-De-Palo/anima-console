@@ -1,0 +1,74 @@
+# COSA FA — risponde a tre domande che da una sessione agente non si possono
+#   fare (l'egress risponde 403 su ogni host nostro): ① la PORTA di
+#   cyberboomer.io arriva in HTTPS con un certificato valido, ed è la porta
+#   (campo della frase + blocco cifrato)? ② cyberboomer.ninja serve la versione
+#   col blu link, in HTTPS? ③ console.cyberboomer.io esiste o no?
+# PERCHE ESISTE — il Direttore dice «non riesco ad accedere alla consolle»: la
+#   porta deriva la chiave con crypto.subtle, che il browser SPEGNE se la
+#   pagina non arriva in HTTPS. Prima di dire «è la frase sbagliata» si misura
+#   la strada: un guasto di certificato e una frase sbagliata si presentano allo
+#   stesso modo a chi sta davanti al telefono.
+# FIN DOVE ARRIVA — solo GET e HEAD, nessun POST, nessun segreto, nessuna
+#   frase: misura la STRADA, non apre la porta. Guarda il corpo, non il codice.
+# COSTO — zero. USO — Actions → «Prova della porta» → Run workflow.
+# — creato da D.R.A.G.O., 2026-09-05
+
+name: Prova della porta
+
+on:
+  workflow_dispatch:
+
+jobs:
+  prova:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 0 · Bersaglio di controllo — la rete del runner funziona?
+        run: |
+          set -u
+          COD=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 25 https://github.com/ || echo 000)
+          echo "github.com: $COD"; [ "$COD" != "000" ] || { echo "✗ rete del runner morta: nessuna conclusione lecita"; exit 1; }
+
+      - name: 1 · cyberboomer.io — HTTPS, certificato, ed è la PORTA?
+        run: |
+          set -u
+          echo "== certificato =="
+          echo | openssl s_client -connect cyberboomer.io:443 -servername cyberboomer.io 2>/dev/null \
+            | openssl x509 -noout -subject -issuer -dates 2>/dev/null || echo "✗ nessun certificato letto"
+          echo "== http → ? =="
+          curl -sS -o /dev/null -w 'http://cyberboomer.io/ → %{http_code} → %{redirect_url}\n' --max-time 25 http://cyberboomer.io/ || true
+          echo "== https GET =="
+          COD=$(curl -sS -o /tmp/porta.html -w '%{http_code}' --max-time 25 https://cyberboomer.io/ || echo 000)
+          echo "codice: $COD · byte: $(wc -c < /tmp/porta.html)"
+          grep -q 'frase di sblocco' /tmp/porta.html && echo "✓ c'è il campo della frase" || echo "✗ manca il campo della frase"
+          grep -q 'PORTA_PAYLOAD' /tmp/porta.html && echo "✓ c'è il blocco cifrato (PORTA_PAYLOAD)" || echo "✗ manca il blocco cifrato"
+          grep -o 'PBKDF2-SHA256[^<]\{0,40\}' /tmp/porta.html | head -1
+          echo "== intestazioni =="
+          curl -sSI --max-time 25 https://cyberboomer.io/ | grep -i -E '^(server|strict-transport|content-type|last-modified):' || true
+
+      - name: 2 · cyberboomer.ninja — HTTPS e versione servita
+        run: |
+          set -u
+          echo | openssl s_client -connect cyberboomer.ninja:443 -servername cyberboomer.ninja 2>/dev/null \
+            | openssl x509 -noout -subject -dates 2>/dev/null || echo "✗ nessun certificato letto"
+          COD=$(curl -sS -o /tmp/ninja.html -w '%{http_code}' --max-time 25 https://cyberboomer.ninja/ || echo 000)
+          echo "codice: $COD · byte: $(wc -c < /tmp/ninja.html)"
+          grep -c '5C7CFF' /tmp/ninja.html | sed 's/^/occorrenze del blu link #5C7CFF: /'
+          grep -c 'FF2E88' /tmp/ninja.html | sed 's/^/occorrenze del magenta #FF2E88 (attese 0): /'
+          grep -o '<title>[^<]*' /tmp/ninja.html
+          curl -sS -o /dev/null -w 'lezioni/lezione-001.html → %{http_code}\n' --max-time 25 https://cyberboomer.ninja/lezioni/lezione-001.html || true
+          curl -sSI --max-time 25 https://cyberboomer.ninja/ | grep -i -E '^(server):' || true
+
+      - name: 3 · console.cyberboomer.io — esiste?
+        run: |
+          set -u
+          echo "DNS:"; getent hosts console.cyberboomer.io || echo "  nessun record (NXDOMAIN)"
+          COD=$(curl -sS -o /tmp/c.html -w '%{http_code}' --max-time 20 https://console.cyberboomer.io/ 2>/tmp/err || echo 000)
+          echo "https://console.cyberboomer.io/ → $COD $(head -c 120 /tmp/err 2>/dev/null)"
+
+      - name: 4 · Le voci pubbliche — X e radio
+        run: |
+          set -u
+          curl -sS -o /dev/null -w 'https://radio-anima.pages.dev/ → %{http_code}\n' --max-time 25 https://radio-anima.pages.dev/ || true
+          COD=$(curl -sS -o /tmp/x.html -w '%{http_code}' --max-time 25 -A 'Mozilla/5.0' https://x.com/cyberboomer || echo 000)
+          echo "https://x.com/cyberboomer → $COD (X serve una shell JS a tutti: il codice da solo non dice se l'account esiste)"
+          grep -o '<title>[^<]*' /tmp/x.html | head -1 || true
