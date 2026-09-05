@@ -40,7 +40,7 @@ import os
 import re
 import subprocess
 import sys
-from datetime import date
+from datetime import date, timedelta
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import aesgcm_puro  # AES-GCM in Python puro: la libreria di sistema qui è rotta
@@ -227,21 +227,34 @@ def blocco_squadra() -> dict:
             "nato": nato,
         })
 
-    carta = _posti_sulla_carta()
+    case = _case_di_lavoro()
+    carta = [] if case else _posti_sulla_carta()
     n_capi = len([a for a in veri if a["grado"] == "caposquadra"])
     n_spec = len(veri) - n_capi
+    cifre = [{"n": len(veri), "etichetta": f"chiamabili da qui ({n_capi} capi + {n_spec} specialisti)"}]
+    if case:
+        vecchie = [c for c in case if c["stato"] and c["stato"] < (date.today() - timedelta(days=10)).isoformat()]
+        cifre.append({"n": len(case), "etichetta": "case di lavoro in ROOT_CLODE"})
+        cifre.append({"n": len(vecchie), "etichetta": "con lo STATO fermo da oltre 10 giorni"})
+        nota = ("Due colonne, e non vanno confuse. Sopra: chi e' CHIAMABILE da qui, "
+                "perche' ha un file in .claude/agents/. Sotto: le case di lavoro che "
+                "vivono in ROOT_CLODE, con il loro CLAUDE.md e il loro STATO.md. "
+                "Una casa puo' avere anni di lavoro e non essere chiamabile: "
+                "e' il caso della maggior parte. Il 30/08 questa porta le dava per "
+                "«mai nate», e si sbagliava: contava in un posto solo e chiamava "
+                "quel posto «il mondo».")
+    else:
+        cifre.append({"n": len(carta), "etichetta": "posti citati, non verificabili da qui"})
+        nota = ("⚠️ ROOT_CLODE non e' raggiungibile da dove e' stata generata questa "
+                "porta, quindi delle case di lavoro non so dire niente: quelle qui "
+                "sotto sono nomi citati in una pagina di competenze, non una misura. "
+                "Rigenera la porta da dentro ROOT_CLODE e questa riga sparisce.")
     return {
-        "cifre": [
-            {"n": len(veri), "etichetta": f"agenti veri ({n_capi} capi + {n_spec} specialisti)"},
-            {"n": len(carta), "etichetta": "posti sulla carta, mai nati"},
-        ],
+        "cifre": cifre,
         "veri": veri,
+        "case": case,
         "carta": carta,
-        "nota": "Un agente esiste se ha un file in .claude/agents/: quello lo rende "
-                "chiamabile. I posti sulla carta sono mansioni descritte in una pagina "
-                "di competenze e mai diventate un agente — non sono «fermi da settimane», "
-                "non sono mai partiti. Questa tabella si rigenera dai file: se qualcuno "
-                "nasce o muore, cambia da sola.",
+        "nota": nota,
     }
 
 
@@ -277,6 +290,66 @@ def _prima_data(percorso: str) -> str:
         return out.stdout.strip() or "?"
     except Exception:
         return "?"
+
+
+def _case_di_lavoro() -> list:
+    """Le case di ROOT_CLODE: cartelle con un CLAUDE.md E uno STATO.md.
+
+    PERCHE' ESISTE, ed e' una correzione a me stesso. Il 30/08 questo blocco
+    contava solo `.claude/agents/` e dichiarava CHRONO, SHUTTER, FLUX, ROGUE e
+    TBFIND «posti sulla carta, mai nati». Nel repo era vero. Nel mondo era
+    falso: il 31/08, aperto ROOT_CLODE, sono venute fuori cartelle di lavoro
+    con centinaia di file, un CLAUDE.md e uno STATO.md aggiornato — FLUX 254
+    file, SUONO 148, SHUTTER 63. Non erano mai nate: erano nate altrove, e non
+    arrivavano qui.
+
+    📜 Contare in un posto solo e chiamarlo «il mondo» e' lo stesso errore del
+    filtro che non trova niente e dice «non c'e' niente» invece di «non vedo
+    niente». Da qui: se ROOT_CLODE e' raggiungibile si contano le case vere; se
+    non lo e', la porta lo DICE, invece di riempire il vuoto con una certezza.
+    """
+    for cand in (os.path.dirname(ROOT),
+                 os.path.join(os.path.dirname(ROOT), "ROOT_CLODE"),
+                 os.path.join(os.path.dirname(ROOT), "root_clode")):
+        if not os.path.isdir(cand):
+            continue
+        case = []
+        for nome in sorted(os.listdir(cand)):
+            d = os.path.join(cand, nome)
+            if nome.startswith(".") or not os.path.isdir(d):
+                continue
+            # Il segno di una casa e' lo STATO.md — e' il registro che ogni casa
+            # tiene. Il CLAUDE.md invece manca a case vive: SUONO ha 148 file e lo
+            # STATO piu' fresco di tutte, e chiedendo tutti e due i file sparirebbe.
+            # Una condizione piu' stretta del necessario non e' piu' sicura: e' solo
+            # piu' cieca, e sbaglia proprio sui casi che contano di piu'.
+            if not os.path.isfile(os.path.join(d, "STATO.md")):
+                continue
+            stato = os.path.join(d, "STATO.md")
+            quando = _ultima_data(stato, cand)
+            n = sum(len(f) for _, _, f in os.walk(d) if ".git" not in _)
+            case.append({"nome": nome, "file": n, "stato": quando,
+                         "manuale": os.path.isfile(os.path.join(d, "CLAUDE.md"))})
+        if len(case) >= 3:          # una cartella sola non e' ROOT_CLODE
+            return sorted(case, key=lambda c: c["stato"] or "", reverse=True)
+    return []
+
+
+def _ultima_data(percorso: str, cwd: str) -> str:
+    """Quando quel file e' stato lavorato davvero. In un clone fresco la data
+    di modifica e' l'ora del clone: git la sa, il filesystem no."""
+    try:
+        out = subprocess.run(["git", "log", "-1", "--format=%ad", "--date=short",
+                              "--", percorso], cwd=cwd,
+                             capture_output=True, text=True, timeout=10)
+        if out.stdout.strip():
+            return out.stdout.strip()
+    except Exception:
+        pass
+    try:
+        return date.fromtimestamp(os.path.getmtime(percorso)).isoformat()
+    except OSError:
+        return ""
 
 
 def _posti_sulla_carta() -> list:
@@ -621,6 +694,19 @@ th{color:var(--cia);font-family:ui-monospace,Menlo,monospace;font-size:10px;lett
          + '</td><td class="mono">' + esc(a.nato) + '</td></tr>';
     });
     h += '</table></div>';
+    if ((q.case || []).length) {
+      h += '<div class="avv"><b>Le case di lavoro.</b> Vivono in ROOT_CLODE, hanno il loro '
+         + 'CLAUDE.md e il loro STATO.md, e non sono chiamabili da qui: sono un altro '
+         + 'mestiere, non un altro grado.</div>';
+      h += '<div class="scorre">';
+      h += '<table><tr><th>Casa</th><th>File</th><th>STATO aggiornato</th><th>Manuale</th></tr>';
+      (q.case || []).forEach(function (c) {
+        h += '<tr><td class="mono">' + esc(c.nome) + '</td><td class="mono">' + esc(c.file)
+           + '</td><td class="mono">' + esc(c.stato || '—') + '</td><td class="mono">'
+           + (c.manuale ? 'sì' : '— manca') + '</td></tr>';
+      });
+      h += '</table></div>';
+    }
     if ((q.carta || []).length) {
       h += '<div class="avv"><b>Posti sulla carta.</b> Mansioni descritte in una pagina '
          + 'di competenze e mai diventate un agente: non sono fermi, non sono mai partiti. '
@@ -702,7 +788,10 @@ def main() -> None:
         # Dal 30/08 la porta porta anche il ruolino della squadra: le sigle
         # degli agenti sono nomi interni e non stanno in piazza (CLAUDE.md:
         # «nessun nome di agente in vetrina»).
-        "SQUELCH", "KIROSHI", "collaudo-superfici", "provino"]
+        "SQUELCH", "KIROSHI", "collaudo-superfici", "provino",
+        # …e dal 31/08 anche i nomi delle case di lavoro: entrano nel cifrato
+        # come tutto il resto, e a lucchetto chiuso non devono trapelare.
+        "SHUTTER", "CHRONO", "MIRAGGIO", "kiroshi-interno"]
     visibili = [s for s in spie if s in re.sub(
         rf'<script[^>]*id="{SEGNO}"[^>]*>.*?</script>', "", html, flags=re.S)]
     if visibili:
@@ -717,7 +806,11 @@ def main() -> None:
     print(f"  {len(verdetti)} verdetti · {vecchi} da riverificare · "
           f"{ITERAZIONI:,} iterazioni PBKDF2".replace(",", "."))
     sq = blocchi["squadra"]
-    print(f"  {len(sq['veri'])} agenti veri · {len(sq['carta'])} posti sulla carta")
+    if sq.get("case"):
+        print(f"  {len(sq['veri'])} chiamabili da qui · {len(sq['case'])} case di lavoro in ROOT_CLODE")
+    else:
+        print(f"  {len(sq['veri'])} chiamabili da qui · ROOT_CLODE non raggiungibile: "
+              f"{len(sq['carta'])} nomi solo citati")
     print("  nessuna parola spia visibile a lucchetto chiuso (controllato)")
 
 
