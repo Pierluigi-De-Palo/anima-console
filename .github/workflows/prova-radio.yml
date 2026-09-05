@@ -279,10 +279,18 @@ jobs:
           MORTI=0
           while read -r U; do
             [ -n "${U:-}" ] || continue
-            COD=$(curl -sS -o /tmp/l.bin -w '%{http_code}' --max-time 40 "$RADIO/$U" || echo 000)
+            # ⚠️ `-L` SEGUE I RINVII, e non è un dettaglio: al run #1 mancava, e
+            #    `diritti.html` rispondeva 308 con ZERO byte. Zero non è il peso
+            #    del nulla, quindi passava per vivo — senza che nessuno avesse
+            #    letto una riga del registro dei diritti. Un rinvio non seguito
+            #    è una promessa creduta sulla parola.
+            COD=$(curl -sSL -o /tmp/l.bin -w '%{http_code}' --max-time 40 "$RADIO/$U" || echo 000)
             PESO=$(wc -c < /tmp/l.bin | tr -d ' ')
             if [ "$PESO" = "$NULLA" ]; then
-              printf '  ✗ %-34s codice=%s peso=%s → NON ESISTE\n' "$U" "$COD" "$PESO"
+              printf '  ✗ %-34s codice=%s peso=%s → NON ESISTE (è la pagina di ripiego)\n' "$U" "$COD" "$PESO"
+              MORTI=$((MORTI + 1))
+            elif [ "$PESO" -lt 1 ]; then
+              printf '  ✗ %-34s codice=%s peso=%s → RISPONDE VUOTO\n' "$U" "$COD" "$PESO"
               MORTI=$((MORTI + 1))
             else
               printf '  ✓ %-34s codice=%s peso=%s\n' "$U" "$COD" "$PESO"
@@ -305,38 +313,43 @@ jobs:
           cat /tmp/verdetti.txt 2>/dev/null || echo "(nessun verdetto: il collaudo è morto prima)"
           echo "═════════════════════════════════════════"
           echo
-          V=$(cat /tmp/verdetti.txt 2>/dev/null || echo "")
           MALE=0
           dire () { echo "$1"; }
           # ⚠️ Un referto VUOTO non è un referto buono: vuol dire che il collaudo
           #    è morto prima di misurare qualunque cosa. Senza questa riga, il
           #    caso peggiore — non aver misurato niente — usciva VERDE. Trovato
           #    provando il referto con sette casi cattivi, non leggendolo.
-          if [ -z "$V" ]; then
+          if [ ! -s /tmp/verdetti.txt ]; then
             dire "🔴 NESSUNA MISURA: il collaudo è morto prima di guardare la radio."
             dire "   Non si conclude niente da un referto vuoto."
             exit 1
           fi
-          case "$V" in
-            *onda:MANCA*|*onda:NON-JSON*) dire "🔴 L'onda non c'è: la radio non ha un palinsesto."; MALE=1 ;;
-          esac
-          case "$V" in
-            *audio-diretta:OK*) dire "🟢 La diretta è caricata e pesa." ;;
-            *audio-diretta:*)   dire "🔴 La diretta NON è caricata: la radio è muta."; MALE=1 ;;
-          esac
-          case "$V" in
-            *replica:OK*) dire "🟢 La replica è online, ed è un'altra registrazione." ;;
-            *replica:*)   dire "🔴 La replica promessa in pagina NON è mantenuta."; MALE=1 ;;
-          esac
-          case "$V" in
-            *player:ROTTO*) dire "🔴 Online c'è ancora il player rotto del 10/08."; MALE=1 ;;
-            *player:MANCA*) dire "🔴 Il player non è pubblicato."; MALE=1 ;;
-            *player:DIVERSO*) dire "🟡 Il player è cambiato: le righe stampate al passo 4 le giudica una persona." ;;
-          esac
-          case "$V" in
-            *promesse:OK*) dire "🟢 Nessun link morto in pagina." ;;
-            *promesse:*)   dire "🔴 La pagina promette file che non esistono (passo 5)."; MALE=1 ;;
-          esac
+          # ⚠️ SI CONFRONTANO RIGHE INTERE (`grep -qx`), MAI SOTTOSTRINGHE.
+          #    Al run #1 questo blocco usava `case *replica:OK*`, e quel motivo
+          #    acchiappava anche `audio-replica:OK`: il referto ha stampato 🟢
+          #    sulla replica mentre la misura diceva UGUALE-ALLA-DIRETTA.
+          #    Un FALSO VERDE, dentro il controllo scritto per impedirli — ed è
+          #    lo stesso inganno dell'etichetta `kiroshi-queue` del 17/08.
+          #    Una riga intera non si lascia acchiappare per sbaglio.
+          ha () { grep -qx "$1" /tmp/verdetti.txt; }
+          comincia () { grep -q "^$1" /tmp/verdetti.txt; }
+
+          if comincia 'onda:MANCA' || comincia 'onda:NON-JSON'; then
+            dire "🔴 L'onda non c'è: la radio non ha un palinsesto."; MALE=1
+          fi
+          if ha 'audio-diretta:OK'; then dire "🟢 La diretta è caricata e pesa."
+          elif comincia 'audio-diretta:'; then dire "🔴 La diretta NON è caricata: la radio è muta."; MALE=1
+          fi
+          if ha 'replica:OK'; then dire "🟢 La replica è online, ed è un'altra registrazione."
+          elif comincia 'replica:'; then dire "🔴 La replica promessa in pagina NON è mantenuta."; MALE=1
+          fi
+          if ha 'player:ROTTO'; then dire "🔴 Online c'è ancora il player rotto del 10/08."; MALE=1
+          elif ha 'player:MANCA'; then dire "🔴 Il player non è pubblicato."; MALE=1
+          elif comincia 'player:DIVERSO'; then dire "🟡 Il player NON è quello rotto: le righe del passo 4 le giudica una persona."
+          fi
+          if ha 'promesse:OK'; then dire "🟢 Nessun link morto in pagina."
+          elif comincia 'promesse:'; then dire "🔴 La pagina promette file che non esistono (passo 5)."; MALE=1
+          fi
           echo
           echo "⚠️ Questo referto misura i BYTE, non l'orecchio."
           echo "   Che la radio SI SENTA lo può dire solo una persona che la apre."
