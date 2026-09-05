@@ -1,0 +1,343 @@
+# COSA FA — risponde a una domanda sola: «la radio è viva sul suo indirizzo, e
+#   mantiene quello che la sua pagina promette?». Si lancia a mano dal bottone
+#   "Run workflow", e parte da sola quando si tocca questo file.
+# PERCHE ESISTE — il 05/09 il Direttore ha aperto la radio e non suonava. Il
+#   guasto è stato trovato e riparato, ma la riparazione vive in
+#   `animagame-site/radio/`, che è FUORI da ogni git (lo dice il suo .gitignore
+#   alla riga 53): nessuno può rileggerla, e «riparata» è finora una parola
+#   detta, non un numero. Una sessione agente non può misurarla da sé —
+#   l'egress risponde 403 al CONNECT su ogni host nostro (misurato di nuovo il
+#   05/09 su radio-anima.pages.dev). Il runner di GitHub la rete ce l'ha.
+#   Questo è l'unico posto da cui la misura si può fare.
+# COME È COSTRUITO — su Cloudflare Pages un indirizzo mai esistito risponde 200
+#   con la pagina di ripiego: il codice HTTP non prova niente (lezione di SUONO
+#   e SQUELCH, 10/08). Perciò il passo 0 chiede apposta un indirizzo impossibile
+#   e ne prende peso e impronta: è LA FIRMA DEL NULLA di questo sito. Da lì in
+#   poi «il file c'è» vuol dire «non pesa quanto il nulla», mai «ha risposto».
+# PERCHE NON SI FERMA AL PRIMO ERRORE — i passi non escono mai in errore: ognuno
+#   scrive il suo verdetto in un file e il referto si legge tutto insieme alla
+#   fine, dove un unico passo decide. Un collaudo che muore al primo guasto
+#   nasconde i tre dietro, e qui servono tutti in una volta.
+# FIN DOVE ARRIVA — dice se i file ci sono, quanto pesano, di che tipo sono e se
+#   il codice pubblicato è ancora quello rotto. NON dice se si SENTE: questo
+#   misura i byte, non l'orecchio. La prova dell'orecchio la fa una persona.
+# COSTO — zero token e zero denaro: solo GET su host nostri. Nessuna chiave,
+#   nessun secret, nessuna chiamata a pagamento.
+# SICUREZZA — non usa segreti, quindi non può stamparne. Non scrive niente da
+#   nessuna parte: sono tutte letture.
+# USO — Actions → "Prova della radio" → Run workflow. Nessun parametro.
+# — creato da SUONO, 2026-09-05
+
+name: Prova della radio
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/prova-radio.yml'
+
+env:
+  RADIO: https://radio-anima.pages.dev
+
+jobs:
+  prova:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 0 · La rete c'è, e qual è la FIRMA DEL NULLA di questo sito
+        # Due cose in un passo, perché sono la stessa cosa: stabilire di cosa ci
+        # si può fidare. Prima un bersaglio che sappiamo vivo e che non è nostro
+        # (example.com esiste apposta per questo): se muore quello, il guasto è
+        # del runner e tutto il referto va buttato. Poi si chiede un indirizzo
+        # che NON PUÒ esistere: quello che torna è la pagina di ripiego di
+        # Pages, e il suo peso è il metro di tutti i passi che seguono.
+        run: |
+          set -u
+          COD=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 25 https://example.com/ || echo 000)
+          echo "bersaglio di controllo (example.com): $COD"
+          if [ "$COD" = "000" ]; then
+            echo "✗ non raggiungo nemmeno il bersaglio di controllo."
+            echo "  Il guasto è della rete del runner. Nessuna conclusione sulla radio è lecita."
+            exit 1
+          fi
+          echo "✓ la rete del runner funziona: si può misurare."
+          echo
+
+          IMPOSSIBILE="$RADIO/questo-file-non-esiste-mai-42.mp3"
+          COD=$(curl -sS -o /tmp/nulla.txt -w '%{http_code}' --max-time 25 "$IMPOSSIBILE" || echo 000)
+          PESO=$(wc -c < /tmp/nulla.txt | tr -d ' ')
+          echo "$PESO" > /tmp/peso-nulla
+          echo "== la firma del nulla =="
+          echo "chiesto:  $IMPOSSIBILE"
+          echo "risposta: codice $COD · $PESO byte"
+          if [ "$COD" = "200" ]; then
+            echo "→ come previsto: Pages risponde 200 anche al nulla."
+            echo "  Da qui in poi, «c'è» vuol dire «non pesa $PESO byte»."
+          else
+            echo "→ ATTENZIONE: stavolta il nulla NON dà 200 (dà $COD)."
+            echo "  Meglio così, ma le note di casa dicevano altro: da rileggere."
+          fi
+          : > /tmp/verdetti.txt
+
+      - name: 1 · L'onda esiste, ed è davvero un'onda?
+        # `onda.json` è il palinsesto: dice quale file va in diretta, quanto
+        # dura, com'è fatta la scaletta. Se manca, il player mostra «IN
+        # ACCORDATURA» e non suona niente. Non basta che risponda: deve essere
+        # JSON vero, perché la pagina di ripiego risponde 200 ed è HTML.
+        run: |
+          set -u
+          NULLA=$(cat /tmp/peso-nulla)
+          COD=$(curl -sS -o /tmp/onda.json -w '%{http_code}' --max-time 25 "$RADIO/onda.json" || echo 000)
+          PESO=$(wc -c < /tmp/onda.json | tr -d ' ')
+          echo "onda.json: codice $COD · $PESO byte (il nulla ne pesa $NULLA)"
+          if [ "$PESO" = "$NULLA" ]; then
+            echo "✗ pesa esattamente quanto il nulla: onda.json NON C'È."
+            echo "onda:MANCA" >> /tmp/verdetti.txt
+            exit 0
+          fi
+          python3 - <<'PY'
+          import json, sys
+          try:
+              d = json.load(open('/tmp/onda.json'))
+          except Exception as e:
+              print('✗ risponde, ma non è JSON:', e)
+              print('  (è quasi certamente la pagina di ripiego travestita)')
+              open('/tmp/verdetti.txt', 'a').write('onda:NON-JSON\n')
+              sys.exit(0)
+          print('✓ è JSON vero.')
+          print('  stazione :', d.get('stazione'))
+          print('  titolo   :', d.get('titolo'))
+          print('  base     :', d.get('base'))
+          print('  diretta  :', (d.get('diretta') or {}).get('file'),
+                '·', (d.get('diretta') or {}).get('durata_s'), 's')
+          print('  replica  :', (d.get('replica') or {}).get('file') or '— NON DICHIARATA —')
+          print('  scaletta :', len(d.get('scaletta') or []), 'pezzi')
+          open('/tmp/verdetti.txt', 'a').write('onda:OK\n')
+          PY
+
+      - name: 2 · L'audio che l'onda promette pesa davvero qualcosa?
+        # Il palinsesto può nominare un file che non è mai stato caricato: è
+        # successo, ed è il modo in cui una radio dice «in onda» restando muta.
+        # Qui si scarica per intero e si guardano peso e tipo. Un MP3 di
+        # sei minuti sta sui sei milioni di byte; il nulla ne pesa duemila.
+        run: |
+          set -u
+          NULLA=$(cat /tmp/peso-nulla)
+          grep -q 'onda:OK' /tmp/verdetti.txt || { echo "salto: l'onda non si è letta al passo 1."; exit 0; }
+          python3 -c "
+          import json
+          d = json.load(open('/tmp/onda.json'))
+          base = d.get('base') or ''
+          for ruolo in ('diretta', 'replica'):
+              v = d.get(ruolo) or {}
+              if v.get('file'):
+                  print(ruolo, base + v['file'])
+          " > /tmp/da-provare.txt
+          cat /tmp/da-provare.txt
+          echo
+          while read -r RUOLO PERCORSO; do
+            [ -n "${PERCORSO:-}" ] || continue
+            COD=$(curl -sS -o /tmp/a.bin -w '%{http_code}' --max-time 90 \
+                  -D /tmp/testate.txt "$RADIO/$PERCORSO" || echo 000)
+            PESO=$(wc -c < /tmp/a.bin | tr -d ' ')
+            TIPO=$(grep -i '^content-type:' /tmp/testate.txt | tail -1 | tr -d '\r' | cut -d' ' -f2-)
+            printf '%-8s %-28s codice=%s peso=%s tipo=%s\n' "$RUOLO" "$PERCORSO" "$COD" "$PESO" "${TIPO:-?}"
+            if [ "$PESO" = "$NULLA" ]; then
+              echo "         ✗ pesa quanto il nulla: questo file NON È CARICATO."
+              echo "audio-$RUOLO:MANCA" >> /tmp/verdetti.txt
+            elif [ "$PESO" -lt 100000 ]; then
+              echo "         ✗ $PESO byte non sono un'onda: troppo leggero."
+              echo "audio-$RUOLO:TROPPO-LEGGERO" >> /tmp/verdetti.txt
+            elif echo "${TIPO:-}" | grep -qi '^audio/'; then
+              echo "         ✓ c'è, pesa, ed è audio."
+              echo "audio-$RUOLO:OK" >> /tmp/verdetti.txt
+              sha256sum /tmp/a.bin | cut -c1-16 | sed "s/^/         impronta: /"
+              sha256sum /tmp/a.bin | cut -c1-64 > "/tmp/impronta-$RUOLO"
+            else
+              echo "         ✗ pesa, ma il tipo non è audio: è «${TIPO:-vuoto}»."
+              echo "audio-$RUOLO:TIPO-SBAGLIATO" >> /tmp/verdetti.txt
+            fi
+          done < /tmp/da-provare.txt
+
+      - name: 3 · LA PROMESSA DELLA REPLICA — la sola scritta in pagina
+        # La pagina dice che fuori orario c'è la replica. Il player, se
+        # `onda.replica` manca, ricasca sulla diretta SENZA dirlo: chi entra
+        # fuori orario si risente la diretta credendo sia la replica. Perciò qui
+        # non basta che il campo esista: il file deve essere UN ALTRO file.
+        run: |
+          set -u
+          grep -q 'onda:OK' /tmp/verdetti.txt || { echo "salto: l'onda non si è letta."; exit 0; }
+          DICHIARATA=$(python3 -c "
+          import json
+          d = json.load(open('/tmp/onda.json'))
+          print(((d.get('replica') or {}).get('file')) or '')
+          ")
+          if [ -z "$DICHIARATA" ]; then
+            echo '✗ onda.json NON dichiara nessuna replica.'
+            echo "  Il player ricasca sulla diretta in silenzio: chi entra fuori"
+            echo "  orario si risente la diretta credendo sia la replica."
+            echo "  La pagina promette una cosa che non esiste."
+            echo "replica:NON-DICHIARATA" >> /tmp/verdetti.txt
+            exit 0
+          fi
+          echo "replica dichiarata: $DICHIARATA"
+          if ! grep -q 'audio-replica:OK' /tmp/verdetti.txt; then
+            echo "✗ è dichiarata, ma al passo 2 il file non è risultato caricato."
+            echo "replica:DICHIARATA-MA-ASSENTE" >> /tmp/verdetti.txt
+            exit 0
+          fi
+          if [ -f /tmp/impronta-diretta ] && [ -f /tmp/impronta-replica ] && \
+             [ "$(cat /tmp/impronta-diretta)" = "$(cat /tmp/impronta-replica)" ]; then
+            echo "✗ la replica c'è, ma è LO STESSO IDENTICO FILE della diretta."
+            echo "  Stessa impronta: la promessa è scritta, non mantenuta."
+            echo "replica:UGUALE-ALLA-DIRETTA" >> /tmp/verdetti.txt
+            exit 0
+          fi
+          echo "✓ la replica è dichiarata, è online, ed è un'altra registrazione."
+          echo "replica:OK" >> /tmp/verdetti.txt
+
+      - name: 4 · Il player pubblicato è ancora quello ROTTO?
+        # Il 05/09 il Direttore ha aperto la radio e non suonava. Causa trovata:
+        # `play()` non stava nel gesto del click — partiva dentro
+        # `loadedmetadata`, cioè dopo un giro di rete, e il browser poteva
+        # rifiutarlo; il rifiuto finiva solo in console mentre la barra scriveva
+        # «restano 4 minuti». La copia ROTTA è ancora in ROOT_CLODE, in
+        # SQUELCH/radio-player/radio-player.js, e la sua impronta è qui sotto:
+        # se il file pubblicato ha la STESSA impronta, la riparazione non è mai
+        # arrivata online, e questo è l'unico verdetto certo che si può dare da
+        # qui. Se l'impronta è diversa si stampano le righe che contano e le
+        # giudica un occhio: non si accusa un file che non si è mai visto.
+        run: |
+          set -u
+          NULLA=$(cat /tmp/peso-nulla)
+          ROTTO=8a776e8c12b1cd3000f1852306c2c8dbbdfde7cc49b4a9f309ca0075bbd47aa5
+          COD=$(curl -sS -o /tmp/player.js -w '%{http_code}' --max-time 25 "$RADIO/radio-player.js" || echo 000)
+          PESO=$(wc -c < /tmp/player.js | tr -d ' ')
+          IMPR=$(sha256sum /tmp/player.js | cut -d' ' -f1)
+          echo "radio-player.js: codice $COD · $PESO byte"
+          echo "impronta pubblicata: $IMPR"
+          echo "impronta della copia ROTTA in ROOT_CLODE (10/08): $ROTTO"
+          echo
+          if [ "$PESO" = "$NULLA" ]; then
+            echo "✗ pesa quanto il nulla: il player NON è pubblicato."
+            echo "player:MANCA" >> /tmp/verdetti.txt
+            exit 0
+          fi
+          if [ "$IMPR" = "$ROTTO" ]; then
+            echo "✗✗ IMPRONTE IDENTICHE: online c'è ANCORA IL PLAYER ROTTO."
+            echo "   La riparazione del 05/09 non è mai stata pubblicata."
+            echo "player:ROTTO" >> /tmp/verdetti.txt
+            exit 0
+          fi
+          echo "→ è un file DIVERSO da quello rotto. Ecco le righe che contano:"
+          echo
+          echo "== dove sta play() =="
+          grep -n 'play()' /tmp/player.js || echo "   (nessun play() — sospetto)"
+          echo
+          echo "== il click, loadedmetadata, seeked =="
+          grep -n 'addEventListener("click"\|addEventListener(.click.\|loadedmetadata\|seeked' /tmp/player.js || true
+          echo
+          echo "== dove finisce il rifiuto del browser =="
+          grep -n 'catch' /tmp/player.js || true
+          echo
+          if grep -q 'seeked' /tmp/player.js; then
+            echo '✓ compare seeked: il salto aspetta, come dice la riparazione.'
+          else
+            echo '⚠ seeked non compare: la riparazione dichiarava di aspettarlo.'
+          fi
+          echo "player:DIVERSO-DA-VERIFICARE-A-OCCHIO" >> /tmp/verdetti.txt
+
+      - name: 5 · Le promesse della pagina — ogni link porta da qualche parte?
+        # La pagina nomina fogli di stile, script, icone, e (dal 05/09) un
+        # registro pubblico dei diritti. Ognuno di quei nomi è una promessa.
+        # Qui si prendono tutti gli indirizzi locali che la pagina cita e si
+        # pesano uno per uno contro la firma del nulla. È il passo che trova le
+        # cose che non ci sono senza che nessuno se ne accorga — l'icona della
+        # scheda, per dirne una.
+        run: |
+          set -u
+          NULLA=$(cat /tmp/peso-nulla)
+          curl -sS -o /tmp/index.html --max-time 25 "$RADIO/" || true
+          echo "la pagina pesa $(wc -c < /tmp/index.html | tr -d ' ') byte"
+          echo
+          python3 - <<'PY' > /tmp/link.txt
+          import re
+          testo = open('/tmp/index.html', encoding='utf-8', errors='replace').read()
+          visti = []
+          for m in re.finditer(r'(?:href|src)\s*=\s*["\']([^"\']+)["\']', testo):
+              u = m.group(1).strip()
+              if not u or u.startswith(('http', '//', '#', 'data:', 'mailto:', 'javascript:')):
+                  continue
+              u = u.lstrip('/')
+              if u not in visti:
+                  visti.append(u)
+          print('\n'.join(visti))
+          PY
+          if [ ! -s /tmp/link.txt ]; then
+            echo "la pagina non cita nessun indirizzo locale (o non si è letta)."
+            exit 0
+          fi
+          MORTI=0
+          while read -r U; do
+            [ -n "${U:-}" ] || continue
+            COD=$(curl -sS -o /tmp/l.bin -w '%{http_code}' --max-time 40 "$RADIO/$U" || echo 000)
+            PESO=$(wc -c < /tmp/l.bin | tr -d ' ')
+            if [ "$PESO" = "$NULLA" ]; then
+              printf '  ✗ %-34s codice=%s peso=%s → NON ESISTE\n' "$U" "$COD" "$PESO"
+              MORTI=$((MORTI + 1))
+            else
+              printf '  ✓ %-34s codice=%s peso=%s\n' "$U" "$COD" "$PESO"
+            fi
+          done < /tmp/link.txt
+          echo
+          echo "promesse morte: $MORTI"
+          [ "$MORTI" = "0" ] && echo "promesse:OK" >> /tmp/verdetti.txt \
+                             || echo "promesse:$MORTI-MORTE" >> /tmp/verdetti.txt
+
+      - name: 6 · IL REFERTO — e qui si decide
+        # L'unico passo che può bocciare. Boccia su ciò che è CERTO (un file che
+        # non c'è, un player identico a quello rotto, una promessa scritta e non
+        # mantenuta) e non boccia su ciò che va guardato a occhio. Se un giorno
+        # questo passo non riesce più a bocciare niente, è rotto lui.
+        if: always()
+        run: |
+          set -u
+          echo "══════════ REFERTO DELLA RADIO ══════════"
+          cat /tmp/verdetti.txt 2>/dev/null || echo "(nessun verdetto: il collaudo è morto prima)"
+          echo "═════════════════════════════════════════"
+          echo
+          V=$(cat /tmp/verdetti.txt 2>/dev/null || echo "")
+          MALE=0
+          dire () { echo "$1"; }
+          # ⚠️ Un referto VUOTO non è un referto buono: vuol dire che il collaudo
+          #    è morto prima di misurare qualunque cosa. Senza questa riga, il
+          #    caso peggiore — non aver misurato niente — usciva VERDE. Trovato
+          #    provando il referto con sette casi cattivi, non leggendolo.
+          if [ -z "$V" ]; then
+            dire "🔴 NESSUNA MISURA: il collaudo è morto prima di guardare la radio."
+            dire "   Non si conclude niente da un referto vuoto."
+            exit 1
+          fi
+          case "$V" in
+            *onda:MANCA*|*onda:NON-JSON*) dire "🔴 L'onda non c'è: la radio non ha un palinsesto."; MALE=1 ;;
+          esac
+          case "$V" in
+            *audio-diretta:OK*) dire "🟢 La diretta è caricata e pesa." ;;
+            *audio-diretta:*)   dire "🔴 La diretta NON è caricata: la radio è muta."; MALE=1 ;;
+          esac
+          case "$V" in
+            *replica:OK*) dire "🟢 La replica è online, ed è un'altra registrazione." ;;
+            *replica:*)   dire "🔴 La replica promessa in pagina NON è mantenuta."; MALE=1 ;;
+          esac
+          case "$V" in
+            *player:ROTTO*) dire "🔴 Online c'è ancora il player rotto del 10/08."; MALE=1 ;;
+            *player:MANCA*) dire "🔴 Il player non è pubblicato."; MALE=1 ;;
+            *player:DIVERSO*) dire "🟡 Il player è cambiato: le righe stampate al passo 4 le giudica una persona." ;;
+          esac
+          case "$V" in
+            *promesse:OK*) dire "🟢 Nessun link morto in pagina." ;;
+            *promesse:*)   dire "🔴 La pagina promette file che non esistono (passo 5)."; MALE=1 ;;
+          esac
+          echo
+          echo "⚠️ Questo referto misura i BYTE, non l'orecchio."
+          echo "   Che la radio SI SENTA lo può dire solo una persona che la apre."
+          exit $MALE
