@@ -250,6 +250,7 @@ def blocco_squadra() -> dict:
                 "sotto sono nomi citati in una pagina di competenze, non una misura. "
                 "Rigenera la porta da dentro ROOT_CLODE e questa riga sparisce.")
     return {
+        "spiega": "Vivono nella cartella madre, hanno il loro CLAUDE.md e il loro STATO.md, e non sono chiamabili da qui: sono un altro mestiere, non un altro grado.",
         "cifre": cifre,
         "veri": veri,
         "case": case,
@@ -393,6 +394,176 @@ def blocco_note() -> dict:
 
 
 # ── payload ──────────────────────────────────────────────────────────────────
+# ═══════════════════════════════════════════════════════════════════════════
+#  I QUATTRO BLOCCHI DELLA CONSOLLE (05/09)
+#
+#  Nascono da una frase del Direttore: «non trovo più i prompt». Non è un
+#  problema di memoria: sono in quindici cartelle di ROOT_CLODE, e lui apre
+#  il telefono. Quello che serve per lavorare deve stare dietro la frase,
+#  non dietro una ricerca.
+# ═══════════════════════════════════════════════════════════════════════════
+
+def _madre() -> str:
+    """La cartella che contiene questo repo: ROOT_CLODE. Stessa ricerca di
+    _case_di_lavoro, tenuta in un posto solo — due copie della stessa regola
+    divergono, e qui divergere vuol dire leggere case diverse."""
+    for cand in (os.path.dirname(ROOT),
+                 os.path.join(os.path.dirname(ROOT), "ROOT_CLODE"),
+                 os.path.join(os.path.dirname(ROOT), "root_clode")):
+        if os.path.isdir(cand) and sum(
+                os.path.isfile(os.path.join(cand, n, "STATO.md"))
+                for n in os.listdir(cand) if os.path.isdir(os.path.join(cand, n))) >= 3:
+            return cand
+    return ""
+
+
+def _cognomi_da_escludere(madre: str) -> list:
+    """I cognomi delle persone vere, letti dal roster che vive FUORI da questo
+    repo. Non entrano mai nel codice: se li scrivessi qui, la difesa contro i
+    nomi in pubblico sarebbe essa stessa un nome in pubblico — lo stesso errore
+    del commento che spiegava di non nominare un indirizzo nominandolo."""
+    f = os.path.join(madre, "progetti", "ANIMA-GAME", "ROSTER-E-CICLO.md")
+    if not os.path.isfile(f):
+        return []
+    testo = open(f, encoding="utf-8", errors="replace").read()
+    fuori = set()
+    for nome in re.findall(r"\*\*([A-Z][a-zà-ù]+ [A-Z][a-zà-ù]+)\*\*", testo):
+        fuori.update(nome.split())
+    return sorted(w for w in fuori if len(w) > 3)
+
+
+def blocco_prompt() -> dict:
+    """L'ULTIMO prompt per ogni casa, pronto da incollare.
+
+    DUE COSE MISURATE IL 05/09, E CAMBIANO IL DISEGNO.
+    ① I tre file che la commessa nominava non esistono: i nomi veri sono altri.
+       Quindi non si cerca un elenco scritto a mano — si chiede alla cartella
+       qual è il più recente. Un elenco di nomi invecchia; una domanda no.
+    ② Undici case su quattordici NON hanno un blocco fra tre apici: quei file
+       sono LETTERE, non prompt. Mostrarle come prompt sarebbe falso; nasconderle
+       perderebbe il lavoro di undici case. Si mostrano tutte, dicendo quale
+       delle due cose sono — e il bottone copia in ogni caso la cosa giusta:
+       il blocco se c'è, il testo intero se no.
+    """
+    madre = _madre()
+    if not madre:
+        return {"raggiungibile": False, "voci": [], "scartati": [],
+                "nota": "La cartella madre non è raggiungibile da qui: i prompt non "
+                        "sono stati letti. Non è «non ce ne sono», è «non li ho visti»."}
+
+    vietati = _cognomi_da_escludere(madre)
+    voci, scartati = [], []
+    for casa in sorted(os.listdir(madre)):
+        d = os.path.join(madre, casa)
+        # kiroshi-interno è escluso a priori: è la casa dei dati delle persone.
+        if not os.path.isdir(d) or casa.startswith(".") or casa == "kiroshi-interno":
+            continue
+        trovati = [f for f in os.listdir(d)
+                   if f.startswith("DA-DRAGO-") and f.endswith(".md")]
+        if not trovati:
+            continue
+        # Il più recente per data di lavoro vera, non per data del file: in un
+        # clone la data di modifica è l'ora del clone e mente su tutto.
+        def quando(f):
+            g = _ultima_data(os.path.join(d, f), madre)
+            return (g or "", os.path.getmtime(os.path.join(d, f)))
+        ultimo = sorted(trovati, key=quando, reverse=True)[0]
+        testo = open(os.path.join(d, ultimo), encoding="utf-8", errors="replace").read()
+
+        trovato = next((c for c in vietati if re.search(rf"\b{re.escape(c)}\b", testo)), None)
+        if trovato:
+            # Si dice CHE è stato scartato e da dove, mai la parola che l'ha
+            # fatto scartare: ripeterla qui la porterebbe dove non deve andare.
+            scartati.append({"casa": casa, "file": ultimo,
+                             "perche": "nomina una persona"})
+            continue
+
+        blocchi = re.findall(r"^```[^\n]*\n(.*?)^```", testo, re.S | re.M)
+        corpo = blocchi[0] if blocchi else re.sub(r"^#.*?\n", "", testo, count=1)
+        voci.append({
+            "casa": casa,
+            "file": ultimo,
+            "forma": "prompt" if blocchi else "lettera",
+            "quando": _ultima_data(os.path.join(d, ultimo), madre) or "?",
+            "testo": corpo.strip()[:14000],
+        })
+    voci.sort(key=lambda v: v["quando"], reverse=True)
+    return {"raggiungibile": True, "voci": voci, "scartati": scartati,
+            "nota": "Per ogni casa il più recente. «prompt» ha un blocco da incollare; "
+                    "«lettera» è un messaggio — il bottone copia comunque il testo giusto."}
+
+
+def blocco_digest() -> dict:
+    """Le ultime voci della bacheca corta. Non l'archivio: quello è 600 KB e
+    sul telefono non si apre."""
+    madre = _madre()
+    f = os.path.join(madre, "comuni", "BACHECA-RECENTE.md") if madre else ""
+    if not f or not os.path.isfile(f):
+        return {"voci": [], "nota": "Bacheca non raggiungibile da qui: non letta."}
+    voci = []
+    for pezzo in re.split(r"^## ", open(f, encoding="utf-8", errors="replace").read(), flags=re.M)[1:]:
+        righe = pezzo.split("\n")
+        capo = righe[0].strip()
+        m = re.match(r"(\d{4}-\d{2}-\d{2})[^·]*·\s*([^·]+?)\s*·\s*(.*)", capo)
+        voci.append({
+            "quando": m.group(1) if m else "",
+            "chi": m.group(2).strip() if m else "",
+            "titolo": (m.group(3) if m else capo).replace("**", "").strip()[:180],
+            "testo": "\n".join(righe[1:]).strip()[:6000],
+        })
+    return {"voci": voci[:15], "nota": f"Le ultime {len(voci[:15])} voci della bacheca corta."}
+
+
+def blocco_pr() -> dict:
+    """Le PR che aspettano il Direttore, su tutti i repo di casa.
+
+    Se `gh` non c'è o non risponde, la sezione dice «non misurato». Non finge
+    zero: uno zero inventato è la bugia più comoda che esista, perché
+    assomiglia a una buona notizia."""
+    madre = _madre()
+    if not madre:
+        return {"misurato": False, "voci": [], "perche": "cartella madre non raggiungibile"}
+    try:
+        subprocess.run(["gh", "auth", "status"], capture_output=True, timeout=20, check=True)
+    except Exception as e:
+        return {"misurato": False, "voci": [],
+                "perche": f"gh non disponibile o non autenticato ({type(e).__name__})"}
+
+    voci, saltati = [], []
+    for nome in sorted(os.listdir(madre)):
+        d = os.path.join(madre, nome)
+        if not os.path.isdir(os.path.join(d, ".git")):
+            continue
+        try:
+            r = subprocess.run(["gh", "pr", "list", "--state", "open", "--limit", "30",
+                                "--json", "number,title,isDraft,mergeable,url"],
+                               cwd=d, capture_output=True, text=True, timeout=40)
+            if r.returncode != 0:
+                saltati.append(nome)
+                continue
+            for pr in json.loads(r.stdout or "[]"):
+                voci.append({
+                    "repo": nome, "n": pr["number"], "titolo": pr["title"][:140],
+                    "stato": ("bozza" if pr.get("isDraft") else
+                              {"MERGEABLE": "fondibile", "CONFLICTING": "in conflitto"}
+                              .get(pr.get("mergeable"), "da controllare")),
+                    "link": pr.get("url", ""),
+                })
+        except Exception:
+            saltati.append(nome)
+    return {"misurato": True, "voci": voci, "saltati": saltati,
+            "nota": "Le PR aperte sui repo di casa, chieste a gh al momento del build."}
+
+
+def blocco_numeri() -> dict:
+    """Il posto delle visite. Esiste da subito, vuoto e onesto: una casella che
+    dice «non c'è ancora una fonte» è utile; una che mostra uno zero inventato
+    fa prendere decisioni su un numero che non è mai stato misurato."""
+    return {"fonte": None, "voci": [],
+            "nota": "Nessun contatore acceso: lo apre ROGUE. Qui entreranno le visite "
+                    "per sito, ultimi 7 giorni, quando ci sarà una fonte vera."}
+
+
 def payload_esistente(html: str):
     m = re.search(rf'<script[^>]*id="{SEGNO}"[^>]*>(.*?)</script>', html, re.S)
     if not m:
@@ -463,6 +634,26 @@ body{margin:0;background:var(--sf);color:var(--txt);font-family:-apple-system,Bl
 #apri:disabled{opacity:.5;cursor:wait}
 #esito{min-height:19px;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;text-align:center;color:var(--ros)}
 #esito.lavora{color:var(--dim)}
+
+/* ── la consolle (05/09): prompt, digest, PR, numeri ── */
+.pz{border:1px solid var(--bor);border-radius:9px;margin:9px 0;background:var(--pan);overflow:hidden}
+.pz>summary{list-style:none;cursor:pointer;padding:11px 13px;display:flex;gap:9px;align-items:baseline;flex-wrap:wrap}
+.pz>summary::-webkit-details-marker{display:none}
+.pz>summary .t{flex:1 1 190px;min-width:0;font-weight:600;overflow-wrap:anywhere}
+.pz .meta{font-family:ui-monospace,Menlo,monospace;font-size:10.5px;letter-spacing:.1em;color:var(--dim);text-transform:uppercase}
+.tag{font-family:ui-monospace,Menlo,monospace;font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;border:1px solid var(--bor);border-radius:20px;padding:2px 8px;color:var(--dim);white-space:nowrap}
+.tag.p{border-color:var(--cia);color:var(--cia)}
+.tag.f{border-color:var(--ver);color:var(--ver)}
+.tag.c{border-color:var(--ros);color:var(--ros)}
+.tag.b{border-color:var(--gia);color:var(--gia)}
+.pz .corpo{padding:0 13px 13px}
+/* Il prompt va a capo: su un telefono in verticale non deve esistere una barra
+   di scorrimento laterale, altrimenti per copiare bisogna prima navigare. */
+pre.blocco{white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word;background:var(--sf);border:1px solid var(--bor);border-radius:7px;padding:11px;margin:0 0 9px;font-family:ui-monospace,Menlo,monospace;font-size:12px;line-height:1.5;max-height:60vh;overflow-y:auto}
+button.cp{width:100%;background:transparent;border:1px solid var(--cia);color:var(--cia);font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:11px;border-radius:7px;cursor:pointer}
+button.cp:active{background:var(--cia);color:var(--sf)}
+button.cp.ok{border-color:var(--ver);color:var(--ver)}
+.vuoto{color:var(--dim);font-size:13px;padding:10px 0}
 
 /* ── il banco ── */
 #banco{max-width:820px;margin:0 auto;padding:20px 16px 40px}
@@ -648,6 +839,69 @@ th{color:var(--cia);font-family:ui-monospace,Menlo,monospace;font-size:10px;lett
          + s.da_riverificare.map(esc).join('<br>') + '</div>';
     }
 
+    // ① I PROMPT — la prima cosa, perché è la frase da cui è nata la commessa:
+    //    «non trovo più i prompt». Quello che serve per lavorare sta in cima.
+    var pr = d.prompt || {};
+    h += '<h2>Prompt da incollare</h2>';
+    if (pr.raggiungibile === false) {
+      h += '<div class="avv">' + esc(pr.nota) + '</div>';
+    } else {
+      (pr.voci || []).forEach(function (v, i) {
+        h += '<details class="pz"><summary>'
+           + '<span class="t">' + esc(v.casa) + '</span>'
+           + '<span class="tag ' + (v.forma === 'prompt' ? 'p' : '') + '">' + esc(v.forma) + '</span>'
+           + '<span class="meta">' + esc(v.quando) + '</span></summary>'
+           + '<div class="corpo"><pre class="blocco" id="pz' + i + '">' + esc(v.testo) + '</pre>'
+           + '<button class="cp" type="button" data-cp="pz' + i + '">copia</button>'
+           + '<div class="meta" style="margin-top:8px">' + esc(v.file) + '</div>'
+           + '</div></details>';
+      });
+      if (!(pr.voci || []).length) h += '<div class="vuoto">Nessun prompt trovato.</div>';
+      (pr.scartati || []).forEach(function (x) {
+        h += '<div class="avv"><b>Scartato:</b> ' + esc(x.casa) + ' — ' + esc(x.perche)
+           + '. Non entra qui finché non è riscritto.</div>';
+      });
+      h += '<div class="meta" style="margin:6px 0 2px">' + esc(pr.nota) + '</div>';
+    }
+
+    // ② IL DIGEST
+    var dg = d.digest || {};
+    h += '<h2>Digest</h2>';
+    (dg.voci || []).forEach(function (v, i) {
+      h += '<details class="pz"><summary>'
+         + '<span class="t">' + esc(v.titolo) + '</span>'
+         + '<span class="meta">' + esc(v.chi) + ' · ' + esc(v.quando) + '</span></summary>'
+         + '<div class="corpo"><pre class="blocco">' + esc(v.testo) + '</pre></div></details>';
+    });
+    if (!(dg.voci || []).length) h += '<div class="vuoto">' + esc(dg.nota) + '</div>';
+
+    // ③ LE PR CHE ASPETTANO LUI
+    var q = d.pr || {};
+    h += '<h2>Ti aspettano</h2>';
+    if (!q.misurato) {
+      h += '<div class="avv"><b>Non misurato.</b> ' + esc(q.perche)
+         + '. Meglio dirlo che mostrare uno zero che non è stato contato.</div>';
+    } else if (!(q.voci || []).length) {
+      h += '<div class="vuoto">Nessuna richiesta aperta: misurato adesso, non supposto.</div>';
+    } else {
+      (q.voci || []).forEach(function (v) {
+        var cl = v.stato === 'fondibile' ? 'f' : v.stato === 'in conflitto' ? 'c' : 'b';
+        h += '<div class="pz"><div class="corpo" style="padding:11px 13px">'
+           + '<div style="display:flex;gap:8px;align-items:baseline;flex-wrap:wrap">'
+           + '<span class="tag ' + cl + '">' + esc(v.stato) + '</span>'
+           + '<span class="meta">' + esc(v.repo) + ' #' + esc(v.n) + '</span></div>'
+           + '<div style="margin-top:6px"><a href="' + esc(v.link) + '">' + esc(v.titolo) + ' →</a></div>'
+           + '</div></div>';
+      });
+    }
+    if ((q.saltati || []).length) {
+      h += '<div class="avv">Non letti: ' + esc((q.saltati || []).join(', ')) + '</div>';
+    }
+
+    // ④ I NUMERI — il posto esiste da subito, vuoto e onesto.
+    var nm = d.numeri || {};
+    h += '<h2>Numeri</h2><div class="vuoto">' + esc(nm.nota) + '</div>';
+
     h += '<h2>Strumenti</h2><div class="griglia">';
     ((d.strumenti || {}).voci || []).forEach(function (v) {
       h += '<div class="att"><div class="n"><a href="' + esc(v.dove) + '">' + esc(v.nome) + ' →</a></div>'
@@ -695,9 +949,12 @@ th{color:var(--cia);font-family:ui-monospace,Menlo,monospace;font-size:10px;lett
     });
     h += '</table></div>';
     if ((q.case || []).length) {
-      h += '<div class="avv"><b>Le case di lavoro.</b> Vivono in ROOT_CLODE, hanno il loro '
-         + 'CLAUDE.md e il loro STATO.md, e non sono chiamabili da qui: sono un altro '
-         + 'mestiere, non un altro grado.</div>';
+      // ⚠️ 05/09 — questa riga nominava la cartella madre IN CHIARO, nel modello
+      // di pagina, quindi si leggeva a lucchetto chiuso su un repo pubblico.
+      // Non l'ha trovata la guardia di questo file (non cercava quel nome): l'ha
+      // trovata guardia_privacy.py. Adesso la frase arriva dal cifrato come
+      // tutto il resto — il modello non nomina più niente del sistema.
+      h += '<div class="avv"><b>Le case di lavoro.</b> ' + esc(q.spiega || '') + '</div>';
       h += '<div class="scorre">';
       h += '<table><tr><th>Casa</th><th>File</th><th>STATO aggiornato</th><th>Manuale</th></tr>';
       (q.case || []).forEach(function (c) {
@@ -732,6 +989,32 @@ th{color:var(--cia);font-family:ui-monospace,Menlo,monospace;font-size:10px;lett
     porta.hidden = true;
     banco.hidden = false;
     document.getElementById('chiudi').addEventListener('click', chiudi);
+
+    // «Copia» copia SOLO il blocco di quel prompt. Niente navigator.clipboard
+    // da solo: su Safari fuori da un gesto diretto non scrive, e il Direttore
+    // resterebbe convinto di aver copiato. Si prova, e se fallisce si seleziona
+    // il testo — così il gesto manuale è a un tocco, non a un naufragio.
+    Array.prototype.forEach.call(banco.querySelectorAll('button.cp'), function (b) {
+      b.addEventListener('click', function () {
+        var el = document.getElementById(b.getAttribute('data-cp'));
+        if (!el) return;
+        var fatto = function () {
+          b.textContent = 'copiato'; b.classList.add('ok');
+          setTimeout(function () { b.textContent = 'copia'; b.classList.remove('ok'); }, 1800);
+        };
+        var aMano = function () {
+          var r = document.createRange(); r.selectNodeContents(el);
+          var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+          b.textContent = 'selezionato — tieni premuto e copia';
+          setTimeout(function () { b.textContent = 'copia'; }, 3000);
+        };
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(el.textContent).then(fatto, aMano);
+          } else { aMano(); }
+        } catch (e) { aMano(); }
+      });
+    });
     window.scrollTo(0, 0);
   }
 
@@ -771,6 +1054,10 @@ def main() -> None:
         "chiavi": blocco_chiavi(),
         "squadra": blocco_squadra(),
         "note": blocco_note(),
+        "prompt": blocco_prompt(),
+        "digest": blocco_digest(),
+        "pr": blocco_pr(),
+        "numeri": blocco_numeri(),
     }
 
     vecchio = None
@@ -791,7 +1078,12 @@ def main() -> None:
         "SQUELCH", "KIROSHI", "collaudo-superfici", "provino",
         # …e dal 31/08 anche i nomi delle case di lavoro: entrano nel cifrato
         # come tutto il resto, e a lucchetto chiuso non devono trapelare.
-        "SHUTTER", "CHRONO", "MIRAGGIO", "kiroshi-interno"]
+        "SHUTTER", "CHRONO", "MIRAGGIO", "kiroshi-interno",
+        # 05/09 — il nome della cartella madre. Mancava, ed era in chiaro nel
+        # modello dal 31/08: la guardia di casa non cercava proprio quello che
+        # stava lasciando passare. Un elenco di spie scritto a mano ha questo
+        # difetto, e si ripara solo aggiungendo la spia che ti ha morso.
+        "ROOT_CLODE", "/RISERVATO/"]
     visibili = [s for s in spie if s in re.sub(
         rf'<script[^>]*id="{SEGNO}"[^>]*>.*?</script>', "", html, flags=re.S)]
     if visibili:
